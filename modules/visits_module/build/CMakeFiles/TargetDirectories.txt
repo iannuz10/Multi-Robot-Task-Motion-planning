@@ -1,0 +1,4 @@
+/home/iannuz/popf-tif/modules/visits_module/build/CMakeFiles/Visits.dir
+/home/iannuz/popf-tif/modules/visits_module/build/CMakeFiles/VisitMain.dir
+/home/iannuz/popf-tif/modules/visits_module/build/CMakeFiles/edit_cache.dir
+/home/iannuz/popf-tif/modules/visits_module/build/CMakeFiles/rebuild_cache.dir
