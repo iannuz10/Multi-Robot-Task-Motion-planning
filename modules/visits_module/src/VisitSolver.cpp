@@ -112,6 +112,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           FromTo location(from,to);
           this->context.SetLocation(robot,location);
 
+          context.PrintAll();
            // distance_euc(from, to);
 
         }
