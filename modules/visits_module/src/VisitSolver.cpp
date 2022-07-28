@@ -96,6 +96,8 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
       string arg=function;
       string tmp = function.substr(n+1,5);
 
+      string robot = function.substr(n+6,function.length()-1);
+
       function.erase(n,function.length()-1);
       arg.erase(0,n+1);
       if(function=="triggered"){
@@ -106,7 +108,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           
           string from = tmp.substr(0,2);   // from and to are regions, need to extract wps (poses)
           string to = tmp.substr(3,2);
-          string robot = "tempName";
+          
           FromTo location(from,to);
           this->context.SetLocation(robot,location);
 
