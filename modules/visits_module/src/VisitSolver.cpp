@@ -102,9 +102,11 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
         trigger[arg] = value>0?1:0;
         if (value>0){
 
+          // Regions accepted: r0-r9
+          
           string from = tmp.substr(0,2);   // from and to are regions, need to extract wps (poses)
           string to = tmp.substr(3,2);
-          string robot = "tempRobot"; //TODO: Replace hardcoded name with pddl parsing
+          string robot = tmp.substr(6,tmp.length()-7);
           FromTo location(from,to);
           context.SetLocation(robot,location);
 
