@@ -27,6 +27,7 @@
 #include <iomanip>
 #include <queue>
 #include <unordered_map>
+#include "Context.cpp"
 
 using namespace std;
 
@@ -34,6 +35,7 @@ class VisitSolver : public ExternalSolver
 {
 public:
     VisitSolver();
+    VisitSolver(Context context);
     ~VisitSolver();
     virtual void loadSolver(string* parameters, int n);
     virtual map<string,double> callExternalSolver(map<string,double> initialState, bool isHeuristic);
@@ -48,13 +50,13 @@ public:
     map<string, vector<string>> region_mapping;
     vector <string> source, target; 
     string starting_position;
-     
-   
+    
    
     void parseParameters(string parameters);
  
 
 private:
+    Context context;
     list<string> affected;
     list<string> dependencies;
       

@@ -1,5 +1,9 @@
+#ifndef _context_
+#define _context_
+
 #include <stdio.h>
 #include <string>
+#include <iostream>
 #include "FromTo.cpp"
 #include <unordered_map>
 #include <list>
@@ -19,4 +23,11 @@ class Context{
         FromTo GetLocation(string robotName){
             return robotLocation.at(robotName);
         };
+
+        void PrintAll(){
+            for(auto x : robotLocation){
+                cout << "Robot: " << x.first << ". Regions: " << x.second << endl;
+            }
+        }
 };
+#endif

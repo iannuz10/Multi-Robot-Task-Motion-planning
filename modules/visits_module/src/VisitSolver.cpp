@@ -16,6 +16,7 @@
      along with this program.  If not, see <http://www.gnu.org/licenses/>.
      */
 
+
 #include "VisitSolver.h"
 #include "ExternalSolver.h"
 #include <map>
@@ -44,8 +45,8 @@ extern "C" void destroy_object(ExternalSolver *externalSolver){
   delete externalSolver;
 }
 
-VisitSolver::VisitSolver(){
-
+VisitSolver::VisitSolver(Context context){
+  this->context = context;
 }
 
 VisitSolver::~VisitSolver(){
@@ -103,7 +104,9 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
 
           string from = tmp.substr(0,2);   // from and to are regions, need to extract wps (poses)
           string to = tmp.substr(3,2);
-
+          string robot = "tempRobot"; //TODO: Replace hardcoded name with pddl parsing
+          FromTo location(from,to);
+          context.SetLocation(robot,location);
 
            // distance_euc(from, to);
 
