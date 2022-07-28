@@ -45,8 +45,8 @@ extern "C" void destroy_object(ExternalSolver *externalSolver){
   delete externalSolver;
 }
 
-VisitSolver::VisitSolver(Context context){
-  this->context = context;
+VisitSolver::VisitSolver(){
+  
 }
 
 VisitSolver::~VisitSolver(){
@@ -106,9 +106,9 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           
           string from = tmp.substr(0,2);   // from and to are regions, need to extract wps (poses)
           string to = tmp.substr(3,2);
-          string robot = tmp.substr(6,tmp.length()-7);
+          string robot = "tempName";
           FromTo location(from,to);
-          context.SetLocation(robot,location);
+          this->context.SetLocation(robot,location);
 
            // distance_euc(from, to);
 
@@ -129,6 +129,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
 
 
   double results = calculateExtern(dummy, act_cost);
+  
   if (ExternalSolver::verbose){
     cout << "(dummy) " << results << endl;
   }
@@ -174,7 +175,7 @@ void VisitSolver::parseParameters(string parameters){
 
 double VisitSolver::calculateExtern(double external, double total_cost){
   //float random1 = static_cast <float> (rand())/static_cast <float>(RAND_MAX);
-  double cost = 2;//random1;
+  double cost = 2+this->context.IsEmpty();//random1;
   return cost;
 }
 

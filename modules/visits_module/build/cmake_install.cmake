@@ -1,4 +1,4 @@
-# Install script for directory: /home/iannuz/popf-tif/modules/visits_module/src
+# Install script for directory: /home/iannuz/popf-tif-v2/modules/visits_module/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/iannuz/popf-tif/modules/visits_module/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/iannuz/popf-tif-v2/modules/visits_module/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -11,7 +11,8 @@ using namespace std;
 int main(int argc, char **argv) {
     
     Context context;
-    VisitSolver visitExample(context);
+    VisitSolver visitExample;
+    visitExample.SetContext(context);
     string problem;
     
     if (argc > 2){

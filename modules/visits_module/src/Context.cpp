@@ -17,7 +17,7 @@ class Context{
         Context(){};
 
         void SetLocation(string robotName, FromTo location){
-            robotLocation[robotName] = location;
+            robotLocation.insert({robotName,location});
         };
 
         FromTo GetLocation(string robotName){
@@ -28,6 +28,14 @@ class Context{
             for(auto x : robotLocation){
                 cout << "Robot: " << x.first << ". Regions: " << x.second << endl;
             }
+        }
+
+        int IsEmpty(){
+            if(robotLocation.empty()){
+                return 0;
+            };
+            return 1;
+            
         }
 };
 #endif

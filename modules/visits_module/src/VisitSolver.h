@@ -35,7 +35,6 @@ class VisitSolver : public ExternalSolver
 {
 public:
     VisitSolver();
-    VisitSolver(Context context);
     ~VisitSolver();
     virtual void loadSolver(string* parameters, int n);
     virtual map<string,double> callExternalSolver(map<string,double> initialState, bool isHeuristic);
@@ -51,6 +50,9 @@ public:
     vector <string> source, target; 
     string starting_position;
     
+    void SetContext(Context c){
+        this->context = c;
+    };
    
     void parseParameters(string parameters);
  
