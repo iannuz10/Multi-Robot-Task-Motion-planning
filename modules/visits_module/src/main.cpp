@@ -3,6 +3,8 @@
 #include <fstream>
 #include <list>
 #include <bits/stdc++.h> 
+#include "Context.cpp"
+#include "FromTo.cpp"
 
 using namespace std;
 
@@ -12,7 +14,8 @@ int main(int argc, char **argv) {
     
     VisitSolver visitExample;
     string problem;
-    
+    Context context;
+
     if (argc > 2){
         problem = argv[1];
     } else {
