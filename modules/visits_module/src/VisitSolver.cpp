@@ -96,7 +96,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
       string arg=function;
       string tmp = function.substr(n+1,5);
 
-      string robot = function.substr(n+6,function.length()-1);
+      string robot = function.substr(n+7,function.length()-1);
 
       function.erase(n,function.length()-1);
       arg.erase(0,n+1);
