@@ -2,7 +2,9 @@
 #include "VisitSolver.h"
 #include <fstream>
 #include <list>
+#include <string>
 #include <bits/stdc++.h> 
+#include "InitParser.cpp"
 
 using namespace std;
 
@@ -10,7 +12,18 @@ using namespace std;
 
 int main(int argc, char **argv) {
     
+    fstream file; 
     Context context;
+    InitParser parser;
+
+    cout << "Calling parser... wish me luck..." << endl;
+
+    if(parser.ParseFile(file, context)){
+        cout << "Parsed worked good." << endl;
+    }else{
+        cerr << "Error parsing!!" << endl;
+    }
+
     VisitSolver visitExample;
     visitExample.SetContext(context);
     string problem;

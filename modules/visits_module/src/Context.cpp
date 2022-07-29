@@ -26,7 +26,8 @@ class Context{
         };
 
         FromTo GetLocation(string robotName){
-            return robotLocation.at(robotName);
+            auto it = robotLocation.find(robotName);
+            return it->second;
         };
 
         void PrintAll(){
