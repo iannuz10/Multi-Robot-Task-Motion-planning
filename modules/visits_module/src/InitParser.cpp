@@ -2,6 +2,7 @@
 #include <fstream>
 #include <stdio.h>
 #include <string>
+#include <algorithm>
 #include "Context.cpp"
 #include "FromTo.cpp"
 
@@ -12,15 +13,9 @@ class InitParser
 {
 private:
     string locationKeyword = "robot_in";
-    bool success = false;
 public:
     InitParser(Context* context);
     ~InitParser();
-
-    bool IsSuccessful(){
-        return success;
-    }
-
 };
 
 InitParser::InitParser(Context* context){
@@ -37,15 +32,16 @@ InitParser::InitParser(Context* context){
                 line.erase(line.length()-1,line.length());
                 line.erase(0,curr+locationKeyword.length()+1);
                 
-                string robotName = line.substr(0,line.find(" ")).c_str();
-                string from = line.substr(line.find(" ")+1,line.length()-1).c_str();
+                string robotName = line.substr(0,line.find(" "));
+                string from = line.substr(line.find(" ")+1,line.length()-1);
+                transform(robotName.begin(), robotName.end(),robotName.begin(), ::tolower);
+                transform(from.begin(), from.end(),from.begin(), ::tolower);
                 cout << "Robot name: " << robotName << endl;
                 cout << "From region: " << from << endl;
                 FromTo initLocation(from," ");
                 context->SetLocation(robotName,initLocation);
             }
         }
-        success=true;
     }
 }
 

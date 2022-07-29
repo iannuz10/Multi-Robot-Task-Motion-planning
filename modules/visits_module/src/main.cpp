@@ -4,23 +4,11 @@
 #include <list>
 #include <string>
 #include <bits/stdc++.h> 
-#include "InitParser.cpp"
 
 using namespace std;
 
-
-
 int main(int argc, char **argv) {
-    cout << "Program started\n";
-    
-    Context *context = new Context();
-    InitParser parser(context);
-
-    cout << "Init Parser completed\n";
-
     VisitSolver visitExample;
-    visitExample.parserSuccessful = parser.IsSuccessful();
-    visitExample.SetContext(context);
     string problem;
     
     if (argc > 2){

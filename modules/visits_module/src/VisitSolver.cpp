@@ -26,7 +26,7 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
-
+#include "InitParser.cpp"
 #include "armadillo"
 #include <initializer_list>
 
@@ -69,11 +69,14 @@ void VisitSolver::loadSolver(string *parameters, int n){
   string landmark_file = "/home/iannuz/visits/visits_domain/landmark.txt";  // change this to the correct path
   parseLandmark(landmark_file);
   //startEKF();
-  if(parserSuccessful){
-    cout << "PARSER SUCCEEDEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD" << endl;
-  } else{
-    cout << "FUUUUUUUUUUUUUUUUUUUUUUUUUUCKKKKKKKKKKKKKKKKKKKKKKK" << endl;
-  }
+  cout << "Program started\n";
+    
+    Context *context = new Context();
+
+    InitParser parser(context);
+    SetContext(context);
+    cout << "Init Parser completed\n";
+
 }
 
 map<string,double> VisitSolver::callExternalSolver(map<string,double> initialState,bool isHeuristic){

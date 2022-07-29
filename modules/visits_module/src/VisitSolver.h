@@ -55,8 +55,7 @@ public:
     };
    
     void parseParameters(string parameters);
- 
-    bool parserSuccessful = false;
+
 
 private:
     Context* context;
