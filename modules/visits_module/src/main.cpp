@@ -12,7 +12,6 @@ using namespace std;
 
 int main(int argc, char **argv) {
     
-    
     Context context;
     InitParser parser(&context);
 

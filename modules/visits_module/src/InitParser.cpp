@@ -11,6 +11,7 @@ using namespace std;
 class InitParser
 {
 private:
+    string locationKeyword = "robot_in";
     bool success = false;
 public:
     InitParser(Context* context);
@@ -23,30 +24,28 @@ public:
 };
 
 InitParser::InitParser(Context* context){
+    int curr;
     string line;
-    bool flag = true;
-    fstream fio;
-    fio.open("/home/iannuz/visits/visits_domain/prob1.pddl");
-    while(fio){
-        getline(cin, line);
-        if(line.find(":init")){
-            while(flag){
-                getline(cin, line);
-                if(line.find("robot_in")){
-                    line.erase(0,1);
-                    line.erase(line.length()-1,line.length());
-                    int n=line.find(" ")+1;
-                    line.erase(0,n);
-                    string robotName = line.substr(0,line.find(" ")-1);
-                    string from = line.substr(n+1,line.length());
-                    FromTo initLocation(from," ");
-                    (*context).SetLocation(robotName,initLocation);
-                }else{
-                    flag = false;
-                    success = true;
-                }
+    string fileName = "/home/iannuz/visits/visits_domain/prob1.pddl";
+    ifstream fio(fileName.c_str());
+    cout << "Opening file\n";
+    if (fio.is_open()){
+        cout << "File is open\n";
+        while(getline(fio,line)){
+            if(line.find(locationKeyword) != std::string::npos){
+                curr=line.find(locationKeyword);
+                line.erase(line.length()-1,line.length());
+                line.erase(0,curr+locationKeyword.length()+1);
+                
+                string robotName = line.substr(0,line.find(" ")).c_str();
+                string from = line.substr(line.find(" ")+1,line.length()-1).c_str();
+                cout << "Robot name: " << robotName << endl;
+                cout << "From region: " << from << endl;
+                FromTo initLocation(from," ");
+                (*context).SetLocation(robotName,initLocation);
             }
         }
+        success=true;
     }
 }
 
