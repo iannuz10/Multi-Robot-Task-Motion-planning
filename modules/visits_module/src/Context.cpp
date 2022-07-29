@@ -17,7 +17,12 @@ class Context{
         Context(){};
 
         void SetLocation(string robotName, FromTo location){
-            robotLocation.insert({robotName,location});
+            auto it = robotLocation.find(robotName);
+            if(it != robotLocation.end()){
+                it->second = location;
+            } else {
+                robotLocation.insert({robotName,location});
+            }
         };
 
         FromTo GetLocation(string robotName){
@@ -26,15 +31,15 @@ class Context{
 
         void PrintAll(){
             for(auto x : robotLocation){
-                cout << "Robot: " << x.first << ". Regions: " << x.second << endl;
+                cout << "--------------------------------------------------------\n" << "Robot: " << x.first << ". Regions: " << x.second << "\n--------------------------------------------------------"<< endl;
             }
         }
 
-        int IsEmpty(){
+        bool IsEmpty(){
             if(robotLocation.empty()){
-                return 0;
+                return 1;
             };
-            return 1;
+            return 0;
             
         }
 };
