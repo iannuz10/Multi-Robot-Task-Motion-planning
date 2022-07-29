@@ -12,19 +12,12 @@ using namespace std;
 
 int main(int argc, char **argv) {
     
-    fstream file; 
+    
     Context context;
-    InitParser parser;
-
-    cout << "Calling parser... wish me luck..." << endl;
-
-    if(parser.ParseFile(file, context)){
-        cout << "Parsed worked good." << endl;
-    }else{
-        cerr << "Error parsing!!" << endl;
-    }
+    InitParser parser(&context);
 
     VisitSolver visitExample;
+    visitExample.parserSuccessful = parser.IsSuccessful();
     visitExample.SetContext(context);
     string problem;
     

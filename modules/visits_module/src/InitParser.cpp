@@ -11,25 +11,21 @@ using namespace std;
 class InitParser
 {
 private:
-
+    bool success = false;
 public:
-    InitParser();
+    InitParser(Context* context);
     ~InitParser();
 
-    bool ParseFile(fstream& fio, Context context);
+    bool IsSuccessful(){
+        return success;
+    }
+
 };
 
-InitParser::InitParser()
-{
-}
-
-InitParser::~InitParser()
-{
-}
-
-bool ParseFile(fstream& fio, Context context){
+InitParser::InitParser(Context* context){
     string line;
     bool flag = true;
+    fstream fio;
     fio.open("/home/iannuz/visits/visits_domain/prob1.pddl");
     while(fio){
         getline(cin, line);
@@ -44,13 +40,18 @@ bool ParseFile(fstream& fio, Context context){
                     string robotName = line.substr(0,line.find(" ")-1);
                     string from = line.substr(n+1,line.length());
                     FromTo initLocation(from," ");
-                    context.SetLocation(robotName,initLocation);
+                    (*context).SetLocation(robotName,initLocation);
                 }else{
                     flag = false;
-                    return true;
+                    success = true;
                 }
             }
         }
     }
-    return false;
 }
+
+InitParser::~InitParser()
+{
+}
+
+

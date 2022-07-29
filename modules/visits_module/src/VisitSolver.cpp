@@ -69,6 +69,11 @@ void VisitSolver::loadSolver(string *parameters, int n){
   string landmark_file = "/home/iannuz/visits/visits_domain/landmark.txt";  // change this to the correct path
   parseLandmark(landmark_file);
   //startEKF();
+  if(parserSuccessful){
+    cout << "PARSER SUCCEEDEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD" << endl;
+  } else{
+    cout << "FUUUUUUUUUUUUUUUUUUUUUUUUUUCKKKKKKKKKKKKKKKKKKKKKKK" << endl;
+  }
 }
 
 map<string,double> VisitSolver::callExternalSolver(map<string,double> initialState,bool isHeuristic){
