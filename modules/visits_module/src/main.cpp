@@ -11,9 +11,12 @@ using namespace std;
 
 
 int main(int argc, char **argv) {
+    cout << "Program started\n";
     
-    Context context;
-    InitParser parser(&context);
+    Context *context = new Context();
+    InitParser parser(context);
+
+    cout << "Init Parser completed\n";
 
     VisitSolver visitExample;
     visitExample.parserSuccessful = parser.IsSuccessful();

@@ -42,7 +42,7 @@ InitParser::InitParser(Context* context){
                 cout << "Robot name: " << robotName << endl;
                 cout << "From region: " << from << endl;
                 FromTo initLocation(from," ");
-                (*context).SetLocation(robotName,initLocation);
+                context->SetLocation(robotName,initLocation);
             }
         }
         success=true;

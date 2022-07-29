@@ -115,7 +115,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           string to = tmp.substr(3,2);
           
           FromTo location(from,to);
-          this->context.SetLocation(robot,location);
+          this->context->SetLocation(robot,location);
 
           
            // distance_euc(from, to);
@@ -128,7 +128,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
 
       } else if (function=="act-cost"){
         act_cost = value;
-        context.PrintAll();
+        context->PrintAll();
       } //else if(function=="dummy1"){
           //duy = value;              
           ////cout << parameter << " " << value << endl;

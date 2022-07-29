@@ -50,7 +50,7 @@ public:
     vector <string> source, target; 
     string starting_position;
     
-    void SetContext(Context c){
+    void SetContext(Context* c){
         this->context = c;
     };
    
@@ -59,7 +59,7 @@ public:
     bool parserSuccessful = false;
 
 private:
-    Context context;
+    Context* context;
     list<string> affected;
     list<string> dependencies;
       
