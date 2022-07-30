@@ -16,6 +16,7 @@ class Context{
     public:
         Context(){};
 
+        // Add or change entry
         void SetLocation(string robotName, FromTo location){
             auto it = robotLocation.find(robotName);
             if(it != robotLocation.end()){
@@ -25,23 +26,17 @@ class Context{
             }
         };
 
+        // Get location info of a given robot
         FromTo GetLocation(string robotName){
             auto it = robotLocation.find(robotName);
             return it->second;
         };
 
+        // Print all context's content
         void PrintAll(){
             for(auto x : robotLocation){
                 cout << "\n--------------------------------------------------------\n" << "Robot: " << x.first << ". Regions: " << x.second << "\n--------------------------------------------------------"<< endl;
             }
-        }
-
-        bool IsEmpty(){
-            if(robotLocation.empty()){
-                return 1;
-            };
-            return 0;
-            
         }
 };
 #endif

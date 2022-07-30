@@ -58,7 +58,9 @@ public:
 
 
 private:
+    // All robot locations are stored here 
     Context* context;
+
     list<string> affected;
     list<string> dependencies;
       

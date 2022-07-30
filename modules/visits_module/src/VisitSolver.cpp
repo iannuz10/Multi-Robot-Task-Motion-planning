@@ -54,6 +54,8 @@ VisitSolver::~VisitSolver(){
 }
 
 void VisitSolver::loadSolver(string *parameters, int n){
+  cout << "Initializing solver\n";
+
   starting_position = "r0";
   string Paramers = parameters[0];
 
@@ -69,13 +71,15 @@ void VisitSolver::loadSolver(string *parameters, int n){
   string landmark_file = "/home/iannuz/visits/visits_domain/landmark.txt";  // change this to the correct path
   parseLandmark(landmark_file);
   //startEKF();
-  cout << "Program started\n";
-    
-    Context *context = new Context();
 
-    InitParser parser(context);
-    SetContext(context);
-    cout << "Init Parser completed\n";
+  // Initializing shared space for robot location
+  Context *context = new Context();
+
+  // Getting and setting initial location of all robots
+  InitParser parser(context);
+  SetContext(context);
+
+  cout << "Init Parser completed\n";
 
 }
 
