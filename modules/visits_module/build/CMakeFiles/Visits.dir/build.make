@@ -100,19 +100,67 @@ CMakeFiles/Visits.dir/ExternalSolver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Visits.dir/ExternalSolver.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/iannuz/popf-tif-v2/modules/visits_module/src/ExternalSolver.cpp -o CMakeFiles/Visits.dir/ExternalSolver.cpp.s
 
+CMakeFiles/Visits.dir/Context.cpp.o: CMakeFiles/Visits.dir/flags.make
+CMakeFiles/Visits.dir/Context.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_module/src/Context.cpp
+CMakeFiles/Visits.dir/Context.cpp.o: CMakeFiles/Visits.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/iannuz/popf-tif-v2/modules/visits_module/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Visits.dir/Context.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Visits.dir/Context.cpp.o -MF CMakeFiles/Visits.dir/Context.cpp.o.d -o CMakeFiles/Visits.dir/Context.cpp.o -c /home/iannuz/popf-tif-v2/modules/visits_module/src/Context.cpp
+
+CMakeFiles/Visits.dir/Context.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Visits.dir/Context.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/iannuz/popf-tif-v2/modules/visits_module/src/Context.cpp > CMakeFiles/Visits.dir/Context.cpp.i
+
+CMakeFiles/Visits.dir/Context.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Visits.dir/Context.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/iannuz/popf-tif-v2/modules/visits_module/src/Context.cpp -o CMakeFiles/Visits.dir/Context.cpp.s
+
+CMakeFiles/Visits.dir/FromTo.cpp.o: CMakeFiles/Visits.dir/flags.make
+CMakeFiles/Visits.dir/FromTo.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_module/src/FromTo.cpp
+CMakeFiles/Visits.dir/FromTo.cpp.o: CMakeFiles/Visits.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/iannuz/popf-tif-v2/modules/visits_module/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Visits.dir/FromTo.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Visits.dir/FromTo.cpp.o -MF CMakeFiles/Visits.dir/FromTo.cpp.o.d -o CMakeFiles/Visits.dir/FromTo.cpp.o -c /home/iannuz/popf-tif-v2/modules/visits_module/src/FromTo.cpp
+
+CMakeFiles/Visits.dir/FromTo.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Visits.dir/FromTo.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/iannuz/popf-tif-v2/modules/visits_module/src/FromTo.cpp > CMakeFiles/Visits.dir/FromTo.cpp.i
+
+CMakeFiles/Visits.dir/FromTo.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Visits.dir/FromTo.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/iannuz/popf-tif-v2/modules/visits_module/src/FromTo.cpp -o CMakeFiles/Visits.dir/FromTo.cpp.s
+
+CMakeFiles/Visits.dir/InitParser.cpp.o: CMakeFiles/Visits.dir/flags.make
+CMakeFiles/Visits.dir/InitParser.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_module/src/InitParser.cpp
+CMakeFiles/Visits.dir/InitParser.cpp.o: CMakeFiles/Visits.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/iannuz/popf-tif-v2/modules/visits_module/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Visits.dir/InitParser.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Visits.dir/InitParser.cpp.o -MF CMakeFiles/Visits.dir/InitParser.cpp.o.d -o CMakeFiles/Visits.dir/InitParser.cpp.o -c /home/iannuz/popf-tif-v2/modules/visits_module/src/InitParser.cpp
+
+CMakeFiles/Visits.dir/InitParser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Visits.dir/InitParser.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/iannuz/popf-tif-v2/modules/visits_module/src/InitParser.cpp > CMakeFiles/Visits.dir/InitParser.cpp.i
+
+CMakeFiles/Visits.dir/InitParser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Visits.dir/InitParser.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/iannuz/popf-tif-v2/modules/visits_module/src/InitParser.cpp -o CMakeFiles/Visits.dir/InitParser.cpp.s
+
 # Object files for target Visits
 Visits_OBJECTS = \
 "CMakeFiles/Visits.dir/VisitSolver.cpp.o" \
-"CMakeFiles/Visits.dir/ExternalSolver.cpp.o"
+"CMakeFiles/Visits.dir/ExternalSolver.cpp.o" \
+"CMakeFiles/Visits.dir/Context.cpp.o" \
+"CMakeFiles/Visits.dir/FromTo.cpp.o" \
+"CMakeFiles/Visits.dir/InitParser.cpp.o"
 
 # External object files for target Visits
 Visits_EXTERNAL_OBJECTS =
 
 libVisits.so: CMakeFiles/Visits.dir/VisitSolver.cpp.o
 libVisits.so: CMakeFiles/Visits.dir/ExternalSolver.cpp.o
+libVisits.so: CMakeFiles/Visits.dir/Context.cpp.o
+libVisits.so: CMakeFiles/Visits.dir/FromTo.cpp.o
+libVisits.so: CMakeFiles/Visits.dir/InitParser.cpp.o
 libVisits.so: CMakeFiles/Visits.dir/build.make
 libVisits.so: CMakeFiles/Visits.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/iannuz/popf-tif-v2/modules/visits_module/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX shared library libVisits.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/iannuz/popf-tif-v2/modules/visits_module/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX shared library libVisits.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Visits.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

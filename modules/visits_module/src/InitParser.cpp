@@ -3,20 +3,9 @@
 #include <stdio.h>
 #include <string>
 #include <algorithm>
-#include "Context.cpp"
-#include "FromTo.cpp"
+#include "InitParser.h"
 
 using namespace std;
-
-
-class InitParser
-{
-private:
-    string locationKeyword = "robot_in";
-public:
-    InitParser(Context* context);
-    ~InitParser();
-};
 
 InitParser::InitParser(Context* context){
     int curr;

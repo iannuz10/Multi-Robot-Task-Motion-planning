@@ -26,7 +26,6 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
-#include "InitParser.cpp"
 #include "armadillo"
 #include <initializer_list>
 

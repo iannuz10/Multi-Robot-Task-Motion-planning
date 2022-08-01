@@ -411,10 +411,7 @@ CMakeFiles/VisitMain.dir/VisitSolver.cpp.o: /home/iannuz/popf-tif-v2/modules/vis
   /usr/include/c++/7/bits/hashtable.h \
   /usr/include/c++/7/bits/hashtable_policy.h \
   /usr/include/c++/7/bits/unordered_map.h \
-  /home/iannuz/popf-tif-v2/modules/visits_module/src/Context.cpp \
-  /home/iannuz/popf-tif-v2/modules/visits_module/src/FromTo.cpp \
-  /usr/include/c++/7/iterator \
-  /usr/include/c++/7/bits/stream_iterator.h \
+  /home/iannuz/popf-tif-v2/modules/visits_module/src/InitParser.h \
   /usr/include/c++/7/fstream \
   /usr/include/x86_64-linux-gnu/c++/7/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/7/bits/c++io.h \
@@ -425,7 +422,10 @@ CMakeFiles/VisitMain.dir/VisitSolver.cpp.o: /home/iannuz/popf-tif-v2/modules/vis
   /usr/include/c++/7/bits/stl_tempbuf.h \
   /usr/include/c++/7/bits/uniform_int_dist.h \
   /usr/include/c++/7/limits \
-  /home/iannuz/popf-tif-v2/modules/visits_module/src/InitParser.cpp \
+  /home/iannuz/popf-tif-v2/modules/visits_module/src/Context.h \
+  /home/iannuz/popf-tif-v2/modules/visits_module/src/FromTo.h \
+  /usr/include/c++/7/iterator \
+  /usr/include/c++/7/bits/stream_iterator.h \
   /usr/include/armadillo \
   /usr/include/c++/7/cstddef \
   /usr/include/c++/7/cstring \
@@ -1227,14 +1227,21 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
   /usr/include/c++/7/bits/hashtable.h \
   /usr/include/c++/7/bits/hashtable_policy.h \
   /usr/include/c++/7/bits/unordered_map.h \
-  /home/iannuz/popf-tif-v2/modules/visits_module/src/Context.cpp \
-  /home/iannuz/popf-tif-v2/modules/visits_module/src/FromTo.cpp \
-  /usr/include/c++/7/iterator \
-  /usr/include/c++/7/bits/stream_iterator.h \
+  /home/iannuz/popf-tif-v2/modules/visits_module/src/InitParser.h \
   /usr/include/c++/7/fstream \
   /usr/include/x86_64-linux-gnu/c++/7/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/7/bits/c++io.h \
   /usr/include/c++/7/bits/fstream.tcc \
+  /usr/include/c++/7/algorithm \
+  /usr/include/c++/7/bits/stl_algo.h \
+  /usr/include/c++/7/bits/algorithmfwd.h \
+  /usr/include/c++/7/bits/stl_tempbuf.h \
+  /usr/include/c++/7/bits/uniform_int_dist.h \
+  /usr/include/c++/7/limits \
+  /home/iannuz/popf-tif-v2/modules/visits_module/src/Context.h \
+  /home/iannuz/popf-tif-v2/modules/visits_module/src/FromTo.h \
+  /usr/include/c++/7/iterator \
+  /usr/include/c++/7/bits/stream_iterator.h \
   /usr/include/x86_64-linux-gnu/c++/7/bits/stdc++.h \
   /usr/include/c++/7/cassert \
   /usr/include/assert.h \
@@ -1309,12 +1316,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
   /usr/include/c++/7/ctgmath \
   /usr/include/c++/7/cuchar \
   /usr/include/uchar.h \
-  /usr/include/c++/7/algorithm \
-  /usr/include/c++/7/bits/stl_algo.h \
-  /usr/include/c++/7/bits/algorithmfwd.h \
-  /usr/include/c++/7/bits/stl_tempbuf.h \
-  /usr/include/c++/7/bits/uniform_int_dist.h \
-  /usr/include/c++/7/limits \
   /usr/include/c++/7/bitset \
   /usr/include/c++/7/functional \
   /usr/include/c++/7/bits/std_function.h \
@@ -1571,10 +1572,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 
 /usr/include/armadillo_bits/Mat_bones.hpp:
 
-/usr/include/armadillo_bits/auxlib_bones.hpp:
-
-/usr/include/c++/7/fstream:
-
 /home/iannuz/popf-tif-v2/modules/visits_module/src/VisitSolver.h:
 
 /usr/include/c++/7/bits/stl_uninitialized.h:
@@ -1719,11 +1716,29 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 
 /usr/include/armadillo:
 
-/home/iannuz/popf-tif-v2/modules/visits_module/src/FromTo.cpp:
+/usr/include/armadillo_bits/fn_logmat.hpp:
 
-/usr/include/armadillo_bits/OpCube_meat.hpp:
+/usr/include/armadillo_bits/op_unique_bones.hpp:
 
-/usr/include/armadillo_bits/glue_conv_meat.hpp:
+/usr/include/armadillo_bits/mtGlueCube_meat.hpp:
+
+/usr/include/c++/7/iterator:
+
+/home/iannuz/popf-tif-v2/modules/visits_module/src/FromTo.h:
+
+/usr/include/c++/7/chrono:
+
+/usr/include/armadillo_bits/fn_speye.hpp:
+
+/usr/include/armadillo_bits/auxlib_bones.hpp:
+
+/usr/include/c++/7/fstream:
+
+/usr/include/armadillo_bits/eOpCube_bones.hpp:
+
+/usr/include/armadillo_bits/op_pinv_meat.hpp:
+
+/usr/include/armadillo_bits/op_dotext_meat.hpp:
 
 /usr/include/endian.h:
 
@@ -1755,13 +1770,9 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 
 /usr/include/armadillo_bits/wrapper_blas.hpp:
 
-/usr/include/armadillo_bits/fn_logmat.hpp:
+/home/iannuz/popf-tif-v2/modules/visits_module/src/InitParser.h:
 
-/usr/include/armadillo_bits/op_unique_bones.hpp:
-
-/usr/include/armadillo_bits/mtGlueCube_meat.hpp:
-
-/usr/include/c++/7/iterator:
+/usr/include/c++/7/ext/type_traits.h:
 
 /usr/include/c++/7/bits/hashtable.h:
 
@@ -1928,8 +1939,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 /usr/include/armadillo_bits/op_sqrtmat_bones.hpp:
 
 /usr/include/armadillo_bits/newarp_UpperHessenbergEigen_meat.hpp:
-
-/usr/include/c++/7/ext/type_traits.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h:
 
@@ -2157,8 +2166,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
-/home/iannuz/popf-tif-v2/modules/visits_module/src/Context.cpp:
-
 /usr/include/armadillo_bits/wrapper_arpack.hpp:
 
 /usr/include/c++/7/bits/locale_classes.tcc:
@@ -2367,10 +2374,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 
 /usr/include/armadillo_bits/op_cor_meat.hpp:
 
-/usr/include/c++/7/chrono:
-
-/usr/include/armadillo_bits/fn_speye.hpp:
-
 /usr/include/libintl.h:
 
 /usr/include/armadillo_bits/fn_trunc_log.hpp:
@@ -2444,8 +2447,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 /usr/include/x86_64-linux-gnu/c++/7/bits/ctype_base.h:
 
 /usr/include/c++/7/bits/allocated_ptr.h:
-
-/home/iannuz/popf-tif-v2/modules/visits_module/src/InitParser.cpp:
 
 /usr/include/armadillo_bits/spdiagview_bones.hpp:
 
@@ -2730,6 +2731,10 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 /usr/include/armadillo_bits/SpProxy.hpp:
 
 /usr/include/armadillo_bits/fn_shuffle.hpp:
+
+/usr/include/armadillo_bits/OpCube_meat.hpp:
+
+/usr/include/armadillo_bits/glue_conv_meat.hpp:
 
 /usr/include/armadillo_bits/Glue_meat.hpp:
 
@@ -3069,12 +3074,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 
 /usr/include/armadillo_bits/op_vectorise_meat.hpp:
 
-/usr/include/armadillo_bits/eOpCube_bones.hpp:
-
-/usr/include/armadillo_bits/op_pinv_meat.hpp:
-
-/usr/include/armadillo_bits/op_dotext_meat.hpp:
-
 /usr/include/armadillo_bits/SpOp_meat.hpp:
 
 /usr/include/armadillo_bits/op_flip_meat.hpp:
@@ -3178,6 +3177,8 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 /usr/lib/gcc/x86_64-linux-gnu/7/include/stdarg.h:
 
 /usr/include/armadillo_bits/spop_misc_meat.hpp:
+
+/home/iannuz/popf-tif-v2/modules/visits_module/src/Context.h:
 
 /usr/include/armadillo_bits/spop_diagmat_meat.hpp:
 

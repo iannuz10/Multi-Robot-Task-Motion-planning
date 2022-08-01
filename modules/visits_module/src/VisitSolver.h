@@ -27,7 +27,9 @@
 #include <iomanip>
 #include <queue>
 #include <unordered_map>
-#include "Context.cpp"
+#include "InitParser.h"
+#include "Context.h"
+#include "FromTo.h"
 
 using namespace std;
 

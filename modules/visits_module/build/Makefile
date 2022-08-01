@@ -145,6 +145,33 @@ VisitMain/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/build
 .PHONY : VisitMain/fast
 
+Context.o: Context.cpp.o
+.PHONY : Context.o
+
+# target to build an object file
+Context.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visits.dir/build.make CMakeFiles/Visits.dir/Context.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/Context.cpp.o
+.PHONY : Context.cpp.o
+
+Context.i: Context.cpp.i
+.PHONY : Context.i
+
+# target to preprocess a source file
+Context.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visits.dir/build.make CMakeFiles/Visits.dir/Context.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/Context.cpp.i
+.PHONY : Context.cpp.i
+
+Context.s: Context.cpp.s
+.PHONY : Context.s
+
+# target to generate assembly for a file
+Context.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visits.dir/build.make CMakeFiles/Visits.dir/Context.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/Context.cpp.s
+.PHONY : Context.cpp.s
+
 ExternalSolver.o: ExternalSolver.cpp.o
 .PHONY : ExternalSolver.o
 
@@ -171,6 +198,60 @@ ExternalSolver.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visits.dir/build.make CMakeFiles/Visits.dir/ExternalSolver.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/ExternalSolver.cpp.s
 .PHONY : ExternalSolver.cpp.s
+
+FromTo.o: FromTo.cpp.o
+.PHONY : FromTo.o
+
+# target to build an object file
+FromTo.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visits.dir/build.make CMakeFiles/Visits.dir/FromTo.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/FromTo.cpp.o
+.PHONY : FromTo.cpp.o
+
+FromTo.i: FromTo.cpp.i
+.PHONY : FromTo.i
+
+# target to preprocess a source file
+FromTo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visits.dir/build.make CMakeFiles/Visits.dir/FromTo.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/FromTo.cpp.i
+.PHONY : FromTo.cpp.i
+
+FromTo.s: FromTo.cpp.s
+.PHONY : FromTo.s
+
+# target to generate assembly for a file
+FromTo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visits.dir/build.make CMakeFiles/Visits.dir/FromTo.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/FromTo.cpp.s
+.PHONY : FromTo.cpp.s
+
+InitParser.o: InitParser.cpp.o
+.PHONY : InitParser.o
+
+# target to build an object file
+InitParser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visits.dir/build.make CMakeFiles/Visits.dir/InitParser.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/InitParser.cpp.o
+.PHONY : InitParser.cpp.o
+
+InitParser.i: InitParser.cpp.i
+.PHONY : InitParser.i
+
+# target to preprocess a source file
+InitParser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visits.dir/build.make CMakeFiles/Visits.dir/InitParser.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/InitParser.cpp.i
+.PHONY : InitParser.cpp.i
+
+InitParser.s: InitParser.cpp.s
+.PHONY : InitParser.s
+
+# target to generate assembly for a file
+InitParser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visits.dir/build.make CMakeFiles/Visits.dir/InitParser.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/InitParser.cpp.s
+.PHONY : InitParser.cpp.s
 
 VisitSolver.o: VisitSolver.cpp.o
 .PHONY : VisitSolver.o
@@ -233,9 +314,18 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... VisitMain"
 	@echo "... Visits"
+	@echo "... Context.o"
+	@echo "... Context.i"
+	@echo "... Context.s"
 	@echo "... ExternalSolver.o"
 	@echo "... ExternalSolver.i"
 	@echo "... ExternalSolver.s"
+	@echo "... FromTo.o"
+	@echo "... FromTo.i"
+	@echo "... FromTo.s"
+	@echo "... InitParser.o"
+	@echo "... InitParser.i"
+	@echo "... InitParser.s"
 	@echo "... VisitSolver.o"
 	@echo "... VisitSolver.i"
 	@echo "... VisitSolver.s"
