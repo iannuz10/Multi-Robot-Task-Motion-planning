@@ -66,19 +66,35 @@ void VisitSolver::loadSolver(string *parameters, int n){
   dependencies = list<string>(y,y+2);
 
   string waypoint_file = "/home/iannuz/visits/visits_domain/waypoint.txt";   // change this to the correct path
-  int numberOfWaypoints = parseWaypoint(waypoint_file);
-  cout << "A total of " << numberOfWaypoints << " waypoints have been counted." << endl;
+  totalWaypoints = parseWaypoint(waypoint_file);
+  cout << "A total of " << totalWaypoints << " waypoints have been counted." << endl;
+  cout << "Waypoint vector content: " << endl;
+
+  map<string, vector<double>>::iterator itr;
+  for(itr=waypoint.begin();itr!=waypoint.end();itr++)
+  {
+    cout << itr->first << " ";
+    
+    vector<double> vec = itr->second;
+
+    for (int i=0; i<vec.size();i++)
+    {
+        cout<<vec[i]<<" ";
+    }
+    cout << endl;
+  }
 
   string landmark_file = "/home/iannuz/visits/visits_domain/landmark.txt";  // change this to the correct path
   parseLandmark(landmark_file);
 
   string edges_file = "/home/iannuz/visits/visits_domain/edges.txt";  // change this to the correct path
-
-  initAdjMatrix(numberOfWaypoints);
-
-  parseEdges(edges_file, numberOfWaypoints, wpAdjMatrix);
- 
-  printAdjMatrix(numberOfWaypoints);
+  initAdjMatrix();
+  parseEdges(edges_file);
+  cout << "Adjacencies Matrix: " << endl;
+  printAdjMatrix();
+  weightAdjMatrix();
+  cout << "\nWeighted Adjacencies Matrix: " << endl;
+  printAdjMatrix();
 
   // Initializing shared space for robot location
   Context *context = new Context();
@@ -266,47 +282,73 @@ void VisitSolver::parseLandmark(string landmark_file){
   }
 }
 
-void VisitSolver::parseEdges(string edges_file, int adjMatrixDim, int **adjMatrix){
+void VisitSolver::parseEdges(string edges_file){
   int curr;
   string line;
   ifstream edgesFile(edges_file);
   if(edgesFile.is_open()){
     while (getline(edgesFile,line)){
-      cout << "Printing line: ";
-      cout << line << endl;
+      cout << "Printing line: " << line << endl;
+
       curr=line.find(",");
 
       string s = line.substr(2,curr-2).c_str();
-      cout << "What I'm getting from start substring: " << s << "." << endl;
-      
       string f = line.substr(curr+3,line.length()).c_str();
-      cout << "What I'm getting from finish substring: " << f << "." << endl;
 
-      adjMatrix[stoi(s)][stoi(f)] = 1;
-      adjMatrix[stoi(f)][stoi(s)] = 1;
+      wpAdjMatrix[stoi(s)][stoi(f)] = 1;
+      wpAdjMatrix[stoi(f)][stoi(s)] = 1;
     }
   }
 }
 
-void VisitSolver::initAdjMatrix(int numberOfWaypoints){
-  wpAdjMatrix = new int*[numberOfWaypoints]; 
-    for (int i = 0; i < numberOfWaypoints; i++) 
-      wpAdjMatrix[i] = new int[numberOfWaypoints];
+void VisitSolver::initAdjMatrix(){
+  wpAdjMatrix = new double*[totalWaypoints]; 
+    for (int i = 0; i < totalWaypoints; i++) 
+      wpAdjMatrix[i] = new double[totalWaypoints];
 
-    for (int i = 0; i < numberOfWaypoints; i++){
-      for (int j = 0; j < numberOfWaypoints; j++){
+    for (int i = 0; i < totalWaypoints; i++){
+      for (int j = 0; j < totalWaypoints; j++){
         wpAdjMatrix[i][j] = 0;
       }
     }
 }
 
-void VisitSolver::printAdjMatrix(int numberOfWaypoints){
-  for (int i = 0; i < numberOfWaypoints; i++){
-      for (int j = 0; j < numberOfWaypoints; j++){
+void VisitSolver::printAdjMatrix(){
+  for (int i = 0; i < totalWaypoints; i++){
+      for (int j = 0; j < totalWaypoints; j++){
         cout << wpAdjMatrix[i][j] << " ";
       }
       cout << endl;
     }
+}
+
+void VisitSolver::weightAdjMatrix(){
+  cout << "Starting to weight Matrix" << endl;
+  string firstWp,secondWp;
+  map<string, vector<double>>::iterator itr1, itr2;
+  for(itr1=++waypoint.begin();itr1!=waypoint.end();itr1++){
+    for(itr2=++waypoint.begin();itr2!=waypoint.end();itr2++){
+      if(itr1->first != itr2->first){
+        vector<double> vec1 = itr1->second;
+        vector<double> vec2 = itr2->second;
+        firstWp = itr1->first;
+        cout << "First waypoint before erase: " << firstWp << endl;
+        secondWp = itr2->first;
+        cout << "Second waypoint before erase: " << secondWp << endl;
+        
+        firstWp.erase(0,2);
+        cout << "First waypoint after erase: " << firstWp << endl;
+        secondWp.erase(0,2);
+        cout << "Second waypoint after erase: " << secondWp << endl;
+        
+        wpAdjMatrix[stoi(firstWp)][stoi(secondWp)] *= sqrt(pow(vec1[0]-vec2[0],2)+pow(vec1[1]-vec2[1],2));
+        wpAdjMatrix[stoi(secondWp)][stoi(firstWp)] *= sqrt(pow(vec1[0]-vec2[0],2)+pow(vec1[1]-vec2[1],2));
+      }
+      
+      cout << endl;
+    }
+  }
+  cout << "Weighting complete!" << endl;
 }
 
 //void VisitSolver::distance_euc( string from, string to){
