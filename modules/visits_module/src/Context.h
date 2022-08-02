@@ -17,12 +17,12 @@ class Context{
         Context();
 
         // Add or change entry
-        void SetLocation(string robotName, FromTo location);
+        void setLocation(string robotName, FromTo location);
 
         // Get location info of a given robot
-        FromTo GetLocation(string robotName);
+        FromTo getLocation(string robotName);
 
         // Print all context's content
-        void PrintAll();
+        void printAll();
 };
 #endif

@@ -9,7 +9,7 @@ using namespace std;
 
 Context::Context(){};
 
-void Context::SetLocation(string robotName, FromTo location){
+void Context::setLocation(string robotName, FromTo location){
     auto it = robotLocation.find(robotName);
     if(it != robotLocation.end()){
         it->second = location;
@@ -18,12 +18,12 @@ void Context::SetLocation(string robotName, FromTo location){
     }
 };
 
-FromTo Context::GetLocation(string robotName){
+FromTo Context::getLocation(string robotName){
     auto it = robotLocation.find(robotName);
     return it->second;
 };
 
-void Context::PrintAll(){
+void Context::printAll(){
     for(auto x : robotLocation){
         cout << "\n--------------------------------------------------------\n" << "Robot: " << x.first << ". Regions: " << x.second << "\n--------------------------------------------------------"<< endl;
     }

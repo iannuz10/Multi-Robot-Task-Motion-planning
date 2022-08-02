@@ -12,18 +12,18 @@ FromTo::FromTo(string from, string to){
     this->to = to;
 };
 
-string FromTo::GetFrom(){
+string FromTo::getFrom(){
     return this->from;
 };
 
-string FromTo::GetTo(){
+string FromTo::getTo(){
     return this->to;
 };
 
-void FromTo::SetFrom(string from){
+void FromTo::setFrom(string from){
     this->from = from;
 };
 
-void FromTo::SetTo(string to){
+void FromTo::setTo(string to){
     this->to = to;
 };

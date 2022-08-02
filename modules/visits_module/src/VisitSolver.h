@@ -45,23 +45,28 @@ public:
     map<string, vector<double>> waypoint;
     map<string, vector<double>> landmark;
    
-    void parseWaypoint(string waypoint_file);
+    int parseWaypoint(string waypoint_file);
     void parseLandmark(string landmark_file);
-     
+    void parseEdges(string edges_file, int N, int **adjMatrix);
+
+
     map<string, vector<string>> region_mapping;
     vector <string> source, target; 
     string starting_position;
     
-    void SetContext(Context* c){
+    void setContext(Context* c){
         this->context = c;
     };
    
-    void parseParameters(string parameters);
+    void initAdjMatrix(int numberOfWaypoints);
+    void printAdjMatrix(int numberOfWaypoints);
 
+    void parseParameters(string parameters);
 
 private:
     // All robot locations are stored here 
     Context* context;
+    int **wpAdjMatrix;
 
     list<string> affected;
     list<string> dependencies;

@@ -25,6 +25,7 @@
 #include <sstream>
 #include <fstream>
 #include <vector>
+#include <stdlib.h>
 #include <algorithm>
 #include "armadillo"
 #include <initializer_list>
@@ -65,21 +66,29 @@ void VisitSolver::loadSolver(string *parameters, int n){
   dependencies = list<string>(y,y+2);
 
   string waypoint_file = "/home/iannuz/visits/visits_domain/waypoint.txt";   // change this to the correct path
-  parseWaypoint(waypoint_file);
+  int numberOfWaypoints = parseWaypoint(waypoint_file);
+  cout << "A total of " << numberOfWaypoints << " waypoints have been counted." << endl;
 
   string landmark_file = "/home/iannuz/visits/visits_domain/landmark.txt";  // change this to the correct path
   parseLandmark(landmark_file);
-  //startEKF();
+
+  string edges_file = "/home/iannuz/visits/visits_domain/edges.txt";  // change this to the correct path
+
+  initAdjMatrix(numberOfWaypoints);
+
+  parseEdges(edges_file, numberOfWaypoints, wpAdjMatrix);
+ 
+  printAdjMatrix(numberOfWaypoints);
 
   // Initializing shared space for robot location
   Context *context = new Context();
 
   // Getting and setting initial location of all robots
   InitParser parser(context);
-  SetContext(context);
+  setContext(context);
 
   cout << "Init Parser completed\n";
-
+  //startEKF();
 }
 
 map<string,double> VisitSolver::callExternalSolver(map<string,double> initialState,bool isHeuristic){
@@ -121,9 +130,14 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           string to = tmp.substr(3,2);
           
           FromTo location(from,to);
-          this->context->SetLocation(robot,location);
+          this->context->setLocation(robot,location);
 
-          
+          // Connect wp to make edges (wpX, wpY)
+          // Calculate cost between edges
+          // Search for minimun path (dijkstra(?))
+          // Change calculateExtern logic to match the value from minimum path search
+          // Check for collision avoidance (the wp must be used once) (if the planning is done in parallel)
+
            // distance_euc(from, to);
 
         }
@@ -134,7 +148,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
 
       } else if (function=="act-cost"){
         act_cost = value;
-        context->PrintAll();
+        context->printAll();
       } //else if(function=="dummy1"){
           //duy = value;              
           ////cout << parameter << " " << value << endl;
@@ -194,9 +208,10 @@ double VisitSolver::calculateExtern(double external, double total_cost){
   return cost;
 }
 
-void VisitSolver::parseWaypoint(string waypoint_file){
+int VisitSolver::parseWaypoint(string waypoint_file){
 
   int curr, next;
+  int numberOfWaypoints = 0;
   string line;
   double pose1, pose2, pose3;
   ifstream parametersFile(waypoint_file);
@@ -217,8 +232,11 @@ void VisitSolver::parseWaypoint(string waypoint_file){
       pose3 = (double)atof(line.substr(curr,next-curr).c_str());
 
       waypoint[waypoint_name] = vector<double> {pose1, pose2, pose3};
+
+      numberOfWaypoints = waypoint.size()-1;
     }
   }
+  return numberOfWaypoints;
 }
 
 void VisitSolver::parseLandmark(string landmark_file){
@@ -248,6 +266,48 @@ void VisitSolver::parseLandmark(string landmark_file){
   }
 }
 
+void VisitSolver::parseEdges(string edges_file, int adjMatrixDim, int **adjMatrix){
+  int curr;
+  string line;
+  ifstream edgesFile(edges_file);
+  if(edgesFile.is_open()){
+    while (getline(edgesFile,line)){
+      cout << "Printing line: ";
+      cout << line << endl;
+      curr=line.find(",");
+
+      string s = line.substr(2,curr-2).c_str();
+      cout << "What I'm getting from start substring: " << s << "." << endl;
+      
+      string f = line.substr(curr+3,line.length()).c_str();
+      cout << "What I'm getting from finish substring: " << f << "." << endl;
+
+      adjMatrix[stoi(s)][stoi(f)] = 1;
+      adjMatrix[stoi(f)][stoi(s)] = 1;
+    }
+  }
+}
+
+void VisitSolver::initAdjMatrix(int numberOfWaypoints){
+  wpAdjMatrix = new int*[numberOfWaypoints]; 
+    for (int i = 0; i < numberOfWaypoints; i++) 
+      wpAdjMatrix[i] = new int[numberOfWaypoints];
+
+    for (int i = 0; i < numberOfWaypoints; i++){
+      for (int j = 0; j < numberOfWaypoints; j++){
+        wpAdjMatrix[i][j] = 0;
+      }
+    }
+}
+
+void VisitSolver::printAdjMatrix(int numberOfWaypoints){
+  for (int i = 0; i < numberOfWaypoints; i++){
+      for (int j = 0; j < numberOfWaypoints; j++){
+        cout << wpAdjMatrix[i][j] << " ";
+      }
+      cout << endl;
+    }
+}
 
 //void VisitSolver::distance_euc( string from, string to){
 //} 

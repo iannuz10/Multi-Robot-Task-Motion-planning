@@ -39,7 +39,7 @@ InitParser::InitParser(Context* context){
 
                 // Add initial positions into context
                 FromTo initLocation(from," ");
-                context->SetLocation(robotName,initLocation);
+                context->setLocation(robotName,initLocation);
             }
         }
     }

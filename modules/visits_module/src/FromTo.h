@@ -15,11 +15,11 @@ class FromTo{
         string to;
     public:
         FromTo(string from, string to);
-        string GetFrom();
-        string GetTo();
+        string getFrom();
+        string getTo();
 
-        void SetFrom(string from);
-        void SetTo(string to);
+        void setFrom(string from);
+        void setTo(string to);
 
         friend ostream& operator<<(ostream& out, const FromTo& ft){
             out << "From: " << ft.from << ", To: " << ft.to;
