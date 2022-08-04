@@ -392,12 +392,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest){
   cout << "Starting dijkstra algorithm!" << endl;
   iter = 0;
   do{
-    cout << "--------------------------new iteration-----------------------------" << endl;
     n[target].def = true;
-
-    for(int k = 0; k < totalWaypoints; k++){
-      cout << "Vertex " << k << " is free? " << wpOccupation[k] << endl;
-    }
 
     for(i = 0; i < totalWaypoints; i++){
       if(wpAdjMatrix[target][i] != 0){
@@ -411,11 +406,15 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest){
     indmin = -1;
     for(i = 0; i < totalWaypoints; i++){
       if(n[i].def == false){
-        if(n[i].cost < min){
+        if((n[i].cost < min) && wpOccupation[i]){
           min = n[i].cost;
           indmin = i;
         }
       }
+    }
+    if(indmin != -1){
+      wpOccupation[indmin] = false;
+      wpOccupation[n[indmin].next] = true;
     }
     target = indmin;
     iter++;
@@ -426,11 +425,11 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest){
     cout << k << "\t\t\t" << n[k].cost << endl;
   }
 
-  int node = dest;
-  do{
-    wpOccupation[node] = false;
-    node = n[node].next;
-  }while(node != src);
+  // int node = dest;
+  // do{
+  //   wpOccupation[node] = false;
+  //   node = n[node].next;
+  // }while(node != src);
 
   return n[dest].cost;
 }
