@@ -153,7 +153,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
 
           cout << "From: " << from << endl;
           cout << "To: " << to << endl;
-          cost = DijkstraAlgo(wpAdjMatrix, stoi(from), stoi(to));
+          cost = dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to));
           cout << "Cost from dijkstraAlgo: " << cost << endl;
           cout << "Path from source to destination" << endl;
           /*
@@ -365,45 +365,60 @@ void VisitSolver::weightAdjMatrix(){
   cout << "Weighting complete!" << endl;
 }
 
-double VisitSolver::DijkstraAlgo(double **graph, int src, int dest){
-  double distance[totalWaypoints]; // // array to calculate the minimum distance for each node                             
-  bool Tset[totalWaypoints];// boolean array to mark visited and unvisited for each node
+double VisitSolver::dijkstraShortestPath(double **am, int target, int dest){
+  struct{
+    double cost;
+    int next;
+    bool def;
+  } n[totalWaypoints];
+
+  int i, min, indmin, iter;
 
   // Initialization
-  for(int k = 0; k<totalWaypoints; k++){
-      distance[k] = INT_MAX;
-      Tset[k] = false;    
+  for(i = 0; i < totalWaypoints; i++){
+    n[i].cost = INT_MAX;
+    n[i].def = false;
+    n[i].next = -1;
   }
-  
-  distance[src] = 0;   // Source vertex distance is set 0               
-  
-  for(int k = 0; k < totalWaypoints; k++){
-      int m = miniDist(distance, Tset); 
-      Tset[m] = true;
-      for(int k = 0; k < totalWaypoints; k++){
-          // updating the distance of neighbouring vertex
-          if(!Tset[k] && graph[m][k] && distance[m] != INT_MAX && distance[m] + graph[m][k] < distance[k])
-              distance[k] = distance[m] + graph[m][k];
+
+  n[target].cost = 0;
+  n[target].next = target;
+
+  iter = 0;
+  do{
+    cout << "Starting dijkstra algorithm!" << endl;
+    n[target].def = true;
+    for(i = 0; i < totalWaypoints; i++){
+      if(wpAdjMatrix[target][i] != 0){
+        if((n[target].cost + wpAdjMatrix[target][i]) < n[i].cost){
+          n[i].cost = n[target].cost + wpAdjMatrix[target][i];
+          n[i].next = target;
+        }
       }
-  }
+    }
+    min = INT_MAX;
+    indmin = -1;
+    for(i = 0; i < totalWaypoints; i++){
+      if(n[i].def == false){
+        if(n[i].cost < min){
+          min = n[i].cost;
+          indmin = i;
+        }
+      }
+    }
+    target = indmin;
+    iter++;
+  } while(indmin != -1);
+
   cout<<"Vertex\t\tDistance from source vertex"<<endl;
   for(int k = 0; k < totalWaypoints; k++){ 
-      cout << k << "\t\t\t" << distance[k] << endl;
+    cout << k << "\t\t\t" << n[k].cost << endl;
   }
-  return distance[dest];
+
+  return n[dest].cost;
 }
 
-int VisitSolver::miniDist(double distance[], bool Tset[]){
-  int minimum = INT_MAX, ind;
-              
-    for(int k = 0; k < totalWaypoints; k++){
-        if(Tset[k] == false && distance[k] <= minimum){
-            minimum = distance[k];
-            ind = k;
-        }
-    }
-    return ind;
-}
+
 
 //void VisitSolver::distance_euc( string from, string to){
 //} 
