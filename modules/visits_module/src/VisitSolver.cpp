@@ -84,6 +84,11 @@ void VisitSolver::loadSolver(string *parameters, int n){
     cout << endl;
   }
 
+  wpOccupation = new bool[totalWaypoints];
+  for(int i = 0; i < totalWaypoints; i++){
+    wpOccupation[i] = true;     // true = free, false = busy
+  }
+
   string landmark_file = "/home/iannuz/popf-tif-v2/domains/visits_domain/landmark.txt";  // change this to the correct path
   parseLandmark(landmark_file);
 
@@ -371,7 +376,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest){
     int next;
     bool def;
   } n[totalWaypoints];
-
+  int src = target;
   int i, min, indmin, iter;
 
   // Initialization
@@ -384,10 +389,16 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest){
   n[target].cost = 0;
   n[target].next = target;
 
+  cout << "Starting dijkstra algorithm!" << endl;
   iter = 0;
   do{
-    cout << "Starting dijkstra algorithm!" << endl;
+    cout << "--------------------------new iteration-----------------------------" << endl;
     n[target].def = true;
+
+    for(int k = 0; k < totalWaypoints; k++){
+      cout << "Vertex " << k << " is free? " << wpOccupation[k] << endl;
+    }
+
     for(i = 0; i < totalWaypoints; i++){
       if(wpAdjMatrix[target][i] != 0){
         if((n[target].cost + wpAdjMatrix[target][i]) < n[i].cost){
@@ -414,6 +425,12 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest){
   for(int k = 0; k < totalWaypoints; k++){ 
     cout << k << "\t\t\t" << n[k].cost << endl;
   }
+
+  int node = dest;
+  do{
+    wpOccupation[node] = false;
+    node = n[node].next;
+  }while(node != src);
 
   return n[dest].cost;
 }

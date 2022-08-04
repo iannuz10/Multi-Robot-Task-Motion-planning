@@ -64,13 +64,15 @@ public:
     double dijkstraShortestPath(double **am, int target, int dest); // Dijkstra test 1
 
     void parseParameters(string parameters);
-    
+
 private:
     // All robot locations are stored here 
     Context* context;
     double **wpAdjMatrix;
     int totalWaypoints;
     double cost;
+    bool *wpOccupation;
+
     list<string> affected;
     list<string> dependencies;
       
