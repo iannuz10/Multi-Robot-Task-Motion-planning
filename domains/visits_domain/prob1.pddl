@@ -1,7 +1,7 @@
 (define (problem prob1)
 (:domain localization)
 (:objects
-     r0 r1 r2 r3 r4 - region
+     r0 r1 r2 r3 r4 r5 - region
      R2D2 C3PO BB8 - robot
      
 )
