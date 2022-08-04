@@ -114,8 +114,10 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
   map<string, double>::iterator isEnd = initialState.end();
   double dummy;
   double act_cost;
-  double distance[totalWaypoints];
   double cost;
+  double distance[totalWaypoints];
+  bool wpOccupation[totalWaypoints] = {true}; // true = free, false = occupied
+
   map<string, double> trigger;
 
   for(;iSIt!=isEnd;++iSIt){
@@ -152,15 +154,23 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
 
           cout << "From: " << from << endl;
           cout << "To: " << to << endl;
-          DijkstraAlgo(wpAdjMatrix, distance, stoi(from));
+          DijkstraAlgo(wpAdjMatrix, distance, wpOccupation, stoi(from));
           cost = distance[stoi(to)];
-          // Connect wp to make edges (wpX, wpY)
-          // Calculate cost between edges
-          // Search for minimun path (dijkstra(?))
-          // Change calculateExtern logic to match the value from minimum path search
-          // Check for collision avoidance (the wp must be used once) (if the planning is done in parallel)
+
+          /*
+          Connect wp to make edges (wpX, wpY)
+          Calculate cost between edges
+          Make weighted adjacency matrix to check node neighbours
+          Search for minimun path (dijkstra(?))
+          Change calculateExtern logic to match the value from minimum path search
+          Check for collision avoidance (the wp must be used once ata a time): 
+                    if the planning is done right then it means it is calculated in parallel
+          */
+
 
            // distance_euc(from, to);
+
+
 
         }
       }
@@ -356,45 +366,40 @@ void VisitSolver::weightAdjMatrix(){
   cout << "Weighting complete!" << endl;
 }
 
-void VisitSolver::DijkstraAlgo(double **graph, double *distance, int src){
-  // int distance[totalWaypoints]; // // array to calculate the minimum distance for each node                             
+void VisitSolver::DijkstraAlgo(double **graph, double *distance, bool *occupied, int src){
+  // double distance[totalWaypoints]; // // array to calculate the minimum distance for each node                             
   bool Tset[totalWaypoints];// boolean array to mark visited and unvisited for each node
   
-    
-  for(int k = 0; k<totalWaypoints; k++)
-  {
+  // Initialization
+  for(int k = 0; k<totalWaypoints; k++){
       distance[k] = INT_MAX;
       Tset[k] = false;    
   }
   
   distance[src] = 0;   // Source vertex distance is set 0               
   
-  for(int k = 0; k<totalWaypoints; k++)                           
-  {
-      int m=miniDist(distance, Tset); 
-      Tset[m]=true;
-      for(int k = 0; k<totalWaypoints; k++)                  
-      {
+  for(int k = 0; k < totalWaypoints; k++){
+      int m = miniDist(distance, Tset); 
+      Tset[m] = true;
+      for(int k = 0; k < totalWaypoints; k++){
           // updating the distance of neighbouring vertex
-          if(!Tset[k] && graph[m][k] && distance[m]!=INT_MAX && distance[m]+graph[m][k]<distance[k])
-              distance[k]=distance[m]+graph[m][k];
+          if(!Tset[k] && graph[m][k] && distance[m] != INT_MAX && distance[m] + graph[m][k] < distance[k])
+              distance[k] = distance[m] + graph[m][k];
       }
   }
   cout<<"Vertex\t\tDistance from source vertex"<<endl;
-  for(int k = 0; k<totalWaypoints; k++){ 
-      cout<<k<<"\t\t\t"<<distance[k]<<endl;
+  for(int k = 0; k < totalWaypoints; k++){ 
+      cout << k << "\t\t\t" << distance[k] << endl;
   }
 }
 
 int VisitSolver::miniDist(double distance[], bool Tset[]){
-  int minimum=INT_MAX,ind;
+  int minimum = INT_MAX, ind;
               
-    for(int k=0;k<totalWaypoints;k++) 
-    {
-        if(Tset[k]==false && distance[k]<=minimum)      
-        {
-            minimum=distance[k];
-            ind=k;
+    for(int k = 0; k < totalWaypoints; k++){
+        if(Tset[k] == false && distance[k] <= minimum){
+            minimum = distance[k];
+            ind = k;
         }
     }
     return ind;
