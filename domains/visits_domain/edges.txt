@@ -1,0 +1,4 @@
+wp3,wp1
+wp1,wp4
+wp0,wp1
+wp1,wp2

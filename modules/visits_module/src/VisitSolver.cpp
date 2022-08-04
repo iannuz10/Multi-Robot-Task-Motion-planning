@@ -65,7 +65,7 @@ void VisitSolver::loadSolver(string *parameters, int n){
   affected = list<string>(x,x+1);
   dependencies = list<string>(y,y+2);
 
-  string waypoint_file = "/home/iannuz/visits/visits_domain/waypoint.txt";   // change this to the correct path
+  string waypoint_file = "/home/iannuz/popf-tif-v2/domains/visits_domain/waypoint.txt";   // change this to the correct path
   totalWaypoints = parseWaypoint(waypoint_file);
   cout << "A total of " << totalWaypoints << " waypoints have been counted." << endl;
   cout << "Waypoint vector content: " << endl;
@@ -84,10 +84,10 @@ void VisitSolver::loadSolver(string *parameters, int n){
     cout << endl;
   }
 
-  string landmark_file = "/home/iannuz/visits/visits_domain/landmark.txt";  // change this to the correct path
+  string landmark_file = "/home/iannuz/popf-tif-v2/domains/visits_domain/landmark.txt";  // change this to the correct path
   parseLandmark(landmark_file);
 
-  string edges_file = "/home/iannuz/visits/visits_domain/edges.txt";  // change this to the correct path
+  string edges_file = "/home/iannuz/popf-tif-v2/domains/visits_domain/edges.txt";  // change this to the correct path
   initAdjMatrix();
   parseEdges(edges_file);
   cout << "Adjacencies Matrix: " << endl;
@@ -114,9 +114,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
   map<string, double>::iterator isEnd = initialState.end();
   double dummy;
   double act_cost;
-  double cost;
-  double distance[totalWaypoints];
-  bool wpOccupation[totalWaypoints] = {true}; // true = free, false = occupied
+  
 
   map<string, double> trigger;
 
@@ -139,6 +137,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
 
       function.erase(n,function.length()-1);
       arg.erase(0,n+1);
+
       if(function=="triggered"){
         trigger[arg] = value>0?1:0;
         if (value>0){
@@ -154,9 +153,9 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
 
           cout << "From: " << from << endl;
           cout << "To: " << to << endl;
-          DijkstraAlgo(wpAdjMatrix, distance, wpOccupation, stoi(from));
-          cost = distance[stoi(to)];
-
+          cost = DijkstraAlgo(wpAdjMatrix, stoi(from), stoi(to));
+          cout << "Cost from dijkstraAlgo: " << cost << endl;
+          cout << "Path from source to destination" << endl;
           /*
           Connect wp to make edges (wpX, wpY)
           Calculate cost between edges
@@ -235,6 +234,7 @@ void VisitSolver::parseParameters(string parameters){
 
 double VisitSolver::calculateExtern(double external, double total_cost){
   //float random1 = static_cast <float> (rand())/static_cast <float>(RAND_MAX);
+  cout << endl << "calculateExtern received cost: " << external << endl;
   double cost = external;//random1;
   return cost;
 }
@@ -248,23 +248,24 @@ int VisitSolver::parseWaypoint(string waypoint_file){
   ifstream parametersFile(waypoint_file);
   if (parametersFile.is_open()){
     while (getline(parametersFile,line)){
-      curr=line.find("[");
-      string waypoint_name = line.substr(0,curr).c_str();
+      if(curr=line.find("[")){
+        string waypoint_name = line.substr(0,curr).c_str();
 
-      curr=curr+1;
-      next=line.find(",",curr);
+        curr=curr+1;
+        next=line.find(",",curr);
 
-      pose1 = (double)atof(line.substr(curr,next-curr).c_str());
-      curr=next+1; next=line.find(",",curr);
+        pose1 = (double)atof(line.substr(curr,next-curr).c_str());
+        curr=next+1; next=line.find(",",curr);
 
-      pose2 = (double)atof(line.substr(curr,next-curr).c_str());
-      curr=next+1; next=line.find("]",curr);
+        pose2 = (double)atof(line.substr(curr,next-curr).c_str());
+        curr=next+1; next=line.find("]",curr);
 
-      pose3 = (double)atof(line.substr(curr,next-curr).c_str());
+        pose3 = (double)atof(line.substr(curr,next-curr).c_str());
 
-      waypoint[waypoint_name] = vector<double> {pose1, pose2, pose3};
+        waypoint[waypoint_name] = vector<double> {pose1, pose2, pose3};
 
-      numberOfWaypoints = waypoint.size()-1;
+        numberOfWaypoints++;
+      }
     }
   }
   return numberOfWaypoints;
@@ -341,23 +342,21 @@ void VisitSolver::weightAdjMatrix(){
   cout << "Starting to weight Matrix" << endl;
   string firstWp,secondWp;
   map<string, vector<double>>::iterator itr1, itr2;
-  for(itr1=++waypoint.begin();itr1!=waypoint.end();itr1++){
-    for(itr2=++waypoint.begin();itr2!=waypoint.end();itr2++){
+  for(itr1=waypoint.begin();itr1!=waypoint.end();itr1++){
+    for(itr2=waypoint.begin();itr2!=waypoint.end();itr2++){
       if(itr1->first != itr2->first){
         vector<double> vec1 = itr1->second;
         vector<double> vec2 = itr2->second;
+
         firstWp = itr1->first;
-        cout << "First waypoint before erase: " << firstWp << endl;
         secondWp = itr2->first;
-        cout << "Second waypoint before erase: " << secondWp << endl;
         
         firstWp.erase(0,2);
-        cout << "First waypoint after erase: " << firstWp << endl;
         secondWp.erase(0,2);
-        cout << "Second waypoint after erase: " << secondWp << endl;
         
         wpAdjMatrix[stoi(firstWp)][stoi(secondWp)] *= sqrt(pow(vec1[0]-vec2[0],2)+pow(vec1[1]-vec2[1],2));
-        wpAdjMatrix[stoi(secondWp)][stoi(firstWp)] *= sqrt(pow(vec1[0]-vec2[0],2)+pow(vec1[1]-vec2[1],2));
+        wpAdjMatrix[stoi(secondWp)][stoi(firstWp)] *= sqrt(pow(vec1[0]-vec2[0],2)+pow(vec1[1]-vec2[1],2));;
+
       }
       
       cout << endl;
@@ -366,10 +365,10 @@ void VisitSolver::weightAdjMatrix(){
   cout << "Weighting complete!" << endl;
 }
 
-void VisitSolver::DijkstraAlgo(double **graph, double *distance, bool *occupied, int src){
-  // double distance[totalWaypoints]; // // array to calculate the minimum distance for each node                             
+double VisitSolver::DijkstraAlgo(double **graph, int src, int dest){
+  double distance[totalWaypoints]; // // array to calculate the minimum distance for each node                             
   bool Tset[totalWaypoints];// boolean array to mark visited and unvisited for each node
-  
+
   // Initialization
   for(int k = 0; k<totalWaypoints; k++){
       distance[k] = INT_MAX;
@@ -391,6 +390,7 @@ void VisitSolver::DijkstraAlgo(double **graph, double *distance, bool *occupied,
   for(int k = 0; k < totalWaypoints; k++){ 
       cout << k << "\t\t\t" << distance[k] << endl;
   }
+  return distance[dest];
 }
 
 int VisitSolver::miniDist(double distance[], bool Tset[]){

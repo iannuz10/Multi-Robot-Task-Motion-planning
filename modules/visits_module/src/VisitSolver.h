@@ -61,7 +61,7 @@ public:
     void initAdjMatrix();
     void printAdjMatrix();
     void weightAdjMatrix();
-    void DijkstraAlgo(double **graph, double *distance, bool *occupied, int src);
+    double DijkstraAlgo(double **graph, int src, int dest);
     int miniDist(double distance[], bool Tset[]);
     void parseParameters(string parameters);
 
@@ -70,7 +70,7 @@ private:
     Context* context;
     double **wpAdjMatrix;
     int totalWaypoints;
-
+    double cost;
     list<string> affected;
     list<string> dependencies;
       
