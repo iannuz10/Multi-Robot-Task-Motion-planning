@@ -114,8 +114,8 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
   map<string, double>::iterator isEnd = initialState.end();
   double dummy;
   double act_cost;
-
-
+  double distance[totalWaypoints];
+  double cost;
   map<string, double> trigger;
 
   for(;iSIt!=isEnd;++iSIt){
@@ -127,6 +127,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
     function.erase(0,1);
     function.erase(function.length()-1,function.length());
     int n=function.find(" ");
+    cout << "Function found: " << function << endl;
 
     if(n!=-1){
       string arg=function;
@@ -141,13 +142,18 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
         if (value>0){
 
           // Regions accepted: r0-r9
-          
           string from = tmp.substr(0,2);   // from and to are regions, need to extract wps (poses)
           string to = tmp.substr(3,2);
           
           FromTo location(from,to);
           this->context->setLocation(robot,location);
+          from.erase(0,1);
+          to.erase(0,1);
 
+          cout << "From: " << from << endl;
+          cout << "To: " << to << endl;
+          DijkstraAlgo(wpAdjMatrix, distance, stoi(from));
+          cost = distance[stoi(to)];
           // Connect wp to make edges (wpX, wpY)
           // Calculate cost between edges
           // Search for minimun path (dijkstra(?))
@@ -160,8 +166,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
       }
     } else {
       if(function=="dummy"){
-        dummy = value;
-
+        dummy = cost;
       } else if (function=="act-cost"){
         act_cost = value;
         context->printAll();
@@ -220,7 +225,7 @@ void VisitSolver::parseParameters(string parameters){
 
 double VisitSolver::calculateExtern(double external, double total_cost){
   //float random1 = static_cast <float> (rand())/static_cast <float>(RAND_MAX);
-  double cost = 2;//random1;
+  double cost = external;//random1;
   return cost;
 }
 
@@ -349,6 +354,50 @@ void VisitSolver::weightAdjMatrix(){
     }
   }
   cout << "Weighting complete!" << endl;
+}
+
+void VisitSolver::DijkstraAlgo(double **graph, double *distance, int src){
+  // int distance[totalWaypoints]; // // array to calculate the minimum distance for each node                             
+  bool Tset[totalWaypoints];// boolean array to mark visited and unvisited for each node
+  
+    
+  for(int k = 0; k<totalWaypoints; k++)
+  {
+      distance[k] = INT_MAX;
+      Tset[k] = false;    
+  }
+  
+  distance[src] = 0;   // Source vertex distance is set 0               
+  
+  for(int k = 0; k<totalWaypoints; k++)                           
+  {
+      int m=miniDist(distance, Tset); 
+      Tset[m]=true;
+      for(int k = 0; k<totalWaypoints; k++)                  
+      {
+          // updating the distance of neighbouring vertex
+          if(!Tset[k] && graph[m][k] && distance[m]!=INT_MAX && distance[m]+graph[m][k]<distance[k])
+              distance[k]=distance[m]+graph[m][k];
+      }
+  }
+  cout<<"Vertex\t\tDistance from source vertex"<<endl;
+  for(int k = 0; k<totalWaypoints; k++){ 
+      cout<<k<<"\t\t\t"<<distance[k]<<endl;
+  }
+}
+
+int VisitSolver::miniDist(double distance[], bool Tset[]){
+  int minimum=INT_MAX,ind;
+              
+    for(int k=0;k<totalWaypoints;k++) 
+    {
+        if(Tset[k]==false && distance[k]<=minimum)      
+        {
+            minimum=distance[k];
+            ind=k;
+        }
+    }
+    return ind;
 }
 
 //void VisitSolver::distance_euc( string from, string to){

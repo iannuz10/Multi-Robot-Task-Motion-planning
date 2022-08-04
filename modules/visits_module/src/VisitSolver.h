@@ -61,7 +61,8 @@ public:
     void initAdjMatrix();
     void printAdjMatrix();
     void weightAdjMatrix();
-
+    void DijkstraAlgo(double **graph, double *distance, int src);
+    int miniDist(double distance[], bool Tset[]);
     void parseParameters(string parameters);
 
 private:
