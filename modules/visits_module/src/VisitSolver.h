@@ -27,7 +27,6 @@
 #include <iomanip>
 #include <queue>
 #include <unordered_map>
-#include "InitParser.h"
 #include "Context.h"
 #include "FromTo.h"
 
@@ -48,7 +47,7 @@ public:
     int parseWaypoint(string waypoint_file);
     void parseLandmark(string landmark_file);
     void parseEdges(string edges_file);
-
+    void InitParser(Context* context, string fileName);
 
     map<string, vector<string>> region_mapping;
     vector <string> source, target; 
@@ -61,7 +60,7 @@ public:
     void initAdjMatrix();
     void printAdjMatrix();
     void weightAdjMatrix();
-    double dijkstraShortestPath(double **am, int target, int dest); // Dijkstra test 1
+    double dijkstraShortestPath(double **am, int *path, int target, int dest); // Dijkstra test 1
 
     void parseParameters(string parameters);
 

@@ -5,8 +5,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/Visits.dir/ExternalSolver.cpp.o.d"
   "CMakeFiles/Visits.dir/FromTo.cpp.o"
   "CMakeFiles/Visits.dir/FromTo.cpp.o.d"
-  "CMakeFiles/Visits.dir/InitParser.cpp.o"
-  "CMakeFiles/Visits.dir/InitParser.cpp.o.d"
   "CMakeFiles/Visits.dir/VisitSolver.cpp.o"
   "CMakeFiles/Visits.dir/VisitSolver.cpp.o.d"
   "libVisits.pdb"

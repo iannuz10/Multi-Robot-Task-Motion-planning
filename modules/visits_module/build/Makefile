@@ -226,33 +226,6 @@ FromTo.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/FromTo.cpp.s
 .PHONY : FromTo.cpp.s
 
-InitParser.o: InitParser.cpp.o
-.PHONY : InitParser.o
-
-# target to build an object file
-InitParser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visits.dir/build.make CMakeFiles/Visits.dir/InitParser.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/InitParser.cpp.o
-.PHONY : InitParser.cpp.o
-
-InitParser.i: InitParser.cpp.i
-.PHONY : InitParser.i
-
-# target to preprocess a source file
-InitParser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visits.dir/build.make CMakeFiles/Visits.dir/InitParser.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/InitParser.cpp.i
-.PHONY : InitParser.cpp.i
-
-InitParser.s: InitParser.cpp.s
-.PHONY : InitParser.s
-
-# target to generate assembly for a file
-InitParser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visits.dir/build.make CMakeFiles/Visits.dir/InitParser.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/InitParser.cpp.s
-.PHONY : InitParser.cpp.s
-
 VisitSolver.o: VisitSolver.cpp.o
 .PHONY : VisitSolver.o
 
@@ -323,9 +296,6 @@ help:
 	@echo "... FromTo.o"
 	@echo "... FromTo.i"
 	@echo "... FromTo.s"
-	@echo "... InitParser.o"
-	@echo "... InitParser.i"
-	@echo "... InitParser.s"
 	@echo "... VisitSolver.o"
 	@echo "... VisitSolver.i"
 	@echo "... VisitSolver.s"

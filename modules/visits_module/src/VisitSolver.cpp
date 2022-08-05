@@ -105,7 +105,8 @@ void VisitSolver::loadSolver(string *parameters, int n){
   Context *context = new Context();
 
   // Getting and setting initial location of all robots
-  InitParser parser(context);
+  string prob_file = "/home/iannuz/popf-tif-v2/domains/visits_domain/prob1.pddl";
+  InitParser(context, prob_file);
   setContext(context);
 
   cout << "Init Parser completed\n";
@@ -119,7 +120,6 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
   map<string, double>::iterator isEnd = initialState.end();
   double dummy;
   double act_cost;
-  
 
   map<string, double> trigger;
 
@@ -150,6 +150,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           // Regions accepted: r0-r9
           string from = tmp.substr(0,2);   // from and to are regions, need to extract wps (poses)
           string to = tmp.substr(3,2);
+          int *path;
           
           FromTo location(from,to);
           this->context->setLocation(robot,location);
@@ -158,9 +159,10 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
 
           cout << "From: " << from << endl;
           cout << "To: " << to << endl;
-          cost = dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to));
+          cost = dijkstraShortestPath(wpAdjMatrix, path, stoi(from), stoi(to));
           cout << "Cost from dijkstraAlgo: " << cost << endl;
           cout << "Path from source to destination" << endl;
+          
           /*
           Connect wp to make edges (wpX, wpY)
           Calculate cost between edges
@@ -242,6 +244,48 @@ double VisitSolver::calculateExtern(double external, double total_cost){
   cout << endl << "calculateExtern received cost: " << external << endl;
   double cost = external;//random1;
   return cost;
+}
+
+void VisitSolver::InitParser(Context* context, string fileName){
+    int curr;
+    string line;
+    string locationKeyword = "robot_in";
+
+    // Prob file location
+    
+    ifstream fio(fileName.c_str());
+
+    cout << "Opening file\n";
+    if (fio.is_open()){
+        cout << "File is open\n";
+        while(getline(fio,line)){
+            if(line.find(locationKeyword) != std::string::npos){    // Check if the keyword is contained in the line and ignores the others
+                curr=line.find(locationKeyword); 
+
+                // Cleaning string from useless chars
+                line.erase(line.length()-1,line.length());
+                line.erase(0,curr+locationKeyword.length()+1);
+                
+                string robotName = line.substr(0,line.find(" "));               // Gets robot name
+                string from = line.substr(line.find(" ")+1,line.length()-1);    // Gets from region
+
+                // Transforms to lowercase to match the name format used during execution
+                transform(robotName.begin(), robotName.end(),robotName.begin(), ::tolower); 
+                transform(from.begin(), from.end(),from.begin(), ::tolower);
+
+                // Debug print
+                cout << "Robot name: " << robotName << endl;
+                cout << "From region: " << from << endl;
+
+                // Add initial positions into context
+                FromTo initLocation(from," ");
+                context->setLocation(robotName,initLocation);
+
+                // from.erase(0,1);  // TODO: change to check wp. These are regions, normally I would set the waypoint as busy
+                // wpOccupation[stoi(from)] = false;
+            }
+        }
+    }
 }
 
 int VisitSolver::parseWaypoint(string waypoint_file){
@@ -370,7 +414,7 @@ void VisitSolver::weightAdjMatrix(){
   cout << "Weighting complete!" << endl;
 }
 
-double VisitSolver::dijkstraShortestPath(double **am, int target, int dest){
+double VisitSolver::dijkstraShortestPath(double **am, int *path, int target, int dest){
   struct{
     double cost;
     int next;
@@ -378,12 +422,15 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest){
   } n[totalWaypoints];
   int src = target;
   int i, min, indmin, iter;
+  path = new int[totalWaypoints];
 
   // Initialization
   for(i = 0; i < totalWaypoints; i++){
     n[i].cost = INT_MAX;
     n[i].def = false;
     n[i].next = -1;
+
+    path[i] = -1;
   }
 
   n[target].cost = 0;
@@ -393,7 +440,8 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest){
   iter = 0;
   do{
     n[target].def = true;
-
+    wpOccupation[target] = false;
+    wpOccupation[n[target].next] = true;
     for(i = 0; i < totalWaypoints; i++){
       if(wpAdjMatrix[target][i] != 0){
         if((n[target].cost + wpAdjMatrix[target][i]) < n[i].cost){
@@ -412,10 +460,6 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest){
         }
       }
     }
-    if(indmin != -1){
-      wpOccupation[indmin] = false;
-      wpOccupation[n[indmin].next] = true;
-    }
     target = indmin;
     iter++;
   } while(indmin != -1);
@@ -425,12 +469,22 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest){
     cout << k << "\t\t\t" << n[k].cost << endl;
   }
 
-  // int node = dest;
-  // do{
-  //   wpOccupation[node] = false;
-  //   node = n[node].next;
-  // }while(node != src);
+  cout << endl << "Waypoint\t\tFree?" << endl;
+  for(int k = 0; k < totalWaypoints; k++){ 
+    cout << k << "\t\t\t" << wpOccupation[k] << endl;
+  }
 
+  // Save the path 
+  int node = dest;
+  int j = 0;
+  do{
+    path[j] = node;
+    node = n[node].next;
+    j++;
+  }while(node != src);
+  for(int i = 0; i < totalWaypoints; i++){
+    cout << path[i];
+  }
   return n[dest].cost;
 }
 
