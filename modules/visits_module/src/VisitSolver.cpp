@@ -84,10 +84,10 @@ void VisitSolver::loadSolver(string *parameters, int n){
     cout << endl;
   }
 
-  wpOccupation = new bool[totalWaypoints];
-  for(int i = 0; i < totalWaypoints; i++){
-    wpOccupation[i] = true;     // true = free, false = busy
-  }
+  // wpOccupation = new bool[totalWaypoints];
+  // for(int i = 0; i < totalWaypoints; i++){
+  //   wpOccupation[i] = true;     // true = free, false = busy
+  // }
 
   string landmark_file = "/home/iannuz/popf-tif-v2/domains/visits_domain/landmark.txt";  // change this to the correct path
   parseLandmark(landmark_file);
@@ -421,7 +421,9 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
   } n[totalWaypoints];
   int src = target;
   int i, min, indmin, iter;
-  
+  int pathID = rand();
+  map<int, vector<int>>::iterator it;
+
   // Initialization
   for(i = 0; i < totalWaypoints; i++){
     n[i].cost = INT_MAX;
@@ -436,10 +438,12 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
   iter = 0;
   do{
     n[target].def = true;
-    wpOccupation[target] = false;
-    wpOccupation[n[target].next] = true;
-    cout << target << " waypoint is free? " << wpOccupation[target] << endl;
-    cout << "Previous waypoint (" << n[target].next << ") is free? " << wpOccupation[n[target].next] << endl;
+    path.push_back(target);
+    paths.insert({pathID, path});
+    // wpOccupation[target] = false;
+    // wpOccupation[n[target].next] = true;
+    // cout << target << " waypoint is free? " << wpOccupation[target] << endl;
+    // cout << "Previous waypoint (" << n[target].next << ") is free? " << wpOccupation[n[target].next] << endl;
     for(i = 0; i < totalWaypoints; i++){
       if(wpAdjMatrix[target][i] != 0){
         if((n[target].cost + wpAdjMatrix[target][i]) < n[i].cost){
@@ -450,38 +454,46 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
     }
     min = INT_MAX;
     indmin = -1;
+
     for(i = 0; i < totalWaypoints; i++){
       if(n[i].def == false){
-        if((n[i].cost < min) && wpOccupation[i]){
-          min = n[i].cost;
-          indmin = i;
+        cout << "Nodo " << i << " non è definitivo." << endl;
+        if((n[i].cost < min) /*&& wpOccupation[i]*/){
+          cout << "Nodo " << i << " ha un costo minore del precedente." << endl;
+          for (it = paths.begin(); it != paths.end(); it++){
+            if((iter < it->second.size()) && it->second[iter] != i){
+              cout << "Il nodo " << i << " non corrisponde ad altri nodi visitati al " << iter+1 << "esima iterazione, infatti viene visitato il nodo :" << it->second[iter] << endl;
+              min = n[i].cost;
+              indmin = i;
+            }
+          }
         }
       }
     }
     target = indmin;
     iter++;
-  } while(indmin != -1);
+  } while(indmin != -1 || indmin != dest);
 
   cout<<"Vertex\t\tDistance from source vertex"<<endl;
   for(int k = 0; k < totalWaypoints; k++){ 
     cout << k << "\t\t\t" << n[k].cost << endl;
   }
 
-  cout << endl << "Waypoint\t\tFree?" << endl;
-  for(int k = 0; k < totalWaypoints; k++){ 
-    cout << k << "\t\t\t" << wpOccupation[k] << endl;
-  }
+  // cout << endl << "Waypoint\t\tFree?" << endl;
+  // for(int k = 0; k < totalWaypoints; k++){ 
+  //   cout << k << "\t\t\t" << wpOccupation[k] << endl;
+  // }
 
   // Save the path 
-  int node = dest;
-  int j = 0;
-  do{
-    path.push_back(node);
-    node = n[node].next;
-    j++;
-  }while(node != src);
-  path.push_back(src);
-  reverse(path.begin(), path.end());
+  // int node = dest;
+  // int j = 0;
+  // do{
+  //   path.push_back(node);
+  //   node = n[node].next;
+  //   j++;
+  // }while(node != src);
+  // path.push_back(src);
+  // reverse(path.begin(), path.end());
   cout << "Path from source to destination" << endl;
   for(int i = 0; i < path.size(); i++){
     if(i!=path.size()-1) cout << path[i] << " -> ";

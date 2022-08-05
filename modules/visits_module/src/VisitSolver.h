@@ -70,7 +70,9 @@ private:
     double **wpAdjMatrix;
     int totalWaypoints;
     double cost;
-    bool *wpOccupation;
+
+    map<int, vector<int>> paths;
+    // bool *wpOccupation;
 
     list<string> affected;
     list<string> dependencies;
