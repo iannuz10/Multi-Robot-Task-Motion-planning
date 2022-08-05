@@ -439,7 +439,12 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
   do{
     n[target].def = true;
     path.push_back(target);
-    paths.insert({pathID, path});
+    auto it = paths.find(pathID);
+    if(it != paths.end()){
+        it->second = path;
+    } else {
+        paths.insert({pathID,path});
+    }
     // wpOccupation[target] = false;
     // wpOccupation[n[target].next] = true;
     // cout << target << " waypoint is free? " << wpOccupation[target] << endl;
@@ -472,7 +477,7 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
     }
     target = indmin;
     iter++;
-  } while(indmin != -1 || indmin != dest);
+  } while(indmin != -1);
 
   cout<<"Vertex\t\tDistance from source vertex"<<endl;
   for(int k = 0; k < totalWaypoints; k++){ 
@@ -485,18 +490,22 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
   // }
 
   // Save the path 
-  // int node = dest;
-  // int j = 0;
-  // do{
+  cout << "Path from source to destination" << endl;
+  int node = dest;
+  int j = 0;
+  do{
   //   path.push_back(node);
-  //   node = n[node].next;
-  //   j++;
-  // }while(node != src);
+  cout << node << " <- " ;
+  node = n[node].next;
+  j++;
+  }while(node != src);
+  cout << node << endl;
   // path.push_back(src);
   // reverse(path.begin(), path.end());
-  cout << "Path from source to destination" << endl;
+
+  cout << "Exploration order" << endl;
   for(int i = 0; i < path.size(); i++){
-    if(i!=path.size()-1) cout << path[i] << " -> ";
+    if(i!=path.size()-1) cout << path[i] << " ";
     else cout << path[i] << endl;
   }
   return n[dest].cost;
