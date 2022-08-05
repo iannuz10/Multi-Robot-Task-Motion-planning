@@ -422,6 +422,7 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
   int src = target;
   int i, min, indmin, iter;
   int pathID = rand();
+  bool collisionDetected = false;
   map<int, vector<int>>::iterator it;
 
   // Initialization
@@ -459,19 +460,20 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
     }
     min = INT_MAX;
     indmin = -1;
-
     for(i = 0; i < totalWaypoints; i++){
       if(n[i].def == false){
-        cout << "Nodo " << i << " non è definitivo." << endl;
         if((n[i].cost < min) /*&& wpOccupation[i]*/){
-          cout << "Nodo " << i << " ha un costo minore del precedente." << endl;
+          collisionDetected = false;
           for (it = paths.begin(); it != paths.end(); it++){
-            if((iter < it->second.size()) && it->second[iter] != i){
-              cout << "Il nodo " << i << " non corrisponde ad altri nodi visitati al " << iter+1 << "esima iterazione, infatti viene visitato il nodo :" << it->second[iter] << endl;
+            if((iter < it->second.size()) && it->second[iter+1] == i){
+              // cout << "Il nodo " << i << " non corrisponde ad altri nodi visitati al " << iter+1 << "esima iterazione, infatti viene visitato il nodo :" << it->second[iter] << endl;
+              collisionDetected = true;
+            }
+          }
+            if(!collisionDetected){
               min = n[i].cost;
               indmin = i;
             }
-          }
         }
       }
     }
@@ -479,7 +481,7 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
     iter++;
   } while(indmin != -1);
 
-  cout<<"Vertex\t\tDistance from source vertex"<<endl;
+  cout << "Vertex\t\tDistance from source vertex" << endl;
   for(int k = 0; k < totalWaypoints; k++){ 
     cout << k << "\t\t\t" << n[k].cost << endl;
   }
@@ -492,14 +494,12 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
   // Save the path 
   cout << "Path from source to destination" << endl;
   int node = dest;
-  int j = 0;
   do{
   //   path.push_back(node);
   cout << node << " <- " ;
   node = n[node].next;
-  j++;
   }while(node != src);
-  cout << node << endl;
+  cout << src << endl;
   // path.push_back(src);
   // reverse(path.begin(), path.end());
 
