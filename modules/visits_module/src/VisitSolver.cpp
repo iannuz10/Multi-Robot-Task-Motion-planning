@@ -150,7 +150,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           // Regions accepted: r0-r9
           string from = tmp.substr(0,2);   // from and to are regions, need to extract wps (poses)
           string to = tmp.substr(3,2);
-          int *path;
+          vector<int> path;
           
           FromTo location(from,to);
           this->context->setLocation(robot,location);
@@ -161,7 +161,6 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           cout << "To: " << to << endl;
           cost = dijkstraShortestPath(wpAdjMatrix, path, stoi(from), stoi(to));
           cout << "Cost from dijkstraAlgo: " << cost << endl;
-          cout << "Path from source to destination" << endl;
           
           /*
           Connect wp to make edges (wpX, wpY)
@@ -414,7 +413,7 @@ void VisitSolver::weightAdjMatrix(){
   cout << "Weighting complete!" << endl;
 }
 
-double VisitSolver::dijkstraShortestPath(double **am, int *path, int target, int dest){
+double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int target, int dest){
   struct{
     double cost;
     int next;
@@ -422,15 +421,12 @@ double VisitSolver::dijkstraShortestPath(double **am, int *path, int target, int
   } n[totalWaypoints];
   int src = target;
   int i, min, indmin, iter;
-  path = new int[totalWaypoints];
-
+  
   // Initialization
   for(i = 0; i < totalWaypoints; i++){
     n[i].cost = INT_MAX;
     n[i].def = false;
     n[i].next = -1;
-
-    path[i] = -1;
   }
 
   n[target].cost = 0;
@@ -442,6 +438,8 @@ double VisitSolver::dijkstraShortestPath(double **am, int *path, int target, int
     n[target].def = true;
     wpOccupation[target] = false;
     wpOccupation[n[target].next] = true;
+    cout << target << " waypoint is free? " << wpOccupation[target] << endl;
+    cout << "Previous waypoint (" << n[target].next << ") is free? " << wpOccupation[n[target].next] << endl;
     for(i = 0; i < totalWaypoints; i++){
       if(wpAdjMatrix[target][i] != 0){
         if((n[target].cost + wpAdjMatrix[target][i]) < n[i].cost){
@@ -478,12 +476,16 @@ double VisitSolver::dijkstraShortestPath(double **am, int *path, int target, int
   int node = dest;
   int j = 0;
   do{
-    path[j] = node;
+    path.push_back(node);
     node = n[node].next;
     j++;
   }while(node != src);
-  for(int i = 0; i < totalWaypoints; i++){
-    cout << path[i];
+  path.push_back(src);
+  reverse(path.begin(), path.end());
+  cout << "Path from source to destination" << endl;
+  for(int i = 0; i < path.size(); i++){
+    if(i!=path.size()-1) cout << path[i] << " -> ";
+    else cout << path[i] << endl;
   }
   return n[dest].cost;
 }

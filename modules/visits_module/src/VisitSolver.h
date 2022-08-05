@@ -60,7 +60,7 @@ public:
     void initAdjMatrix();
     void printAdjMatrix();
     void weightAdjMatrix();
-    double dijkstraShortestPath(double **am, int *path, int target, int dest); // Dijkstra test 1
+    double dijkstraShortestPath(double **am, vector<int> path, int target, int dest); // Dijkstra test 1
 
     void parseParameters(string parameters);
 
