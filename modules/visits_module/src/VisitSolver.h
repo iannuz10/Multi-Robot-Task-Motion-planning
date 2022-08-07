@@ -60,7 +60,7 @@ public:
     void initAdjMatrix();
     void printAdjMatrix();
     void weightAdjMatrix();
-    double dijkstraShortestPath(double **am, vector<int> path, int target, int dest); // Dijkstra test 1
+    double dijkstraShortestPath(double **am, vector<int> path, int target, int dest, string ID); // Dijkstra test 1
 
     void parseParameters(string parameters);
 
@@ -71,7 +71,7 @@ private:
     int totalWaypoints;
     double cost;
 
-    map<int, vector<int>> paths;
+    map<string, vector<int>> paths;
     // bool *wpOccupation;
 
     list<string> affected;
