@@ -423,10 +423,10 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
   int src = target;
   int i, min, indmin, iter, node, count, nodeIndex;;
   bool collisionDetected = false;
-  bool lockedWpFound;
-  map<int, vector<int>> lockedWpConfig;
+  // bool lockedWpFound;
+  // map<int, vector<int>> lockedWpConfig;
   map<string, vector<int>>::iterator it;
-  std::vector<int>::iterator it4;
+  // std::vector<int>::iterator it4;
   // Initialization
   for(i = 0; i < totalWaypoints; i++){
     n[i].cost = INT_MAX;
@@ -448,27 +448,27 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
     // cout << target << " waypoint is free? " << wpOccupation[target] << endl;
     // cout << "Previous waypoint (" << n[target].next << ") is free? " << wpOccupation[n[target].next] << endl;
     for(i = 0; i < totalWaypoints; i++){
-      
-      if(n[i].next != target){
-        count = 0;
-        node = target;
-        do{
-          cout << node << endl;
-          node = n[node].next;
-          count++;
-        }while(node != src);
+      cout << "I'm at node " << target << ". Analyzing node " << i << endl;
+      // if(n[i].next != target){
+      //   count = 0;
+      //   node = target;
+      //   do{
+      //     cout << node << endl;
+      //     node = n[node].next;
+      //     count++;
+      //   }while(node != src);
         
-        auto it5 = lockedWpConfig.find(count);
-        if(it5 != lockedWpConfig.end()){
-          lockedWpFound = false;
-        } else {
-          for(it4 = it5->second.begin(); it4 != it5->second.end(); it4++){
-            if(*it4 == i)
-              lockedWpFound = true;
-          }
-        }
-      }
-      if(wpAdjMatrix[target][i] != 0 && !lockedWpFound){
+      //   auto it5 = lockedWpConfig.find(count);
+      //   if(it5 != lockedWpConfig.end()){
+      //     lockedWpFound = false;
+      //   } else {
+      //     for(it4 = it5->second.begin(); it4 != it5->second.end(); it4++){
+      //       if(*it4 == i)
+      //         lockedWpFound = true;
+      //     }
+      //   }
+      // }
+      if(wpAdjMatrix[target][i] != 0 /*&& !lockedWpFound*/){
         if((n[target].cost + wpAdjMatrix[target][i]) < n[i].cost){
           n[i].cost = n[target].cost + wpAdjMatrix[target][i];
           n[i].next = target;
@@ -503,7 +503,7 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
                   }
                   if((nodeIndex == iter+1) || (nodeIndex == count)){
                     collisionDetected = true;
-                    lockedWpConfig[count].push_back(i);
+                    // lockedWpConfig[count].push_back(i);
                     cout << "Collision detected!!" << endl;
                     break;
                   }
