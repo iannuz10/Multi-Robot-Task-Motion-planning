@@ -419,6 +419,7 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
     double cost;
     int next;
     bool def;
+    int level;
   } n[totalWaypoints];
   int src = target;
   int i, min, indmin, iter, node, count, nodeIndex;;
@@ -432,11 +433,12 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
     n[i].cost = INT_MAX;
     n[i].def = false;
     n[i].next = -1;
+    n[i].level = -1;
   }
 
   n[target].cost = 0;
   n[target].next = target;
-
+  n[target].level = 0;
   cout << "Starting dijkstra algorithm!" << endl;
   iter = 0;
   do{
@@ -472,8 +474,12 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
         if((n[target].cost + wpAdjMatrix[target][i]) < n[i].cost){
           n[i].cost = n[target].cost + wpAdjMatrix[target][i];
           n[i].next = target;
+          if(n[i].level == -1 || n[n[i].next].level+1 < n[i].level){
+            n[i].level = n[n[i].next].level+1;
+          }
         }
       }
+      cout << "Node " << i << " is " << n[i].level << " deep" << endl;
     }
     
     
