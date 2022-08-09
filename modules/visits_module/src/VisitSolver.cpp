@@ -427,6 +427,7 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
   // bool lockedWpFound;
   // map<int, vector<int>> lockedWpConfig;
   map<string, vector<int>>::iterator it;
+  std::vector<int>::iterator it2;
   // std::vector<int>::iterator it4;
   // Initialization
   for(i = 0; i < totalWaypoints; i++){
@@ -469,34 +470,13 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
       //     }
       //   }
       // }
+
+      // TODO (TOTRY): Move same node in same iteration here 
+
       if(wpAdjMatrix[target][i] != 0 /*&& !lockedWpFound*/){
         if((n[target].cost + wpAdjMatrix[target][i]) < n[i].cost){
-          n[i].cost = n[target].cost + wpAdjMatrix[target][i];
-          n[i].next = target;
-          cout << "Previous node is: " << n[i].next << endl;
-          if(n[i].level == -1 || n[n[i].next].level+1 < n[i].level){
-            n[i].level = n[n[i].next].level+1;
-          }
-        }
-      }
-      // cout << "Node " << i << " is " << n[i].level << " deep" << endl;
-    }
-    
-    for(i = 0; i < totalWaypoints; i++){
-      cout << "Node " << i << " is " << n[i].level << " deep" << endl;
-    }
 
-    min = INT_MAX;
-    indmin = -1;
-    
-    cout << "Starting from node: " << target << endl;
-    for(i = 0; i < totalWaypoints; i++){
-      std::vector<int>::iterator it2;
 
-      // Check if node is undefined
-      if(n[i].def == false){
-        cout << "Studying node " << i << endl;
-          
           // For the paths already computed (except myself)
           for(it = paths.begin(); it != paths.end(); it++){
             if(it->first != pathID){ // Except myself
@@ -509,9 +489,9 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
 
                 // Search in the path already computed if the node "i" (that I'm looking at) has been used once in that path
                 if(*it2 == i){
-
+                  cout << "Node " << i << " is " << n[target].level+1 << " deep" << endl;
                   // Saving how deep in the graph node "i" would be
-                  count = n[i].level;
+                  count = n[target].level+1;
                   // count = -1;
                   // if(n[i].cost < min){
                   //   count = 0;
@@ -524,7 +504,7 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
                   //   }while(node != src);
                   //   cout << "Node " << i << " is " << count << " steps away from start." << endl;
                   // }
-                  if(nodeIndex == n[i].level){
+                  if(nodeIndex == count){
                     collisionDetected = true;
                     // lockedWpConfig[count].push_back(i);
                     cout << "COLLISION DETECTED!!" << endl;
@@ -552,13 +532,43 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
           }
           if(!collisionDetected){
             cout << "NO COLLISIONS! Node " << i << " is safe!" << endl;
-            if((n[i].cost < min) /*&& wpOccupation[i]*/){
+            n[i].cost = n[target].cost + wpAdjMatrix[target][i];
+            n[i].next = target;
+            cout << "Previous node is: " << n[i].next << endl;
+            if(n[i].level == -1 || n[n[i].next].level+1 < n[i].level){
+              n[i].level = n[n[i].next].level+1;
+            }
+        }
+        collisionDetected = false;
+
+
+          
+          
+        }
+      }
+      // cout << "Node " << i << " is " << n[i].level << " deep" << endl;
+    }
+    
+    for(i = 0; i < totalWaypoints; i++){
+      cout << "Node " << i << " is " << n[i].level << " deep" << endl;
+    }
+
+    min = INT_MAX;
+    indmin = -1;
+    
+    cout << "Starting from node: " << target << endl;
+    for(i = 0; i < totalWaypoints; i++){
+      std::vector<int>::iterator it2;
+
+      // Check if node is undefined
+      if(n[i].def == false){
+        cout << "Studying node " << i << endl;
+          
+          if(n[i].cost < min){
               cout << "Path " << pathID << ": \"" << i << "\" becomes best next node." << endl;  
               min = n[i].cost;
               indmin = i;
           }
-        }
-        collisionDetected = false;
       }
     }
     target = indmin;
