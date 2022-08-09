@@ -161,23 +161,9 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           cout << "To: " << to << endl;
           pathID = robot + from + to;
           cost = dijkstraShortestPath(wpAdjMatrix, path, stoi(from), stoi(to), pathID);
-          cout << "Cost from dijkstraAlgo: " << cost << endl;
-          
-          /*
-          Connect wp to make edges (wpX, wpY)
-          Calculate cost between edges
-          Make weighted adjacency matrix to check node neighbours
-          Search for minimun path (dijkstra(?))
-          Change calculateExtern logic to match the value from minimum path search
-          Check for collision avoidance (the wp must be used once ata a time): 
-                    if the planning is done right then it means it is calculated in parallel
-          */
-
-
+          cout << "Cost from dijkstraShortestPath: " << cost << endl;
+        
            // distance_euc(from, to);
-
-
-
         }
       }
     } else {
@@ -415,20 +401,21 @@ void VisitSolver::weightAdjMatrix(){
 
 double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int target, int dest, string pathID){
   cout << "Received ID: " << pathID << endl;
+
+  // Node structure
   struct{
     double cost;
     int next;
     bool def;
     int level;
   } n[totalWaypoints];
+
   int src = target;
   int i, min, indmin, iter, node, count, nodeIndex;;
   bool collisionDetected = false;
-  // bool lockedWpFound;
-  // map<int, vector<int>> lockedWpConfig;
   map<string, vector<int>>::iterator it;
   std::vector<int>::iterator it2;
-  // std::vector<int>::iterator it4;
+
   // Initialization
   for(i = 0; i < totalWaypoints; i++){
     n[i].cost = INT_MAX;
@@ -437,100 +424,45 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
     n[i].level = -1;
   }
 
+  // Setting root node
   n[target].cost = 0;
   n[target].next = target;
   n[target].level = 0;
+
   cout << "Starting dijkstra algorithm!" << endl;
   iter = 0;
+
   do{
     n[target].def = true;
-    
-    // wpOccupation[target] = false;
-    // wpOccupation[n[target].next] = true;
-    // cout << target << " waypoint is free? " << wpOccupation[target] << endl;
-    // cout << "Previous waypoint (" << n[target].next << ") is free? " << wpOccupation[n[target].next] << endl;
     cout << "I'm at node " << target << endl;
     for(i = 0; i < totalWaypoints; i++){
-      // if(n[i].next != target){
-      //   count = 0;
-      //   node = target;
-      //   do{
-      //     cout << node << endl;
-      //     node = n[node].next;
-      //     count++;
-      //   }while(node != src);
-        
-      //   auto it5 = lockedWpConfig.find(count);
-      //   if(it5 != lockedWpConfig.end()){
-      //     lockedWpFound = false;
-      //   } else {
-      //     for(it4 = it5->second.begin(); it4 != it5->second.end(); it4++){
-      //       if(*it4 == i)
-      //         lockedWpFound = true;
-      //     }
-      //   }
-      // }
-
-      // TODO (TOTRY): Move same node in same iteration here 
-
-      if(wpAdjMatrix[target][i] != 0 /*&& !lockedWpFound*/){
+      if(wpAdjMatrix[target][i] != 0){
         if((n[target].cost + wpAdjMatrix[target][i]) < n[i].cost){
-
-
           // For the paths already computed (except myself)
-          for(it = paths.begin(); it != paths.end(); it++){
-            if(it->first != pathID){ // Except myself
+          for(it = paths.begin(); it != paths.end(); it++){   
+            if(it->first != pathID){
               cout << "Checking path: " << it->first << endl; 
               for(it2 = it->second.begin(); it2 != it->second.end(); it2++){
-
-                // Saving at what iteration the node have been used by the other robot
-                nodeIndex = it2 - it->second.begin();
+                // Saving at what iteration the node have been used by the another robot
+                nodeIndex = it2 - it->second.begin();   
                 cout << "At position " << nodeIndex << " found node " << *it2 << endl; 
-
-                // Search in the path already computed if the node "i" (that I'm looking at) has been used once in that path
-                if(*it2 == i){
-                  cout << "Node " << i << " is " << n[target].level+1 << " deep" << endl;
+                // Search in the path already computed if the node "i" (that I'm looking at) has been used once
+                if(*it2 == i){    
                   // Saving how deep in the graph node "i" would be
-                  count = n[target].level+1;
-                  // count = -1;
-                  // if(n[i].cost < min){
-                  //   count = 0;
-                  //   node = i;
-                  //   cout << "Backsearching till src: " << endl;
-                  //   do{
-                  //     cout << node << endl;
-                  //     node = n[node].next;
-                  //     count++;
-                  //   }while(node != src);
-                  //   cout << "Node " << i << " is " << count << " steps away from start." << endl;
-                  // }
-                  if(nodeIndex == count){
+                  count = n[target].level+1;  
+                  // If another path uses the same node being searched a collision happens and the node is ignored
+                  if(nodeIndex == count){     
                     collisionDetected = true;
-                    // lockedWpConfig[count].push_back(i);
                     cout << "COLLISION DETECTED!!" << endl;
                     break;
                   }
                 }
               }
-              // if(collisionDetected)
-              //   break;
-
-
-              // it2 = std::find (it->second.begin(), it->second.end(), i);
-              // if (it2 != it->second.end()){
-              //   nodeIndex = it2 - it->second.begin();
-              //   cout << "Element " << i <<" found at position: " << nodeIndex << endl; 
-                
-              //   cout << "Node \"" << i << "\" going to be in position " << iter+1 << ". Any collision?" << endl; 
-              // }
-              // if(/*(iter < it->second.size()) && */nodeIndex != iter+1){ // TODO: need to check level of child node, now its almost random
-              //   collisionDetected = true;
-              //   cout << "Collision detected!!" << endl;
-                
-              // }
             }
           }
-          if(!collisionDetected){
+
+          // When a collision happens the node is treated as if it was not directly connected
+          if(!collisionDetected){   
             cout << "NO COLLISIONS! Node " << i << " is safe!" << endl;
             n[i].cost = n[target].cost + wpAdjMatrix[target][i];
             n[i].next = target;
@@ -538,19 +470,10 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
             if(n[i].level == -1 || n[n[i].next].level+1 < n[i].level){
               n[i].level = n[n[i].next].level+1;
             }
-        }
-        collisionDetected = false;
-
-
-          
-          
+          }
+          collisionDetected = false;
         }
       }
-      // cout << "Node " << i << " is " << n[i].level << " deep" << endl;
-    }
-    
-    for(i = 0; i < totalWaypoints; i++){
-      cout << "Node " << i << " is " << n[i].level << " deep" << endl;
     }
 
     min = INT_MAX;
@@ -558,42 +481,33 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
     
     cout << "Starting from node: " << target << endl;
     for(i = 0; i < totalWaypoints; i++){
-      std::vector<int>::iterator it2;
-
-      // Check if node is undefined
       if(n[i].def == false){
-        cout << "Studying node " << i << endl;
-          
-          if(n[i].cost < min){
-              cout << "Path " << pathID << ": \"" << i << "\" becomes best next node." << endl;  
-              min = n[i].cost;
-              indmin = i;
-          }
+        if(n[i].cost < min){ 
+          min = n[i].cost;
+          indmin = i;
+        }
       }
     }
     target = indmin;
     iter++;
-  } while(indmin != -1);
+  }while(indmin != -1);
 
   cout << "Vertex\t\tDistance from source vertex" << endl;
   for(int k = 0; k < totalWaypoints; k++){ 
     cout << k << "\t\t\t" << n[k].cost << endl;
   }
 
-  // cout << endl << "Waypoint\t\tFree?" << endl;
-  // for(int k = 0; k < totalWaypoints; k++){ 
-  //   cout << k << "\t\t\t" << wpOccupation[k] << endl;
-  // }
+  // Prints how deep every node is
+  for(i = 0; i < totalWaypoints; i++){
+    cout << "Node " << i << " is " << n[i].level << " deep" << endl;
+  }
 
-  // Save the path to vector
-  cout << "Path from source to destination" << endl;
+  // Save the path in a vector
   node = dest;
   do{
-  path.push_back(node);
-  cout << node << " <- " ;
-  node = n[node].next;
+    path.push_back(node);
+    node = n[node].next;
   }while(node != src);
-  cout << src << endl;
   path.push_back(src);
   reverse(path.begin(), path.end());
 
