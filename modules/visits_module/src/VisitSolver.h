@@ -47,7 +47,7 @@ public:
     int parseWaypoint(string waypoint_file);
     void parseLandmark(string landmark_file);
     void parseEdges(string edges_file);
-    void InitParser(Context* context, string fileName);
+    void initParser(Context* context, string fileName);
 
     map<string, vector<string>> region_mapping;
     vector <string> source, target; 
@@ -65,14 +65,12 @@ public:
     void parseParameters(string parameters);
 
 private:
-    // All robot locations are stored here 
-    Context* context;
+    Context* context;   // All robot locations are stored here 
     double **wpAdjMatrix;
     int totalWaypoints;
     double cost;
 
     map<string, vector<int>> paths;
-    // bool *wpOccupation;
 
     list<string> affected;
     list<string> dependencies;
