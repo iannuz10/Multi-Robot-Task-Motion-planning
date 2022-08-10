@@ -14,7 +14,7 @@
 
 )
 (:goal 
-     (and (visited r1)  (visited r2)
+     (and (visited r1)  (visited r2) (visited r5)
           (>= (act-cost) 0)
      )
 )

@@ -490,7 +490,12 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
   node = dest;
   do{
     path.push_back(node);
-    node = n[node].next;
+    if(n[node].next != -1){
+      node = n[node].next;
+    } else {
+      cerr << "No fisable path found from " << src << " to " << dest << ". Waypoint " << node << " is occupied." << endl; 
+      exit(0);
+    }
   }while(node != src);
   path.push_back(src);
   reverse(path.begin(), path.end());
