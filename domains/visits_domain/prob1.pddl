@@ -14,7 +14,7 @@
 
 )
 (:goal 
-     (and (visited r1)  (visited r2) (visited r5)
+     (and (visited r1 BB8)  (visited r2 C3PO)
           (>= (act-cost) 0)
      )
 )

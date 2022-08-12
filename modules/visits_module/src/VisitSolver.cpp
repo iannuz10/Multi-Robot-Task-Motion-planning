@@ -348,13 +348,19 @@ void VisitSolver::initAdjMatrix(){
 }
 
 void VisitSolver::printAdjMatrix(){
-
+  cout << "\t";
   for (int i = 0; i < totalWaypoints; i++){
-      for (int j = 0; j < totalWaypoints; j++){
-        cout << wpAdjMatrix[i][j] << " ";
-      }
-      cout << endl;
+    cout << i << "\t";
+  }
+  cout << endl;
+  for (int i = 0; i < totalWaypoints; i++){
+    cout << i << "\t";
+    for (int j = 0; j < totalWaypoints; j++){
+      cout << wpAdjMatrix[i][j] << "\t";
     }
+    cout << endl;
+  }
+  cout << endl;
 }
 
 void VisitSolver::weightAdjMatrix(){
