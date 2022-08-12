@@ -405,7 +405,7 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
   } n[totalWaypoints];
 
   int src = target;
-  int i, min, indmin, iter, node, count, nodeIndex;;
+  int i, min, indmin, iter, node, count, nodeIndex, nodeDeepness;
   bool collisionDetected = false;
   map<string, vector<int>>::iterator it;
   std::vector<int>::iterator it2;
@@ -446,6 +446,12 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
                   if(nodeIndex == count){     
                     collisionDetected = true;
                     cout << "COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
+
+
+                    // TOTRY1 if a collision is detected call 2 iterative dijkstra that ignores the node i.
+                    // Then the 2 paths are compared and the one which costs less is picked 
+
+
                     break;
                   }
                 }
@@ -494,12 +500,20 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
 
   // Save the path in a vector
   node = dest;
+  nodeDeepness = 0;
   do{
+    nodeDeepness++;
     path.push_back(node);
     if(n[node].next != -1){
       node = n[node].next;
     } else {
-      cerr << "No fisable path found from " << src << " to " << dest << ". Waypoint " << node << " is occupied." << endl; 
+      cerr << "No fisable path found from " << src << " to " << dest << ". Waypoint " << node << " is occupied. It was " << nodeDeepness << " deep." << endl; 
+      
+      // TOTRY2 search in the paths for node at deepness nodeDeepness
+      // Call a new dijkstra with source the found paths' src and dest. Add the node to avoid including and his deepness.
+      // Compute the new dijkstra with the above information. Update the path.
+      // Recall dijstra with the parameters used the first time (dest and src)
+      
       exit(0);
     }
   }while(node != src);
