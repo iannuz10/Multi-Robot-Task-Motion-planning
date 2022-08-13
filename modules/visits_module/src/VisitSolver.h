@@ -71,7 +71,8 @@ private:
     double cost;
 
     map<string, vector<int>> paths;
-
+    map<string, double> pathsCosts;
+    
     list<string> affected;
     list<string> dependencies;
       
