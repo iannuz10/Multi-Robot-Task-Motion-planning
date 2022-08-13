@@ -159,7 +159,9 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
             cout << endl;
           }
             
-          
+          for(auto x : pathsCosts){
+            cout << "PathID: " << x.first << ". Cost: " << x.second << endl;
+          }
 
            // distance_euc(from, to);
         }
