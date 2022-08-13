@@ -135,7 +135,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           // Regions accepted: r0-r9
           string from = tmp.substr(0,2);   // from and to are regions, need to extract wps (poses)
           string to = tmp.substr(3,2);
-          vector<int> path;
+          
           
           FromTo location(from,to);
           this->context->setLocation(robot,location);
@@ -145,7 +145,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           cout << "From: " << from << endl;
           cout << "To: " << to << endl;
           pathID = robot + from + to;
-          cost = dijkstraShortestPath(wpAdjMatrix, path, stoi(from), stoi(to), pathID);
+          cost = dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, 0, -1, -1);
           cout << endl << "Cost from dijkstraShortestPath: " << cost << endl;
         
            // distance_euc(from, to);
@@ -393,7 +393,7 @@ void VisitSolver::weightAdjMatrix(){
   cout << "Weighting complete!" << endl;
 }
 
-double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int target, int dest, string pathID){
+double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, string pathID, bool collisionFlag, int collidingNode, int collidingNodeLevel){
   cout << "Received ID: " << pathID << endl;
 
   // Node structure
@@ -404,6 +404,8 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
     int level;
   } n[totalWaypoints];
 
+  vector<int> path;
+  double collisionCost;
   int src = target;
   int i, min, indmin, iter, node, count, nodeIndex, nodeDeepness;
   bool collisionDetected = false;
@@ -454,6 +456,10 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
 
                     break;
                   }
+                } 
+                if(collisionFlag && (i == collidingNode) && (nodeIndex == collidingNodeLevel)){
+                  collisionDetected = true;
+                  cout << "COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
                 }
               }
             }
@@ -509,6 +515,23 @@ double VisitSolver::dijkstraShortestPath(double **am, vector<int> path, int targ
     } else {
       cerr << "No fisable path found from " << src << " to " << dest << ". Waypoint " << node << " is occupied. It was " << nodeDeepness << " deep." << endl; 
       
+
+      for(it = paths.begin(); it != paths.end(); it++){   
+            if(it->first != pathID){
+              for(it2 = it->second.begin(); it2 != it->second.end(); it2++){
+                nodeIndex = it2 - it->second.begin();
+                if(*it2 == node){     
+                  if(nodeIndex == nodeDeepness){     
+                    collisionCost = dijkstraShortestPath(wpAdjMatrix,it->second.front(), it->second.back(), it->first, true, node, nodeDeepness);
+
+                    break;
+                  }
+                }
+              }
+            }
+          }
+
+
       // TOTRY2 search in the paths for node at deepness nodeDeepness
       // Call a new dijkstra with source the found paths' src and dest. Add the node to avoid including and his deepness.
       // Compute the new dijkstra with the above information. Update the path.
