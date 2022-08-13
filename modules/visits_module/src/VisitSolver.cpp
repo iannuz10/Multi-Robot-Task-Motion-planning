@@ -592,6 +592,14 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
     else cout << path[i] << endl;
   }
   cout << "Collision cost: " << collisionCost << ". \nCost: " << cost << endl;
+
+  auto it3 = pathsCosts.find(pathID);
+    if(it3 != pathsCosts.end()){
+        it3->second = cost;
+    } else {
+        pathsCosts.insert({pathID,cost});
+    }
+
   return collisionCost + cost;
 }
 
