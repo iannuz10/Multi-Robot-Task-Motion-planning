@@ -1,0 +1,708 @@
+From: 0
+To: 5
+Received ID: r2d205
+Starting dijkstra algorithm!
+NO COLLISIONS! Node 1 is safe!
+
+NO COLLISIONS! Node 2 is safe!
+
+NO COLLISIONS! Node 5 is safe!
+
+NO COLLISIONS! Node 3 is safe!
+
+NO COLLISIONS! Node 4 is safe!
+
+NO COLLISIONS! Node 5 is safe!
+
+Vertex		Distance from source vertex
+0			0.000
+1			4.000
+2			4.000
+3			20.000
+4			12.000
+5			8.000
+
+Node 0 is 0 deep
+Node 1 is 1 deep
+Node 2 is 1 deep
+Node 3 is 2 deep
+Node 4 is 2 deep
+Node 5 is 1 deep
+
+
+Exploration order
+0 -> 2 -> 5
+Collision cost: 0.000. 
+Cost: 8.000
+
+Cost for path r2d205 from dijkstraShortestPath: 8.000
+Printing all paths
+Checking path: r2d205
+0	2	5	
+Printing all costs
+PathID: r2d205. Cost: 8.000
+(dummy) 0.000
+b (5.000 | 100.000)
+--
+0: (goto_region r2d2 r0 r5), start at 0.000, 99999.000
+(( 1: (goto_region r2d2 r0 r5), end )) at 100.000, 99999.000
+
+--------------------------------------------------------
+Robot: bb8. Regions: From: r3, To:  
+--------------------------------------------------------
+
+--------------------------------------------------------
+Robot: r2d2. Regions: From: r0, To: r5
+--------------------------------------------------------
+
+--------------------------------------------------------
+Robot: c3po. Regions: From: r4, To:  
+--------------------------------------------------------
+From: 0
+To: 5
+Received ID: r2d205
+Starting dijkstra algorithm!
+NO COLLISIONS! Node 1 is safe!
+
+NO COLLISIONS! Node 2 is safe!
+
+NO COLLISIONS! Node 5 is safe!
+
+NO COLLISIONS! Node 3 is safe!
+
+NO COLLISIONS! Node 4 is safe!
+
+NO COLLISIONS! Node 5 is safe!
+
+Vertex		Distance from source vertex
+0			0.000
+1			4.000
+2			4.000
+3			20.000
+4			12.000
+5			8.000
+
+Node 0 is 0 deep
+Node 1 is 1 deep
+Node 2 is 1 deep
+Node 3 is 2 deep
+Node 4 is 2 deep
+Node 5 is 1 deep
+
+
+Exploration order
+0 -> 2 -> 5
+Collision cost: 0.000. 
+Cost: 8.000
+
+Cost for path r2d205 from dijkstraShortestPath: 8.000
+Printing all paths
+Checking path: r2d205
+0	2	5	
+Printing all costs
+PathID: r2d205. Cost: 8.000
+From: 4
+To: 2
+Received ID: c3po42
+Starting dijkstra algorithm!
+Checking path: r2d205
+NO COLLISIONS! Node 1 is safe!
+
+Checking path: r2d205
+NO COLLISIONS! Node 5 is safe!
+
+Checking path: r2d205
+NO COLLISIONS! Node 0 is safe!
+
+Checking path: r2d205
+NO COLLISIONS! Node 2 is safe!
+
+Checking path: r2d205
+NO COLLISIONS! Node 3 is safe!
+
+Checking path: r2d205
+NO COLLISIONS! Node 2 is safe!
+
+Checking path: r2d205
+NO COLLISIONS! Node 5 is safe!
+
+Vertex		Distance from source vertex
+0			12.000
+1			8.000
+2			16.000
+3			24.000
+4			0.000
+5			20.000
+
+Node 0 is 2 deep
+Node 1 is 1 deep
+Node 2 is 2 deep
+Node 3 is 2 deep
+Node 4 is 0 deep
+Node 5 is 1 deep
+
+
+Exploration order
+4 -> 1 -> 0 -> 2
+Collision cost: 0.000. 
+Cost: 16.000
+
+Cost for path c3po42 from dijkstraShortestPath: 16.000
+Printing all paths
+Checking path: c3po42
+4	1	0	2	
+Checking path: r2d205
+0	2	5	
+Printing all costs
+PathID: c3po42. Cost: 16.000
+PathID: r2d205. Cost: 8.000
+(dummy) 8.000
+b (4.000 | 100.001)
+--
+0: (goto_region r2d2 r0 r5), start at 0.000, 99999.000
+(( 1: (goto_region r2d2 r0 r5), end )) at 100.000, 99999.000
+2: (goto_region c3po r4 r2), start at 0.001, 99999.000
+(( 3: (goto_region c3po r4 r2), end )) at 100.001, 99999.000
+
+--------------------------------------------------------
+Robot: bb8. Regions: From: r3, To:  
+--------------------------------------------------------
+
+--------------------------------------------------------
+Robot: r2d2. Regions: From: r0, To: r5
+--------------------------------------------------------
+
+--------------------------------------------------------
+Robot: c3po. Regions: From: r4, To: r2
+--------------------------------------------------------
+From: 0
+To: 5
+Received ID: r2d205
+Starting dijkstra algorithm!
+Checking path: c3po42
+COLLISION DETECTED!! Node 1 ignored!
+
+Checking path: c3po42
+NO COLLISIONS! Node 2 is safe!
+
+Checking path: c3po42
+NO COLLISIONS! Node 5 is safe!
+
+Checking path: c3po42
+NO COLLISIONS! Node 1 is safe!
+
+Checking path: c3po42
+NO COLLISIONS! Node 5 is safe!
+
+Checking path: c3po42
+NO COLLISIONS! Node 4 is safe!
+
+Checking path: c3po42
+NO COLLISIONS! Node 3 is safe!
+
+Checking path: c3po42
+NO COLLISIONS! Node 4 is safe!
+
+Vertex		Distance from source vertex
+0			0.000
+1			12.000
+2			4.000
+3			28.000
+4			20.000
+5			8.000
+
+Node 0 is 0 deep
+Node 1 is 2 deep
+Node 2 is 1 deep
+Node 3 is 3 deep
+Node 4 is 2 deep
+Node 5 is 1 deep
+
+
+Exploration order
+0 -> 2 -> 5
+Collision cost: 0.000. 
+Cost: 8.000
+
+Cost for path r2d205 from dijkstraShortestPath: 8.000
+Printing all paths
+Checking path: c3po42
+4	1	0	2	
+Checking path: r2d205
+0	2	5	
+Printing all costs
+PathID: c3po42. Cost: 16.000
+PathID: r2d205. Cost: 8.000
+From: 3
+To: 1
+Received ID: bb831
+Starting dijkstra algorithm!
+Checking path: c3po42
+COLLISION DETECTED!! Node 1 ignored!
+
+Checking path: r2d205
+Vertex		Distance from source vertex
+0			2147483647.000
+1			2147483647.000
+2			2147483647.000
+3			0.000
+4			2147483647.000
+5			2147483647.000
+
+Node 0 is -1 deep
+Node 1 is -1 deep
+Node 2 is -1 deep
+Node 3 is 0 deep
+Node 4 is -1 deep
+Node 5 is -1 deep
+
+No fisable path found from 3 to 1. Waypoint 1 is occupied. It was 1 deep.
+Calling new dijkstra on path c3po42 for an alternative path. From 4 to 2
+CALLED BECAUSE COLLISION FOUND!!
+Colliding node: 1 in position 1
+Received ID: c3po42
+Starting dijkstra algorithm!
+Checking collision flag: 1. The colliding node is 1 at deepness 1
+COLLISION DETECTED!! Node 1 ignored!
+
+Checking path: r2d205
+Checking collision flag: 1. The colliding node is 1 at deepness 1
+Checking path: r2d205
+NO COLLISIONS! Node 5 is safe!
+
+Checking collision flag: 1. The colliding node is 1 at deepness 1
+Checking path: r2d205
+NO COLLISIONS! Node 0 is safe!
+
+Checking collision flag: 1. The colliding node is 1 at deepness 1
+Checking path: r2d205
+NO COLLISIONS! Node 2 is safe!
+
+Checking collision flag: 1. The colliding node is 1 at deepness 1
+Checking path: r2d205
+NO COLLISIONS! Node 0 is safe!
+
+Checking collision flag: 1. The colliding node is 1 at deepness 1
+COLLISION DETECTED!! Node 1 ignored!
+
+Checking path: r2d205
+Checking collision flag: 1. The colliding node is 1 at deepness 1
+COLLISION DETECTED!! Node 1 ignored!
+
+Checking path: r2d205
+Vertex		Distance from source vertex
+0			28.000
+1			2147483647.000
+2			24.000
+3			2147483647.000
+4			0.000
+5			20.000
+
+Node 0 is 2 deep
+Node 1 is -1 deep
+Node 2 is 2 deep
+Node 3 is -1 deep
+Node 4 is 0 deep
+Node 5 is 1 deep
+
+
+Exploration order
+4 -> 5 -> 2
+Collision cost: 0.000. 
+Cost: 24.000
+Received ID: bb831
+Starting dijkstra algorithm!
+Checking path: c3po42
+Checking path: r2d205
+NO COLLISIONS! Node 1 is safe!
+
+Checking path: c3po42
+Checking path: r2d205
+NO COLLISIONS! Node 0 is safe!
+
+Checking path: c3po42
+COLLISION DETECTED!! Node 2 ignored!
+
+Checking path: r2d205
+Checking path: c3po42
+Checking path: r2d205
+NO COLLISIONS! Node 4 is safe!
+
+Checking path: c3po42
+Checking path: r2d205
+NO COLLISIONS! Node 2 is safe!
+
+Checking path: c3po42
+Checking path: r2d205
+NO COLLISIONS! Node 5 is safe!
+
+Vertex		Distance from source vertex
+0			20.000
+1			16.000
+2			24.000
+3			0.000
+4			24.000
+5			28.000
+
+Node 0 is 2 deep
+Node 1 is 1 deep
+Node 2 is 3 deep
+Node 3 is 0 deep
+Node 4 is 2 deep
+Node 5 is 3 deep
+
+
+Exploration order
+3 -> 1
+Collision cost: 0.000. 
+Cost: 16.000
+
+Exploration order
+Collision cost: 24.000. 
+Cost: 16.000
+
+Cost for path bb831 from dijkstraShortestPath: 16.000
+Printing all paths
+Checking path: bb831
+3	1	
+Checking path: c3po42
+4	5	2	
+Checking path: r2d205
+0	2	5	
+Printing all costs
+PathID: bb831. Cost: 16.000
+PathID: c3po42. Cost: 24.000
+PathID: r2d205. Cost: 8.000
+From: 4
+To: 2
+Received ID: c3po42
+Starting dijkstra algorithm!
+Checking path: bb831
+COLLISION DETECTED!! Node 1 ignored!
+
+Checking path: r2d205
+Checking path: bb831
+Checking path: r2d205
+NO COLLISIONS! Node 5 is safe!
+
+Checking path: bb831
+Checking path: r2d205
+NO COLLISIONS! Node 0 is safe!
+
+Checking path: bb831
+Checking path: r2d205
+NO COLLISIONS! Node 2 is safe!
+
+Checking path: bb831
+Checking path: r2d205
+NO COLLISIONS! Node 0 is safe!
+
+Checking path: bb831
+Checking path: r2d205
+NO COLLISIONS! Node 1 is safe!
+
+Checking path: bb831
+Checking path: r2d205
+NO COLLISIONS! Node 1 is safe!
+
+Checking path: bb831
+Checking path: r2d205
+NO COLLISIONS! Node 3 is safe!
+
+Vertex		Distance from source vertex
+0			28.000
+1			32.000
+2			24.000
+3			48.000
+4			0.000
+5			20.000
+
+Node 0 is 2 deep
+Node 1 is 3 deep
+Node 2 is 2 deep
+Node 3 is 4 deep
+Node 4 is 0 deep
+Node 5 is 1 deep
+
+
+Exploration order
+4 -> 5 -> 2
+Collision cost: 0.000. 
+Cost: 24.000
+
+Cost for path c3po42 from dijkstraShortestPath: 24.000
+Printing all paths
+Checking path: bb831
+3	1	
+Checking path: c3po42
+4	5	2	
+Checking path: r2d205
+0	2	5	
+Printing all costs
+PathID: bb831. Cost: 16.000
+PathID: c3po42. Cost: 24.000
+PathID: r2d205. Cost: 8.000
+(dummy) 16.000
+b (3.000 | 100.002)
+--
+0: (goto_region r2d2 r0 r5), start at 0.000, 99999.000
+(( 1: (goto_region r2d2 r0 r5), end )) at 100.000, 99999.000
+2: (goto_region c3po r4 r2), start at 0.001, 99999.000
+(( 3: (goto_region c3po r4 r2), end )) at 100.001, 99999.000
+4: (goto_region bb8 r3 r1), start at 0.002, 99999.000
+(( 5: (goto_region bb8 r3 r1), end )) at 100.002, 99999.000
+
+--------------------------------------------------------
+Robot: bb8. Regions: From: r3, To: r1
+--------------------------------------------------------
+
+--------------------------------------------------------
+Robot: r2d2. Regions: From: r0, To: r5
+--------------------------------------------------------
+
+--------------------------------------------------------
+Robot: c3po. Regions: From: r4, To: r2
+--------------------------------------------------------
+From: 3
+To: 1
+Received ID: bb831
+Starting dijkstra algorithm!
+Checking path: c3po42
+Checking path: r2d205
+NO COLLISIONS! Node 1 is safe!
+
+Checking path: c3po42
+Checking path: r2d205
+NO COLLISIONS! Node 0 is safe!
+
+Checking path: c3po42
+COLLISION DETECTED!! Node 2 ignored!
+
+Checking path: r2d205
+Checking path: c3po42
+Checking path: r2d205
+NO COLLISIONS! Node 4 is safe!
+
+Checking path: c3po42
+Checking path: r2d205
+NO COLLISIONS! Node 2 is safe!
+
+Checking path: c3po42
+Checking path: r2d205
+NO COLLISIONS! Node 5 is safe!
+
+Vertex		Distance from source vertex
+0			20.000
+1			16.000
+2			24.000
+3			0.000
+4			24.000
+5			28.000
+
+Node 0 is 2 deep
+Node 1 is 1 deep
+Node 2 is 3 deep
+Node 3 is 0 deep
+Node 4 is 2 deep
+Node 5 is 3 deep
+
+
+Exploration order
+3 -> 1
+Collision cost: 0.000. 
+Cost: 16.000
+
+Cost for path bb831 from dijkstraShortestPath: 16.000
+Printing all paths
+Checking path: bb831
+3	1	
+Checking path: c3po42
+4	5	2	
+Checking path: r2d205
+0	2	5	
+Printing all costs
+PathID: bb831. Cost: 16.000
+PathID: c3po42. Cost: 24.000
+PathID: r2d205. Cost: 8.000
+From: 4
+To: 2
+Received ID: c3po42
+Starting dijkstra algorithm!
+Checking path: bb831
+COLLISION DETECTED!! Node 1 ignored!
+
+Checking path: r2d205
+Checking path: bb831
+Checking path: r2d205
+NO COLLISIONS! Node 5 is safe!
+
+Checking path: bb831
+Checking path: r2d205
+NO COLLISIONS! Node 0 is safe!
+
+Checking path: bb831
+Checking path: r2d205
+NO COLLISIONS! Node 2 is safe!
+
+Checking path: bb831
+Checking path: r2d205
+NO COLLISIONS! Node 0 is safe!
+
+Checking path: bb831
+Checking path: r2d205
+NO COLLISIONS! Node 1 is safe!
+
+Checking path: bb831
+Checking path: r2d205
+NO COLLISIONS! Node 1 is safe!
+
+Checking path: bb831
+Checking path: r2d205
+NO COLLISIONS! Node 3 is safe!
+
+Vertex		Distance from source vertex
+0			28.000
+1			32.000
+2			24.000
+3			48.000
+4			0.000
+5			20.000
+
+Node 0 is 2 deep
+Node 1 is 3 deep
+Node 2 is 2 deep
+Node 3 is 4 deep
+Node 4 is 0 deep
+Node 5 is 1 deep
+
+
+Exploration order
+4 -> 5 -> 2
+Collision cost: 0.000. 
+Cost: 24.000
+
+Cost for path c3po42 from dijkstraShortestPath: 24.000
+Printing all paths
+Checking path: bb831
+3	1	
+Checking path: c3po42
+4	5	2	
+Checking path: r2d205
+0	2	5	
+Printing all costs
+PathID: bb831. Cost: 16.000
+PathID: c3po42. Cost: 24.000
+PathID: r2d205. Cost: 8.000
+(dummy) 24.000
+b (2.000 | 100.002)
+--
+0: (goto_region r2d2 r0 r5), start at 0.000, 99999.000
+1: (goto_region r2d2 r0 r5), end at 100.000, 99999.000
+2: (goto_region c3po r4 r2), start at 0.001, 99999.000
+(( 3: (goto_region c3po r4 r2), end )) at 100.001, 99999.000
+4: (goto_region bb8 r3 r1), start at 0.002, 99999.000
+(( 5: (goto_region bb8 r3 r1), end )) at 100.002, 99999.000
+
+--------------------------------------------------------
+Robot: bb8. Regions: From: r3, To: r1
+--------------------------------------------------------
+
+--------------------------------------------------------
+Robot: r2d2. Regions: From: r0, To: r5
+--------------------------------------------------------
+
+--------------------------------------------------------
+Robot: c3po. Regions: From: r4, To: r2
+--------------------------------------------------------
+From: 3
+To: 1
+Received ID: bb831
+Starting dijkstra algorithm!
+Checking path: c3po42
+Checking path: r2d205
+NO COLLISIONS! Node 1 is safe!
+
+Checking path: c3po42
+Checking path: r2d205
+NO COLLISIONS! Node 0 is safe!
+
+Checking path: c3po42
+COLLISION DETECTED!! Node 2 ignored!
+
+Checking path: r2d205
+Checking path: c3po42
+Checking path: r2d205
+NO COLLISIONS! Node 4 is safe!
+
+Checking path: c3po42
+Checking path: r2d205
+NO COLLISIONS! Node 2 is safe!
+
+Checking path: c3po42
+Checking path: r2d205
+NO COLLISIONS! Node 5 is safe!
+
+Vertex		Distance from source vertex
+0			20.000
+1			16.000
+2			24.000
+3			0.000
+4			24.000
+5			28.000
+
+Node 0 is 2 deep
+Node 1 is 1 deep
+Node 2 is 3 deep
+Node 3 is 0 deep
+Node 4 is 2 deep
+Node 5 is 3 deep
+
+
+Exploration order
+3 -> 1
+Collision cost: 0.000. 
+Cost: 16.000
+
+Cost for path bb831 from dijkstraShortestPath: 16.000
+Printing all paths
+Checking path: bb831
+3	1	
+Checking path: c3po42
+4	5	2	
+Checking path: r2d205
+0	2	5	
+Printing all costs
+PathID: bb831. Cost: 16.000
+PathID: c3po42. Cost: 24.000
+PathID: r2d205. Cost: 8.000
+(dummy) 24.000
+b (1.000 | 100.002)
+--
+0: (goto_region r2d2 r0 r5), start at 0.000, 99999.000
+1: (goto_region r2d2 r0 r5), end at 100.000, 99999.000
+2: (goto_region c3po r4 r2), start at 0.001, 99999.000
+3: (goto_region c3po r4 r2), end at 100.001, 99999.000
+4: (goto_region bb8 r3 r1), start at 0.002, 99999.000
+(( 5: (goto_region bb8 r3 r1), end )) at 100.002, 99999.000
+
+--------------------------------------------------------
+Robot: bb8. Regions: From: r3, To: r1
+--------------------------------------------------------
+
+--------------------------------------------------------
+Robot: r2d2. Regions: From: r0, To: r5
+--------------------------------------------------------
+
+--------------------------------------------------------
+Robot: c3po. Regions: From: r4, To: r2
+--------------------------------------------------------
+(dummy) 16.000
+;;;; Solution Found
+; States evaluated: 7
+; Cost: 64.000
+; External Solver: 0.010
+; Time 0.01
+0.000: (goto_region r2d2 r0 r5)  [100.000]
+0.001: (goto_region c3po r4 r2)  [100.000]
+0.002: (goto_region bb8 r3 r1)  [100.000]
+

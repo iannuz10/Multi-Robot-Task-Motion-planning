@@ -146,8 +146,9 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           cout << "To: " << to << endl;
           pathID = robot + from + to;
           cost = dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, false, -1, -1);
-          cout << endl << "Cost from dijkstraShortestPath: " << cost << endl;
-        
+          
+          cout << endl << "Cost for path " << pathID << " from dijkstraShortestPath: " << cost << endl;
+
           cout << "Printing all paths" << endl;
           map<string, vector<int>>::iterator it;
           std::vector<int>::iterator it2;
@@ -158,9 +159,23 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
             }
             cout << endl;
           }
-            
+          
+          cout << "Printing all costs" << endl;
           for(auto x : pathsCosts){
             cout << "PathID: " << x.first << ". Cost: " << x.second << endl;
+          }
+
+          auto it3 = pathsCosts.find(pathID);
+          cout << "For pathID: " << pathID << " found cost of: " << it3->second << endl;
+          cout << "New cost is: " << cost << endl;
+          oldCost = 0;
+          if(it3 != pathsCosts.end()){
+            if(it3->second != cost){
+              oldCost = it3->second;
+              it3->second = cost;
+            }
+          } else {
+            pathsCosts.insert({pathID,cost});
           }
 
            // distance_euc(from, to);
@@ -168,7 +183,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
       }
     } else {
       if(function=="dummy"){
-        dummy = cost;
+        dummy = cost - oldCost;
       } else if (function=="act-cost"){
         act_cost = value;
         context->printAll();
@@ -528,7 +543,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
   node = dest;
   nodeDeepness = 0;
   cost = n[dest].cost;
-
+  double oldCost = 0;
   do{
     nodeDeepness++;
     // path.push_back(node);
@@ -544,7 +559,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                 nodeIndex = it2 - it->second.begin();
                 if(*it2 == node){     
                   if(nodeIndex == nodeDeepness){     
-                    // oldCost = it->second.back();
+                    
                     cout << "Calling new dijkstra on path " << it->first << " for an alternative path." << " From " << it->second.front() << " to " << it->second.back() << endl;
                     collisionCost = dijkstraShortestPath(wpAdjMatrix, it->second.front(), it->second.back(), it->first, true, node, nodeDeepness);
                     cost = dijkstraShortestPath(wpAdjMatrix, src, dest, pathID, false, -1, -1);
@@ -569,8 +584,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
   if(!unfeasablePath){
     node = dest;
     nodeDeepness = 0;
-    do
-    {
+    do{
       nodeDeepness++;
       path.push_back(node);
       node = n[node].next;
@@ -578,7 +592,6 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
     path.push_back(src);
     reverse(path.begin(), path.end());
   
-
     // Add vector to map
     auto it3 = paths.find(pathID);
     if(it3 != paths.end()){
@@ -595,14 +608,14 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
   }
   cout << "Collision cost: " << collisionCost << ". \nCost: " << cost << endl;
 
-  auto it3 = pathsCosts.find(pathID);
-    if(it3 != pathsCosts.end()){
-        it3->second = cost;
-    } else {
-        pathsCosts.insert({pathID,cost});
-    }
+  // auto it3 = pathsCosts.find(pathID);
+  // if(it3 != pathsCosts.end()){
+  //     it3->second = cost;
+  // } else {
+  //     pathsCosts.insert({pathID,cost});
+  // }
 
-  return collisionCost + cost;
+  return cost;
 }
 
 
