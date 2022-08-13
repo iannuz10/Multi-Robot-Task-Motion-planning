@@ -145,9 +145,22 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           cout << "From: " << from << endl;
           cout << "To: " << to << endl;
           pathID = robot + from + to;
-          cost = dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, 0, -1, -1);
+          cost = dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, false, -1, -1);
           cout << endl << "Cost from dijkstraShortestPath: " << cost << endl;
         
+          cout << "Printing all paths" << endl;
+          map<string, vector<int>>::iterator it;
+          std::vector<int>::iterator it2;
+          for(it = paths.begin(); it != paths.end(); it++){   
+            cout << "Checking path: " << it->first << endl; 
+            for(it2 = it->second.begin(); it2 != it->second.end(); it2++){
+              cout << *it2 << "\t";
+            }
+            cout << endl;
+          }
+            
+          
+
            // distance_euc(from, to);
         }
       }
@@ -386,14 +399,16 @@ void VisitSolver::weightAdjMatrix(){
         wpAdjMatrix[stoi(secondWp)][stoi(firstWp)] *= sqrt(pow(vec1[0]-vec2[0],2)+pow(vec1[1]-vec2[1],2));;
 
       }
-      
-      cout << endl;
     }
   }
   cout << "Weighting complete!" << endl;
 }
 
 double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, string pathID, bool collisionFlag, int collidingNode, int collidingNodeLevel){
+  if(collisionFlag){
+    cout << "CALLED BECAUSE COLLISION FOUND!!" << endl;
+    cout << "Colliding node: " << collidingNode << " in position " << collidingNodeLevel << endl;
+  }
   cout << "Received ID: " << pathID << endl;
 
   // Node structure
@@ -405,10 +420,12 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
   } n[totalWaypoints];
 
   vector<int> path;
-  double collisionCost;
+  double collisionCost = 0;
+  double cost;
   int src = target;
   int i, min, indmin, iter, node, count, nodeIndex, nodeDeepness;
   bool collisionDetected = false;
+  bool unfeasablePath = false;
   map<string, vector<int>>::iterator it;
   std::vector<int>::iterator it2;
 
@@ -448,22 +465,23 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                   if(nodeIndex == count){     
                     collisionDetected = true;
                     cout << "COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
-
-
-                    // TOTRY1 if a collision is detected call 2 iterative dijkstra that ignores the node i.
-                    // Then the 2 paths are compared and the one which costs less is picked 
-
-
                     break;
                   }
                 } 
-                if(collisionFlag && (i == collidingNode) && (nodeIndex == collidingNodeLevel)){
-                  collisionDetected = true;
-                  cout << "COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
+              }
+            } else if(collisionFlag && it->first == pathID){
+                cout << "Checking collision flag: " << collisionFlag << ". The colliding node is " << collidingNode << " at deepness " << collidingNodeLevel << endl;
+                for(it2 = it->second.begin(); it2 != it->second.end(); it2++){
+                  nodeIndex = it2 - it->second.begin();
+                  if(*it2 == i){    
+                    if((collidingNode == i) && (nodeIndex == collidingNodeLevel)){
+                      collisionDetected = true;
+                      cout << "COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
+                    }
+                  } 
                 }
               }
             }
-          }
 
           // When a collision happens the node is treated as if it was not directly connected
           if(!collisionDetected){   
@@ -507,14 +525,16 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
   // Save the path in a vector
   node = dest;
   nodeDeepness = 0;
+  cost = n[dest].cost;
+
   do{
     nodeDeepness++;
-    path.push_back(node);
+    // path.push_back(node);
     if(n[node].next != -1){
       node = n[node].next;
     } else {
       cerr << "No fisable path found from " << src << " to " << dest << ". Waypoint " << node << " is occupied. It was " << nodeDeepness << " deep." << endl; 
-      
+      unfeasablePath = true;
 
       for(it = paths.begin(); it != paths.end(); it++){   
             if(it->first != pathID){
@@ -522,14 +542,17 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                 nodeIndex = it2 - it->second.begin();
                 if(*it2 == node){     
                   if(nodeIndex == nodeDeepness){     
-                    collisionCost = dijkstraShortestPath(wpAdjMatrix,it->second.front(), it->second.back(), it->first, true, node, nodeDeepness);
-
+                    // oldCost = it->second.back();
+                    cout << "Calling new dijkstra on path " << it->first << " for an alternative path." << " From " << it->second.front() << " to " << it->second.back() << endl;
+                    collisionCost = dijkstraShortestPath(wpAdjMatrix, it->second.front(), it->second.back(), it->first, true, node, nodeDeepness);
+                    cost = dijkstraShortestPath(wpAdjMatrix, src, dest, pathID, false, -1, -1);
                     break;
                   }
                 }
               }
             }
           }
+          break;
 
 
       // TOTRY2 search in the paths for node at deepness nodeDeepness
@@ -537,18 +560,30 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
       // Compute the new dijkstra with the above information. Update the path.
       // Recall dijstra with the parameters used the first time (dest and src)
       
-      exit(0);
+      // exit(0);
     }
   }while(node != src);
-  path.push_back(src);
-  reverse(path.begin(), path.end());
 
-  // Add vector to map
-  auto it3 = paths.find(pathID);
-  if(it3 != paths.end()){
-      it3->second = path;
-  } else {
-      paths.insert({pathID,path});
+  if(!unfeasablePath){
+    node = dest;
+    nodeDeepness = 0;
+    do
+    {
+      nodeDeepness++;
+      path.push_back(node);
+      node = n[node].next;
+    } while (node != src);
+    path.push_back(src);
+    reverse(path.begin(), path.end());
+  
+
+    // Add vector to map
+    auto it3 = paths.find(pathID);
+    if(it3 != paths.end()){
+        it3->second = path;
+    } else {
+        paths.insert({pathID,path});
+    }
   }
 
   cout << endl << "Exploration order" << endl;
@@ -556,7 +591,8 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
     if(i!=path.size()-1) cout << path[i] << " -> ";
     else cout << path[i] << endl;
   }
-  return n[dest].cost;
+  cout << "Collision cost: " << collisionCost << ". \nCost: " << cost << endl;
+  return collisionCost + cost;
 }
 
 
