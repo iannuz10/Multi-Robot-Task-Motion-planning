@@ -118,6 +118,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
     function.erase(0,1);
     function.erase(function.length()-1,function.length());
     int n=function.find(" ");
+    cout << "Function found: " << function << endl;
 
     if(n!=-1){
       string arg=function;
@@ -148,7 +149,6 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           cost = dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, false, -1, -1);
           
           cout << endl << "Cost for path " << pathID << " from dijkstraShortestPath: " << cost << endl;
-
           cout << "Printing all paths" << endl;
           map<string, vector<int>>::iterator it;
           std::vector<int>::iterator it2;
@@ -168,7 +168,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           auto it3 = pathsCosts.find(pathID);
           cout << "For pathID: " << pathID << " found cost of: " << it3->second << endl;
           cout << "New cost is: " << cost << endl;
-          oldCost = 0;
+          
           if(it3 != pathsCosts.end()){
             if(it3->second != cost){
               oldCost = it3->second;
@@ -178,12 +178,15 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
             pathsCosts.insert({pathID,cost});
           }
 
+          cout << "COST THAT IS BEING PASSED FOR PATH " << pathID << " IS: " << cost-oldCost << endl; 
            // distance_euc(from, to);
         }
       }
     } else {
       if(function=="dummy"){
         dummy = cost - oldCost;
+        cost = 0;
+        oldCost = 0;
       } else if (function=="act-cost"){
         act_cost = value;
         context->printAll();
@@ -273,7 +276,6 @@ void VisitSolver::initParser(Context* context, string fileName){
                 // Debug print
                 cout << "Robot name: " << robotName << endl;
                 cout << "From region: " << from << endl;
-
                 // Add initial positions into context
                 FromTo initLocation(from," ");
                 context->setLocation(robotName,initLocation);

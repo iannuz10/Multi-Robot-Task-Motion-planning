@@ -1,6 +1,7 @@
 #####################################################
-No r2d2 involved. 1 edge less. Result should be 40
+No r2d2 involved. 1 edge less. Result should be 40 no diff made
 #####################################################
+
 
 From: 4
 To: 2
@@ -313,7 +314,7 @@ PathID: c3po42. Cost: 24.000
 For pathID: bb831 found cost of: 16.000
 New cost is: 16.000
 COST THAT IS BEING PASSED FOR PATH bb831 IS: 16.000
-(dummy) 8.000
+(dummy) 24.000
 b (1.000 | 100.001)
 --
 0: (goto_region c3po r4 r2), start at 0.000, 99999.000
@@ -335,8 +336,9 @@ Robot: c3po. Regions: From: r4, To: r2
 (dummy) 16.000
 ;;;; Solution Found
 ; States evaluated: 5
-; Cost: 24.000
+; Cost: 40.000
 ; External Solver: 0.000
-; Time 0.02
+; Time 0.01
 0.000: (goto_region c3po r4 r2)  [100.000]
 0.001: (goto_region bb8 r3 r1)  [100.000]
+
