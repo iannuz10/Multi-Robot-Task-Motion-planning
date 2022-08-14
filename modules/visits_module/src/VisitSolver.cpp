@@ -114,7 +114,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
     string parameter = iSIt->first;
     string function = iSIt->first;
     double value = iSIt->second;
-    string pathID;
+    
     function.erase(0,1);
     function.erase(function.length()-1,function.length());
     int n=function.find(" ");
@@ -178,17 +178,28 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
             pathsCosts.insert({pathID,cost});
           }
 
-          cout << "COST THAT IS BEING PASSED FOR PATH " << pathID << " IS: " << cost-oldCost << endl; 
+          cout << "COST THAT IS BEING PASSED FOR PATH " << pathID << " IS: " << pathsCosts[pathID] << endl; 
            // distance_euc(from, to);
         }
       }
     } else {
       if(function=="dummy"){
-        dummy = cost - oldCost;
+        dummy = 0;
+        auto it3 = pathsCosts.find(pathID);
+        if(it3 != pathsCosts.end()){
+          if(it3->first!=pathID){
+            dummy += it3->second;
+          }
+        }
         cost = 0;
         oldCost = 0;
       } else if (function=="act-cost"){
-        act_cost = value;
+        double costOfAct = 0;
+        auto it3 = pathsCosts.find(pathID);
+        if(it3 != pathsCosts.end()){
+          costOfAct += it3->second;
+        }
+        act_cost = costOfAct;
         context->printAll();
       } //else if(function=="dummy1"){
           //duy = value;              
@@ -244,7 +255,8 @@ void VisitSolver::parseParameters(string parameters){
 double VisitSolver::calculateExtern(double external, double total_cost){
 
   //float random1 = static_cast <float> (rand())/static_cast <float>(RAND_MAX);
-  double cost = external;//random1;
+  
+  double cost = total_cost-external;//random1;
   return cost;
 }
 
