@@ -164,42 +164,14 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           for(auto x : pathsCosts){
             cout << "PathID: " << x.first << ". Cost: " << x.second << endl;
           }
-
-          auto it3 = pathsCosts.find(pathID);
-          cout << "For pathID: " << pathID << " found cost of: " << it3->second << endl;
-          cout << "New cost is: " << cost << endl;
-          
-          if(it3 != pathsCosts.end()){
-            if(it3->second != cost){
-              oldCost = it3->second;
-              it3->second = cost;
-            }
-          } else {
-            pathsCosts.insert({pathID,cost});
-          }
-
-          cout << "COST THAT IS BEING PASSED FOR PATH " << pathID << " IS: " << pathsCosts[pathID] << endl; 
            // distance_euc(from, to);
         }
       }
     } else {
       if(function=="dummy"){
-        dummy = 0;
-        auto it3 = pathsCosts.find(pathID);
-        if(it3 != pathsCosts.end()){
-          if(it3->first!=pathID){
-            dummy += it3->second;
-          }
-        }
-        cost = 0;
-        oldCost = 0;
+        dummy = cost;
       } else if (function=="act-cost"){
-        double costOfAct = 0;
-        auto it3 = pathsCosts.find(pathID);
-        if(it3 != pathsCosts.end()){
-          costOfAct += it3->second;
-        }
-        act_cost = costOfAct;
+        act_cost = value;
         context->printAll();
       } //else if(function=="dummy1"){
           //duy = value;              
@@ -256,7 +228,7 @@ double VisitSolver::calculateExtern(double external, double total_cost){
 
   //float random1 = static_cast <float> (rand())/static_cast <float>(RAND_MAX);
   
-  double cost = total_cost-external;//random1;
+  double cost = external;//random1;
   return cost;
 }
 
@@ -506,6 +478,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                   nodeIndex = it2 - it->second.begin();
                   if(*it2 == i){    
                     if((collidingNode == i) && (nodeIndex == collidingNodeLevel)){
+                      
                       collisionDetected = true;
                       cout << "COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
                     }
@@ -557,7 +530,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
   node = dest;
   nodeDeepness = 0;
   cost = n[dest].cost;
-  double oldCost = 0;
+  
   do{
     nodeDeepness++;
     // path.push_back(node);
@@ -584,13 +557,6 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
             }
           }
           break;
-
-
-      // TOTRY2 search in the paths for node at deepness nodeDeepness
-      // Call a new dijkstra with source the found paths' src and dest. Add the node to avoid including and his deepness.
-      // Compute the new dijkstra with the above information. Update the path.
-      // Recall dijstra with the parameters used the first time (dest and src)
-      
       // exit(0);
     }
   }while(node != src);
@@ -622,13 +588,12 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
   }
   cout << "Collision cost: " << collisionCost << ". \nCost: " << cost << endl;
 
-  // auto it3 = pathsCosts.find(pathID);
-  // if(it3 != pathsCosts.end()){
-  //     it3->second = cost;
-  // } else {
-  //     pathsCosts.insert({pathID,cost});
-  // }
-
+  auto it3 = pathsCosts.find(pathID);
+  if(it3 != pathsCosts.end()){
+      it3->second = cost;
+  } else {
+      pathsCosts.insert({pathID,cost});
+  }
   return cost;
 }
 

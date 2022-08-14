@@ -68,7 +68,7 @@ private:
     Context* context;   // All robot locations are stored here 
     double **wpAdjMatrix;
     int totalWaypoints;
-    double cost, costOfAct, oldCost;
+    double cost;
     string pathID; 
 
     map<string, vector<int>> paths;
