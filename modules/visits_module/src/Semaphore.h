@@ -7,6 +7,7 @@ public:
 
     inline void notify();
     inline void wait();
+    inline int getCount();
 
 private:
     std::mutex mtx;

@@ -24,4 +24,8 @@ inline void Semaphore::wait(){
     count--;
 }
 
+inline int Semaphore::getCount(){
+    return count;
+}
+
 #endif
