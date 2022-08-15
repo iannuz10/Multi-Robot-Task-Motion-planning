@@ -68,13 +68,15 @@ public:
 private:
     Context* context;   // All robot locations are stored here 
     double **wpAdjMatrix;
-    int totalWaypoints;
+    int totalWaypoints, totalRobots;
     double cost;
     string pathID; 
 
     map<string, vector<int>> paths;
     map<string, double> pathsCosts;
     
+    Semaphore sem;
+
     list<string> affected;
     list<string> dependencies;
       

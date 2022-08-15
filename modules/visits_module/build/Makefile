@@ -226,6 +226,33 @@ FromTo.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/FromTo.cpp.s
 .PHONY : FromTo.cpp.s
 
+Semaphore.o: Semaphore.cpp.o
+.PHONY : Semaphore.o
+
+# target to build an object file
+Semaphore.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visits.dir/build.make CMakeFiles/Visits.dir/Semaphore.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/Semaphore.cpp.o
+.PHONY : Semaphore.cpp.o
+
+Semaphore.i: Semaphore.cpp.i
+.PHONY : Semaphore.i
+
+# target to preprocess a source file
+Semaphore.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visits.dir/build.make CMakeFiles/Visits.dir/Semaphore.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/Semaphore.cpp.i
+.PHONY : Semaphore.cpp.i
+
+Semaphore.s: Semaphore.cpp.s
+.PHONY : Semaphore.s
+
+# target to generate assembly for a file
+Semaphore.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visits.dir/build.make CMakeFiles/Visits.dir/Semaphore.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/Semaphore.cpp.s
+.PHONY : Semaphore.cpp.s
+
 VisitSolver.o: VisitSolver.cpp.o
 .PHONY : VisitSolver.o
 
@@ -296,6 +323,9 @@ help:
 	@echo "... FromTo.o"
 	@echo "... FromTo.i"
 	@echo "... FromTo.s"
+	@echo "... Semaphore.o"
+	@echo "... Semaphore.i"
+	@echo "... Semaphore.s"
 	@echo "... VisitSolver.o"
 	@echo "... VisitSolver.i"
 	@echo "... VisitSolver.s"

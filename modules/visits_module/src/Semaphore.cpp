@@ -5,17 +5,19 @@
 #include <condition_variable>
 #include "Semaphore.h"
 
-Semaphore::Semaphore (int count_ ){
+Semaphore::Semaphore(){}
+
+Semaphore::Semaphore(int count_){
     this->count = count_;
 }
 
-inline void Semaphore::notify(){
+void Semaphore::notify(){
     std::unique_lock<std::mutex> lock(mtx);
     count++;
     cv.notify_one();
 }
 
-inline void Semaphore::wait(){
+void Semaphore::wait(){
     std::unique_lock<std::mutex> lock(mtx);
 
     while(count == 0){
@@ -24,8 +26,12 @@ inline void Semaphore::wait(){
     count--;
 }
 
-inline int Semaphore::getCount(){
+int Semaphore::getCount(){
     return count;
+}
+
+void Semaphore::setCount(int count_){
+    this->count = count_;
 }
 
 #endif

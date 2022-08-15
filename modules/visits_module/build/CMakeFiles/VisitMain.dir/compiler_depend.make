@@ -571,6 +571,179 @@ CMakeFiles/VisitMain.dir/FromTo.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_m
   /usr/include/c++/7/bits/stream_iterator.h \
   /home/iannuz/popf-tif-v2/modules/visits_module/src/FromTo.h
 
+CMakeFiles/VisitMain.dir/Semaphore.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_module/src/Semaphore.cpp \
+  /usr/include/stdc-predef.h \
+  /usr/include/c++/7/mutex \
+  /usr/include/c++/7/tuple \
+  /usr/include/c++/7/utility \
+  /usr/include/x86_64-linux-gnu/c++/7/bits/c++config.h \
+  /usr/include/x86_64-linux-gnu/c++/7/bits/os_defines.h \
+  /usr/include/features.h \
+  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+  /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/x86_64-linux-gnu/c++/7/bits/cpu_defines.h \
+  /usr/include/c++/7/bits/stl_relops.h \
+  /usr/include/c++/7/bits/stl_pair.h \
+  /usr/include/c++/7/bits/move.h \
+  /usr/include/c++/7/bits/concept_check.h \
+  /usr/include/c++/7/type_traits \
+  /usr/include/c++/7/initializer_list \
+  /usr/include/c++/7/array \
+  /usr/include/c++/7/stdexcept \
+  /usr/include/c++/7/exception \
+  /usr/include/c++/7/bits/exception.h \
+  /usr/include/c++/7/bits/exception_ptr.h \
+  /usr/include/c++/7/bits/exception_defines.h \
+  /usr/include/c++/7/bits/cxxabi_init_exception.h \
+  /usr/lib/gcc/x86_64-linux-gnu/7/include/stddef.h \
+  /usr/include/c++/7/typeinfo \
+  /usr/include/c++/7/bits/hash_bytes.h \
+  /usr/include/c++/7/new \
+  /usr/include/c++/7/bits/nested_exception.h \
+  /usr/include/c++/7/string \
+  /usr/include/c++/7/bits/stringfwd.h \
+  /usr/include/c++/7/bits/memoryfwd.h \
+  /usr/include/c++/7/bits/char_traits.h \
+  /usr/include/c++/7/bits/stl_algobase.h \
+  /usr/include/c++/7/bits/functexcept.h \
+  /usr/include/c++/7/bits/cpp_type_traits.h \
+  /usr/include/c++/7/ext/type_traits.h \
+  /usr/include/c++/7/ext/numeric_traits.h \
+  /usr/include/c++/7/bits/stl_iterator_base_types.h \
+  /usr/include/c++/7/bits/stl_iterator_base_funcs.h \
+  /usr/include/c++/7/debug/assertions.h \
+  /usr/include/c++/7/bits/stl_iterator.h \
+  /usr/include/c++/7/bits/ptr_traits.h \
+  /usr/include/c++/7/debug/debug.h \
+  /usr/include/c++/7/bits/predefined_ops.h \
+  /usr/include/c++/7/bits/postypes.h \
+  /usr/include/c++/7/cwchar \
+  /usr/include/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/lib/gcc/x86_64-linux-gnu/7/include/stdarg.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
+  /usr/include/c++/7/cstdint \
+  /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h \
+  /usr/include/stdint.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/c++/7/bits/allocator.h \
+  /usr/include/x86_64-linux-gnu/c++/7/bits/c++allocator.h \
+  /usr/include/c++/7/ext/new_allocator.h \
+  /usr/include/c++/7/bits/localefwd.h \
+  /usr/include/x86_64-linux-gnu/c++/7/bits/c++locale.h \
+  /usr/include/c++/7/clocale \
+  /usr/include/locale.h \
+  /usr/include/x86_64-linux-gnu/bits/locale.h \
+  /usr/include/c++/7/iosfwd \
+  /usr/include/c++/7/cctype \
+  /usr/include/ctype.h \
+  /usr/include/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+  /usr/include/x86_64-linux-gnu/bits/byteswap-16.h \
+  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+  /usr/include/c++/7/bits/ostream_insert.h \
+  /usr/include/c++/7/bits/cxxabi_forced.h \
+  /usr/include/c++/7/bits/stl_function.h \
+  /usr/include/c++/7/backward/binders.h \
+  /usr/include/c++/7/bits/range_access.h \
+  /usr/include/c++/7/bits/basic_string.h \
+  /usr/include/c++/7/ext/atomicity.h \
+  /usr/include/x86_64-linux-gnu/c++/7/bits/gthr.h \
+  /usr/include/x86_64-linux-gnu/c++/7/bits/gthr-default.h \
+  /usr/include/pthread.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/time.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/timex.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/c++/7/bits/atomic_word.h \
+  /usr/include/c++/7/ext/alloc_traits.h \
+  /usr/include/c++/7/bits/alloc_traits.h \
+  /usr/include/c++/7/ext/string_conversions.h \
+  /usr/include/c++/7/cstdlib \
+  /usr/include/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+  /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/x86_64-linux-gnu/sys/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
+  /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
+  /usr/include/x86_64-linux-gnu/bits/sysmacros.h \
+  /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+  /usr/include/c++/7/bits/std_abs.h \
+  /usr/include/c++/7/cstdio \
+  /usr/include/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/libio.h \
+  /usr/include/x86_64-linux-gnu/bits/_G_config.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
+  /usr/include/c++/7/cerrno \
+  /usr/include/errno.h \
+  /usr/include/x86_64-linux-gnu/bits/errno.h \
+  /usr/include/linux/errno.h \
+  /usr/include/x86_64-linux-gnu/asm/errno.h \
+  /usr/include/asm-generic/errno.h \
+  /usr/include/asm-generic/errno-base.h \
+  /usr/include/c++/7/bits/functional_hash.h \
+  /usr/include/c++/7/bits/basic_string.tcc \
+  /usr/include/c++/7/bits/uses_allocator.h \
+  /usr/include/c++/7/bits/invoke.h \
+  /usr/include/c++/7/chrono \
+  /usr/include/c++/7/ratio \
+  /usr/include/c++/7/limits \
+  /usr/include/c++/7/ctime \
+  /usr/include/c++/7/bits/parse_numbers.h \
+  /usr/include/c++/7/system_error \
+  /usr/include/x86_64-linux-gnu/c++/7/bits/error_constants.h \
+  /usr/include/c++/7/bits/std_mutex.h \
+  /usr/include/c++/7/condition_variable \
+  /usr/include/c++/7/ext/concurrence.h \
+  /usr/include/c++/7/bits/unique_ptr.h \
+  /usr/include/c++/7/bits/shared_ptr.h \
+  /usr/include/c++/7/bits/shared_ptr_base.h \
+  /usr/include/c++/7/bits/allocated_ptr.h \
+  /usr/include/c++/7/bits/refwrap.h \
+  /usr/include/c++/7/ext/aligned_buffer.h \
+  /home/iannuz/popf-tif-v2/modules/visits_module/src/Semaphore.h
+
 CMakeFiles/VisitMain.dir/VisitSolver.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_module/src/VisitSolver.cpp \
   /usr/include/stdc-predef.h \
   /home/iannuz/popf-tif-v2/modules/visits_module/src/VisitSolver.h \
@@ -795,6 +968,19 @@ CMakeFiles/VisitMain.dir/VisitSolver.cpp.o: /home/iannuz/popf-tif-v2/modules/vis
   /home/iannuz/popf-tif-v2/modules/visits_module/src/FromTo.h \
   /usr/include/c++/7/iterator \
   /usr/include/c++/7/bits/stream_iterator.h \
+  /home/iannuz/popf-tif-v2/modules/visits_module/src/Semaphore.h \
+  /usr/include/c++/7/mutex \
+  /usr/include/c++/7/chrono \
+  /usr/include/c++/7/ratio \
+  /usr/include/c++/7/limits \
+  /usr/include/c++/7/bits/parse_numbers.h \
+  /usr/include/c++/7/bits/std_mutex.h \
+  /usr/include/c++/7/condition_variable \
+  /usr/include/c++/7/ext/concurrence.h \
+  /usr/include/c++/7/bits/unique_ptr.h \
+  /usr/include/c++/7/bits/shared_ptr.h \
+  /usr/include/c++/7/bits/shared_ptr_base.h \
+  /usr/include/c++/7/bits/refwrap.h \
   /usr/include/c++/7/fstream \
   /usr/include/x86_64-linux-gnu/c++/7/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/7/bits/c++io.h \
@@ -805,7 +991,6 @@ CMakeFiles/VisitMain.dir/VisitSolver.cpp.o: /home/iannuz/popf-tif-v2/modules/vis
   /usr/include/c++/7/bits/algorithmfwd.h \
   /usr/include/c++/7/bits/stl_tempbuf.h \
   /usr/include/c++/7/bits/uniform_int_dist.h \
-  /usr/include/c++/7/limits \
   /usr/include/armadillo \
   /usr/include/c++/7/cstddef \
   /usr/include/c++/7/cstring \
@@ -854,12 +1039,6 @@ CMakeFiles/VisitMain.dir/VisitSolver.cpp.o: /home/iannuz/popf-tif-v2/modules/vis
   /usr/include/c++/7/bits/stl_numeric.h \
   /usr/include/c++/7/functional \
   /usr/include/c++/7/bits/std_function.h \
-  /usr/include/c++/7/bits/refwrap.h \
-  /usr/include/c++/7/chrono \
-  /usr/include/c++/7/ratio \
-  /usr/include/c++/7/bits/parse_numbers.h \
-  /usr/include/c++/7/mutex \
-  /usr/include/c++/7/bits/std_mutex.h \
   /usr/include/c++/7/atomic \
   /usr/include/c++/7/bits/atomic_base.h \
   /usr/include/c++/7/bits/atomic_lockfree_defines.h \
@@ -1611,6 +1790,19 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
   /home/iannuz/popf-tif-v2/modules/visits_module/src/FromTo.h \
   /usr/include/c++/7/iterator \
   /usr/include/c++/7/bits/stream_iterator.h \
+  /home/iannuz/popf-tif-v2/modules/visits_module/src/Semaphore.h \
+  /usr/include/c++/7/mutex \
+  /usr/include/c++/7/chrono \
+  /usr/include/c++/7/ratio \
+  /usr/include/c++/7/limits \
+  /usr/include/c++/7/bits/parse_numbers.h \
+  /usr/include/c++/7/bits/std_mutex.h \
+  /usr/include/c++/7/condition_variable \
+  /usr/include/c++/7/ext/concurrence.h \
+  /usr/include/c++/7/bits/unique_ptr.h \
+  /usr/include/c++/7/bits/shared_ptr.h \
+  /usr/include/c++/7/bits/shared_ptr_base.h \
+  /usr/include/c++/7/bits/refwrap.h \
   /usr/include/c++/7/fstream \
   /usr/include/x86_64-linux-gnu/c++/7/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/7/bits/c++io.h \
@@ -1694,17 +1886,11 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
   /usr/include/c++/7/bits/algorithmfwd.h \
   /usr/include/c++/7/bits/stl_tempbuf.h \
   /usr/include/c++/7/bits/uniform_int_dist.h \
-  /usr/include/c++/7/limits \
   /usr/include/c++/7/bitset \
   /usr/include/c++/7/functional \
   /usr/include/c++/7/bits/std_function.h \
-  /usr/include/c++/7/bits/refwrap.h \
   /usr/include/c++/7/memory \
   /usr/include/c++/7/bits/stl_raw_storage_iter.h \
-  /usr/include/c++/7/ext/concurrence.h \
-  /usr/include/c++/7/bits/unique_ptr.h \
-  /usr/include/c++/7/bits/shared_ptr.h \
-  /usr/include/c++/7/bits/shared_ptr_base.h \
   /usr/include/c++/7/bits/shared_ptr_atomic.h \
   /usr/include/c++/7/bits/atomic_base.h \
   /usr/include/c++/7/bits/atomic_lockfree_defines.h \
@@ -1727,17 +1913,11 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
   /usr/include/c++/7/bits/mask_array.h \
   /usr/include/c++/7/bits/indirect_array.h \
   /usr/include/c++/7/atomic \
-  /usr/include/c++/7/chrono \
-  /usr/include/c++/7/ratio \
-  /usr/include/c++/7/bits/parse_numbers.h \
   /usr/include/c++/7/codecvt \
-  /usr/include/c++/7/condition_variable \
-  /usr/include/c++/7/bits/std_mutex.h \
   /usr/include/c++/7/forward_list \
   /usr/include/c++/7/bits/forward_list.h \
   /usr/include/c++/7/bits/forward_list.tcc \
   /usr/include/c++/7/future \
-  /usr/include/c++/7/mutex \
   /usr/include/c++/7/thread \
   /usr/include/c++/7/bits/atomic_futex.h \
   /usr/include/c++/7/random \
@@ -1789,8 +1969,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 
 /usr/include/c++/7/forward_list:
 
-/usr/include/c++/7/condition_variable:
-
 /usr/include/c++/7/bits/indirect_array.h:
 
 /usr/include/c++/7/bits/mask_array.h:
@@ -1816,10 +1994,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 /usr/include/c++/7/set:
 
 /usr/include/c++/7/backward/auto_ptr.h:
-
-/usr/include/c++/7/bits/shared_ptr_base.h:
-
-/usr/include/c++/7/bits/shared_ptr.h:
 
 /usr/include/c++/7/bits/stl_raw_storage_iter.h:
 
@@ -1879,6 +2053,14 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 
 /usr/lib/gcc/x86_64-linux-gnu/7/include/float.h:
 
+/usr/include/assert.h:
+
+/usr/include/c++/7/cassert:
+
+/usr/include/x86_64-linux-gnu/c++/7/bits/stdc++.h:
+
+/home/iannuz/popf-tif-v2/modules/visits_module/src/main.cpp:
+
 /usr/include/c++/7/bits/locale_facets_nonio.tcc:
 
 /usr/include/armadillo_bits/eglue_core_bones.hpp:
@@ -1896,8 +2078,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 /usr/include/c++/7/csetjmp:
 
 /usr/include/armadillo_bits/Glue_bones.hpp:
-
-/usr/include/armadillo_bits/op_stddev_bones.hpp:
 
 /usr/include/armadillo_bits/mtSpOp_bones.hpp:
 
@@ -1967,10 +2147,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 
 /usr/include/armadillo_bits/def_superlu.hpp:
 
-/usr/include/armadillo_bits/glue_kron_bones.hpp:
-
-/usr/include/armadillo_bits/def_atlas.hpp:
-
 /usr/include/armadillo_bits/def_lapack.hpp:
 
 /usr/include/armadillo_bits/SpCol_bones.hpp:
@@ -2021,12 +2197,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 
 /usr/include/c++/7/cstring:
 
-/usr/include/armadillo_bits/field_bones.hpp:
-
-/usr/include/c++/7/mutex:
-
-/usr/include/armadillo_bits/spop_symmat_meat.hpp:
-
 /usr/include/armadillo_bits/running_stat_vec_meat.hpp:
 
 /usr/include/c++/7/bits/random.h:
@@ -2040,8 +2210,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 /usr/include/x86_64-linux-gnu/bits/confname.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
-
-/usr/include/armadillo_bits/glue_affmul_bones.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/environments.h:
 
@@ -2077,10 +2245,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 
 /usr/include/strings.h:
 
-/usr/include/armadillo_bits/op_reshape_bones.hpp:
-
-/usr/include/armadillo_bits/gmm_misc_bones.hpp:
-
 /usr/include/string.h:
 
 /usr/include/armadillo_bits/op_logmat_meat.hpp:
@@ -2100,20 +2264,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 /usr/include/armadillo:
 
 /home/iannuz/popf-tif-v2/modules/visits_module/src/FromTo.cpp:
-
-/usr/include/endian.h:
-
-/usr/include/c++/7/limits:
-
-/usr/include/armadillo_bits/SpOp_bones.hpp:
-
-/usr/include/c++/7/bits/unique_ptr.h:
-
-/usr/include/armadillo_bits/GenCube_bones.hpp:
-
-/usr/include/armadillo_bits/op_toeplitz_meat.hpp:
-
-/usr/include/armadillo_bits/BaseCube_bones.hpp:
 
 /usr/include/c++/7/cmath:
 
@@ -2151,19 +2301,9 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 
 /usr/include/c++/7/bits/refwrap.h:
 
-/usr/include/armadillo_bits/SpSubview_bones.hpp:
-
-/usr/include/c++/7/codecvt:
-
-/usr/include/c++/7/random:
-
 /usr/include/x86_64-linux-gnu/c++/7/bits/ctype_inline.h:
 
 /usr/include/c++/7/bits/stl_numeric.h:
-
-/usr/include/armadillo_bits/GlueCube_bones.hpp:
-
-/usr/include/c++/7/bits/locale_facets_nonio.h:
 
 /usr/include/armadillo_bits/op_cumprod_meat.hpp:
 
@@ -2191,10 +2331,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 
 /usr/include/c++/7/bits/stl_vector.h:
 
-/usr/include/armadillo_bits/op_strans_bones.hpp:
-
-/usr/include/armadillo_bits/newarp_GenEigsSolver_meat.hpp:
-
 /usr/include/c++/7/bits/stl_construct.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
@@ -2208,6 +2344,46 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 /home/iannuz/popf-tif-v2/modules/visits_module/src/VisitSolver.cpp:
 
 /usr/include/armadillo_bits/spop_sum_bones.hpp:
+
+/usr/include/c++/7/bits/shared_ptr_base.h:
+
+/usr/include/armadillo_bits/SpSubview_bones.hpp:
+
+/usr/include/c++/7/codecvt:
+
+/usr/include/c++/7/random:
+
+/usr/include/armadillo_bits/SpOp_bones.hpp:
+
+/usr/include/c++/7/bits/unique_ptr.h:
+
+/usr/include/c++/7/limits:
+
+/usr/include/armadillo_bits/GenCube_bones.hpp:
+
+/usr/include/armadillo_bits/op_toeplitz_meat.hpp:
+
+/usr/include/armadillo_bits/BaseCube_bones.hpp:
+
+/usr/include/c++/7/condition_variable:
+
+/usr/include/armadillo_bits/field_bones.hpp:
+
+/usr/include/endian.h:
+
+/usr/include/armadillo_bits/spop_symmat_meat.hpp:
+
+/usr/include/c++/7/mutex:
+
+/usr/include/c++/7/bits/locale_facets_nonio.h:
+
+/usr/include/armadillo_bits/GlueCube_bones.hpp:
+
+/usr/include/armadillo_bits/def_atlas.hpp:
+
+/usr/include/armadillo_bits/glue_kron_bones.hpp:
+
+/home/iannuz/popf-tif-v2/modules/visits_module/src/Semaphore.cpp:
 
 /usr/include/armadillo_bits/glue_conv_bones.hpp:
 
@@ -2276,6 +2452,8 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 /usr/include/armadillo_bits/cond_rel_meat.hpp:
 
 /usr/include/x86_64-linux-gnu/sys/types.h:
+
+/usr/include/armadillo_bits/op_stddev_bones.hpp:
 
 /usr/include/c++/7/bits/stl_heap.h:
 
@@ -2348,8 +2526,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 /usr/include/c++/7/bits/nested_exception.h:
 
 /usr/include/armadillo_bits/spop_strans_bones.hpp:
-
-/usr/include/c++/7/cassert:
 
 /usr/include/stdc-predef.h:
 
@@ -2579,6 +2755,8 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 
 /usr/include/armadillo_bits/Mat_meat.hpp:
 
+/usr/include/armadillo_bits/op_find_unique_meat.hpp:
+
 /usr/include/x86_64-linux-gnu/bits/stdio.h:
 
 /usr/include/time.h:
@@ -2618,6 +2796,8 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 /usr/include/armadillo_bits/glue_mixed_bones.hpp:
 
 /usr/include/armadillo_bits/promote_type.hpp:
+
+/usr/include/c++/7/bits/shared_ptr.h:
 
 /usr/include/c++/7/future:
 
@@ -2675,12 +2855,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 
 /usr/include/armadillo_bits/arma_static_check.hpp:
 
-/usr/include/armadillo_bits/spop_max_bones.hpp:
-
-/usr/include/armadillo_bits/wall_clock_bones.hpp:
-
-/usr/include/armadillo_bits/SizeMat_meat.hpp:
-
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
 
 /usr/include/c++/7/bits/std_abs.h:
@@ -2698,6 +2872,10 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 /usr/include/c++/7/cstdio:
 
 /usr/include/armadillo_bits/op_find_unique_bones.hpp:
+
+/usr/include/armadillo_bits/compiler_setup_post.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
 /usr/include/c++/7/bits/range_access.h:
 
@@ -2728,12 +2906,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
 /usr/include/armadillo_bits/fn_cross.hpp:
-
-/usr/include/armadillo_bits/op_var_bones.hpp:
-
-/usr/include/armadillo_bits/Op_meat.hpp:
-
-/usr/include/armadillo_bits/fn_strans.hpp:
 
 /usr/include/armadillo_bits/op_htrans_meat.hpp:
 
@@ -2917,6 +3089,28 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 
 /home/iannuz/popf-tif-v2/modules/visits_module/src/ExternalSolver.h:
 
+/usr/include/armadillo_bits/newarp_GenEigsSolver_meat.hpp:
+
+/usr/include/armadillo_bits/op_strans_bones.hpp:
+
+/usr/include/armadillo_bits/glue_affmul_bones.hpp:
+
+/usr/include/armadillo_bits/op_var_bones.hpp:
+
+/usr/include/armadillo_bits/Op_meat.hpp:
+
+/usr/include/armadillo_bits/fn_strans.hpp:
+
+/usr/include/armadillo_bits/gmm_misc_bones.hpp:
+
+/usr/include/armadillo_bits/op_reshape_bones.hpp:
+
+/usr/include/armadillo_bits/wall_clock_bones.hpp:
+
+/usr/include/armadillo_bits/SizeMat_meat.hpp:
+
+/usr/include/armadillo_bits/spop_max_bones.hpp:
+
 /usr/include/armadillo_bits/op_vectorise_bones.hpp:
 
 /usr/include/armadillo_bits/op_resize_bones.hpp:
@@ -3057,8 +3251,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 
 /usr/include/armadillo_bits/gmm_full_bones.hpp:
 
-/usr/include/x86_64-linux-gnu/c++/7/bits/stdc++.h:
-
 /usr/include/armadillo_bits/spop_min_bones.hpp:
 
 /usr/include/armadillo_bits/spop_misc_bones.hpp:
@@ -3102,6 +3294,8 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 /usr/include/armadillo_bits/unwrap.hpp:
 
 /usr/include/c++/7/bits/unordered_map.h:
+
+/home/iannuz/popf-tif-v2/modules/visits_module/src/Semaphore.h:
 
 /usr/include/armadillo_bits/unwrap_cube.hpp:
 
@@ -3471,8 +3665,6 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 
 /usr/include/armadillo_bits/gmm_diag_meat.hpp:
 
-/usr/include/armadillo_bits/op_find_unique_meat.hpp:
-
 /usr/include/armadillo_bits/fn_elem.hpp:
 
 /usr/include/armadillo_bits/op_symmat_meat.hpp:
@@ -3578,11 +3770,3 @@ CMakeFiles/VisitMain.dir/main.cpp.o: /home/iannuz/popf-tif-v2/modules/visits_mod
 /usr/include/armadillo_bits/newarp_DenseGenMatProd_meat.hpp:
 
 /usr/include/armadillo_bits/newarp_TridiagEigen_meat.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
-
-/usr/include/armadillo_bits/compiler_setup_post.hpp:
-
-/home/iannuz/popf-tif-v2/modules/visits_module/src/main.cpp:
-
-/usr/include/assert.h:

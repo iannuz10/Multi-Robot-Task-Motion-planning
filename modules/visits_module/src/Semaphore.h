@@ -3,11 +3,13 @@
 
 class Semaphore {
 public:
+    Semaphore ();
     Semaphore (int count_);
 
-    inline void notify();
-    inline void wait();
-    inline int getCount();
+    void notify();
+    void wait();
+    int getCount();
+    void setCount(int count_);
 
 private:
     std::mutex mtx;

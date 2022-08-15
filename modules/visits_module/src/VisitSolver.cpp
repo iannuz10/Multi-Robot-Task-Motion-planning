@@ -93,9 +93,15 @@ void VisitSolver::loadSolver(string *parameters, int n){
   // Getting and setting initial location of all robots
   string prob_file = "/home/iannuz/popf-tif-v2/domains/visits_domain/prob1.pddl";
   initParser(context, prob_file);
+  cout << "Init Parser completed" << endl;
+
+  // Setting context with initial info
   setContext(context);
 
-  cout << "Init Parser completed\n";
+  // Setting semaphore
+  sem.setCount(-(totalRobots));   // Makes sure that cost are sent to planner only after a definitive and consistent state
+  cout << "Semaphore is set!" << endl;
+
   //startEKF();
 }
 
@@ -137,7 +143,6 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           string from = tmp.substr(0,2);   // from and to are regions, need to extract wps (poses)
           string to = tmp.substr(3,2);
           
-          
           FromTo location(from,to);
           this->context->setLocation(robot,location);
           from.erase(0,1);
@@ -146,8 +151,15 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           cout << "From: " << from << endl;
           cout << "To: " << to << endl;
           pathID = robot + from + to;
-          cost = dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, false, -1, -1);
-          
+
+          // Compute minimum path
+          dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, false, -1, -1);
+
+          // Waiting for all paths to be computed
+          if(sem.getCount()>0){
+            cost = pathsCosts[pathID];
+          }
+
           cout << endl << "Cost for path " << pathID << " from dijkstraShortestPath: " << cost << endl;
           cout << "Printing all paths" << endl;
           map<string, vector<int>>::iterator it;
@@ -233,7 +245,7 @@ double VisitSolver::calculateExtern(double external, double total_cost){
 }
 
 void VisitSolver::initParser(Context* context, string fileName){
-
+    totalRobots = 0;
     int curr;
     string line;
     string locationKeyword = "robot_in";
@@ -260,6 +272,8 @@ void VisitSolver::initParser(Context* context, string fileName){
                 // Debug print
                 cout << "Robot name: " << robotName << endl;
                 cout << "From region: " << from << endl;
+                totalRobots++;
+                cout << "Found " << totalRobots << " robots." << endl;
                 // Add initial positions into context
                 FromTo initLocation(from," ");
                 context->setLocation(robotName,initLocation);
@@ -460,10 +474,12 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
               for(it2 = it->second.begin(); it2 != it->second.end(); it2++){
                 // Saving at what iteration the node have been used by the another robot
                 nodeIndex = it2 - it->second.begin();
+
                 // Search in the path already computed if the node "i" (that I'm looking at) has been used once
                 if(*it2 == i){    
                   // Saving how deep in the graph node "i" would be
                   count = n[target].level+1;  
+
                   // If another path uses the same node being searched a collision happens and the node is ignored
                   if(nodeIndex == count){     
                     collisionDetected = true;
@@ -472,20 +488,19 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                   }
                 } 
               }
-            } else if(collisionFlag && it->first == pathID){
-                cout << "Checking collision flag: " << collisionFlag << ". The colliding node is " << collidingNode << " at deepness " << collidingNodeLevel << endl;
-                for(it2 = it->second.begin(); it2 != it->second.end(); it2++){
-                  nodeIndex = it2 - it->second.begin();
-                  if(*it2 == i){    
-                    if((collidingNode == i) && (nodeIndex == collidingNodeLevel)){
-                      
-                      collisionDetected = true;
-                      cout << "COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
-                    }
-                  } 
-                }
+            }else if(collisionFlag && it->first == pathID){
+              cout << "Checking collision flag: " << collisionFlag << ". The colliding node is " << collidingNode << " at deepness " << collidingNodeLevel << endl;
+              for(it2 = it->second.begin(); it2 != it->second.end(); it2++){
+                nodeIndex = it2 - it->second.begin();
+                if(*it2 == i){    
+                  if((collidingNode == i) && (nodeIndex == collidingNodeLevel)){
+                    collisionDetected = true;
+                    cout << "COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
+                  }
+                } 
               }
-            }
+            }// TODO: add "else if" checking collision with initial state position of the robots
+          }
 
           // When a collision happens the node is treated as if it was not directly connected
           if(!collisionDetected){   
@@ -496,6 +511,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
               n[i].level = n[n[i].next].level+1;
             }
           }
+          // Restoring flag for next iteration
           collisionDetected = false;
         }
       }
@@ -516,6 +532,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
     iter++;
   }while(indmin != -1);
 
+  // Prints the distance of all vectors from source
   cout << "Vertex\t\tDistance from source vertex" << endl;
   for(int k = 0; k < totalWaypoints; k++){ 
     cout << k << "\t\t\t" << n[k].cost << endl;
@@ -526,11 +543,11 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
     cout << "Node " << i << " is " << n[i].level << " deep" << endl;
   } cout << endl;
 
-  // Save the path in a vector
   node = dest;
-  nodeDeepness = 0;
+  nodeDeepness = 0; // Tells at which level the collision happens, or after how many movements the goal is reached 
   cost = n[dest].cost;
   
+  // Before updating the path checking if the path to destination is actually feasable
   do{
     nodeDeepness++;
     // path.push_back(node);
@@ -546,10 +563,22 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                 nodeIndex = it2 - it->second.begin();
                 if(*it2 == node){     
                   if(nodeIndex == nodeDeepness){     
-                    
+                    // A replanification is necessary need to deepen the wait time
+                    sem.wait();
                     cout << "Calling new dijkstra on path " << it->first << " for an alternative path." << " From " << it->second.front() << " to " << it->second.back() << endl;
+                    
+                    // The path with pathID is causing a critical collision. It is needed a replanification. 
+                    // It is needed to block the colliding node or the collision will happen again
                     collisionCost = dijkstraShortestPath(wpAdjMatrix, it->second.front(), it->second.back(), it->first, true, node, nodeDeepness);
-                    cost = dijkstraShortestPath(wpAdjMatrix, src, dest, pathID, false, -1, -1);
+                    
+                    // If an alternative path is found i need to plan again the path of the current pathID
+                    if(collisionCost){
+                      cost = dijkstraShortestPath(wpAdjMatrix, src, dest, pathID, false, -1, -1);
+                    }
+
+                    // If all the replanifications succeded the collision is managed succesfully and the wait is increased
+                    if(cost)
+                      sem.notify();
                     break;
                   }
                 }
@@ -557,11 +586,12 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
             }
           }
           break;
-      // exit(0);
     }
   }while(node != src);
 
+  // Updating paths' map only if the puth is succesfully calculated 
   if(!unfeasablePath){
+    // Creating path vector (path is obtained exploring ".next" from dest to source)
     node = dest;
     nodeDeepness = 0;
     do{
@@ -570,9 +600,10 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
       node = n[node].next;
     } while (node != src);
     path.push_back(src);
+    // path is reversed for readability
     reverse(path.begin(), path.end());
   
-    // Add vector to map
+    // Add vector to map of paths
     auto it3 = paths.find(pathID);
     if(it3 != paths.end()){
         it3->second = path;
@@ -581,6 +612,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
     }
   }
 
+  // Printing path from source to destination
   cout << endl << "Exploration order" << endl;
   for(int i = 0; i < path.size(); i++){
     if(i!=path.size()-1) cout << path[i] << " -> ";
@@ -588,12 +620,16 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
   }
   cout << "Collision cost: " << collisionCost << ". \nCost: " << cost << endl;
 
+  // Printing path's cost
   auto it3 = pathsCosts.find(pathID);
   if(it3 != pathsCosts.end()){
       it3->second = cost;
   } else {
       pathsCosts.insert({pathID,cost});
   }
+
+  // If the path is computed succesfully the semaphore is increased
+  sem.notify();
   return cost;
 }
 
