@@ -76,7 +76,9 @@ private:
     map<string, vector<int>> paths;
     map<string, double> pathsCosts;
     
-    Semaphore sem;
+    int semaphoreCounter;
+
+    // Semaphore sem;
 
     list<string> affected;
     list<string> dependencies;

@@ -98,9 +98,11 @@ void VisitSolver::loadSolver(string *parameters, int n){
   // Setting context with initial info
   setContext(context);
 
-  // Setting semaphore
-  sem.setCount(-(totalRobots));   // Makes sure that cost are sent to planner only after a definitive and consistent state
-  cout << "Semaphore is set!" << endl;
+  semaphoreCounter = -totalRobots;
+
+  // // Setting semaphore
+  // sem.setCount(-(totalRobots));   // Makes sure that cost are sent to planner only after a definitive and consistent state
+  // cout << "Semaphore is set!" << endl;
 
   //startEKF();
 }
@@ -153,12 +155,11 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           pathID = robot + "-" + from + "-" + to;
 
           // Compute minimum path
-          dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, false, -1, -1);
+          cost = dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, false, -1, -1);
 
-          // Waiting for all paths to be computed
-          if(sem.getCount()>0){
-            cost = pathsCosts[pathID];
-          }
+          // Waiting for all pahs to be computed
+          cout << "Semaphore counter is currently: " << semaphoreCounter << endl;
+          
 
           cout << endl << "Cost for path " << pathID << " from dijkstraShortestPath: " << cost << endl;
           cout << "Printing all paths" << endl;
@@ -181,7 +182,9 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
       }
     } else {
       if(function=="dummy"){
-        dummy = cost;
+        if(semaphoreCounter >= 0){
+          dummy = pathsCosts[pathID];
+        }
       } else if (function=="act-cost"){
         act_cost = value;
         context->printAll();
@@ -477,15 +480,15 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
           for(it = paths.begin(); it != paths.end(); it++){
             curr = it->first.find("-");
             robotNameIter = it->first.substr(0,curr);
-            if(it->first != pathID && iter == 0){
-              for(auto x : initRobotLocation){
-                if(initRobotLocation[robotNameIter] == i){
-                  collisionDetected = true;
-                  cout << "COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
-                  break;
-                }
-              }
-            } // TODO: add "else if" checking collision with initial state position of the robots
+            // if(it->first != pathID && iter == 0){
+            //   for(auto x : initRobotLocation){
+            //     if(initRobotLocation[robotNameIter] == i){
+            //       collisionDetected = true;
+            //       cout << "COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
+            //       break;
+            //     }
+            //   }
+            // } // TODO: add "else if" checking collision with initial state position of the robots
             if(it->first != pathID){
               cout << "Checking path: " << it->first << endl; 
               for(it2 = it->second.begin(); it2 != it->second.end(); it2++){
@@ -581,7 +584,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                 if(*it2 == node){     
                   if(nodeIndex == nodeDeepness){     
                     // A replanification is necessary need to deepen the wait time
-                    sem.wait();
+                    semaphoreCounter--;
                     cout << "Calling new dijkstra on path " << it->first << " for an alternative path." << " From " << it->second.front() << " to " << it->second.back() << endl;
                     
                     // The path with pathID is causing a critical collision. It is needed a replanification. 
@@ -594,8 +597,6 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                     }
 
                     // If all the replanifications succeded the collision is managed succesfully and the wait is increased
-                    if(cost)
-                      sem.notify();
                     break;
                   }
                 }
@@ -646,7 +647,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
   }
 
   // If the path is computed succesfully the semaphore is increased
-  sem.notify();
+  semaphoreCounter++;
   return cost;
 }
 
