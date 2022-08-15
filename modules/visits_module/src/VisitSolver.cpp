@@ -441,6 +441,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
   int curr = pathID.find("-");
   string robotName = pathID.substr(0,curr);
   cout << "Robot name: " << robotName << endl;
+  string robotNameIter;
   vector<int> path;
   double collisionCost = 0;
   double cost;
@@ -473,7 +474,18 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
       if(wpAdjMatrix[target][i] != 0){
         if((n[target].cost + wpAdjMatrix[target][i]) < n[i].cost){
           // For the paths already computed (except myself)
-          for(it = paths.begin(); it != paths.end(); it++){   
+          for(it = paths.begin(); it != paths.end(); it++){
+            curr = it->first.find("-");
+            robotNameIter = it->first.substr(0,curr);
+            if(it->first != pathID && iter == 0){
+              for(auto x : initRobotLocation){
+                if(initRobotLocation[robotNameIter] == i){
+                  collisionDetected = true;
+                  cout << "COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
+                  break;
+                }
+              }
+            } // TODO: add "else if" checking collision with initial state position of the robots
             if(it->first != pathID){
               cout << "Checking path: " << it->first << endl; 
               for(it2 = it->second.begin(); it2 != it->second.end(); it2++){
@@ -481,17 +493,17 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                 nodeIndex = it2 - it->second.begin();
 
                 // Search in the path already computed if the node "i" (that I'm looking at) has been used once
-                if(*it2 == i){    
+                if(*it2 == i){
                   // Saving how deep in the graph node "i" would be
                   count = n[target].level+1;  
 
                   // If another path uses the same node being searched a collision happens and the node is ignored
-                  if(nodeIndex == count){     
+                  if(nodeIndex == count){
                     collisionDetected = true;
                     cout << "COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
                     break;
                   }
-                } 
+                }
               }
             }else if(collisionFlag && it->first == pathID){
               cout << "Checking collision flag: " << collisionFlag << ". The colliding node is " << collidingNode << " at deepness " << collidingNodeLevel << endl;
@@ -504,7 +516,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                   }
                 } 
               }
-            }// TODO: add "else if" checking collision with initial state position of the robots
+            }
           }
 
           // When a collision happens the node is treated as if it was not directly connected
@@ -628,9 +640,9 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
   // Printing path's cost
   auto it3 = pathsCosts.find(pathID);
   if(it3 != pathsCosts.end()){
-      it3->second = cost;
+    it3->second = cost;
   } else {
-      pathsCosts.insert({pathID,cost});
+    pathsCosts.insert({pathID,cost});
   }
 
   // If the path is computed succesfully the semaphore is increased
