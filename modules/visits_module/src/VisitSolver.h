@@ -72,6 +72,7 @@ private:
     double cost;
     string pathID; 
 
+    map<string, int> initRobotLocation;
     map<string, vector<int>> paths;
     map<string, double> pathsCosts;
     

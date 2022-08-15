@@ -150,7 +150,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
 
           cout << "From: " << from << endl;
           cout << "To: " << to << endl;
-          pathID = robot + from + to;
+          pathID = robot + "-" + from + "-" + to;
 
           // Compute minimum path
           dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, false, -1, -1);
@@ -272,6 +272,8 @@ void VisitSolver::initParser(Context* context, string fileName){
                 // Debug print
                 cout << "Robot name: " << robotName << endl;
                 cout << "From region: " << from << endl;
+                from.erase(0,1);
+                initRobotLocation[robotName] = stoi(from);
                 totalRobots++;
                 cout << "Found " << totalRobots << " robots." << endl;
                 // Add initial positions into context
@@ -436,6 +438,9 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
     int level;
   } n[totalWaypoints];
 
+  int curr = pathID.find("-");
+  string robotName = pathID.substr(0,curr);
+  cout << "Robot name: " << robotName << endl;
   vector<int> path;
   double collisionCost = 0;
   double cost;
