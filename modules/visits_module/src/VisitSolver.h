@@ -29,6 +29,7 @@
 #include <unordered_map>
 #include "Context.h"
 #include "FromTo.h"
+#include "Semaphore.h"
 
 using namespace std;
 
