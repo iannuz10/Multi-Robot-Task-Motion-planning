@@ -118,7 +118,6 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
   map<string, double> trigger;
 
   for(;iSIt!=isEnd;++iSIt){
-
     string parameter = iSIt->first;
     string function = iSIt->first;
     double value = iSIt->second;
@@ -155,11 +154,20 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           pathID = robot + "-" + from + "-" + to;
 
           // Compute minimum path
-          cost = dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, false, -1, -1);
-
+          auto it3 = paths.find(pathID);
+          if(it3 == paths.end()){
+            dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, false, -1, -1);
+          }
+           
+          
           // Waiting for all pahs to be computed
           cout << "Semaphore counter is currently: " << semaphoreCounter << endl;
-          
+          if(semaphoreCounter >= 0){
+            cost = pathsCosts[pathID];
+          } 
+          // else{
+          //   cost = 0;
+          // }
 
           cout << endl << "Cost for path " << pathID << " from dijkstraShortestPath: " << cost << endl;
           cout << "Printing all paths" << endl;
@@ -182,9 +190,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
       }
     } else {
       if(function=="dummy"){
-        if(semaphoreCounter >= 0){
-          dummy = pathsCosts[pathID];
-        }
+        dummy = cost;
       } else if (function=="act-cost"){
         act_cost = value;
         context->printAll();
@@ -480,15 +486,15 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
           for(it = paths.begin(); it != paths.end(); it++){
             curr = it->first.find("-");
             robotNameIter = it->first.substr(0,curr);
-            // if(it->first != pathID && iter == 0){
-            //   for(auto x : initRobotLocation){
-            //     if(initRobotLocation[robotNameIter] == i){
-            //       collisionDetected = true;
-            //       cout << "COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
-            //       break;
-            //     }
-            //   }
-            // } // TODO: add "else if" checking collision with initial state position of the robots
+            if(it->first != pathID && iter == 0){
+              for(auto x : initRobotLocation){
+                if(initRobotLocation[robotNameIter] == i){
+                  collisionDetected = true;
+                  cout << "COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
+                  break;
+                }
+              }
+            } // TODO: add "else if" checking collision with initial state position of the robots
             if(it->first != pathID){
               cout << "Checking path: " << it->first << endl; 
               for(it2 = it->second.begin(); it2 != it->second.end(); it2++){
@@ -597,6 +603,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                     }
 
                     // If all the replanifications succeded the collision is managed succesfully and the wait is increased
+                    
                     break;
                   }
                 }
