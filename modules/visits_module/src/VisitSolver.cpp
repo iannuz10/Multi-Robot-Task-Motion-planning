@@ -108,7 +108,6 @@ void VisitSolver::loadSolver(string *parameters, int n){
 }
 
 map<string,double> VisitSolver::callExternalSolver(map<string,double> initialState,bool isHeuristic){
-
   map<string, double> toReturn;
   map<string, double>::iterator iSIt = initialState.begin();
   map<string, double>::iterator isEnd = initialState.end();
@@ -158,10 +157,10 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           if(it1 == paths.end()){
             dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, false, -1, -1);
           }
-           
           
           // Waiting for all pahs to be computed
           cout << "Semaphore counter is currently: " << semaphoreCounter << endl;
+          cout << "Cost has been calculated? " << pathCostComputed << endl;
           if(semaphoreCounter == 0 && !pathCostComputed){
             cost = 0;
             cout << "Summing path costs." << endl;
@@ -171,10 +170,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
             }
             cout << endl;
             pathCostComputed = true;
-          } 
-          // else{
-          //   cost = 0;
-          // }
+          }
 
           cout << "Printing all paths" << endl;
           map<string, vector<int>>::iterator it;
