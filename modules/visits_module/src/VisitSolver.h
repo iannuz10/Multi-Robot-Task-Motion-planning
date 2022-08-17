@@ -71,6 +71,7 @@ private:
     int totalWaypoints, totalRobots;
     double cost;
     string pathID; 
+    bool pathCostComputed = false;
 
     map<string, int> initRobotLocation;
     map<string, vector<int>> paths;

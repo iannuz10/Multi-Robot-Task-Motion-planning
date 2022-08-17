@@ -154,22 +154,28 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           pathID = robot + "-" + from + "-" + to;
 
           // Compute minimum path
-          auto it3 = paths.find(pathID);
-          if(it3 == paths.end()){
+          auto it1 = paths.find(pathID);
+          if(it1 == paths.end()){
             dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, false, -1, -1);
           }
            
           
           // Waiting for all pahs to be computed
           cout << "Semaphore counter is currently: " << semaphoreCounter << endl;
-          if(semaphoreCounter >= 0){
-            cost = pathsCosts[pathID];
+          if(semaphoreCounter == 0 && !pathCostComputed){
+            cost = 0;
+            cout << "Summing path costs." << endl;
+            for(auto x : pathsCosts){
+              cost += x.second;
+              cout << cost << " ";
+            }
+            cout << endl;
+            pathCostComputed = true;
           } 
           // else{
           //   cost = 0;
           // }
 
-          cout << endl << "Cost for path " << pathID << " from dijkstraShortestPath: " << cost << endl;
           cout << "Printing all paths" << endl;
           map<string, vector<int>>::iterator it;
           std::vector<int>::iterator it2;
@@ -434,10 +440,10 @@ void VisitSolver::weightAdjMatrix(){
 
 double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, string pathID, bool collisionFlag, int collidingNode, int collidingNodeLevel){
   if(collisionFlag){
-    cout << "CALLED BECAUSE COLLISION FOUND!!" << endl;
-    cout << "Colliding node: " << collidingNode << " in position " << collidingNodeLevel << endl;
+    cout << "[DijkstraShortestPath]: CALLED BECAUSE COLLISION FOUND!!" << endl;
+    cout << "[DijkstraShortestPath]: Colliding node: " << collidingNode << " in position " << collidingNodeLevel << endl;
   }
-  cout << "Received ID: " << pathID << endl;
+  cout << "[DijkstraShortestPath]: Received ID: " << pathID << endl;
 
   // Node structure
   struct{
@@ -449,13 +455,13 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
 
   int curr = pathID.find("-");
   string robotName = pathID.substr(0,curr);
-  cout << "Robot name: " << robotName << endl;
+  cout << "[DijkstraShortestPath]: Robot name: " << robotName << endl;
   string robotNameIter;
   vector<int> path;
   double collisionCost = 0;
   double cost;
   int src = target;
-  int i, min, indmin, iter, node, count, nodeIndex, nodeDeepness;
+  int i, min, indmin, iter, node, count, nodeIndex, nodeDeepness, pathsFound;
   bool collisionDetected = false;
   bool unfeasablePath = false;
   map<string, vector<int>>::iterator it;
@@ -474,7 +480,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
   n[target].next = target;
   n[target].level = 0;
 
-  cout << "Starting dijkstra algorithm!" << endl;
+  cout << "[DijkstraShortestPath]: Starting dijkstra algorithm!" << endl;
   iter = 0;
 
   do{
@@ -490,13 +496,13 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
               for(auto x : initRobotLocation){
                 if(initRobotLocation[robotNameIter] == i){
                   collisionDetected = true;
-                  cout << "COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
+                  cout << "[DijkstraShortestPath]: COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
                   break;
                 }
               }
             } // TODO: add "else if" checking collision with initial state position of the robots
             if(it->first != pathID){
-              cout << "Checking path: " << it->first << endl; 
+              cout << "[DijkstraShortestPath]: Checking path: " << it->first << endl; 
               for(it2 = it->second.begin(); it2 != it->second.end(); it2++){
                 // Saving at what iteration the node have been used by the another robot
                 nodeIndex = it2 - it->second.begin();
@@ -509,19 +515,19 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                   // If another path uses the same node being searched a collision happens and the node is ignored
                   if(nodeIndex == count){
                     collisionDetected = true;
-                    cout << "COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
+                    cout << "[DijkstraShortestPath]: COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
                     break;
                   }
                 }
               }
             }else if(collisionFlag && it->first == pathID){
-              cout << "Checking collision flag: " << collisionFlag << ". The colliding node is " << collidingNode << " at deepness " << collidingNodeLevel << endl;
+              // cout << "Checking collision flag: " << collisionFlag << ". The colliding node is " << collidingNode << " at deepness " << collidingNodeLevel << endl;
               for(it2 = it->second.begin(); it2 != it->second.end(); it2++){
                 nodeIndex = it2 - it->second.begin();
                 if(*it2 == i){    
                   if((collidingNode == i) && (nodeIndex == collidingNodeLevel)){
                     collisionDetected = true;
-                    cout << "COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
+                    cout << "[DijkstraShortestPath]: COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
                   }
                 } 
               }
@@ -530,7 +536,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
 
           // When a collision happens the node is treated as if it was not directly connected
           if(!collisionDetected){   
-            cout << "NO COLLISIONS! Node " << i << " is safe!" << endl << endl;
+            cout << "[DijkstraShortestPath]: NO COLLISIONS! Node " << i << " is safe!" << endl << endl;
             n[i].cost = n[target].cost + wpAdjMatrix[target][i];
             n[i].next = target;
             if(n[i].level == -1 || n[n[i].next].level+1 < n[i].level){
@@ -559,14 +565,14 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
   }while(indmin != -1);
 
   // Prints the distance of all vectors from source
-  cout << "Vertex\t\tDistance from source vertex" << endl;
+  cout << "[DijkstraShortestPath]: Vertex\t\tDistance from source vertex" << endl;
   for(int k = 0; k < totalWaypoints; k++){ 
     cout << k << "\t\t\t" << n[k].cost << endl;
   } cout << endl;
 
   // Prints how deep every node is
   for(i = 0; i < totalWaypoints; i++){
-    cout << "Node " << i << " is " << n[i].level << " deep" << endl;
+    cout << "[DijkstraShortestPath]: Node " << i << " is " << n[i].level << " deep" << endl;
   } cout << endl;
 
   node = dest;
@@ -580,7 +586,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
     if(n[node].next != -1){
       node = n[node].next;
     } else {
-      cerr << "No fisable path found from " << src << " to " << dest << ". Waypoint " << node << " is occupied. It was " << nodeDeepness << " deep." << endl; 
+      cerr << "[DijkstraShortestPath]: No fisable path found from " << src << " to " << dest << ". Waypoint " << node << " is occupied. It was " << nodeDeepness << " deep." << endl; 
       unfeasablePath = true;
 
       for(it = paths.begin(); it != paths.end(); it++){   
@@ -590,8 +596,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                 if(*it2 == node){     
                   if(nodeIndex == nodeDeepness){     
                     // A replanification is necessary need to deepen the wait time
-                    semaphoreCounter--;
-                    cout << "Calling new dijkstra on path " << it->first << " for an alternative path." << " From " << it->second.front() << " to " << it->second.back() << endl;
+                    cout << "[DijkstraShortestPath]: Calling new dijkstra on path " << it->first << " for an alternative path." << " From " << it->second.front() << " to " << it->second.back() << endl;
                     
                     // The path with pathID is causing a critical collision. It is needed a replanification. 
                     // It is needed to block the colliding node or the collision will happen again
@@ -635,26 +640,30 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
     } else {
         paths.insert({pathID,path});
     }
-  }
+    pathsFound = paths.size();
+    cout << "Number of feasable paths: " << pathsFound << endl; 
+    if(pathsFound == totalRobots) semaphoreCounter = 0;
+  
 
-  // Printing path from source to destination
-  cout << endl << "Exploration order" << endl;
-  for(int i = 0; i < path.size(); i++){
-    if(i!=path.size()-1) cout << path[i] << " -> ";
-    else cout << path[i] << endl;
-  }
-  cout << "Collision cost: " << collisionCost << ". \nCost: " << cost << endl;
+    // Printing path from source to destination
+    cout << endl << "Exploration order" << endl;
+    for(int i = 0; i < path.size(); i++){
+      if(i!=path.size()-1) cout << path[i] << " -> ";
+      else cout << path[i] << endl;
+    }
+    // cout << "Collision cost: " << collisionCost << ". \nCost: " << cost << endl;
 
-  // Printing path's cost
-  auto it3 = pathsCosts.find(pathID);
-  if(it3 != pathsCosts.end()){
-    it3->second = cost;
-  } else {
-    pathsCosts.insert({pathID,cost});
+    // Printing path's cost
+    auto it4 = pathsCosts.find(pathID);
+    if(it4 != pathsCosts.end()){
+      it4->second = cost;
+    } else {
+      pathsCosts.insert({pathID,cost});
+    }
   }
-
   // If the path is computed succesfully the semaphore is increased
-  semaphoreCounter++;
+  
+  cout << "[DijkstraShortestPath]: Dijkstra computed a cost of " << cost << " for path " << pathID << endl;
   return cost;
 }
 

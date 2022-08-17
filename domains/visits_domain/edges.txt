@@ -6,3 +6,6 @@ wp4,wp5
 wp5,wp2
 wp0,wp5
 wp0,wp2
+wp6,wp7
+wp1,wp7
+wp6,wp1
