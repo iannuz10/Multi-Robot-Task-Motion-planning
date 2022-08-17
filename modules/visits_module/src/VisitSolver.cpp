@@ -166,9 +166,9 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
             cout << "Summing path costs." << endl;
             for(auto x : pathsCosts){
               cost += x.second;
-              cout << cost << " ";
+              cout << x.second << " ";
             }
-            cout << endl;
+            cout << endl << "Final cost is: " << cost << endl;;
             pathCostComputed = true;
           }
 
