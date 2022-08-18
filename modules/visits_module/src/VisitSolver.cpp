@@ -98,6 +98,7 @@ void VisitSolver::loadSolver(string *parameters, int n){
   // Setting context with initial info
   setContext(context);
 
+  pathCostComputed = false;
   semaphoreCounter = -totalRobots;
 
   // // Setting semaphore
@@ -250,8 +251,11 @@ void VisitSolver::parseParameters(string parameters){
 double VisitSolver::calculateExtern(double external, double total_cost){
 
   //float random1 = static_cast <float> (rand())/static_cast <float>(RAND_MAX);
-  
-  double cost = external;//random1;
+  double cost;
+  if(totalRobots < 2)
+    cost = external;
+  else
+    cost = external/(totalRobots-1);//random1;
   return cost;
 }
 
