@@ -54,7 +54,7 @@ VisitSolver::~VisitSolver(){
 }
 
 void VisitSolver::loadSolver(string *parameters, int n){
-  cout << "Initializing solver\n";
+  if(ExternalSolver::verbose) cout << "Initializing solver\n";
 
   starting_position = "r0";
   string Paramers = parameters[0];
@@ -67,9 +67,10 @@ void VisitSolver::loadSolver(string *parameters, int n){
 
   string waypoint_file = "/home/iannuz/popf-tif-v2/domains/visits_domain/waypoint.txt";   // change this to the correct path
   totalWaypoints = parseWaypoint(waypoint_file);
-  cout << "A total of " << totalWaypoints << " waypoints have been counted." << endl;
-  cout << "Waypoint vector content: " << endl;
-
+  if(ExternalSolver::verbose){
+    cout << "A total of " << totalWaypoints << " waypoints have been counted." << endl;
+    cout << "Waypoint vector content: " << endl;
+  }
   map<string, vector<double>>::iterator itr;
   for(itr = waypoint.begin(); itr != waypoint.end(); itr++){
     vector<double> vec = itr->second;
@@ -81,10 +82,10 @@ void VisitSolver::loadSolver(string *parameters, int n){
   string edges_file = "/home/iannuz/popf-tif-v2/domains/visits_domain/edges.txt";  // change this to the correct path
   initAdjMatrix();
   parseEdges(edges_file);
-  cout << "Adjacencies Matrix: " << endl;
+  if(ExternalSolver::verbose) cout << "Adjacencies Matrix: " << endl;
   printAdjMatrix();
   weightAdjMatrix();
-  cout << "\nWeighted Adjacencies Matrix: " << endl;
+  if(ExternalSolver::verbose) cout << "\nWeighted Adjacencies Matrix: " << endl;
   printAdjMatrix();
 
   // Initializing shared space for robot location
@@ -93,7 +94,7 @@ void VisitSolver::loadSolver(string *parameters, int n){
   // Getting and setting initial location of all robots
   string prob_file = "/home/iannuz/popf-tif-v2/domains/visits_domain/prob1.pddl";
   initParser(context, prob_file);
-  cout << "Init Parser completed" << endl;
+  if(ExternalSolver::verbose) cout << "Init Parser completed" << endl;
 
   // Setting context with initial info
   setContext(context);
@@ -125,7 +126,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
     function.erase(0,1);
     function.erase(function.length()-1,function.length());
     int n=function.find(" ");
-    cout << "Function found: " << function << endl;
+    // if(ExternalSolver::verbose) cout << "Function found: " << function << endl;
 
     if(n!=-1){
       string arg=function;
@@ -149,50 +150,59 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           from.erase(0,1);
           to.erase(0,1);
 
-          cout << "From: " << from << endl;
-          cout << "To: " << to << endl;
+          if(ExternalSolver::verbose){
+            cout << "From: " << from << endl;
+            cout << "To: " << to << endl;
+          }
           pathID = robot + "-" + from + "-" + to;
 
           // Compute minimum path
           auto it1 = paths.find(pathID);
           if(it1 == paths.end()){
             tempCost = dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, false, -1, -1);
-            cout << "DijkstraShortestPath cost: " << tempCost << endl;
+            if(ExternalSolver::verbose) cout << "DijkstraShortestPath cost: " << tempCost << endl;
           }
           
           // Waiting for all pahs to be computed
-          cout << "Semaphore counter is currently: " << semaphoreCounter << endl;
-          cout << "Cost has been calculated? " << pathCostComputed << endl;
+          if(ExternalSolver::verbose){
+            cout << "Semaphore counter is currently: " << semaphoreCounter << endl;
+            cout << "Cost has been calculated? " << pathCostComputed << endl;
+          }
           if(semaphoreCounter == 0 && !pathCostComputed && totalRobots > 1){
             cost = 0;
-            cout << "Summing path costs." << endl;
+            if(ExternalSolver::verbose) cout << "Summing path costs." << endl;
             for(auto x : pathsCosts){
               cost += x.second;
-              cout << x.second << " ";
+              if(ExternalSolver::verbose) cout << x.second << " ";
             }
-            cout << endl << "Final cost is: " << cost << endl;;
+            if(ExternalSolver::verbose) cout << endl << "Final cost is: " << cost << endl;;
             pathCostComputed = true;
           }
           
           if(totalRobots == 1){
-            cout << "Assigned cost to path" << endl;
+            if(ExternalSolver::verbose) cout << "Assigned cost to path" << endl;
             cost = tempCost;
           }
 
-          cout << "Printing all paths" << endl;
-          map<string, vector<int>>::iterator it;
-          std::vector<int>::iterator it2;
-          for(it = paths.begin(); it != paths.end(); it++){   
-            cout << "Checking path: " << it->first << endl; 
-            for(it2 = it->second.begin(); it2 != it->second.end(); it2++){
-              cout << *it2 << "\t";
+          // Printing all paths
+          if(ExternalSolver::verbose){
+            cout << "Printing all paths" << endl;
+            map<string, vector<int>>::iterator it;
+            std::vector<int>::iterator it2;
+            for(it = paths.begin(); it != paths.end(); it++){   
+              cout << "Checking path: " << it->first << endl; 
+              for(it2 = it->second.begin(); it2 != it->second.end(); it2++){
+                cout << *it2 << "\t";
+              } cout << endl;
             }
-            cout << endl;
           }
           
-          cout << "Printing all costs" << endl;
-          for(auto x : pathsCosts){
-            cout << "PathID: " << x.first << ". Cost: " << x.second << endl;
+          // Printing all costs
+          if(ExternalSolver::verbose){
+            cout << "Printing all costs" << endl;
+            for(auto x : pathsCosts){
+              cout << "PathID: " << x.first << ". Cost: " << x.second << endl;
+            }
           }
            // distance_euc(from, to);
         }
@@ -202,7 +212,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
         dummy = cost;
       } else if (function=="act-cost"){
         act_cost = value;
-        context->printAll();
+        if(ExternalSolver::verbose) context->printAll();
       } //else if(function=="dummy1"){
           //duy = value;              
           ////cout << parameter << " " << value << endl;
@@ -273,9 +283,9 @@ void VisitSolver::initParser(Context* context, string fileName){
     string locationKeyword = "robot_in";
     ifstream fio(fileName.c_str());
 
-    cout << "Opening file\n";
+    if(ExternalSolver::verbose) cout << "Opening file\n";
     if (fio.is_open()){
-        cout << "File is open\n";
+        if(ExternalSolver::verbose) cout << "File is open\n";
         while(getline(fio,line)){
             if(line.find(locationKeyword) != std::string::npos){    // Check if the keyword is contained in the line and ignores the others
                 curr=line.find(locationKeyword); 
@@ -292,12 +302,14 @@ void VisitSolver::initParser(Context* context, string fileName){
                 transform(from.begin(), from.end(),from.begin(), ::tolower);
 
                 // Debug print
-                cout << "Robot name: " << robotName << endl;
-                cout << "From region: " << from << endl;
+                if(ExternalSolver::verbose){
+                  cout << "Robot name: " << robotName << endl;
+                  cout << "From region: " << from << endl;
+                }
                 from.erase(0,1);
                 initRobotLocation[robotName] = stoi(from);
                 totalRobots++;
-                cout << "Found " << totalRobots << " robots." << endl;
+                if(ExternalSolver::verbose) cout << "Found " << totalRobots << " robots." << endl;
                 // Add initial positions into context
                 FromTo initLocation(from," ");
                 context->setLocation(robotName,initLocation);
@@ -375,7 +387,7 @@ void VisitSolver::parseEdges(string edges_file){
 
   if(edgesFile.is_open()){
     while (getline(edgesFile,line)){
-      cout << "Printing line: " << line << endl;
+      if(ExternalSolver::verbose) cout << "Printing line: " << line << endl;
 
       curr=line.find(",");
 
@@ -402,19 +414,18 @@ void VisitSolver::initAdjMatrix(){
 }
 
 void VisitSolver::printAdjMatrix(){
-  cout << "\t";
-  for (int i = 0; i < totalWaypoints; i++){
-    cout << i << "\t";
+  if(ExternalSolver::verbose){
+    cout << "\t";
+    for (int i = 0; i < totalWaypoints; i++){
+      cout << i << "\t";
+    } cout << endl;
+    for (int i = 0; i < totalWaypoints; i++){
+      cout << i << "\t";
+      for (int j = 0; j < totalWaypoints; j++){
+        cout << wpAdjMatrix[i][j] << "\t";
+      } cout << endl;
+    } cout << endl;
   }
-  cout << endl;
-  for (int i = 0; i < totalWaypoints; i++){
-    cout << i << "\t";
-    for (int j = 0; j < totalWaypoints; j++){
-      cout << wpAdjMatrix[i][j] << "\t";
-    }
-    cout << endl;
-  }
-  cout << endl;
 }
 
 void VisitSolver::weightAdjMatrix(){
@@ -442,15 +453,17 @@ void VisitSolver::weightAdjMatrix(){
       }
     }
   }
-  cout << "Weighting complete!" << endl;
+  if(ExternalSolver::verbose) cout << "Weighting complete!" << endl;
 }
 
 double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, string pathID, bool collisionFlag, int collidingNode, int collidingNodeLevel){
-  if(collisionFlag){
-    cout << "[DijkstraShortestPath]: CALLED BECAUSE COLLISION FOUND!!" << endl;
-    cout << "[DijkstraShortestPath]: Colliding node: " << collidingNode << " in position " << collidingNodeLevel << endl;
+  if(ExternalSolver::verbose){
+    if(collisionFlag){
+      cout << "[DijkstraShortestPath]: CALLED BECAUSE COLLISION FOUND!!" << endl;
+      cout << "[DijkstraShortestPath]: Colliding node: " << collidingNode << " in position " << collidingNodeLevel << endl;
+    }
+    cout << "[DijkstraShortestPath]: Received ID: " << pathID << endl;
   }
-  cout << "[DijkstraShortestPath]: Received ID: " << pathID << endl;
 
   // Node structure
   struct{
@@ -462,7 +475,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
 
   int curr = pathID.find("-");
   string robotName = pathID.substr(0,curr);
-  cout << "[DijkstraShortestPath]: Robot name: " << robotName << endl;
+  if(ExternalSolver::verbose) cout << "[DijkstraShortestPath]: Robot name: " << robotName << endl;
   string robotNameIter;
   vector<int> path;
   double collisionCost = 0;
@@ -487,7 +500,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
   n[target].next = target;
   n[target].level = 0;
 
-  cout << "[DijkstraShortestPath]: Starting dijkstra algorithm!" << endl;
+  if(ExternalSolver::verbose) cout << "[DijkstraShortestPath]: Starting dijkstra algorithm!" << endl;
   iter = 0;
 
   do{
@@ -503,13 +516,13 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
               for(auto x : initRobotLocation){
                 if(initRobotLocation[robotNameIter] == i){
                   collisionDetected = true;
-                  cout << "[DijkstraShortestPath]: COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
+                  if(ExternalSolver::verbose) cout << "[DijkstraShortestPath]: COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
                   break;
                 }
               }
             } // TODO: add "else if" checking collision with initial state position of the robots
             if(it->first != pathID){
-              cout << "[DijkstraShortestPath]: Checking path: " << it->first << endl; 
+              if(ExternalSolver::verbose) cout << "[DijkstraShortestPath]: Checking path: " << it->first << endl; 
               for(it2 = it->second.begin(); it2 != it->second.end(); it2++){
                 // Saving at what iteration the node have been used by the another robot
                 nodeIndex = it2 - it->second.begin();
@@ -522,7 +535,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                   // If another path uses the same node being searched a collision happens and the node is ignored
                   if(nodeIndex == count){
                     collisionDetected = true;
-                    cout << "[DijkstraShortestPath]: COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
+                    if(ExternalSolver::verbose) cout << "[DijkstraShortestPath]: COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
                     break;
                   }
                 }
@@ -534,7 +547,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                 if(*it2 == i){    
                   if((collidingNode == i) && (nodeIndex == collidingNodeLevel)){
                     collisionDetected = true;
-                    cout << "[DijkstraShortestPath]: COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
+                    if(ExternalSolver::verbose) cout << "[DijkstraShortestPath]: COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
                   }
                 } 
               }
@@ -543,7 +556,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
 
           // When a collision happens the node is treated as if it was not directly connected
           if(!collisionDetected){   
-            cout << "[DijkstraShortestPath]: NO COLLISIONS! Node " << i << " is safe!" << endl << endl;
+            if(ExternalSolver::verbose) cout << "[DijkstraShortestPath]: NO COLLISIONS! Node " << i << " is safe!" << endl << endl;
             n[i].cost = n[target].cost + wpAdjMatrix[target][i];
             n[i].next = target;
             if(n[i].level == -1 || n[n[i].next].level+1 < n[i].level){
@@ -572,15 +585,19 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
   }while(indmin != -1);
 
   // Prints the distance of all vectors from source
-  cout << "[DijkstraShortestPath]: Vertex\t\tDistance from source vertex" << endl;
-  for(int k = 0; k < totalWaypoints; k++){ 
-    cout << k << "\t\t\t" << n[k].cost << endl;
-  } cout << endl;
+  if(ExternalSolver::verbose){
+    cout << "[DijkstraShortestPath]: Vertex\t\tDistance from source vertex" << endl;
+    for(int k = 0; k < totalWaypoints; k++){ 
+      cout << k << "\t\t\t" << n[k].cost << endl;
+    } cout << endl;
+  }
 
   // Prints how deep every node is
-  for(i = 0; i < totalWaypoints; i++){
-    cout << "[DijkstraShortestPath]: Node " << i << " is " << n[i].level << " deep" << endl;
-  } cout << endl;
+  if(ExternalSolver::verbose){
+    for(i = 0; i < totalWaypoints; i++){
+      cout << "[DijkstraShortestPath]: Node " << i << " is " << n[i].level << " deep" << endl;
+    } cout << endl;
+  }
 
   node = dest;
   nodeDeepness = 0; // Tells at which level the collision happens, or after how many movements the goal is reached 
@@ -593,7 +610,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
     if(n[node].next != -1){
       node = n[node].next;
     } else {
-      cerr << "[DijkstraShortestPath]: No fisable path found from " << src << " to " << dest << ". Waypoint " << node << " is occupied. It was " << nodeDeepness << " deep." << endl; 
+      if(ExternalSolver::verbose) cout << "[DijkstraShortestPath]: No fisable path found from " << src << " to " << dest << ". Waypoint " << node << " is occupied. It was " << nodeDeepness << " deep." << endl; 
       unfeasablePath = true;
 
       for(it = paths.begin(); it != paths.end(); it++){   
@@ -603,7 +620,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                 if(*it2 == node){     
                   if(nodeIndex == nodeDeepness){     
                     // A replanification is necessary need to deepen the wait time
-                    cout << "[DijkstraShortestPath]: Calling new dijkstra on path " << it->first << " for an alternative path." << " From " << it->second.front() << " to " << it->second.back() << endl;
+                    if(ExternalSolver::verbose) cout << "[DijkstraShortestPath]: Calling new dijkstra on path " << it->first << " for an alternative path." << " From " << it->second.front() << " to " << it->second.back() << endl;
                     
                     // The path with pathID is causing a critical collision. It is needed a replanification. 
                     // It is needed to block the colliding node or the collision will happen again
@@ -648,29 +665,33 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
         paths.insert({pathID,path});
     }
     pathsFound = paths.size();
-    cout << "Number of feasable paths: " << pathsFound << endl; 
-    if(pathsFound == totalRobots) semaphoreCounter = 0;
+    if(ExternalSolver::verbose) cout << "Number of feasable paths: " << pathsFound << endl; 
+    if(pathsFound == totalRobots) {
+      semaphoreCounter = 0;
+    }
   
 
     // Printing path from source to destination
-    cout << endl << "Exploration order" << endl;
-    for(int i = 0; i < path.size(); i++){
-      if(i!=path.size()-1) cout << path[i] << " -> ";
-      else cout << path[i] << endl;
+    if(ExternalSolver::verbose){
+      cout << endl << "Exploration order" << endl;
+      for(int i = 0; i < path.size(); i++){
+        if(i!=path.size()-1) cout << path[i] << " -> ";
+        else cout << path[i] << endl;
+      }
+      // cout << "Collision cost: " << collisionCost << ". \nCost: " << cost << endl;
     }
-    // cout << "Collision cost: " << collisionCost << ". \nCost: " << cost << endl;
-
-    // Printing path's cost
+    
+    // Updating path's cost map
     auto it4 = pathsCosts.find(pathID);
     if(it4 != pathsCosts.end()){
       it4->second = cost;
     } else {
       pathsCosts.insert({pathID,cost});
-    }
+      }
   }
   // If the path is computed succesfully the semaphore is increased
   
-  cout << "[DijkstraShortestPath]: Dijkstra computed a cost of " << cost << " for path " << pathID << endl;
+  if(ExternalSolver::verbose) cout << "[DijkstraShortestPath]: Dijkstra computed a cost of " << cost << " for path " << pathID << endl;
   return cost;
 }
 
