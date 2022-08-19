@@ -261,6 +261,8 @@ double VisitSolver::calculateExtern(double external, double total_cost){
   double cost;
   if(totalRobots > 1)
     cost = external/(totalRobots-1);//random1;
+  else
+    cost = external;
   return cost;
 }
 
