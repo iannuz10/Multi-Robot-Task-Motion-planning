@@ -1,0 +1,181 @@
+------------------------------------------------------4 robots--------------------------------------------------
+(define (problem prob1)
+(:domain localization)
+(:objects
+     r0 r1 r2 r3 r4 r5 r6 r7 - region
+     R2D2 C3PO BB8 AP5 - robot
+     
+)
+(:init
+    (robot_in R2D2 r0)
+    (robot_in C3PO r4)
+    (robot_in BB8 r3)
+    (robot_in AP5 r7)
+    (= (act-cost) 0)
+    (= (dummy) 0)
+
+)
+(:goal 
+     (and (visited r1 BB8)  (visited r2 C3PO) (visited r5 R2D2) (visited r1 AP5)
+          (>= (act-cost) 0)
+     )
+)
+(:metric minimize (act-cost) )
+)
+
+Edges:
+wp3,wp1
+wp1,wp4
+wp0,wp1
+wp1,wp2
+wp4,wp5
+wp5,wp2
+wp0,wp5
+wp0,wp2
+wp6,wp7
+wp1,wp7
+wp6,wp1
+
+Waypoints:
+wp0[0,0,0]
+wp1[2,0,0]
+wp2[0,2,1.57]
+wp3[-2,0,3.14]
+wp4[0,-2,-1.57]
+wp5[2,2,2]
+wp6[0,-1,2]
+wp7[-1,2,2]
+
+Expected cost: 8 + 24 + 16 + 15 = 63
+
+------------------------------------------------------3 robots--------------------------------------------------
+(define (problem prob1)
+(:domain localization)
+(:objects
+     r0 r1 r2 r3 r4 r5 - region
+     R2D2 C3PO BB8 - robot
+     
+)
+(:init
+    (robot_in R2D2 r0)
+    (robot_in C3PO r4)
+    (robot_in BB8 r3)
+    (= (act-cost) 0)
+    (= (dummy) 0)
+
+)
+(:goal 
+     (and (visited r1 BB8)  (visited r2 C3PO) (visited r5 R2D2) 
+          (>= (act-cost) 0)
+     )
+)
+(:metric minimize (act-cost) )
+)
+
+Edges:
+wp3,wp1
+wp1,wp4
+wp0,wp1
+wp1,wp2
+wp4,wp5
+wp5,wp2
+wp0,wp5
+wp0,wp2
+
+Waypoints:
+wp0[0,0,0]
+wp1[2,0,0]
+wp2[0,2,1.57]
+wp3[-2,0,3.14]
+wp4[0,-2,-1.57]
+wp5[2,2,2]
+
+Expected cost: 8 + 24 + 16 = 48
+
+------------------------------------------------------2 robots--------------------------------------------------
+(define (problem prob1)
+(:domain localization)
+(:objects
+     r0 r1 r2 r3 r4 r5 - region
+     C3PO BB8 - robot
+     
+)
+(:init
+    (robot_in C3PO r4)
+    (robot_in BB8 r3)
+    (= (act-cost) 0)
+    (= (dummy) 0)
+
+)
+(:goal 
+     (and (visited r1 BB8)  (visited r2 C3PO) 
+          (>= (act-cost) 0)
+     )
+)
+(:metric minimize (act-cost) )
+)
+
+Edges:
+wp3,wp1
+wp1,wp4
+wp0,wp1
+wp1,wp2
+wp4,wp5
+wp5,wp2
+wp0,wp5
+
+Waypoints:
+wp0[0,0,0]
+wp1[2,0,0]
+wp2[0,2,1.57]
+wp3[-2,0,3.14]
+wp4[0,-2,-1.57]
+wp5[2,2,2]
+
+Expected cost: 24 + 16 = 40
+
+------------------------------------------------------1 robot--------------------------------------------------
+(define (problem prob1)
+(:domain localization)
+(:objects
+     r0 r1 r2 r3 r4 r5 - region
+     BB8 - robot
+     
+)
+(:init
+    (robot_in C3PO r4)
+    (robot_in BB8 r3)
+    (= (act-cost) 0)
+    (= (dummy) 0)
+
+)
+(:goal 
+     (and (visited r5 BB8) 
+          (>= (act-cost) 0)
+     )
+)
+(:metric minimize (act-cost) )
+)
+
+Edges:
+wp3,wp1
+wp1,wp4
+wp0,wp1
+wp1,wp2
+wp4,wp5
+wp5,wp2
+wp0,wp5
+
+Waypoints:
+wp0[0,0,0]
+wp1[2,0,0]
+wp2[0,2,1.57]
+wp3[-2,0,3.14]
+wp4[0,-2,-1.57]
+wp5[2,2,2]
+
+Expected cost: 24 + 16 = 40
+
+
+
+

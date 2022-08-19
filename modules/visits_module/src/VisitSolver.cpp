@@ -143,7 +143,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           // Regions accepted: r0-r9
           string from = tmp.substr(0,2);   // from and to are regions, need to extract wps (poses)
           string to = tmp.substr(3,2);
-          
+          double tempCost;
           FromTo location(from,to);
           this->context->setLocation(robot,location);
           from.erase(0,1);
@@ -156,13 +156,14 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           // Compute minimum path
           auto it1 = paths.find(pathID);
           if(it1 == paths.end()){
-            dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, false, -1, -1);
+            tempCost = dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, false, -1, -1);
+            cout << "DijkstraShortestPath cost: " << tempCost << endl;
           }
           
           // Waiting for all pahs to be computed
           cout << "Semaphore counter is currently: " << semaphoreCounter << endl;
           cout << "Cost has been calculated? " << pathCostComputed << endl;
-          if(semaphoreCounter == 0 && !pathCostComputed){
+          if(semaphoreCounter == 0 && !pathCostComputed && totalRobots > 1){
             cost = 0;
             cout << "Summing path costs." << endl;
             for(auto x : pathsCosts){
@@ -171,6 +172,11 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
             }
             cout << endl << "Final cost is: " << cost << endl;;
             pathCostComputed = true;
+          }
+          
+          if(totalRobots == 1){
+            cout << "Assigned cost to path" << endl;
+            cost = tempCost;
           }
 
           cout << "Printing all paths" << endl;
@@ -205,13 +211,14 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
   }
 
   double results = calculateExtern(dummy, act_cost);
-  
   if (ExternalSolver::verbose){
     cout << "(dummy) " << results << endl;
   }
-
-  toReturn["(dummy)"] = results;
-
+  if(totalRobots < 2){
+    toReturn["(dummy)"] = cost;
+  }else{
+    toReturn["(dummy)"] = results;
+  }
   return toReturn;
 }
 
@@ -252,9 +259,7 @@ double VisitSolver::calculateExtern(double external, double total_cost){
 
   //float random1 = static_cast <float> (rand())/static_cast <float>(RAND_MAX);
   double cost;
-  if(totalRobots < 2)
-    cost = external;
-  else
+  if(totalRobots > 1)
     cost = external/(totalRobots-1);//random1;
   return cost;
 }
