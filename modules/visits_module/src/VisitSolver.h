@@ -73,7 +73,6 @@ private:
     string pathID; 
     bool pathCostComputed;
 
-    map<string, int> initRobotLocation;
     map<string, vector<int>> paths;
     map<string, double> pathsCosts;
     

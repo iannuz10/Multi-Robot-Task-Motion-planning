@@ -307,7 +307,6 @@ void VisitSolver::initParser(Context* context, string fileName){
                   cout << "From region: " << from << endl;
                 }
                 from.erase(0,1);
-                initRobotLocation[robotName] = stoi(from);
                 totalRobots++;
                 if(ExternalSolver::verbose) cout << "Found " << totalRobots << " robots." << endl;
                 // Add initial positions into context
@@ -472,11 +471,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
     bool def;
     int level;
   } n[totalWaypoints];
-
-  int curr = pathID.find("-");
-  string robotName = pathID.substr(0,curr);
-  if(ExternalSolver::verbose) cout << "[DijkstraShortestPath]: Robot name: " << robotName << endl;
-  string robotNameIter;
+  
   vector<int> path;
   double collisionCost = 0;
   double cost;
@@ -510,17 +505,6 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
         if((n[target].cost + wpAdjMatrix[target][i]) < n[i].cost){
           // For the paths already computed (except myself)
           for(it = paths.begin(); it != paths.end(); it++){
-            curr = it->first.find("-");
-            robotNameIter = it->first.substr(0,curr);
-            if(it->first != pathID && iter == 0){
-              for(auto x : initRobotLocation){
-                if(initRobotLocation[robotNameIter] == i){
-                  collisionDetected = true;
-                  if(ExternalSolver::verbose) cout << "[DijkstraShortestPath]: COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
-                  break;
-                }
-              }
-            } // TODO: add "else if" checking collision with initial state position of the robots
             if(it->first != pathID){
               if(ExternalSolver::verbose) cout << "[DijkstraShortestPath]: Checking path: " << it->first << endl; 
               for(it2 = it->second.begin(); it2 != it->second.end(); it2++){
@@ -601,6 +585,10 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
 
   node = dest;
   nodeDeepness = 0; // Tells at which level the collision happens, or after how many movements the goal is reached 
+  if(n[dest].cost == INT_MAX){
+    cout << "No feasable path found for path " << pathID << "! Exiting." << endl;
+    exit(0);
+  }
   cost = n[dest].cost;
   
   // Before updating the path checking if the path to destination is actually feasable
@@ -625,10 +613,18 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                     // The path with pathID is causing a critical collision. It is needed a replanification. 
                     // It is needed to block the colliding node or the collision will happen again
                     collisionCost = dijkstraShortestPath(wpAdjMatrix, it->second.front(), it->second.back(), it->first, true, node, nodeDeepness);
-                    
+                    cout << "Collision cost: " << collisionCost << endl;
                     // If an alternative path is found i need to plan again the path of the current pathID
-                    if(collisionCost){
+                    if(collisionCost != INT_MAX){
                       cost = dijkstraShortestPath(wpAdjMatrix, src, dest, pathID, false, -1, -1);
+                      cout << "New cost: " << cost << endl;
+                      if(cost == INT_MAX){
+                        cout << "No other feasable path found! Exiting." << endl;
+                        exit(0);
+                      }
+                    }else{
+                      cout << "No other feasable path found! Exiting." << endl;
+                      exit(0); 
                     }
 
                     // If all the replanifications succeded the collision is managed succesfully and the wait is increased
@@ -692,6 +688,10 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
   // If the path is computed succesfully the semaphore is increased
   
   if(ExternalSolver::verbose) cout << "[DijkstraShortestPath]: Dijkstra computed a cost of " << cost << " for path " << pathID << endl;
+  // if(cost == INT_MAX){
+  //   cout << "No other feasable path found! Exiting." << endl;
+  //   exit(0);
+  // }
   return cost;
 }
 
