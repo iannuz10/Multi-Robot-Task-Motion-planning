@@ -25,6 +25,7 @@
 #include <sstream>
 #include <fstream>
 #include <vector>
+#include <math.h>
 #include <stdlib.h>
 #include <algorithm>
 #include "armadillo"
@@ -234,6 +235,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
   double results = calculateExtern(dummy, act_cost);
   if (ExternalSolver::verbose){
     cout << "(dummy) " << results << endl;
+    printAdjMatrix();
   }
   if(totalRobots < 2){
     toReturn["(dummy)"] = cost;
