@@ -1,7 +1,7 @@
 (define (problem prob1)
 (:domain localization)
 (:objects
-     r0 r1 r2 r3 r4 r5 r6 r7 r8 r9 - region
+     r0 r1 r2 r3 r4 r5 r6 r7 r8 r9 r10 - region
      R2D2 C3PO BB8 AP5 BD1 - robot
      
 )
@@ -16,7 +16,7 @@
 
 )
 (:goal 
-     (and (visited r3 BB8)  (visited r9 C3PO) (visited r5 R2D2) (visited r2 AP5) (visited r1 BD1)
+     (and (visited r3 BB8)  (visited r10 C3PO) (visited r5 R2D2) (visited r2 AP5) (visited r1 BD1)
           (>= (act-cost) 0)
      )
 )

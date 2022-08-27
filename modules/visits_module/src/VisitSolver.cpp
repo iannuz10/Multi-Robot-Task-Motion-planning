@@ -130,10 +130,17 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
 
     if(n!=-1){
       string arg=function;
-      string tmp = function.substr(n+1,5);
 
-      string robot = function.substr(n+7,function.length()-1);
 
+      int curr=n+1;
+      int next=function.find(" ",curr);
+      curr=next+1;
+      next=function.find(" ",curr);
+
+      string tmp = function.substr(n+1,next-n);
+      //cout << "Tmp is: " << tmp << endl;
+      string robot = function.substr(next+1,function.length()-1);
+      //cout << "Robot is: " << robot << endl;
       function.erase(n,function.length()-1);
       arg.erase(0,n+1);
 
@@ -141,9 +148,13 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
         trigger[arg] = value>0?1:0;
         if (value>0){
 
-          // Regions accepted: r0-r9
-          string from = tmp.substr(0,2);   // from and to are regions, need to extract wps (poses)
-          string to = tmp.substr(3,2);
+          n=tmp.find(" ");
+          string from = tmp.substr(0,n);   // from and to are regions, need to extract wps (poses)
+          //cout << "From is: " << from << endl;
+          curr=n+1;
+          next=tmp.find(" ",curr);
+          string to = tmp.substr(curr,tmp.length()-1);
+          //cout << "To is: " << to << endl;
           double tempCost;
           FromTo location(from,to);
           this->context->setLocation(robot,location);
