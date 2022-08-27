@@ -25,7 +25,7 @@
 #include <sstream>
 #include <fstream>
 #include <vector>
-#include <math.h>
+#include <cmath>
 #include <stdlib.h>
 #include <algorithm>
 #include "armadillo"
@@ -459,8 +459,8 @@ void VisitSolver::weightAdjMatrix(){
         secondWp.erase(0,2);
         
         // Calculating distance between connected waypoints
-        wpAdjMatrix[stoi(firstWp)][stoi(secondWp)] *= sqrt(pow(vec1[0]-vec2[0],2)+pow(vec1[1]-vec2[1],2));
-        wpAdjMatrix[stoi(secondWp)][stoi(firstWp)] *= sqrt(pow(vec1[0]-vec2[0],2)+pow(vec1[1]-vec2[1],2));;
+        wpAdjMatrix[stoi(firstWp)][stoi(secondWp)] *= sqrt((pow((vec1[0]-vec2[0]),2))+(pow((vec1[1]-vec2[1]),2)));
+        // wpAdjMatrix[stoi(secondWp)][stoi(firstWp)] *= sqrt((pow((vec1[0]-vec2[0]),2))+(pow((vec1[1]-vec2[1]),2)));
 
       }
     }
