@@ -125,14 +125,21 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
     function.erase(0,1);
     function.erase(function.length()-1,function.length());
     int n=function.find(" ");
-    cout << "Function found: " << function << endl;
+    //cout << "Function found: " << function << endl;
 
     if(n!=-1){
       string arg=function;
-      string tmp = function.substr(n+1,5);
 
-      string robot = function.substr(n+7,function.length()-1);
 
+      int curr=n+1;
+      int next=function.find(" ",curr);
+      curr=next+1;
+      next=function.find(" ",curr);
+
+      string tmp = function.substr(n+1,next-n);
+      //cout << "Tmp is: " << tmp << endl;
+      string robot = function.substr(next+1,function.length()-1);
+      //cout << "Robot is: " << robot << endl;
       function.erase(n,function.length()-1);
       arg.erase(0,n+1);
 
@@ -140,9 +147,13 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
         trigger[arg] = value>0?1:0;
         if (value>0){
 
-          // Regions accepted: r0-r9
-          string from = tmp.substr(0,2);   // from and to are regions, need to extract wps (poses)
-          string to = tmp.substr(3,2);
+          n=tmp.find(" ");
+          string from = tmp.substr(0,n);   // from and to are regions, need to extract wps (poses)
+          //cout << "From is: " << from << endl;
+          curr=n+1;
+          next=tmp.find(" ",curr);
+          string to = tmp.substr(curr,tmp.length()-1);
+          //cout << "To is: " << to << endl;
           double tempCost;
           FromTo location(from,to);
           this->context->setLocation(robot,location);
@@ -497,17 +508,6 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
         if((n[target].cost + wpAdjMatrix[target][i]) < n[i].cost){
           // For the paths already computed (except myself)
           for(it = paths.begin(); it != paths.end(); it++){
-            curr = it->first.find("-");
-            robotNameIter = it->first.substr(0,curr);
-            if(it->first != pathID && iter == 0){
-              for(auto x : initRobotLocation){
-                if(initRobotLocation[robotNameIter] == i){
-                  collisionDetected = true;
-                  cout << "[DijkstraShortestPath]: COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
-                  break;
-                }
-              }
-            } // TODO: add "else if" checking collision with initial state position of the robots
             if(it->first != pathID){
               cout << "[DijkstraShortestPath]: Checking path: " << it->first << endl; 
               for(it2 = it->second.begin(); it2 != it->second.end(); it2++){
@@ -608,7 +608,7 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                     // The path with pathID is causing a critical collision. It is needed a replanification. 
                     // It is needed to block the colliding node or the collision will happen again
                     collisionCost = dijkstraShortestPath(wpAdjMatrix, it->second.front(), it->second.back(), it->first, true, node, nodeDeepness);
-                    
+                    cout << "Collision cost: " << collisionCost << endl;
                     // If an alternative path is found i need to plan again the path of the current pathID
                     if(collisionCost){
                       cost = dijkstraShortestPath(wpAdjMatrix, src, dest, pathID, false, -1, -1);
