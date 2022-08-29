@@ -235,7 +235,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
   double results = calculateExtern(dummy, act_cost);
   if (ExternalSolver::verbose){
     cout << "(dummy) " << results << endl;
-    printAdjMatrix();
+    //printAdjMatrix();
   }
   if(totalRobots < 2){
     toReturn["(dummy)"] = cost;
