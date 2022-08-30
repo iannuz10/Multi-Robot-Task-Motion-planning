@@ -595,11 +595,13 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
     } else {
       cerr << "[DijkstraShortestPath]: No fisable path found from " << src << " to " << dest << ". Waypoint " << node << " is occupied. It was " << nodeDeepness << " deep." << endl; 
       unfeasablePath = true;
-
+      cout << "Checking if another path is blocking" << endl;
       for(it = paths.begin(); it != paths.end(); it++){   
             if(it->first != pathID){
+              cout << "Checking path " << it->first << endl;
               for(it2 = it->second.begin(); it2 != it->second.end(); it2++){
                 nodeIndex = it2 - it->second.begin();
+                cout << "Checking presence of busy node: " << node << " to path's one: " << *it2 << endl;
                 if(*it2 == node){     
                   if(nodeIndex == nodeDeepness){     
                     // A replanification is necessary need to deepen the wait time
