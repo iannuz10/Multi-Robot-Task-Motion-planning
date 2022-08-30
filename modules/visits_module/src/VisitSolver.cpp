@@ -167,7 +167,53 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           // Compute minimum path
           auto it1 = paths.find(pathID);
           if(it1 == paths.end()){
-            tempCost = dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, false, -1, -1);
+            double **graph = new double*[totalWaypoints]; 
+            for (int i = 0; i < totalWaypoints; i++) 
+              graph[i] = new double[totalWaypoints];
+
+            for (int i = 0; i < totalWaypoints; i++){
+              for (int j = 0; j < totalWaypoints; j++){
+                graph[i][j] = 0;
+              }
+            }
+            for (int i = 0; i < totalWaypoints; i++) {
+                for (int j = 0; j < totalWaypoints; j++) {
+                    if(wpAdjMatrix[i][j] == 0) graph[i][j] = INT_MAX;
+                    else graph[i][j] = wpAdjMatrix[i][j];
+                }
+            }
+
+            bool visited[totalWaypoints] = { 0 };
+            vector<int> path;
+            int level = 0;
+            tempCost = minimumCostSimplePath(stoi(from), stoi(to), visited, &path, level, graph);
+
+            cout << "Cost calculated: " << tempCost << endl;
+
+            cout << endl << "Exploration order" << endl;
+            for(int i = 0; i < path.size(); i++){
+              if(i!=path.size()-1) cout << path[i] << " -> ";
+              else cout << path[i] << endl;
+            }
+
+            auto it3 = paths.find(pathID);
+            if(it3 != paths.end()){
+                it3->second = path;
+            } else {
+                paths.insert({pathID,path});
+            }
+
+            int pathsFound = paths.size();
+            cout << "Number of feasable paths: " << pathsFound << endl; 
+            if(pathsFound == totalRobots) semaphoreCounter = 0;
+
+            auto it4 = pathsCosts.find(pathID);
+            if(it4 != pathsCosts.end()){
+              it4->second = tempCost;
+            } else {
+              pathsCosts.insert({pathID,tempCost});
+            }
+
             cout << "DijkstraShortestPath cost: " << tempCost << endl;
           }
           
@@ -674,6 +720,50 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
   
   cout << "[DijkstraShortestPath]: Dijkstra computed a cost of " << cost << " for path " << pathID << endl;
   return cost;
+}
+
+double VisitSolver::minimumCostSimplePath(int source, int destination, bool visited[], vector<int> *path, int level, double **graph){
+  cout << "[minimumCostSimplePath]: call made..." << endl;
+  cout << "[minimumCostSimplePath]: currently at node " << source << " at level " << level << endl;
+    // check if we find the destination
+    // then further cost will be 0
+    if (source == destination)
+        return 0;
+ 
+    // marking the current node as visited
+    visited[source] = 1;
+ 
+    double ans = INT_MAX;
+ 
+    // traverse through all
+    // the adjacent nodes
+    for (int i = 0; i < totalWaypoints; i++) {
+        if (graph[source][i] != INT_MAX && !visited[i]) {
+ 
+            // cost of the further path
+            double curr = minimumCostSimplePath(i, destination, visited, path, level+1, graph);
+ 
+            // check if we have reached the destination
+            if (curr < INT_MAX) {
+ 
+              // Taking the minimum cost path
+              if(graph[source][i] + curr < ans){
+                cout << "Minimum cost path found from " << source << " to " << i << endl;
+                ans = graph[source][i] + curr;
+                if (std::find(path->begin(), path->end(), i) == path->end()) {               
+                  path->push_back(i);
+                }
+              }
+            }
+        }
+    }
+ 
+    // unmarking the current node
+    // to make it available for other
+    // simple paths
+    // visited[source] = 0;
+    // returning the minimum cost
+    return ans;
 }
 
 

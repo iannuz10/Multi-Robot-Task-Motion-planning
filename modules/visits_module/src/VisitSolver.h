@@ -62,7 +62,7 @@ public:
     void printAdjMatrix();
     void weightAdjMatrix();
     double dijkstraShortestPath(double **am, int target, int dest, string ID, bool collisionFlag, int collidingNode, int collidingNodeLevel); 
-
+    double minimumCostSimplePath(int source, int destination, bool visited[], vector<int> *path, int level, double **graph);
     void parseParameters(string parameters);
 
 private:
