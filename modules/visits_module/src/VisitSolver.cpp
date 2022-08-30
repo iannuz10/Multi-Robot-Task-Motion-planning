@@ -469,7 +469,6 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
     int next;
     bool def;
     int level;
-    bool colliding;
   } n[totalWaypoints];
 
   int curr = pathID.find("-");
@@ -492,7 +491,6 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
     n[i].def = false;
     n[i].next = -1;
     n[i].level = -1;
-    n[i].colliding = false;
   }
 
   // Setting root node
@@ -524,7 +522,6 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                   // If another path uses the same node being searched a collision happens and the node is ignored
                   if(nodeIndex == count){
                     collisionDetected = true;
-                    n[target].colliding = true;
                     cout << "[DijkstraShortestPath]: COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
                     break;
                   }
@@ -537,7 +534,6 @@ double VisitSolver::dijkstraShortestPath(double **am, int target, int dest, stri
                 if(*it2 == i){    
                   if((collidingNode == i) && (nodeIndex == collidingNodeLevel)){
                     collisionDetected = true;
-                    // n[target].colliding = true;
                     cout << "[DijkstraShortestPath]: COLLISION DETECTED!! Node " << i << " ignored!" << endl << endl;
                   }
                 } 
