@@ -6,7 +6,7 @@
 using namespace std;
 
 
-double dijkstra::dijkstraShortestPath(double **graph, int target, int dest, int dim){
+void Dijkstra::dijkstraPath(double **graph, int target, int dest, int dim){
   struct{
     double cost;
     int next;
@@ -56,5 +56,5 @@ double dijkstra::dijkstraShortestPath(double **graph, int target, int dest, int 
     cout << k << "\t\t\t" << n[k].cost << endl;
   }
 
-  return n[dest].cost;
+  // return n[dest].cost;
 }

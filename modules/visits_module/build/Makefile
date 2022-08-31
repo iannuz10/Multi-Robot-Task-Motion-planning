@@ -226,6 +226,33 @@ FromTo.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/FromTo.cpp.s
 .PHONY : FromTo.cpp.s
 
+MyShortestPath.o: MyShortestPath.cpp.o
+.PHONY : MyShortestPath.o
+
+# target to build an object file
+MyShortestPath.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visits.dir/build.make CMakeFiles/Visits.dir/MyShortestPath.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/MyShortestPath.cpp.o
+.PHONY : MyShortestPath.cpp.o
+
+MyShortestPath.i: MyShortestPath.cpp.i
+.PHONY : MyShortestPath.i
+
+# target to preprocess a source file
+MyShortestPath.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visits.dir/build.make CMakeFiles/Visits.dir/MyShortestPath.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/MyShortestPath.cpp.i
+.PHONY : MyShortestPath.cpp.i
+
+MyShortestPath.s: MyShortestPath.cpp.s
+.PHONY : MyShortestPath.s
+
+# target to generate assembly for a file
+MyShortestPath.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visits.dir/build.make CMakeFiles/Visits.dir/MyShortestPath.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VisitMain.dir/build.make CMakeFiles/VisitMain.dir/MyShortestPath.cpp.s
+.PHONY : MyShortestPath.cpp.s
+
 Semaphore.o: Semaphore.cpp.o
 .PHONY : Semaphore.o
 
@@ -323,6 +350,9 @@ help:
 	@echo "... FromTo.o"
 	@echo "... FromTo.i"
 	@echo "... FromTo.s"
+	@echo "... MyShortestPath.o"
+	@echo "... MyShortestPath.i"
+	@echo "... MyShortestPath.s"
 	@echo "... Semaphore.o"
 	@echo "... Semaphore.i"
 	@echo "... Semaphore.s"

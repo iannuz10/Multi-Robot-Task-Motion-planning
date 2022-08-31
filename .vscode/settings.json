@@ -100,5 +100,6 @@
     "string": "cpp",
     "string_view": "cpp",
     "shared_mutex": "cpp"
-  }
+  },
+  "C_Cpp.dimInactiveRegions": false
 }

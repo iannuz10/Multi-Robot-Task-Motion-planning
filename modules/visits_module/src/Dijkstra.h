@@ -13,9 +13,10 @@
 
 using namespace std;
 
-class dijkstra{
+class Dijkstra{
     public:
-        double dijkstraShortestPath(double **graph, int target, int dest, int dim);
+        Dijkstra();
+        void dijkstraPath(double **graph, int target, int dest, int dim);
 };
 
 #endif

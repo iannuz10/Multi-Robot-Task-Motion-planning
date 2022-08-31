@@ -30,6 +30,7 @@
 #include "Context.h"
 #include "FromTo.h"
 #include "Semaphore.h"
+#include "MyShortestPath.h"
 
 using namespace std;
 
