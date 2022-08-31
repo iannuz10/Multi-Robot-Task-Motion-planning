@@ -91,7 +91,6 @@ void VisitSolver::loadSolver(string *parameters, int n){
 
   // Initializing shared space for robot location
   Context *context = new Context();
-
   // Getting and setting initial location of all robots
   string prob_file = "/home/iannuz/popf-tif-v2/domains/visits_domain/prob1.pddl";
   initParser(context, prob_file);
@@ -148,7 +147,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
       if(function=="triggered"){
         trigger[arg] = value>0?1:0;
         if (value>0){
-          vector<int> path;
+          vector<int>* path = new vector<int>;
 
           n=tmp.find(" ");
           string from = tmp.substr(0,n);   // from and to are regions, need to extract wps (poses)
@@ -174,28 +173,27 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           if(it1 == paths.end()){
             // tempCost = dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, false, -1, -1);
             MyShortestPath pathFinder;
-            path.push_back(stoi(from));
-            vector<int> pathTemp;
-            cout << "PathTemp created..." << endl;
+            path->push_back(stoi(from));
+            vector<int>* pathTemp = new vector<int>;
+            cout << "PathTemp created for " << pathID << "..." << endl;
             cout << "Calling path finder..." << endl;
             pathTemp = pathFinder.myShortestPath(paths, wpAdjMatrix, path, stoi(to), totalWaypoints, pathID);
             cout << "Path creation succeded!" << endl;
-            for(int i = 0; i < pathTemp.size(); i++){
-              cout << pathTemp[i];
+            for(int i = 0; i < pathTemp->size(); i++){
+              cout << pathTemp->at(i);
             }
-            path.insert(path.end(), pathTemp.begin(), path.end());
             cout << "Insertion of new path succeded!" << endl;
             // tempCost =
-            for(int i = 0; i < path.size()-1; i++){
-              tempCost += wpAdjMatrix[path[i]][path[i+1]];
+            for(int i = 0; i < path->size()-1; i++){
+              tempCost += wpAdjMatrix[path->at(i)][path->at(i+1)];
             }
             if(ExternalSolver::verbose) cout << "DijkstraShortestPath cost: " << tempCost << endl;
 
             auto it3 = paths.find(pathID);
             if(it3 != paths.end()){
-                it3->second = path;
+              it3->second = path;
             } else {
-                paths.insert({pathID,path});
+              paths.insert({pathID,path});
             }
 
             auto it4 = pathsCosts.find(pathID);
@@ -235,11 +233,11 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           // Printing all paths
           if(ExternalSolver::verbose){
             cout << "Printing all paths" << endl;
-            map<string, vector<int>>::iterator it;
+            map<string, vector<int>*>::iterator it;
             std::vector<int>::iterator it2;
             for(it = paths.begin(); it != paths.end(); it++){   
               cout << "Checking path: " << it->first << endl; 
-              for(it2 = it->second.begin(); it2 != it->second.end(); it2++){
+              for(it2 = it->second->begin(); it2 != it->second->end(); it2++){
                 cout << *it2 << "\t";
               } cout << endl;
             }

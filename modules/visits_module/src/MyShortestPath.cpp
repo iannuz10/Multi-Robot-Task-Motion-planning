@@ -7,29 +7,43 @@ using namespace std;
 
 MyShortestPath::MyShortestPath(){}
 
-vector<int> MyShortestPath::myShortestPath(map<string,vector<int>> paths, double **graph, vector<int> &currentPath, int destination, int dim, string pathID){
-    vector<int> dijkstraNodes;
-    cout << "[myShortestPath]: Calling dijkstra..." << endl;
-    vector<int> tempDijPath = dijkstraPath(graph, currentPath.back(), destination, dim);
+vector<int>* MyShortestPath::myShortestPath(map<string,vector<int>*> paths, double **graph, vector<int>* currentPath, int destination, int dim, string pathID){
+    vector<int>* dijkstraNodes = new vector<int>;
+    cout << "[myShortestPath]: Calling dijkstra on path: " << pathID << endl;
+    cout << "[myShortestPath]: Current path is: " ;
+    for(int i = 0; i < currentPath->size(); i++){
+        cout << currentPath->at(i) << " ";
+    }
+    cout << endl;
+    dijkstraNodes = currentPath;
+    vector<int>* tempDijPath = new vector<int>;
+    tempDijPath = dijkstraPath(graph, currentPath->back(), destination, dim);
+    cout << "[myShortestPath]: Back to myShortestPath... adding found path to nodes vector..." << endl;
+    dijkstraNodes->insert(dijkstraNodes->end(), tempDijPath->begin(), tempDijPath->end());
 
-    dijkstraNodes.insert(currentPath.end(), tempDijPath.begin(), tempDijPath.end());
-
+    cout << "[myShortestPath]: Looking for collisions..." << endl;
     int collisionIndex = checkCollision(paths, currentPath, pathID);
 
+    cout << "[myShortestPath]: collision value: " << collisionIndex << endl;
+    
     if(collisionIndex != -1){
-        for (int i = 0; i < collisionIndex-1; i++) 
-            dijkstraNodes.push_back(currentPath[i]); 
+        cout << "[myShortestPath]: COLLISION DETECTED!" << endl;
+        dijkstraNodes->resize(collisionIndex);
+
+        cout << "[myShortestPath]: Locking busy node..." << endl;
         double **graphIteration = iterationGraphInit(dim, graph);
-        graphIteration = lockCollidingNode(dim, graphIteration, currentPath[collisionIndex]);
-        vector<int> dijkstraIteration = dijkstraPath(graphIteration, currentPath.back(), destination, dim);
-        delete[] graphIteration;
-        if(dijkstraIteration.empty()){
-            dijkstraNodes.insert(dijkstraNodes.end(), dijkstraNodes.at(dijkstraNodes.size()-1));
+        cout << "[myShortestPath]: The colliding node is " << dijkstraNodes->at(collisionIndex-1) << " at index " << dijkstraNodes-1 << endl;
+        lockCollidingNode(dim, graphIteration, dijkstraNodes->at(collisionIndex-1));
+        cout << "[myShortestPath]: New graph generated..." << endl;
+        vector<int>* dijkstraIteration = new vector<int>;
+        dijkstraIteration = dijkstraPath(graphIteration, currentPath->back(), destination, dim);
+        if(dijkstraIteration->empty()){
+            dijkstraNodes->insert(dijkstraNodes->end(), dijkstraNodes->at(dijkstraNodes->size()-1));
             return myShortestPath(paths, graph, dijkstraNodes, destination, dim, pathID);
         } else {
-            vector<int> tempCurrPath;
-            tempCurrPath.push_back(dijkstraNodes.back());
-            tempCurrPath.insert(tempCurrPath.end(), dijkstraIteration.begin(), dijkstraIteration.end());
+            vector<int>* tempCurrPath = new vector<int>;
+            tempCurrPath->push_back(dijkstraNodes->back());
+            tempCurrPath->insert(tempCurrPath->end(), dijkstraIteration->begin(), dijkstraIteration->end());
             return myShortestPath(paths, graph, tempCurrPath, destination, dim, pathID);
         }
     }else{
@@ -43,8 +57,8 @@ vector<int> MyShortestPath::myShortestPath(map<string,vector<int>> paths, double
 
 
 
-vector<int> MyShortestPath::dijkstraPath(double **graph, int target, int dest, int dim){
-    vector<int> path;
+vector<int>* MyShortestPath::dijkstraPath(double **graph, int target, int dest, int dim){
+    vector<int>* path = new vector<int>;
     struct{
         double cost;
         int next;
@@ -65,8 +79,8 @@ vector<int> MyShortestPath::dijkstraPath(double **graph, int target, int dest, i
     n[target].next = target;
 
     iter = 0;
+    cout << "[dijkstra]: Starting dijkstra algorithm!" << endl;
     do{
-        cout << "Starting dijkstra algorithm!" << endl;
         n[target].def = true;
         for(i = 0; i < dim; i++){
             if(graph[target][i] != 0){
@@ -90,26 +104,29 @@ vector<int> MyShortestPath::dijkstraPath(double **graph, int target, int dest, i
         iter++;
     } while(indmin != -1);
 
-    cout<<"Vertex\t\tDistance from source vertex"<<endl;
+    cout<<"[dijkstra]: Vertex\t\tDistance from source vertex"<<endl;
     for(int k = 0; k < dim; k++){ 
         cout << k << "\t\t\t" << n[k].cost << endl;
     }
 
     node = dest;
     do{
-        if(n[node].next != -1)  // NO PATH FOUND
+        if(n[node].next == -1)  // NO PATH FOUND
             return path;
-        path.push_back(node);
+        path->push_back(node);
         node = n[node].next;
     } while (node != src);
-    reverse(path.begin(), path.end());
+    cout/* << node << " "*/ << endl;
+    reverse(path->begin(), path->end());
 
-    cout << "[dijkstra]: Dijkstra found path long " << path.size();
-    for(int i = 0; i < path.size(); i++){
-        cout << path[i];
+    cout << "[dijkstra]: Dijkstra found path long " << path->size() << endl;
+    cout << "[dijkstra]: Path: " << endl;
+    for(int i = 0; i < path->size(); i++){
+        cout << path->at(i) << " " ;
     }
     cout << endl;
-
+    
+    cout << "[dijkstra]: Returning path to myShortestPath" << endl;
     return path;
     // return n[dest].cost;
     }
@@ -119,18 +136,17 @@ vector<int> MyShortestPath::dijkstraPath(double **graph, int target, int dest, i
 
 
 
-int MyShortestPath::checkCollision(map<string,vector<int>> paths, vector<int> currentPath, string pathID){
+int MyShortestPath::checkCollision(map<string,vector<int> *> paths, vector<int>* currentPath, string pathID){
+    cout << "[checkCollision]: Checking..." << endl;
     vector<int>::iterator currPathIter, otherPathsNodeIter;
-    map<string, vector<int>>::iterator otherPathsIter;
-    int currPathNodeIndex, otherPathNodeIndex;
-    for(currPathIter = currentPath.begin(); currPathIter != currentPath.end(); currPathIter++){
-        currPathNodeIndex = currPathIter - currentPath.begin();
+    map<string, vector<int>*>::iterator otherPathsIter;
+    int currPathNodeIndex;
+    for(currPathIter = currentPath->begin(); currPathIter != currentPath->end(); currPathIter++){
+        currPathNodeIndex = currPathIter - currentPath->begin();
         for(otherPathsIter = paths.begin(); otherPathsIter != paths.end(); otherPathsIter++){
-            for(otherPathsNodeIter = otherPathsIter->second.begin(); otherPathsNodeIter != otherPathsIter->second.end(); otherPathsNodeIter++){
-                otherPathNodeIndex = otherPathsNodeIter - otherPathsIter->second.begin();
-                if(currPathNodeIndex == otherPathNodeIndex)
-                    return currPathNodeIndex;
-            }
+            if(currentPath->size() <= otherPathsIter->second->size() && *currPathIter == otherPathsIter->second->at(currPathNodeIndex))
+                return currPathNodeIndex;
+            
         }
     }
     return -1;
@@ -152,6 +168,7 @@ double** MyShortestPath::iterationGraphInit(int dim, double **originalGraph){
             graphIteration[i][j] = originalGraph[i][j];
         }
     }
+    cout << "[iterationGraphInit]: Adjacence matrix copy succeded..." << endl;
     return graphIteration;
 }
 
@@ -161,14 +178,12 @@ double** MyShortestPath::iterationGraphInit(int dim, double **originalGraph){
 
 
 
-double** MyShortestPath::lockCollidingNode(int dim, double **graph, int collidingNode){
+void MyShortestPath::lockCollidingNode(int dim, double **graph, int collidingNode){
+    cout << "[lockCollidingNode]: Locking node..." << endl;
     for(int i = 0; i < dim; i++){
-        for(int j = 0; j < dim; j++){
-            if(graph[i][collidingNode] != 0){
-                graph[i][collidingNode] = 0;
-                graph[collidingNode][j] = 0;
-            }
+        if(graph[i][collidingNode] != 0){
+            graph[i][collidingNode] = 0;
+            graph[collidingNode][i] = 0;
         }
     }
-    return graph;
 }

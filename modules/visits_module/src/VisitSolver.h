@@ -74,7 +74,7 @@ private:
     string pathID; 
     bool pathCostComputed;
 
-    map<string, vector<int>> paths;
+    map<string, vector<int>*> paths;
     map<string, double> pathsCosts;
     
     int semaphoreCounter;
