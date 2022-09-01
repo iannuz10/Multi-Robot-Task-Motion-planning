@@ -144,7 +144,7 @@ int MyShortestPath::checkCollision(map<string,vector<int> *> paths, vector<int>*
     for(currPathIter = currentPath->begin(); currPathIter != currentPath->end(); currPathIter++){
         currPathNodeIndex = currPathIter - currentPath->begin();
         for(otherPathsIter = paths.begin(); otherPathsIter != paths.end(); otherPathsIter++){
-            if(currentPath->size() <= otherPathsIter->second->size() && *currPathIter == otherPathsIter->second->at(currPathNodeIndex))
+            if(currPathNodeIndex < otherPathsIter->second->size() && *currPathIter == otherPathsIter->second->at(currPathNodeIndex))
                 return currPathNodeIndex;
             
         }
