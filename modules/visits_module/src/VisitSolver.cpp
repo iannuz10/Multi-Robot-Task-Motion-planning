@@ -173,21 +173,31 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
           if(it1 == paths.end()){
             // tempCost = dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, false, -1, -1);
             MyShortestPath pathFinder;
+
+            // Passing vector containing only first node
             path->push_back(stoi(from));
             vector<int>* pathTemp = new vector<int>;
-            cout << "PathTemp created for " << pathID << "..." << endl;
-            cout << "Calling path finder..." << endl;
+            if(ExternalSolver::verbose){
+              cout << "PathTemp created for " << pathID << "..." << endl;
+              cout << "Calling path finder..." << endl;
+            }
+
+            // Starting best path finder algorithm
             pathTemp = pathFinder.myShortestPath(paths, wpAdjMatrix, path, stoi(to), totalWaypoints, pathID);
-            cout << "Path creation succeded!" << endl;
-            for(int i = 0; i < pathTemp->size(); i++){
-              cout << pathTemp->at(i);
+
+            if(ExternalSolver::verbose){
+              cout << "Path creation succeded!" << endl;
+              for(int i = 0; i < path->size(); i++){
+                cout << path->at(i);
+              } cout << endl;
+            
+              cout << "Insertion of new path succeded!" << endl;
+              // tempCost =
+              for(int i = 0; i < path->size()-1; i++){
+                tempCost += wpAdjMatrix[path->at(i)][path->at(i+1)];
+              }
+              cout << endl << "DijkstraShortestPath cost: " << tempCost << endl;
             }
-            cout << "Insertion of new path succeded!" << endl;
-            // tempCost =
-            for(int i = 0; i < path->size()-1; i++){
-              tempCost += wpAdjMatrix[path->at(i)][path->at(i+1)];
-            }
-            if(ExternalSolver::verbose) cout << "DijkstraShortestPath cost: " << tempCost << endl;
 
             auto it3 = paths.find(pathID);
             if(it3 != paths.end()){

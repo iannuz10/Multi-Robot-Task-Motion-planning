@@ -9,43 +9,64 @@ MyShortestPath::MyShortestPath(){}
 
 vector<int>* MyShortestPath::myShortestPath(map<string,vector<int>*> paths, double **graph, vector<int>* currentPath, int destination, int dim, string pathID){
     vector<int>* dijkstraNodes = new vector<int>;
-    cout << "[myShortestPath]: Calling dijkstra on path: " << pathID << endl;
-    cout << "[myShortestPath]: Current path is: " ;
-    for(int i = 0; i < currentPath->size(); i++){
-        cout << currentPath->at(i) << " ";
+    if(ExternalSolver::verbose){
+        cout << "[myShortestPath]: Calling dijkstra on path: " << pathID << endl;
+        cout << "[myShortestPath]: Current path is: " ;
+        for(int i = 0; i < currentPath->size(); i++){
+            cout << currentPath->at(i) << " ";
+        }
+        cout << endl;
     }
-    cout << endl;
     dijkstraNodes = currentPath;
     vector<int>* tempDijPath = new vector<int>;
+
+    // Running dijkstra
     tempDijPath = dijkstraPath(graph, currentPath->back(), destination, dim);
-    cout << "[myShortestPath]: Back to myShortestPath... adding found path to nodes vector..." << endl;
+    if(ExternalSolver::verbose) cout << "[myShortestPath]: Back to myShortestPath... adding found path to nodes vector..." << endl;
+
+    // Inserting in solution vector the result of dijkstra
     dijkstraNodes->insert(dijkstraNodes->end(), tempDijPath->begin(), tempDijPath->end());
+    if(ExternalSolver::verbose) cout << "[myShortestPath]: Looking for collisions..." << endl;
 
-    cout << "[myShortestPath]: Looking for collisions..." << endl;
+    // Checking for colliding nodes
     int collisionIndex = checkCollision(paths, currentPath, pathID);
+    if(ExternalSolver::verbose) cout << "[myShortestPath]: collision value: " << collisionIndex << endl;
 
-    cout << "[myShortestPath]: collision value: " << collisionIndex << endl;
-    
+    // Collision is detected
     if(collisionIndex != -1){
         cout << "[myShortestPath]: COLLISION DETECTED!" << endl;
-        dijkstraNodes->resize(collisionIndex);
 
-        cout << "[myShortestPath]: Locking busy node..." << endl;
+        // Path is fine untill the colliding node
+        dijkstraNodes->resize(collisionIndex);
+        if(ExternalSolver::verbose) cout << "[myShortestPath]: Locking busy node..." << endl;
+
+        // Creating a new graph that ignores colliding node
         double **graphIteration = iterationGraphInit(dim, graph);
-        cout << "[myShortestPath]: The colliding node is " << dijkstraNodes->at(collisionIndex-1) << " at index " << collisionIndex-1 << endl;
+        if(ExternalSolver::verbose) cout << "[myShortestPath]: The colliding node is " << dijkstraNodes->at(collisionIndex-1) << " at index " << collisionIndex-1 << endl;
         lockCollidingNode(dim, graphIteration, dijkstraNodes->at(collisionIndex-1));
-        cout << "[myShortestPath]: New graph generated..." << endl;
+        if(ExternalSolver::verbose) cout << "[myShortestPath]: New graph generated..." << endl;
         vector<int>* dijkstraIteration = new vector<int>;
+
+        // searching a path from the last safe node with dijkstra ignoring the colliding one
         dijkstraIteration = dijkstraPath(graphIteration, currentPath->back(), destination, dim);
+
+        // No alternative path found
         if(dijkstraIteration->empty()){
             multimap<double, int> adjacentNodes;
+
+            // First attempt is to stay still and wait for the colliding node to free
             adjacentNodes.insert({0,dijkstraNodes->at(collisionIndex-1)});
+
+            // Populate map with adjacent nodes ordered by cost
             for(int i = 0; i < dim; i++){
                 if(graph[dijkstraNodes->at(collisionIndex-1)][i] != 0){
                     adjacentNodes.insert({graph[dijkstraNodes->at(collisionIndex-1)][i],i});
                 }
             }
+
             multimap<double, int>::iterator adjacenceIterator;
+
+            // Looking for a free node to perform the waiting movement, avoiding blocking previous robots paths
             for(adjacenceIterator = adjacentNodes.begin(); adjacenceIterator != adjacentNodes.end(); adjacenceIterator++){
                 dijkstraNodes->push_back(adjacenceIterator->second);
                 collisionIndex = checkCollision(paths, currentPath, pathID);
@@ -56,21 +77,18 @@ vector<int>* MyShortestPath::myShortestPath(map<string,vector<int>*> paths, doub
                     }
             }
         } else {
+            // Alternative path found, adding result to solution vector
             vector<int>* tempCurrPath = new vector<int>;
             tempCurrPath->push_back(dijkstraNodes->back());
             tempCurrPath->insert(tempCurrPath->end(), dijkstraIteration->begin(), dijkstraIteration->end());
             return myShortestPath(paths, graph, tempCurrPath, destination, dim, pathID);
         }
     }else{
+        // No collision is detected
         return dijkstraNodes;
     }
 
 }
-
-
-
-
-
 
 vector<int>* MyShortestPath::dijkstraPath(double **graph, int target, int dest, int dim){
     vector<int>* path = new vector<int>;
@@ -93,8 +111,9 @@ vector<int>* MyShortestPath::dijkstraPath(double **graph, int target, int dest, 
     n[target].cost = 0;
     n[target].next = target;
 
+
+    if(ExternalSolver::verbose) cout << "[dijkstra]: Starting dijkstra algorithm!" << endl;
     iter = 0;
-    cout << "[dijkstra]: Starting dijkstra algorithm!" << endl;
     do{
         n[target].def = true;
         for(i = 0; i < dim; i++){
@@ -119,40 +138,38 @@ vector<int>* MyShortestPath::dijkstraPath(double **graph, int target, int dest, 
         iter++;
     } while(indmin != -1);
 
-    cout<<"[dijkstra]: Vertex\t\tDistance from source vertex"<<endl;
-    for(int k = 0; k < dim; k++){ 
-        cout << k << "\t\t\t" << n[k].cost << endl;
+    if(ExternalSolver::verbose){    
+        cout<<"[dijkstra]: Vertex\t\tDistance from source vertex"<<endl;
+        for(int k = 0; k < dim; k++){ 
+            cout << k << "\t\t\t" << n[k].cost << endl;
+        }
     }
 
     node = dest;
     do{
-        if(n[node].next == -1)  // NO PATH FOUND
+        if(n[node].next == -1)  // Returning empty vector if no path is found
             return path;
         path->push_back(node);
         node = n[node].next;
     } while (node != src);
-    cout/* << node << " "*/ << endl;
     reverse(path->begin(), path->end());
 
-    cout << "[dijkstra]: Dijkstra found path long " << path->size() << endl;
-    cout << "[dijkstra]: Path: " << endl;
-    for(int i = 0; i < path->size(); i++){
-        cout << path->at(i) << " " ;
+    if(ExternalSolver::verbose){
+        cout << "[dijkstra]: Dijkstra found path long " << path->size() << endl;
+        cout << "[dijkstra]: Path: " << endl;
+        for(int i = 0; i < path->size(); i++){
+            cout << path->at(i) << " " ;
+        }
+        cout << endl;
+        cout << "[dijkstra]: Returning path to myShortestPath" << endl;
     }
-    cout << endl;
-    
-    cout << "[dijkstra]: Returning path to myShortestPath" << endl;
+
     return path;
-    // return n[dest].cost;
     }
 
-
-
-
-
-
+// Checking for each previous planification if the current robots path collides
 int MyShortestPath::checkCollision(map<string,vector<int> *> paths, vector<int>* currentPath, string pathID){
-    cout << "[checkCollision]: Checking..." << endl;
+    if(ExternalSolver::verbose) cout << "[checkCollision]: Checking..." << endl;
     vector<int>::iterator currPathIter, otherPathsNodeIter;
     map<string, vector<int>*>::iterator otherPathsIter;
     int currPathNodeIndex;
@@ -167,12 +184,7 @@ int MyShortestPath::checkCollision(map<string,vector<int> *> paths, vector<int>*
     return -1;
 }
 
-
-
-
-
-
-
+// Creates a copy of the adjacence matrix passed
 double** MyShortestPath::iterationGraphInit(int dim, double **originalGraph){
     double **graphIteration = new double*[dim]; 
     for (int i = 0; i < dim; i++) 
@@ -183,18 +195,13 @@ double** MyShortestPath::iterationGraphInit(int dim, double **originalGraph){
             graphIteration[i][j] = originalGraph[i][j];
         }
     }
-    cout << "[iterationGraphInit]: Adjacence matrix copy succeded..." << endl;
+    if(ExternalSolver::verbose) cout << "[iterationGraphInit]: Adjacence matrix copy succeded..." << endl;
     return graphIteration;
 }
 
-
-
-
-
-
-
+// Treats given colliding node as non reachable
 void MyShortestPath::lockCollidingNode(int dim, double **graph, int collidingNode){
-    cout << "[lockCollidingNode]: Locking node..." << endl;
+    if(ExternalSolver::verbose) cout << "[lockCollidingNode]: Locking node..." << endl;
     for(int i = 0; i < dim; i++){
         if(graph[i][collidingNode] != 0){
             graph[i][collidingNode] = 0;
