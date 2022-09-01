@@ -32,14 +32,29 @@ vector<int>* MyShortestPath::myShortestPath(map<string,vector<int>*> paths, doub
 
         cout << "[myShortestPath]: Locking busy node..." << endl;
         double **graphIteration = iterationGraphInit(dim, graph);
-        cout << "[myShortestPath]: The colliding node is " << dijkstraNodes->at(collisionIndex-1) << " at index " << dijkstraNodes-1 << endl;
+        cout << "[myShortestPath]: The colliding node is " << dijkstraNodes->at(collisionIndex-1) << " at index " << collisionIndex-1 << endl;
         lockCollidingNode(dim, graphIteration, dijkstraNodes->at(collisionIndex-1));
         cout << "[myShortestPath]: New graph generated..." << endl;
         vector<int>* dijkstraIteration = new vector<int>;
         dijkstraIteration = dijkstraPath(graphIteration, currentPath->back(), destination, dim);
         if(dijkstraIteration->empty()){
-            dijkstraNodes->insert(dijkstraNodes->end(), dijkstraNodes->at(dijkstraNodes->size()-1));
-            return myShortestPath(paths, graph, dijkstraNodes, destination, dim, pathID);
+            multimap<double, int> adjacentNodes;
+            adjacentNodes.insert({0,dijkstraNodes->at(collisionIndex-1)});
+            for(int i = 0; i < dim; i++){
+                if(graph[dijkstraNodes->at(collisionIndex-1)][i] != 0){
+                    adjacentNodes.insert({graph[dijkstraNodes->at(collisionIndex-1)][i],i});
+                }
+            }
+            multimap<double, int>::iterator adjacenceIterator;
+            for(adjacenceIterator = adjacentNodes.begin(); adjacenceIterator != adjacentNodes.end(); adjacenceIterator++){
+                dijkstraNodes->push_back(adjacenceIterator->second);
+                collisionIndex = checkCollision(paths, currentPath, pathID);
+                    if(collisionIndex != -1){
+                        dijkstraNodes->pop_back();
+                    } else {
+                        return myShortestPath(paths, graph, dijkstraNodes, destination, dim, pathID);
+                    }
+            }
         } else {
             vector<int>* tempCurrPath = new vector<int>;
             tempCurrPath->push_back(dijkstraNodes->back());
