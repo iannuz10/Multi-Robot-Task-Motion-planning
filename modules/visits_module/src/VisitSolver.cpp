@@ -166,7 +166,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
             cout << "From: " << from << endl;
             cout << "To: " << to << endl;
           }
-          pathID = robot + "-" + from + "-" + to;
+          pathID = robot;
           
           // Compute minimum path
           auto it1 = paths.find(pathID);
