@@ -1,0 +1,83 @@
+(define (problem prob1)
+(:domain localization)
+(:objects
+     r0 r1 r2 r3 r4 - region
+     C3PO - robot
+     o1 o2 - object
+     
+)
+(:init
+    (robot_in C3PO r3)
+        (= (act-cost) 0)
+    (= (dummy) 0)
+    (object_in o1 r4)
+    (object_in o2 r4)
+       (empty C3PO)
+    
+
+)
+(:goal 
+     (and (object_in o1 r0) 
+          (>= (act-cost) 0)
+     )
+)
+(:metric minimize (act-cost) )
+)
+
+
+
+
+
+
+
+
+
+(define (domain localization)
+
+(:requirements :typing :durative-actions :numeric-fluents :negative-preconditions :action-costs :conditional-effects :equality :fluents )
+
+
+(:types 	robot region object
+)
+
+(:predicates
+		(robot_in ?v - robot ?r - region) (visited ?r - region ?v - robot) (empty ?v - robot) (picked ?o - object) (object_in ?o - object ?r - region)
+	      
+)
+
+(:functions 
+		(act-cost) (triggered ?from ?to - region ?v - robot) (dummy)
+)
+
+(:durative-action goto_region
+		:parameters (?v - robot ?from ?to - region)
+		:duration (= ?duration 100)
+		:condition (and (at start (robot_in ?v ?from)))
+	        :effect (and (at start (not (robot_in ?v ?from))) (at start (increase (triggered ?from ?to ?v) 1))
+		(at end (robot_in ?v ?to)) (at end (assign (triggered ?from ?to ?v) 0)) (at end (visited ?to ?v)) 	
+                (at end (increase (act-cost) (dummy))))
+)
+
+
+(:durative-action pick_up
+		:parameters (?v - robot ?at - region ?o - object)
+		:duration (= ?duration 10)
+		:condition (and  (at start(empty ?v)) (at start(object_in ?o ?at)) (over all(robot_in ?v ?at)) (at start (not (picked ?o))))
+	        :effect (and  (at end (not (empty ?v))) (at end (not (object_in ?o ?at))) (at end (picked ?o)))
+)
+
+(:durative-action put_down
+		:parameters (?v - robot ?at - region ?o - object)
+		:duration (= ?duration 10)
+		:condition (and (at start(not(empty ?v))) (over all(robot_in ?v ?at))(at start (picked ?o)))
+	        :effect (and (at end (empty ?v)) (at end (object_in ?o ?at)) (at end (not (picked ?o))))
+)
+
+;;(:durative-action localize
+;; ...................
+;;)
+
+
+
+)
+
