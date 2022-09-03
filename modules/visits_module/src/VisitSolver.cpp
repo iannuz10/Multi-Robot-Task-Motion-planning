@@ -214,7 +214,13 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
               pathsCosts.insert({pathID,tempCost});
             }
 
-            int pathsFound = paths.size();
+            map<string, vector<int>*>::iterator pathsIter;
+            int pathsFound = 0;
+            for(pathsIter = paths.begin(); pathsIter != paths.end(); pathsIter++){
+               if(pathsIter->first[0] == step) {
+                pathsFound++;
+              }
+            }
             if(pathsFound == totalRobots) {
               semaphoreCounter = 0;
               step++;
