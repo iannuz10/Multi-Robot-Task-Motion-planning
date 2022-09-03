@@ -7,11 +7,11 @@
      
 )
 (:init
-    (robot_in C3PO r4)
-        (= (act-cost) 0)
-    (= (dummy) 10)
-    (= (object_in o1 r2) 1)
-    (= (object_in o2 r3) 1)
+     (robot_in C3PO r4)
+     (= (act-cost) 0)
+     (= (dummy) 0)
+     (= (object_in o1 r2) 1)
+     (= (object_in o2 r3) 1)
      (= (empty C3PO) 0)
     
 
