@@ -101,6 +101,7 @@ void VisitSolver::loadSolver(string *parameters, int n){
 
   pathCostComputed = false;
   semaphoreCounter = -totalRobots;
+  step=0;
 
   // // Setting semaphore
   // sem.setCount(-(totalRobots));   // Makes sure that cost are sent to planner only after a definitive and consistent state
@@ -166,7 +167,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
             cout << "From: " << from << endl;
             cout << "To: " << to << endl;
           }
-          pathID = robot;
+          pathID = to_string(step)+ "-" + robot;
           
           // Compute minimum path
           auto it1 = paths.find(pathID);
@@ -216,6 +217,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
             int pathsFound = paths.size();
             if(pathsFound == totalRobots) {
               semaphoreCounter = 0;
+              step++;
             }
           }
           

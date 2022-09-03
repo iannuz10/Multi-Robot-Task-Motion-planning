@@ -79,6 +79,8 @@ private:
     
     int semaphoreCounter;
 
+    int step;
+
     // Semaphore sem;
 
     list<string> affected;

@@ -176,7 +176,7 @@ int MyShortestPath::checkCollision(map<string,vector<int> *> paths, vector<int>*
     for(currPathIter = currentPath->begin(); currPathIter != currentPath->end(); currPathIter++){
         currPathNodeIndex = currPathIter - currentPath->begin();
         for(otherPathsIter = paths.begin(); otherPathsIter != paths.end(); otherPathsIter++){
-            if(currPathNodeIndex < otherPathsIter->second->size() && *currPathIter == otherPathsIter->second->at(currPathNodeIndex))
+            if(pathID[0] != otherPathsIter->first[0] && currPathNodeIndex < otherPathsIter->second->size() && *currPathIter == otherPathsIter->second->at(currPathNodeIndex))
                 return currPathNodeIndex;
             
         }
