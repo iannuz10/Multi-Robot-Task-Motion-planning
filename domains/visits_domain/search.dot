@@ -1,0 +1,56 @@
+digraph SearchSpace{
+node [style = filled]
+	1 [ label="O: 1,\nH: 13",color="#0000ff"];
+1 -> 2 [label = "goto_region at start"]
+1 -> 3 [label = "goto_region at start"]
+	2 [ label="O: 2,\nH: 14",color="#00ffffffb2ff"];
+	3 [ label="O: 3,\nH: 12",color="#004eff"];
+3 -> 4 [label = "goto_region at end"]
+	4 [ label="O: 4,\nH: 11",color="#009cff"];
+4 -> 5 [label = "pick_up at start"]
+4 -> 6 [label = "pick_up at start"]
+4 -> 7 [label = "goto_region at start"]
+	5 [ label="O: 5,\nH: 11",color="#009cff"];
+5 -> 8 [label = "pick_up at start"]
+5 -> 9 [label = "pick_up at end"]
+	6 [ label="O: 6,\nH: 11",color="#009cff"];
+	7 [ label="O: 7,\nH: 14",color="#00ffffffb2ff"];
+	8 [ label="O: 8,\nH: 11",color="#009cff"];
+	9 [ label="O: 9,\nH: 10",color="#00ebff"];
+9 -> 10 [label = "put_down at start"]
+9 -> 11 [label = "goto_region at start"]
+	10 [ label="O: 10,\nH: 10",color="#00ebff"];
+	11 [ label="O: 11,\nH: 12",color="#004eff"];
+11 -> 12 [label = "goto_region at start"]
+11 -> 13 [label = "goto_region at start"]
+11 -> 14 [label = "goto_region at end"]
+	12 [ label="O: 12,\nH: 11",color="#009cff"];
+	13 [ label="O: 13,\nH: 11",color="#009cff"];
+	14 [ label="O: 14,\nH: 9",color="#00ffc4"];
+14 -> 15 [label = "put_down at start"]
+14 -> 16 [label = "goto_region at start"]
+	15 [ label="O: 15,\nH: 9",color="#00ffc4"];
+15 -> 17 [label = "put_down at end"]
+	16 [ label="O: 16,\nH: 11",color="#009cff"];
+	17 [ label="O: 17,\nH: 8",color="#00ff75"];
+17 -> 18 [label = "pick_up at start"]
+17 -> 19 [label = "goto_region at start"]
+	18 [ label="O: 18,\nH: 8",color="#00ff75"];
+	19 [ label="O: 19,\nH: 8",color="#00ff75"];
+19 -> 20 [label = "goto_region at end"]
+	20 [ label="O: 20,\nH: 7",color="#00ff27"];
+20 -> 21 [label = "pick_up at start"]
+20 -> 22 [label = "goto_region at start"]
+	21 [ label="O: 21,\nH: 7",color="#00ff27"];
+21 -> 23 [label = "pick_up at end"]
+	22 [ label="O: 22,\nH: 10",color="#00ebff"];
+	23 [ label="O: 23,\nH: 4",color="#c4ff00"];
+23 -> 24 [label = "goto_region at start"]
+	24 [ label="O: 24,\nH: 3",color="#ffeb00"];
+24 -> 25 [label = "goto_region at end"]
+	25 [ label="O: 25,\nH: 2",color="#ff9c00"];
+25 -> 26 [label = "put_down at start"]
+	26 [ label="O: 26,\nH: 2",color="#ff9c00"];
+26 -> 27 [label = "put_down at end"]
+	27 [ label="O: 27,\nH: 0",color="#ff0000"];
+}
