@@ -51,6 +51,7 @@
 #include "ModifiedSearch.h"
 #include "LookAhead.h"
 #include "ExternalSolver.h"
+#include "ptree.h"
 
 namespace Planner
 {
@@ -5848,9 +5849,7 @@ namespace Planner
                     }
                     
                     
-                    Solution FF::search(bool & reachedGoal)
-                    {
-                        
+                    Solution FF::search(bool & reachedGoal){
                         static bool initCSBase = false;
                         double whenToStopBackup = 0;
                         if (!initCSBase) {
@@ -6048,6 +6047,34 @@ namespace Planner
                             if (Globals::globalVerbosity & 2) cout << "\n--\n";
                             auto_ptr<SearchQueueItem> currSQI(searchQueue.pop_front());
                             currSQI->printPlan();
+
+
+                            list<ActionSegment >::iterator helpActItr;
+                            list<ActionSegment >::iterator helpActEnd;
+                            string actionName;
+                            string robotName;
+                            string fromRegion;
+                            string toRegion;
+
+                            
+
+                            helpActItr = currSQI->helpfulActions.begin();
+                            helpActEnd = currSQI->helpfulActions.end();
+
+                            for(; helpActItr != helpActEnd; ++helpActItr) {
+                                actionName = helpActItr->first->forOp()->name->getName();
+                                vector<const_symbol* >::const_iterator symsItr = helpActItr->first->getEnv()->begin();
+                                vector<const_symbol* >::const_iterator symsEnd = helpActItr->first->getEnv()->end();
+                                for(; symsItr != symsEnd; ++symsItr) {
+                                    symsItr.
+                                }
+                            }
+                            
+
+                            cout << "Helpful actions: " << endl;
+                            ;
+                            cout << endl;
+
                             if (currSQI->state()->hasBeenDominated) {
                                 continue;
                             }

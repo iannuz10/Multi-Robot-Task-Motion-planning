@@ -198,7 +198,7 @@ private:
     }
 
 protected:
-    MinimalState * decorated;
+    
     
     ExtendedMinimalState(const ExtendedMinimalState & e)
     : decorated(new MinimalState(*(e.decorated))), startEventQueue(e.startEventQueue), timeStamp(e.timeStamp), stepBeforeTIL(e.stepBeforeTIL), tilFanIn(e.tilFanIn), tilComesBefore(e.tilComesBefore)  {
@@ -217,7 +217,7 @@ protected:
     ExtendedMinimalState & operator=(const ExtendedMinimalState & e);
     
 public:
-
+    MinimalState * decorated;
     list<StartEvent> startEventQueue;
     map<int, list<list<StartEvent>::iterator > > entriesForAction;
 
