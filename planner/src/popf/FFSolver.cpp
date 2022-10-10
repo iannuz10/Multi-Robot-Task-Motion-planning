@@ -6055,7 +6055,6 @@ namespace Planner
                             string robotName;
                             string fromRegion;
                             string toRegion;
-
                             
 
                             helpActItr = currSQI->helpfulActions.begin();
@@ -6063,10 +6062,16 @@ namespace Planner
 
                             for(; helpActItr != helpActEnd; ++helpActItr) {
                                 actionName = helpActItr->first->forOp()->name->getName();
-                                vector<const_symbol* >::const_iterator symsItr = helpActItr->first->getEnv()->begin();
-                                vector<const_symbol* >::const_iterator symsEnd = helpActItr->first->getEnv()->end();
-                                for(; symsItr != symsEnd; ++symsItr) {
-                                    symsItr.
+                                if(actionName == "goto_region"){
+                                    VAL::FastEnvironment *env = helpActItr->first->getEnv();
+                                    vector<VAL::const_symbol *>::const_iterator symsItr = env->begin();
+                                    vector<VAL::const_symbol *>::const_iterator symsEnd = env->end();
+                                    cout << "Helpful action: " << actionName << ": ";
+                                    for(; symsItr != symsEnd; ++symsItr) {
+                                        string symbol = (*symsItr)->getName();
+                                        cout << symbol << " ";
+                                    }
+                                    cout << endl;
                                 }
                             }
                             
