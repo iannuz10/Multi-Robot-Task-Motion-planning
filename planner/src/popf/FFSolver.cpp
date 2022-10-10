@@ -6049,6 +6049,8 @@ namespace Planner
                             currSQI->printPlan();
 
 
+                            //--------------------Modified Search--------------------
+                            // Accessing robot action information from the state
                             list<ActionSegment >::iterator helpActItr;
                             list<ActionSegment >::iterator helpActEnd;
                             string actionName;
@@ -6074,11 +6076,9 @@ namespace Planner
                                     cout << endl;
                                 }
                             }
-                            
-
                             cout << "Helpful actions: " << endl;
-                            ;
                             cout << endl;
+                            //--------------------Modified Search--------------------
 
                             if (currSQI->state()->hasBeenDominated) {
                                 continue;
