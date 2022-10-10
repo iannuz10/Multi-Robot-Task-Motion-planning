@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /home/iannuz/popf-tif/planner/src/VALfiles/testing
-# Build directory: /home/iannuz/popf-tif/planner/debug/VALfiles/testing
+# Source directory: /home/iannuz/popf-tif-v2/planner/src/VALfiles/testing
+# Build directory: /home/iannuz/popf-tif-v2/planner/debug/VALfiles/testing
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

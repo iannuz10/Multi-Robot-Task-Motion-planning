@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/iannuz/popf-tif/planner/src/VALfiles/parsing -I/home/iannuz/popf-tif/planner/release/VALfiles/parsing
+CXX_INCLUDES = -I/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing -I/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing
 
 CXX_FLAGS = -O3 -DNDEBUG
 

@@ -62,7 +62,7 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 17 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:339  */
+#line 17 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:339  */
 
 /*
 Error reporting:
@@ -124,7 +124,7 @@ extern int yylex();
 using namespace VAL;
 
 
-#line 128 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:339  */
+#line 128 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -273,7 +273,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 79 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:355  */
+#line 79 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:355  */
 
     parse_category* t_parse_category;
 
@@ -344,7 +344,7 @@ union YYSTYPE
 
     var_symbol_table * vtab;
 
-#line 348 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:355  */
+#line 348 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -361,7 +361,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 365 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:358  */
+#line 365 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -2044,227 +2044,227 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 252 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 252 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {top_thing= (yyvsp[0].t_domain); current_analysis->the_domain= (yyvsp[0].t_domain);}
-#line 2050 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2050 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 253 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 253 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {top_thing= (yyvsp[0].t_problem); current_analysis->the_problem= (yyvsp[0].t_problem);}
-#line 2056 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2056 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 254 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 254 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {top_thing= (yyvsp[0].t_plan); }
-#line 2062 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2062 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 259 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 259 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_domain)= (yyvsp[-1].t_domain); (yyval.t_domain)->name= (yyvsp[-2].cp);delete [] (yyvsp[-2].cp);
 	if (types_used && !types_defined) {
 		yyerrok; log_error(E_FATAL,"Syntax error in domain - no :types section, but types used in definitions."); 
 	}
 	}
-#line 2072 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2072 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 265 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 265 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {yyerrok; (yyval.t_domain)=static_cast<domain*>(NULL);
        	log_error(E_FATAL,"Syntax error in domain"); }
-#line 2079 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2079 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 271 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 271 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_domain)= (yyvsp[0].t_domain); (yyval.t_domain)->req= (yyvsp[-1].t_pddl_req_flag);}
-#line 2085 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2085 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 272 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 272 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {types_defined = true; (yyval.t_domain)= (yyvsp[0].t_domain); (yyval.t_domain)->types= (yyvsp[-1].t_type_list);}
-#line 2091 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2091 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 273 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 273 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_domain)= (yyvsp[0].t_domain); (yyval.t_domain)->constants= (yyvsp[-1].t_const_symbol_list);}
-#line 2097 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2097 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 274 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 274 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_domain)= (yyvsp[0].t_domain); 
                                        (yyval.t_domain)->predicates= (yyvsp[-1].t_pred_decl_list); }
-#line 2104 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2104 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 276 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 276 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_domain)= (yyvsp[0].t_domain); 
                                        (yyval.t_domain)->functions= (yyvsp[-1].t_func_decl_list); }
-#line 2111 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2111 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 278 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 278 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_domain)= (yyvsp[0].t_domain);
    										(yyval.t_domain)->constraints = (yyvsp[-1].t_con_goal);}
-#line 2118 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2118 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 280 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 280 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_domain)= new domain((yyvsp[0].t_structure_store)); }
-#line 2124 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2124 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 283 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 283 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.cp)=(yyvsp[-1].cp);}
-#line 2130 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2130 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 289 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 289 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {
 	// Stash in analysis object --- we need to refer to it during parse
 	//   but domain object is not created yet,
 	current_analysis->req |= (yyvsp[-1].t_pddl_req_flag);
 	(yyval.t_pddl_req_flag)=(yyvsp[-1].t_pddl_req_flag);
     }
-#line 2141 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2141 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 296 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 296 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {yyerrok; 
        log_error(E_FATAL,"Syntax error in requirements declaration.");
        (yyval.t_pddl_req_flag)= 0; }
-#line 2149 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2149 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 302 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 302 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_pddl_req_flag)= (yyvsp[-1].t_pddl_req_flag) | (yyvsp[0].t_pddl_req_flag); }
-#line 2155 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2155 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 303 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 303 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_pddl_req_flag)= 0; }
-#line 2161 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2161 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 309 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 309 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pred_decl_list)=(yyvsp[0].t_pred_decl_list); (yyval.t_pred_decl_list)->push_front((yyvsp[-1].t_pred_decl));}
-#line 2167 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2167 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 311 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 311 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {  (yyval.t_pred_decl_list)=new pred_decl_list;
            (yyval.t_pred_decl_list)->push_front((yyvsp[0].t_pred_decl)); }
-#line 2174 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2174 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 316 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 316 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pred_decl)= new pred_decl((yyvsp[-2].t_pred_symbol),(yyvsp[-1].t_var_symbol_list),current_analysis->var_tab_stack.pop());}
-#line 2180 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2180 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 318 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 318 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {yyerrok; 
         // hope someone makes this error someday
         log_error(E_FATAL,"Syntax error in predicate declaration.");
 	(yyval.t_pred_decl)= NULL; }
-#line 2189 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2189 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 326 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 326 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_pred_symbol)=current_analysis->pred_tab.symbol_put((yyvsp[0].cp));
            current_analysis->var_tab_stack.push(
            				current_analysis->buildPredTab());
            delete [] (yyvsp[0].cp); }
-#line 2198 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2198 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 333 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 333 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_pred_symbol)=current_analysis->pred_tab.symbol_ref("="); 
 	      requires(E_EQUALITY); }
-#line 2205 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2205 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 335 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 335 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_pred_symbol)=current_analysis->pred_tab.symbol_get((yyvsp[0].cp)); delete [] (yyvsp[0].cp); }
-#line 2211 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2211 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 343 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 343 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_pred_symbol)=current_analysis->pred_tab.symbol_get((yyvsp[0].cp)); delete [] (yyvsp[0].cp);}
-#line 2217 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2217 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 349 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 349 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_func_decl_list)=(yyvsp[-1].t_func_decl_list); (yyval.t_func_decl_list)->push_back((yyvsp[0].t_func_decl));}
-#line 2223 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2223 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 350 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 350 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_func_decl_list)=new func_decl_list; }
-#line 2229 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2229 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 355 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 355 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_func_decl)= new func_decl((yyvsp[-3].t_func_symbol),(yyvsp[-2].t_var_symbol_list),current_analysis->var_tab_stack.pop());}
-#line 2235 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2235 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 357 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 357 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {yyerrok; 
 	 log_error(E_FATAL,"Syntax error in functor declaration.");
 	 (yyval.t_func_decl)= NULL; }
-#line 2243 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2243 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 363 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 363 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_dummy) = NULL;}
-#line 2249 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2249 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 363 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 363 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_dummy)=NULL;}
-#line 2255 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2255 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 367 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 367 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_func_symbol)=current_analysis->func_tab.symbol_put((yyvsp[0].cp));
            current_analysis->var_tab_stack.push(
            		current_analysis->buildFuncTab()); 
            delete [] (yyvsp[0].cp); }
-#line 2264 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2264 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 380 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 380 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {  
       (yyval.t_var_symbol_list)= (yyvsp[-3].t_var_symbol_list);
       (yyval.t_var_symbol_list)->set_types((yyvsp[-1].t_type));           /* Set types for variables */
@@ -2273,11 +2273,11 @@ yyreduce:
       requires(E_TYPING);
       types_used = true;
    }
-#line 2277 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2277 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 389 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 389 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {  
       (yyval.t_var_symbol_list)= (yyvsp[-3].t_var_symbol_list);
       (yyval.t_var_symbol_list)->set_either_types((yyvsp[-1].t_type_list));    /* Set types for variables */
@@ -2286,31 +2286,31 @@ yyreduce:
       requires(E_TYPING);
       types_used = true;
    }
-#line 2290 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2290 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 398 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 398 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {
        (yyval.t_var_symbol_list)= (yyvsp[0].t_var_symbol_list);
    }
-#line 2298 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2298 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 410 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 410 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_var_symbol_list)=(yyvsp[0].t_var_symbol_list); (yyvsp[0].t_var_symbol_list)->push_front((yyvsp[-1].t_var_symbol)); }
-#line 2304 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2304 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 38:
-#line 411 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 411 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_var_symbol_list)= new var_symbol_list; }
-#line 2310 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2310 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 39:
-#line 418 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 418 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {  
       (yyval.t_const_symbol_list)= (yyvsp[-3].t_const_symbol_list);
       (yyvsp[-3].t_const_symbol_list)->set_types((yyvsp[-1].t_type));           /* Set types for constants */
@@ -2319,11 +2319,11 @@ yyreduce:
       requires(E_TYPING);
       types_used = true;
    }
-#line 2323 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2323 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 40:
-#line 427 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 427 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {  
       (yyval.t_const_symbol_list)= (yyvsp[-3].t_const_symbol_list);
       (yyvsp[-3].t_const_symbol_list)->set_either_types((yyvsp[-1].t_type_list));
@@ -2332,52 +2332,52 @@ yyreduce:
       requires(E_TYPING);
       types_used = true;
    }
-#line 2336 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2336 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 41:
-#line 436 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 436 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_const_symbol_list)= (yyvsp[0].t_const_symbol_list);}
-#line 2342 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2342 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 42:
-#line 441 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 441 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_const_symbol_list)=(yyvsp[0].t_const_symbol_list); (yyvsp[0].t_const_symbol_list)->push_front((yyvsp[-1].t_const_symbol));}
-#line 2348 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2348 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 43:
-#line 442 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 442 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_const_symbol_list)=new const_symbol_list;}
-#line 2354 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2354 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 44:
-#line 446 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 446 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_const_symbol_list)=(yyvsp[0].t_const_symbol_list); (yyvsp[0].t_const_symbol_list)->push_front((yyvsp[-1].t_const_symbol));}
-#line 2360 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2360 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 45:
-#line 447 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 447 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_const_symbol_list)=new const_symbol_list;}
-#line 2366 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2366 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 46:
-#line 456 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 456 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {  
        (yyval.t_type_list)= (yyvsp[-3].t_type_list);
        (yyval.t_type_list)->set_types((yyvsp[-1].t_type));           /* Set types for constants */
        (yyval.t_type_list)->splice((yyval.t_type_list)->end(),*(yyvsp[0].t_type_list)); /* Join lists */ 
        delete (yyvsp[0].t_type_list);                   /* Delete (now empty) list */
    }
-#line 2377 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2377 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 47:
-#line 463 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 463 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {  
    // This parse needs to be excluded, we think (DPL&MF: 6/9/01)
        (yyval.t_type_list)= (yyvsp[-3].t_type_list);
@@ -2385,101 +2385,101 @@ yyreduce:
        (yyval.t_type_list)->splice((yyvsp[-3].t_type_list)->end(),*(yyvsp[0].t_type_list));
        delete (yyvsp[0].t_type_list);
    }
-#line 2389 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2389 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 48:
-#line 472 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 472 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_type_list)= (yyvsp[0].t_type_list); }
-#line 2395 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2395 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 49:
-#line 478 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 478 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_parameter_symbol_list)=(yyvsp[-1].t_parameter_symbol_list); (yyval.t_parameter_symbol_list)->push_back((yyvsp[0].t_const_symbol)); }
-#line 2401 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2401 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 50:
-#line 480 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 480 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_parameter_symbol_list)=(yyvsp[-2].t_parameter_symbol_list); (yyval.t_parameter_symbol_list)->push_back((yyvsp[0].t_var_symbol)); }
-#line 2407 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2407 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 51:
-#line 481 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 481 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_parameter_symbol_list)= new parameter_symbol_list;}
-#line 2413 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2413 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 52:
-#line 488 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 488 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_var_symbol)= current_analysis->var_tab_stack.top()->symbol_put((yyvsp[0].cp)); delete [] (yyvsp[0].cp); }
-#line 2419 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2419 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 53:
-#line 494 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 494 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_var_symbol)= current_analysis->var_tab_stack.symbol_get((yyvsp[0].cp)); delete [] (yyvsp[0].cp); }
-#line 2425 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2425 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 54:
-#line 498 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 498 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_const_symbol)= current_analysis->const_tab.symbol_get((yyvsp[0].cp)); delete [] (yyvsp[0].cp); }
-#line 2431 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2431 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 55:
-#line 502 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 502 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_const_symbol)= current_analysis->const_tab.symbol_put((yyvsp[0].cp)); delete [] (yyvsp[0].cp);}
-#line 2437 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2437 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 56:
-#line 507 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 507 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_type_list)= (yyvsp[-1].t_type_list); }
-#line 2443 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2443 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 57:
-#line 512 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 512 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_type)= current_analysis->pddl_type_tab.symbol_ref((yyvsp[0].cp)); delete [] (yyvsp[0].cp);}
-#line 2449 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2449 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 58:
-#line 519 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 519 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_type)= current_analysis->pddl_type_tab.symbol_ref((yyvsp[0].cp)); delete [] (yyvsp[0].cp);}
-#line 2455 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2455 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 59:
-#line 524 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 524 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_type_list)= (yyvsp[-1].t_type_list); (yyval.t_type_list)->push_back((yyvsp[0].t_type));}
-#line 2461 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2461 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 60:
-#line 525 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 525 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_type_list)= new pddl_type_list;}
-#line 2467 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2467 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 61:
-#line 530 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 530 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_type_list)= (yyvsp[-1].t_type_list); (yyval.t_type_list)->push_back((yyvsp[0].t_type));}
-#line 2473 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2473 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 62:
-#line 531 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 531 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_type_list)= new pddl_type_list;}
-#line 2479 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2479 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 63:
-#line 536 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 536 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)=(yyvsp[-5].t_effect_lists);
 	  (yyval.t_effect_lists)->assign_effects.push_back(new assignment((yyvsp[-2].t_func_term),E_ASSIGN,(yyvsp[-1].t_num_expression)));  
           if((yyvsp[-2].t_func_term)->getFunction()->getName()=="total-cost")
@@ -2492,1244 +2492,1244 @@ yyreduce:
           	requires(E_NFLUENTS); 
           }
 	}
-#line 2496 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2496 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 64:
-#line 549 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 549 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)=(yyvsp[-1].t_effect_lists); (yyval.t_effect_lists)->add_effects.push_back((yyvsp[0].t_simple_effect)); }
-#line 2502 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2502 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 65:
-#line 551 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 551 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)=(yyvsp[-1].t_effect_lists); (yyval.t_effect_lists)->del_effects.push_back((yyvsp[0].t_simple_effect)); }
-#line 2508 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2508 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 66:
-#line 553 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 553 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)=(yyvsp[-1].t_effect_lists); (yyval.t_effect_lists)->timed_effects.push_back((yyvsp[0].t_timed_effect)); }
-#line 2514 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2514 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 67:
-#line 555 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 555 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)= new effect_lists;}
-#line 2520 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2520 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 68:
-#line 560 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 560 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { requires(E_TIMED_INITIAL_LITERALS); 
    		(yyval.t_timed_effect)=new timed_initial_literal((yyvsp[-1].t_effect_lists),(yyvsp[-2].fval));}
-#line 2527 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2527 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 69:
-#line 565 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 565 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)=(yyvsp[0].t_effect_lists); (yyval.t_effect_lists)->append_effects((yyvsp[-1].t_effect_lists)); delete (yyvsp[-1].t_effect_lists);}
-#line 2533 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2533 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 70:
-#line 566 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 566 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)=(yyvsp[0].t_effect_lists); (yyval.t_effect_lists)->cond_effects.push_front((yyvsp[-1].t_cond_effect)); 
                                       requires(E_COND_EFFS);}
-#line 2540 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2540 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 71:
-#line 568 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 568 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)=(yyvsp[0].t_effect_lists); (yyval.t_effect_lists)->forall_effects.push_front((yyvsp[-1].t_forall_effect));
                                       requires(E_COND_EFFS);}
-#line 2547 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2547 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 72:
-#line 570 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 570 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)=new effect_lists(); }
-#line 2553 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2553 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 73:
-#line 579 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 579 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)= (yyvsp[0].t_effect_lists);}
-#line 2559 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2559 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 74:
-#line 580 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 580 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)=new effect_lists; (yyval.t_effect_lists)->add_effects.push_front((yyvsp[0].t_simple_effect));}
-#line 2565 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2565 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 75:
-#line 581 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 581 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)=new effect_lists; (yyval.t_effect_lists)->del_effects.push_front((yyvsp[0].t_simple_effect));}
-#line 2571 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2571 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 76:
-#line 582 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 582 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)=new effect_lists; (yyval.t_effect_lists)->cond_effects.push_front((yyvsp[0].t_cond_effect));}
-#line 2577 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2577 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 77:
-#line 583 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 583 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)=new effect_lists; (yyval.t_effect_lists)->forall_effects.push_front((yyvsp[0].t_forall_effect));}
-#line 2583 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2583 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 78:
-#line 587 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 587 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)= (yyvsp[-1].t_effect_lists);}
-#line 2589 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2589 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 79:
-#line 588 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 588 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)= (yyvsp[0].t_effect_lists);}
-#line 2595 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2595 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 80:
-#line 593 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 593 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)=new effect_lists; (yyval.t_effect_lists)->del_effects.push_front((yyvsp[0].t_simple_effect));}
-#line 2601 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2601 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 81:
-#line 595 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 595 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)=new effect_lists; (yyval.t_effect_lists)->add_effects.push_front((yyvsp[0].t_simple_effect));}
-#line 2607 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2607 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 82:
-#line 597 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 597 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)=new effect_lists; (yyval.t_effect_lists)->assign_effects.push_front((yyvsp[0].t_assignment));
          requires(E_NFLUENTS);}
-#line 2614 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2614 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 83:
-#line 603 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 603 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)= (yyvsp[-1].t_effect_lists); (yyval.t_effect_lists)->del_effects.push_back((yyvsp[0].t_simple_effect));}
-#line 2620 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2620 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 84:
-#line 604 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 604 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)= (yyvsp[-1].t_effect_lists); (yyval.t_effect_lists)->add_effects.push_back((yyvsp[0].t_simple_effect));}
-#line 2626 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2626 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 85:
-#line 605 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 605 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)= (yyvsp[-1].t_effect_lists); (yyval.t_effect_lists)->assign_effects.push_back((yyvsp[0].t_assignment));
                                      requires(E_NFLUENTS); }
-#line 2633 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2633 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 86:
-#line 607 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 607 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)= new effect_lists; }
-#line 2639 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2639 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 87:
-#line 612 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 612 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)=(yyvsp[-1].t_effect_lists); }
-#line 2645 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2645 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 88:
-#line 614 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 614 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {yyerrok; (yyval.t_effect_lists)=NULL;
 	 log_error(E_FATAL,"Syntax error in (and ...)");
 	}
-#line 2653 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2653 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 89:
-#line 622 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 622 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)=(yyvsp[-1].t_effect_lists); }
-#line 2659 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2659 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 90:
-#line 627 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 627 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)= new effect_lists; 
           (yyval.t_effect_lists)->forall_effects.push_back(
 	       new forall_effect((yyvsp[-1].t_effect_lists), (yyvsp[-3].t_var_symbol_list), current_analysis->var_tab_stack.pop())); 
           requires(E_COND_EFFS);}
-#line 2668 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2668 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 91:
-#line 632 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 632 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)= new effect_lists;
 	  (yyval.t_effect_lists)->cond_effects.push_back(
 	       new cond_effect((yyvsp[-2].t_goal),(yyvsp[-1].t_effect_lists)));
           requires(E_COND_EFFS); }
-#line 2677 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2677 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 92:
-#line 637 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 637 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)= new effect_lists;
 	  (yyval.t_effect_lists)->cond_assign_effects.push_back(
 	       new cond_effect((yyvsp[-2].t_goal),(yyvsp[-1].t_effect_lists)));
           requires(E_COND_EFFS); }
-#line 2686 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2686 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 93:
-#line 642 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 642 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)=new effect_lists;
           (yyval.t_effect_lists)->timed_effects.push_back((yyvsp[0].t_timed_effect)); }
-#line 2693 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2693 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 94:
-#line 645 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 645 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)= new effect_lists;
 	  (yyval.t_effect_lists)->assign_effects.push_front((yyvsp[0].t_assignment));
           requires(E_NFLUENTS); }
-#line 2701 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2701 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 95:
-#line 651 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 651 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)=(yyvsp[-1].t_effect_lists); (yyvsp[-1].t_effect_lists)->append_effects((yyvsp[0].t_effect_lists)); delete (yyvsp[0].t_effect_lists); }
-#line 2707 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2707 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 96:
-#line 652 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 652 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)= new effect_lists; }
-#line 2713 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2713 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 97:
-#line 657 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 657 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_timed_effect)=new timed_effect((yyvsp[-1].t_effect_lists),E_AT_START);}
-#line 2719 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2719 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 98:
-#line 659 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 659 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_timed_effect)=new timed_effect((yyvsp[-1].t_effect_lists),E_AT_END);}
-#line 2725 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2725 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 99:
-#line 661 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 661 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_timed_effect)=new timed_effect(new effect_lists,E_CONTINUOUS);
          (yyval.t_timed_effect)->effs->assign_effects.push_front(
 	     new assignment((yyvsp[-2].t_func_term),E_INCREASE,(yyvsp[-1].t_expression))); }
-#line 2733 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2733 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 100:
-#line 665 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 665 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_timed_effect)=new timed_effect(new effect_lists,E_CONTINUOUS);
          (yyval.t_timed_effect)->effs->assign_effects.push_front(
 	     new assignment((yyvsp[-2].t_func_term),E_DECREASE,(yyvsp[-1].t_expression))); }
-#line 2741 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2741 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 101:
-#line 669 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 669 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {yyerrok; (yyval.t_timed_effect)=NULL;
 	log_error(E_FATAL,"Syntax error in timed effect"); }
-#line 2748 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2748 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 102:
-#line 675 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 675 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_timed_effect)=new timed_effect(new effect_lists,E_CONTINUOUS);
          (yyval.t_timed_effect)->effs->assign_effects.push_front(
 	     new assignment((yyvsp[-2].t_func_term),E_INCREASE,(yyvsp[-1].t_expression))); }
-#line 2756 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2756 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 103:
-#line 679 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 679 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_timed_effect)=new timed_effect(new effect_lists,E_CONTINUOUS);
          (yyval.t_timed_effect)->effs->assign_effects.push_front(
 	     new assignment((yyvsp[-2].t_func_term),E_DECREASE,(yyvsp[-1].t_expression))); }
-#line 2764 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2764 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 104:
-#line 683 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 683 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {yyerrok; (yyval.t_timed_effect)=NULL;
 	log_error(E_FATAL,"Syntax error in conditional continuous effect"); }
-#line 2771 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2771 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 105:
-#line 689 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 689 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)=(yyvsp[-1].t_effect_lists); }
-#line 2777 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2777 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 106:
-#line 694 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 694 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)= new effect_lists; 
           (yyval.t_effect_lists)->forall_effects.push_back(
 	       new forall_effect((yyvsp[-1].t_effect_lists), (yyvsp[-3].t_var_symbol_list), current_analysis->var_tab_stack.pop())); 
           requires(E_COND_EFFS);}
-#line 2786 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2786 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 107:
-#line 699 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 699 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)= new effect_lists;
 	  (yyval.t_effect_lists)->cond_assign_effects.push_back(
 	       new cond_effect((yyvsp[-2].t_goal),(yyvsp[-1].t_effect_lists)));
           requires(E_COND_EFFS); }
-#line 2795 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2795 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 108:
-#line 704 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 704 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)=new effect_lists;
           (yyval.t_effect_lists)->timed_effects.push_back((yyvsp[0].t_timed_effect)); }
-#line 2802 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2802 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 109:
-#line 709 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 709 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)=(yyvsp[-1].t_effect_lists); (yyvsp[-1].t_effect_lists)->append_effects((yyvsp[0].t_effect_lists)); delete (yyvsp[0].t_effect_lists); }
-#line 2808 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2808 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 110:
-#line 710 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 710 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)= new effect_lists; }
-#line 2814 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2814 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 111:
-#line 714 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 714 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)= (yyvsp[-1].t_effect_lists);}
-#line 2820 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2820 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 112:
-#line 715 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 715 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)= (yyvsp[0].t_effect_lists);}
-#line 2826 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2826 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 113:
-#line 720 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 720 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)=new effect_lists; (yyval.t_effect_lists)->del_effects.push_front((yyvsp[0].t_simple_effect));}
-#line 2832 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2832 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 114:
-#line 722 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 722 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)=new effect_lists; (yyval.t_effect_lists)->add_effects.push_front((yyvsp[0].t_simple_effect));}
-#line 2838 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2838 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 115:
-#line 724 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 724 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)=new effect_lists; (yyval.t_effect_lists)->assign_effects.push_front((yyvsp[0].t_assignment));
          requires(E_NFLUENTS);}
-#line 2845 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2845 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 116:
-#line 730 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 730 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)= (yyvsp[-1].t_effect_lists); (yyval.t_effect_lists)->del_effects.push_back((yyvsp[0].t_simple_effect));}
-#line 2851 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2851 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 117:
-#line 731 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 731 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)= (yyvsp[-1].t_effect_lists); (yyval.t_effect_lists)->add_effects.push_back((yyvsp[0].t_simple_effect));}
-#line 2857 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2857 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 118:
-#line 732 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 732 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)= (yyvsp[-1].t_effect_lists); (yyval.t_effect_lists)->assign_effects.push_back((yyvsp[0].t_assignment));
                                      requires(E_NFLUENTS); }
-#line 2864 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2864 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 119:
-#line 734 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 734 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)= new effect_lists; }
-#line 2870 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2870 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 120:
-#line 740 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 740 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_assignment)= new assignment((yyvsp[-2].t_func_term),E_ASSIGN,(yyvsp[-1].t_expression)); }
-#line 2876 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2876 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 121:
-#line 742 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 742 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_assignment)= new assignment((yyvsp[-2].t_func_term),E_INCREASE,(yyvsp[-1].t_expression)); }
-#line 2882 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2882 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 122:
-#line 744 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 744 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_assignment)= new assignment((yyvsp[-2].t_func_term),E_DECREASE,(yyvsp[-1].t_expression)); }
-#line 2888 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2888 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 123:
-#line 746 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 746 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_assignment)= new assignment((yyvsp[-2].t_func_term),E_SCALE_UP,(yyvsp[-1].t_expression)); }
-#line 2894 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2894 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 124:
-#line 748 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 748 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_assignment)= new assignment((yyvsp[-2].t_func_term),E_SCALE_DOWN,(yyvsp[-1].t_expression)); }
-#line 2900 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2900 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 125:
-#line 753 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 753 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)=new effect_lists; 
          timed_effect * te = new timed_effect(new effect_lists,E_CONTINUOUS);
          (yyval.t_effect_lists)->timed_effects.push_front(te);
          te->effs->assign_effects.push_front(
 	     new assignment((yyvsp[-2].t_func_term),E_INCREASE,(yyvsp[-1].t_expression))); }
-#line 2910 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2910 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 126:
-#line 759 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 759 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)=new effect_lists; 
          timed_effect * te = new timed_effect(new effect_lists,E_CONTINUOUS);
          (yyval.t_effect_lists)->timed_effects.push_front(te);
          te->effs->assign_effects.push_front(
 	     new assignment((yyvsp[-2].t_func_term),E_DECREASE,(yyvsp[-1].t_expression))); }
-#line 2920 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2920 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 127:
-#line 765 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 765 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists) = (yyvsp[-1].t_effect_lists);}
-#line 2926 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2926 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 128:
-#line 769 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 769 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)=(yyvsp[-1].t_effect_lists); (yyvsp[-1].t_effect_lists)->append_effects((yyvsp[0].t_effect_lists)); delete (yyvsp[0].t_effect_lists); }
-#line 2932 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2932 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 129:
-#line 770 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 770 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_effect_lists)= new effect_lists; }
-#line 2938 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2938 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 130:
-#line 774 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 774 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_expression)= (yyvsp[0].t_expression);}
-#line 2944 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2944 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 131:
-#line 775 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 775 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_expression)= new special_val_expr(E_DURATION_VAR);
                     requires( E_DURATION_INEQUALITIES );}
-#line 2951 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2951 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 132:
-#line 777 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 777 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)=(yyvsp[0].t_num_expression); }
-#line 2957 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2957 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 133:
-#line 778 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 778 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= (yyvsp[0].t_func_term); }
-#line 2963 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2963 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 134:
-#line 783 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 783 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= new plus_expression((yyvsp[-2].t_expression),(yyvsp[-1].t_expression)); }
-#line 2969 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2969 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 135:
-#line 785 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 785 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= new minus_expression((yyvsp[-2].t_expression),(yyvsp[-1].t_expression)); }
-#line 2975 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2975 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 136:
-#line 787 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 787 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= new mul_expression((yyvsp[-2].t_expression),(yyvsp[-1].t_expression)); }
-#line 2981 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2981 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 137:
-#line 789 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 789 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= new div_expression((yyvsp[-2].t_expression),(yyvsp[-1].t_expression)); }
-#line 2987 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2987 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 138:
-#line 794 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 794 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_goal)= new conj_goal((yyvsp[-1].t_goal_list)); }
-#line 2993 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 2993 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 139:
-#line 796 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 796 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_goal)= new timed_goal(new comparison((yyvsp[-4].t_comparison_op),
         			new special_val_expr(E_DURATION_VAR),(yyvsp[-1].t_expression)),E_AT_START); }
-#line 3000 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3000 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 140:
-#line 799 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 799 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_goal) = new timed_goal(new comparison((yyvsp[-5].t_comparison_op),
 					new special_val_expr(E_DURATION_VAR),(yyvsp[-2].t_expression)),E_AT_START);}
-#line 3007 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3007 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 141:
-#line 802 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 802 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_goal) = new timed_goal(new comparison((yyvsp[-5].t_comparison_op),
 					new special_val_expr(E_DURATION_VAR),(yyvsp[-2].t_expression)),E_AT_END);}
-#line 3014 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3014 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 142:
-#line 807 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 807 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_comparison_op)= E_LESSEQ; requires(E_DURATION_INEQUALITIES);}
-#line 3020 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3020 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 143:
-#line 808 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 808 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_comparison_op)= E_GREATEQ; requires(E_DURATION_INEQUALITIES);}
-#line 3026 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3026 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 144:
-#line 809 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 809 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_comparison_op)= E_EQUALS; }
-#line 3032 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3032 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 145:
-#line 817 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 817 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_expression)= (yyvsp[0].t_expression); }
-#line 3038 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3038 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 146:
-#line 822 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 822 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_goal_list)=(yyvsp[-1].t_goal_list); (yyval.t_goal_list)->push_back((yyvsp[0].t_goal)); }
-#line 3044 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3044 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 147:
-#line 824 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 824 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_goal_list)= new goal_list; }
-#line 3050 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3050 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 148:
-#line 829 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 829 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_simple_effect)= new simple_effect((yyvsp[-1].t_proposition)); }
-#line 3056 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3056 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 149:
-#line 834 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 834 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_simple_effect)= new simple_effect((yyvsp[0].t_proposition)); }
-#line 3062 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3062 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 150:
-#line 841 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 841 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_simple_effect)= new simple_effect((yyvsp[-1].t_proposition)); }
-#line 3068 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3068 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 151:
-#line 846 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 846 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_simple_effect)= new simple_effect((yyvsp[0].t_proposition)); }
-#line 3074 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3074 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 152:
-#line 851 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 851 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_forall_effect)= new forall_effect((yyvsp[-1].t_effect_lists), (yyvsp[-3].t_var_symbol_list), current_analysis->var_tab_stack.pop());}
-#line 3080 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3080 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 153:
-#line 856 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 856 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_cond_effect)= new cond_effect((yyvsp[-2].t_goal),(yyvsp[-1].t_effect_lists)); }
-#line 3086 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3086 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 154:
-#line 861 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 861 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_assignment)= new assignment((yyvsp[-2].t_func_term),E_ASSIGN,(yyvsp[-1].t_expression)); }
-#line 3092 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3092 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 155:
-#line 863 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 863 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_assignment)= new assignment((yyvsp[-2].t_func_term),E_INCREASE,(yyvsp[-1].t_expression)); }
-#line 3098 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3098 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 156:
-#line 865 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 865 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_assignment)= new assignment((yyvsp[-2].t_func_term),E_DECREASE,(yyvsp[-1].t_expression)); }
-#line 3104 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3104 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 157:
-#line 867 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 867 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_assignment)= new assignment((yyvsp[-2].t_func_term),E_SCALE_UP,(yyvsp[-1].t_expression)); }
-#line 3110 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3110 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 158:
-#line 869 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 869 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_assignment)= new assignment((yyvsp[-2].t_func_term),E_SCALE_DOWN,(yyvsp[-1].t_expression)); }
-#line 3116 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3116 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 159:
-#line 874 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 874 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= new uminus_expression((yyvsp[-1].t_expression)); requires(E_NFLUENTS); }
-#line 3122 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3122 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 160:
-#line 876 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 876 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= new plus_expression((yyvsp[-2].t_expression),(yyvsp[-1].t_expression)); requires(E_NFLUENTS); }
-#line 3128 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3128 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 161:
-#line 878 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 878 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= new minus_expression((yyvsp[-2].t_expression),(yyvsp[-1].t_expression)); requires(E_NFLUENTS); }
-#line 3134 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3134 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 162:
-#line 880 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 880 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= new mul_expression((yyvsp[-2].t_expression),(yyvsp[-1].t_expression)); requires(E_NFLUENTS); }
-#line 3140 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3140 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 163:
-#line 882 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 882 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= new div_expression((yyvsp[-2].t_expression),(yyvsp[-1].t_expression)); requires(E_NFLUENTS); }
-#line 3146 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3146 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 164:
-#line 883 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 883 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)=(yyvsp[0].t_num_expression); }
-#line 3152 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3152 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 165:
-#line 884 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 884 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= (yyvsp[0].t_func_term); requires(E_NFLUENTS); }
-#line 3158 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3158 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 166:
-#line 889 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 889 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= new mul_expression(new special_val_expr(E_HASHT),(yyvsp[-1].t_expression)); }
-#line 3164 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3164 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 167:
-#line 891 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 891 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= new mul_expression((yyvsp[-2].t_expression), new special_val_expr(E_HASHT)); }
-#line 3170 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3170 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 168:
-#line 893 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 893 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= new special_val_expr(E_HASHT); }
-#line 3176 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3176 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 169:
-#line 898 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 898 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_num_expression)=new int_expression((yyvsp[0].ival));   }
-#line 3182 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3182 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 170:
-#line 899 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 899 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_num_expression)=new float_expression((yyvsp[0].fval)); }
-#line 3188 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3188 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 171:
-#line 903 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 903 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_func_term)=new func_term( current_analysis->func_tab.symbol_get((yyvsp[-2].cp)), (yyvsp[-1].t_parameter_symbol_list)); delete [] (yyvsp[-2].cp); }
-#line 3194 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3194 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 172:
-#line 906 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 906 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_func_term)=new func_term( current_analysis->func_tab.symbol_get((yyvsp[-2].cp)), (yyvsp[-1].t_parameter_symbol_list)); delete [] (yyvsp[-2].cp); }
-#line 3200 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3200 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 173:
-#line 908 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 908 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_func_term)=new func_term( current_analysis->func_tab.symbol_get((yyvsp[0].cp)),
                             new parameter_symbol_list); delete [] (yyvsp[0].cp);}
-#line 3207 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3207 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 174:
-#line 926 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 926 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_func_term)=new func_term( current_analysis->func_tab.symbol_get((yyvsp[-2].cp)), (yyvsp[-1].t_parameter_symbol_list)); delete [] (yyvsp[-2].cp); }
-#line 3213 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3213 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 175:
-#line 928 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 928 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_func_term)=new func_term( current_analysis->func_tab.symbol_get((yyvsp[-2].cp)), (yyvsp[-1].t_parameter_symbol_list)); delete [] (yyvsp[-2].cp); }
-#line 3219 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3219 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 176:
-#line 930 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 930 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_func_term)=new func_term( current_analysis->func_tab.symbol_get((yyvsp[0].cp)),
                             new parameter_symbol_list); delete [] (yyvsp[0].cp);}
-#line 3226 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3226 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 177:
-#line 935 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 935 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_comparison_op)= E_GREATER; }
-#line 3232 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3232 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 178:
-#line 936 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 936 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_comparison_op)= E_GREATEQ; }
-#line 3238 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3238 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 179:
-#line 937 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 937 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_comparison_op)= E_LESS; }
-#line 3244 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3244 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 180:
-#line 938 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 938 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_comparison_op)= E_LESSEQ; }
-#line 3250 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3250 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 181:
-#line 939 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 939 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_comparison_op)= E_EQUALS; }
-#line 3256 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3256 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 182:
-#line 952 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 952 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal)= (yyvsp[0].t_goal);}
-#line 3262 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3262 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 183:
-#line 959 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 959 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal) = new conj_goal((yyvsp[-1].t_goal_list));}
-#line 3268 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3268 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 184:
-#line 962 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 962 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal)= new qfied_goal(E_FORALL,(yyvsp[-3].t_var_symbol_list),(yyvsp[-1].t_goal),current_analysis->var_tab_stack.pop());
         requires(E_UNIV_PRECS);}
-#line 3275 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3275 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 185:
-#line 964 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 964 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal) = new conj_goal(new goal_list);}
-#line 3281 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3281 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 186:
-#line 965 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 965 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal) = new conj_goal(new goal_list);}
-#line 3287 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3287 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 187:
-#line 970 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 970 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = new preference((yyvsp[-1].t_con_goal));requires(E_PREFERENCES);}
-#line 3293 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3293 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 188:
-#line 972 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 972 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = new preference((yyvsp[-2].cp),(yyvsp[-1].t_con_goal));requires(E_PREFERENCES);}
-#line 3299 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3299 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 189:
-#line 974 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 974 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = new conj_goal((yyvsp[-1].t_goal_list));}
-#line 3305 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3305 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 190:
-#line 977 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 977 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal)= new qfied_goal(E_FORALL,(yyvsp[-3].t_var_symbol_list),(yyvsp[-1].t_con_goal),current_analysis->var_tab_stack.pop());
                 requires(E_UNIV_PRECS);}
-#line 3312 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3312 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 191:
-#line 980 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 980 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = (yyvsp[0].t_con_goal);}
-#line 3318 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3318 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 192:
-#line 985 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 985 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = new preference((yyvsp[-1].t_con_goal));requires(E_PREFERENCES);}
-#line 3324 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3324 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 193:
-#line 987 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 987 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = new preference((yyvsp[-2].cp),(yyvsp[-1].t_con_goal));requires(E_PREFERENCES);}
-#line 3330 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3330 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 194:
-#line 989 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 989 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = new conj_goal((yyvsp[-1].t_goal_list));}
-#line 3336 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3336 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 195:
-#line 992 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 992 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal)= new qfied_goal(E_FORALL,(yyvsp[-3].t_var_symbol_list),(yyvsp[-1].t_con_goal),current_analysis->var_tab_stack.pop());
                 requires(E_UNIV_PRECS);}
-#line 3343 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3343 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 196:
-#line 998 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 998 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal_list)=(yyvsp[-1].t_goal_list); (yyvsp[-1].t_goal_list)->push_back((yyvsp[0].t_con_goal));}
-#line 3349 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3349 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 197:
-#line 1000 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1000 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal_list)= new goal_list; (yyval.t_goal_list)->push_back((yyvsp[0].t_con_goal));}
-#line 3355 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3355 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 198:
-#line 1005 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1005 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal)= new preference((yyvsp[-1].t_goal)); requires(E_PREFERENCES);}
-#line 3361 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3361 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 199:
-#line 1007 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1007 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal)= new preference((yyvsp[-2].cp),(yyvsp[-1].t_goal)); requires(E_PREFERENCES);}
-#line 3367 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3367 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 200:
-#line 1011 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1011 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal)=(yyvsp[0].t_goal);}
-#line 3373 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3373 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 201:
-#line 1016 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1016 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal_list) = (yyvsp[-1].t_goal_list); (yyval.t_goal_list)->push_back((yyvsp[0].t_con_goal));}
-#line 3379 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3379 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 202:
-#line 1018 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1018 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal_list) = new goal_list; (yyval.t_goal_list)->push_back((yyvsp[0].t_con_goal));}
-#line 3385 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3385 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 203:
-#line 1023 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1023 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal)= new conj_goal((yyvsp[-1].t_goal_list));}
-#line 3391 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3391 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 204:
-#line 1025 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1025 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = new qfied_goal(E_FORALL,(yyvsp[-3].t_var_symbol_list),(yyvsp[-1].t_con_goal),current_analysis->var_tab_stack.pop());
         requires(E_UNIV_PRECS);}
-#line 3398 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3398 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 205:
-#line 1028 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1028 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = new constraint_goal(E_ATEND,(yyvsp[-1].t_goal));}
-#line 3404 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3404 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 206:
-#line 1030 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1030 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = new constraint_goal(E_ALWAYS,(yyvsp[-1].t_goal));}
-#line 3410 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3410 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 207:
-#line 1032 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1032 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = new constraint_goal(E_SOMETIME,(yyvsp[-1].t_goal));}
-#line 3416 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3416 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 208:
-#line 1034 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1034 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = new constraint_goal(E_WITHIN,(yyvsp[-1].t_goal),NULL,(yyvsp[-2].t_num_expression)->double_value(),0.0);delete (yyvsp[-2].t_num_expression);}
-#line 3422 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3422 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 209:
-#line 1036 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1036 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = new constraint_goal(E_ATMOSTONCE,(yyvsp[-1].t_goal));}
-#line 3428 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3428 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 210:
-#line 1038 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1038 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = new constraint_goal(E_SOMETIMEAFTER,(yyvsp[-1].t_goal),(yyvsp[-2].t_goal));}
-#line 3434 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3434 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 211:
-#line 1040 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1040 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = new constraint_goal(E_SOMETIMEBEFORE,(yyvsp[-1].t_goal),(yyvsp[-2].t_goal));}
-#line 3440 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3440 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 212:
-#line 1042 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1042 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = new constraint_goal(E_ALWAYSWITHIN,(yyvsp[-1].t_goal),(yyvsp[-2].t_goal),(yyvsp[-3].t_num_expression)->double_value(),0.0);delete (yyvsp[-3].t_num_expression);}
-#line 3446 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3446 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 213:
-#line 1044 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1044 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = new constraint_goal(E_HOLDDURING,(yyvsp[-1].t_goal),NULL,(yyvsp[-2].t_num_expression)->double_value(),(yyvsp[-3].t_num_expression)->double_value());delete (yyvsp[-3].t_num_expression);delete (yyvsp[-2].t_num_expression);}
-#line 3452 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3452 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 214:
-#line 1046 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1046 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = new constraint_goal(E_HOLDAFTER,(yyvsp[-1].t_goal),NULL,0.0,(yyvsp[-2].t_num_expression)->double_value());delete (yyvsp[-2].t_num_expression);}
-#line 3458 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3458 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 215:
-#line 1051 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1051 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal)= new simple_goal((yyvsp[0].t_proposition),E_POS);}
-#line 3464 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3464 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 216:
-#line 1053 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1053 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal)= new neg_goal((yyvsp[-1].t_goal));simple_goal * s = dynamic_cast<simple_goal *>((yyvsp[-1].t_goal));
        if(s && s->getProp()->head->getName()=="=") {requires(E_EQUALITY);} 
        else{requires(E_NEGATIVE_PRECONDITIONS);};}
-#line 3472 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3472 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 217:
-#line 1057 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1057 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal)= new conj_goal((yyvsp[-1].t_goal_list));}
-#line 3478 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3478 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 218:
-#line 1059 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1059 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal)= new disj_goal((yyvsp[-1].t_goal_list));
         requires(E_DISJUNCTIVE_PRECONDS);}
-#line 3485 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3485 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 219:
-#line 1062 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1062 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal)= new imply_goal((yyvsp[-2].t_goal),(yyvsp[-1].t_goal));
         requires(E_DISJUNCTIVE_PRECONDS);}
-#line 3492 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3492 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 220:
-#line 1066 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1066 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal)= new qfied_goal((yyvsp[-5].t_quantifier),(yyvsp[-3].t_var_symbol_list),(yyvsp[-1].t_goal),current_analysis->var_tab_stack.pop());}
-#line 3498 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3498 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 221:
-#line 1069 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1069 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal)= new qfied_goal((yyvsp[-5].t_quantifier),(yyvsp[-3].t_var_symbol_list),(yyvsp[-1].t_goal),current_analysis->var_tab_stack.pop());}
-#line 3504 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3504 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 222:
-#line 1071 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1071 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal)= new comparison((yyvsp[-3].t_comparison_op),(yyvsp[-2].t_expression),(yyvsp[-1].t_expression)); 
         requires(E_NFLUENTS);}
-#line 3511 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3511 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 223:
-#line 1077 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1077 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal_list)=(yyvsp[-1].t_goal_list); (yyvsp[-1].t_goal_list)->push_back((yyvsp[0].t_goal));}
-#line 3517 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3517 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 224:
-#line 1079 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1079 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal_list)= new goal_list; (yyval.t_goal_list)->push_back((yyvsp[0].t_goal));}
-#line 3523 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3523 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 225:
-#line 1084 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1084 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal_list)=(yyvsp[-1].t_goal_list); (yyvsp[-1].t_goal_list)->push_back((yyvsp[0].t_goal));}
-#line 3529 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3529 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 226:
-#line 1086 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1086 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal_list)= new goal_list; (yyval.t_goal_list)->push_back((yyvsp[0].t_goal));}
-#line 3535 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3535 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 227:
-#line 1096 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1096 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_quantifier)=E_FORALL; 
         current_analysis->var_tab_stack.push(
         		current_analysis->buildForallTab());}
-#line 3543 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3543 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 228:
-#line 1103 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1103 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_quantifier)=E_EXISTS;
         current_analysis->var_tab_stack.push(
         	current_analysis->buildExistsTab());}
-#line 3551 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3551 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 229:
-#line 1110 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1110 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_proposition)=new proposition((yyvsp[-2].t_pred_symbol),(yyvsp[-1].t_parameter_symbol_list));}
-#line 3557 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3557 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 230:
-#line 1115 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1115 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_proposition) = new proposition((yyvsp[-2].t_pred_symbol),(yyvsp[-1].t_var_symbol_list));}
-#line 3563 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3563 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 231:
-#line 1120 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1120 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_proposition)=new proposition((yyvsp[-2].t_pred_symbol),(yyvsp[-1].t_parameter_symbol_list));}
-#line 3569 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3569 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 232:
-#line 1125 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1125 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pred_decl_list)= (yyvsp[-1].t_pred_decl_list);}
-#line 3575 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3575 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 233:
-#line 1127 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1127 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {yyerrok; (yyval.t_pred_decl_list)=NULL;
 	 log_error(E_FATAL,"Syntax error in (:predicates ...)");
 	}
-#line 3583 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3583 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 234:
-#line 1134 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1134 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_func_decl_list)= (yyvsp[-1].t_func_decl_list);}
-#line 3589 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3589 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 235:
-#line 1136 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1136 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {yyerrok; (yyval.t_func_decl_list)=NULL;
 	 log_error(E_FATAL,"Syntax error in (:functions ...)");
 	}
-#line 3597 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3597 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 236:
-#line 1143 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1143 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = (yyvsp[-1].t_con_goal);}
-#line 3603 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3603 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 237:
-#line 1145 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1145 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {yyerrok; (yyval.t_con_goal)=NULL;
       log_error(E_FATAL,"Syntax error in (:constraints ...)");
       }
-#line 3611 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3611 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 238:
-#line 1152 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1152 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_con_goal) = (yyvsp[-1].t_con_goal);}
-#line 3617 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3617 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 239:
-#line 1154 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1154 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {yyerrok; (yyval.t_con_goal)=NULL;
       log_error(E_FATAL,"Syntax error in (:constraints ...)");
       }
-#line 3625 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3625 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 240:
-#line 1160 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1160 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_structure_store)=(yyvsp[-1].t_structure_store); (yyval.t_structure_store)->push_back((yyvsp[0].t_structure_def)); }
-#line 3631 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3631 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 241:
-#line 1161 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1161 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_structure_store)= new structure_store; (yyval.t_structure_store)->push_back((yyvsp[0].t_structure_def)); }
-#line 3637 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3637 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 242:
-#line 1165 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1165 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_structure_def)= (yyvsp[0].t_action_def); }
-#line 3643 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3643 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 243:
-#line 1166 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1166 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_structure_def)= (yyvsp[0].t_event_def); requires(E_TIME); }
-#line 3649 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3649 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 244:
-#line 1167 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1167 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_structure_def)= (yyvsp[0].t_process_def); requires(E_TIME); }
-#line 3655 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3655 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 245:
-#line 1168 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1168 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_structure_def)= (yyvsp[0].t_durative_action_def); requires(E_DURATIVE_ACTIONS); }
-#line 3661 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3661 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 246:
-#line 1169 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1169 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_structure_def)= (yyvsp[0].t_derivation_rule); requires(E_DERIVED_PREDICATES);}
-#line 3667 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3667 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 247:
-#line 1173 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1173 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_dummy)= 0; 
     	current_analysis->var_tab_stack.push(
     					current_analysis->buildRuleTab());}
-#line 3675 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3675 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 248:
-#line 1184 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1184 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_derivation_rule) = new derivation_rule((yyvsp[-2].t_proposition),(yyvsp[-1].t_goal),current_analysis->var_tab_stack.pop());}
-#line 3681 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3681 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 249:
-#line 1196 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1196 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_action_def)= current_analysis->buildAction(current_analysis->op_tab.symbol_put((yyvsp[-9].cp)),
 			(yyvsp[-6].t_var_symbol_list),(yyvsp[-3].t_goal),(yyvsp[-1].t_effect_lists),
 			current_analysis->var_tab_stack.pop()); delete [] (yyvsp[-9].cp); }
-#line 3689 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3689 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 250:
-#line 1200 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1200 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {yyerrok; 
 	 log_error(E_FATAL,"Syntax error in action declaration.");
 	 (yyval.t_action_def)= NULL; }
-#line 3697 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3697 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 251:
-#line 1213 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1213 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_event_def)= current_analysis->buildEvent(current_analysis->op_tab.symbol_put((yyvsp[-9].cp)),
 		   (yyvsp[-6].t_var_symbol_list),(yyvsp[-3].t_goal),(yyvsp[-1].t_effect_lists),
 		   current_analysis->var_tab_stack.pop()); delete [] (yyvsp[-9].cp);}
-#line 3705 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3705 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 252:
-#line 1218 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1218 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {yyerrok; 
 	 log_error(E_FATAL,"Syntax error in event declaration.");
 	 (yyval.t_event_def)= NULL; }
-#line 3713 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3713 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 253:
-#line 1230 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1230 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_process_def)= current_analysis->buildProcess(current_analysis->op_tab.symbol_put((yyvsp[-9].cp)),
 		     (yyvsp[-6].t_var_symbol_list),(yyvsp[-3].t_goal),(yyvsp[-1].t_effect_lists),
                      current_analysis->var_tab_stack.pop()); delete [] (yyvsp[-9].cp);}
-#line 3721 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3721 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 254:
-#line 1234 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1234 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {yyerrok; 
 	 log_error(E_FATAL,"Syntax error in process declaration.");
 	 (yyval.t_process_def)= NULL; }
-#line 3729 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3729 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 255:
-#line 1246 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1246 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_durative_action_def)= (yyvsp[-1].t_durative_action_def);
       (yyval.t_durative_action_def)->name= current_analysis->op_tab.symbol_put((yyvsp[-8].cp));
       (yyval.t_durative_action_def)->symtab= current_analysis->var_tab_stack.pop();
@@ -3737,187 +3737,187 @@ yyreduce:
       (yyval.t_durative_action_def)->dur_constraint= (yyvsp[-2].t_goal); 
       delete [] (yyvsp[-8].cp);
     }
-#line 3741 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3741 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 256:
-#line 1255 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1255 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {yyerrok; 
 	 log_error(E_FATAL,"Syntax error in durative-action declaration.");
 	 (yyval.t_durative_action_def)= NULL; }
-#line 3749 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3749 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 257:
-#line 1262 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1262 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_durative_action_def)=(yyvsp[-2].t_durative_action_def); (yyval.t_durative_action_def)->effects=(yyvsp[0].t_effect_lists);}
-#line 3755 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3755 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 258:
-#line 1264 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1264 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_durative_action_def)=(yyvsp[-2].t_durative_action_def); (yyval.t_durative_action_def)->precondition=(yyvsp[0].t_goal);}
-#line 3761 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3761 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 259:
-#line 1265 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1265 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_durative_action_def)= current_analysis->buildDurativeAction();}
-#line 3767 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3767 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 260:
-#line 1270 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1270 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_goal)=(yyvsp[0].t_goal); }
-#line 3773 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3773 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 261:
-#line 1272 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1272 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_goal)= new conj_goal((yyvsp[-1].t_goal_list)); }
-#line 3779 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3779 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 262:
-#line 1277 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1277 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_goal_list)=(yyvsp[-1].t_goal_list); (yyval.t_goal_list)->push_back((yyvsp[0].t_goal)); }
-#line 3785 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3785 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 263:
-#line 1279 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1279 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_goal_list)= new goal_list; }
-#line 3791 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3791 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 264:
-#line 1284 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1284 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal)= new timed_goal((yyvsp[-1].t_goal),E_AT_START);}
-#line 3797 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3797 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 265:
-#line 1286 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1286 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal)= new timed_goal((yyvsp[-1].t_goal),E_AT_END);}
-#line 3803 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3803 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 266:
-#line 1288 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1288 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal)= new timed_goal((yyvsp[-1].t_goal),E_OVER_ALL);}
-#line 3809 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3809 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 267:
-#line 1290 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1290 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {timed_goal * tg = dynamic_cast<timed_goal *>((yyvsp[-1].t_goal));
 		(yyval.t_goal) = new timed_goal(new preference((yyvsp[-2].cp),tg->clearGoal()),tg->getTime());
 			delete tg;
 			requires(E_PREFERENCES);}
-#line 3818 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3818 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 268:
-#line 1295 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1295 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal) = new preference((yyvsp[-1].t_goal));requires(E_PREFERENCES);}
-#line 3824 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3824 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 269:
-#line 1299 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1299 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_dummy)= 0; current_analysis->var_tab_stack.push(
     				current_analysis->buildOpTab());}
-#line 3831 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3831 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 270:
-#line 1304 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1304 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag)= E_EQUALITY;}
-#line 3837 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3837 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 271:
-#line 1305 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1305 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag)= E_STRIPS;}
-#line 3843 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3843 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 272:
-#line 1307 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1307 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag)= E_TYPING;}
-#line 3849 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3849 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 273:
-#line 1309 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1309 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag)= E_NEGATIVE_PRECONDITIONS;}
-#line 3855 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3855 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 274:
-#line 1311 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1311 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag)= E_DISJUNCTIVE_PRECONDS;}
-#line 3861 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3861 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 275:
-#line 1312 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1312 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag)= E_EXT_PRECS;}
-#line 3867 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3867 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 276:
-#line 1313 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1313 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag)= E_UNIV_PRECS;}
-#line 3873 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3873 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 277:
-#line 1314 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1314 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag)= E_COND_EFFS;}
-#line 3879 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3879 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 278:
-#line 1315 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1315 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag)= E_NFLUENTS | E_OFLUENTS;}
-#line 3885 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3885 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 279:
-#line 1317 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1317 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag)= E_DURATIVE_ACTIONS;}
-#line 3891 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3891 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 280:
-#line 1318 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1318 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag)= E_TIME |
                       E_NFLUENTS |
                       E_DURATIVE_ACTIONS; }
-#line 3899 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3899 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 281:
-#line 1321 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1321 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag)=E_ACTIONCOSTS | E_NFLUENTS;}
-#line 3905 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3905 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 282:
-#line 1324 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1324 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag)=E_OFLUENTS;}
-#line 3911 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3911 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 283:
-#line 1325 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1325 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag)=E_NFLUENTS;}
-#line 3917 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3917 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 284:
-#line 1327 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1327 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag)= E_STRIPS |
 		      E_TYPING | 
 		      E_NEGATIVE_PRECONDITIONS |
@@ -3926,367 +3926,367 @@ yyreduce:
 		      E_EXT_PRECS |
 		      E_UNIV_PRECS |
 		      E_COND_EFFS;}
-#line 3930 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3930 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 285:
-#line 1336 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1336 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag)= E_EXT_PRECS |
 		      E_UNIV_PRECS;}
-#line 3937 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3937 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 286:
-#line 1340 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1340 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag)= E_DURATION_INEQUALITIES;}
-#line 3943 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3943 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 287:
-#line 1343 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1343 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag)= E_CONTINUOUS_EFFECTS;}
-#line 3949 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3949 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 288:
-#line 1345 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1345 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag) = E_DERIVED_PREDICATES;}
-#line 3955 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3955 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 289:
-#line 1347 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1347 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag) = E_TIMED_INITIAL_LITERALS;}
-#line 3961 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3961 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 290:
-#line 1349 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1349 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag) = E_PREFERENCES;}
-#line 3967 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3967 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 291:
-#line 1351 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1351 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_pddl_req_flag) = E_CONSTRAINTS;}
-#line 3973 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3973 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 292:
-#line 1353 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1353 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {log_error(E_WARNING,"Unrecognised requirements declaration ");
        (yyval.t_pddl_req_flag)= 0; delete [] (yyvsp[0].cp);}
-#line 3980 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3980 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 293:
-#line 1359 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1359 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_const_symbol_list)=(yyvsp[-1].t_const_symbol_list);}
-#line 3986 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3986 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 294:
-#line 1363 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1363 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_type_list)=(yyvsp[-1].t_type_list); requires(E_TYPING);}
-#line 3992 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 3992 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 295:
-#line 1373 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1373 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_problem)=(yyvsp[-1].t_problem); (yyval.t_problem)->name = (yyvsp[-7].cp); (yyval.t_problem)->domain_name = (yyvsp[-3].cp);
 		if (types_used && !types_defined) {
 			yyerrok; log_error(E_FATAL,"Syntax error in problem file - types used, but no :types section in domain file."); 
 		}
 
 	}
-#line 4003 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4003 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 296:
-#line 1380 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1380 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {yyerrok; (yyval.t_problem)=NULL;
        	log_error(E_FATAL,"Syntax error in problem definition."); }
-#line 4010 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4010 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 297:
-#line 1386 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1386 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_problem)=(yyvsp[0].t_problem); (yyval.t_problem)->req= (yyvsp[-1].t_pddl_req_flag);}
-#line 4016 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4016 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 298:
-#line 1387 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1387 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_problem)=(yyvsp[0].t_problem); (yyval.t_problem)->objects= (yyvsp[-1].t_const_symbol_list);}
-#line 4022 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4022 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 299:
-#line 1388 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1388 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_problem)=(yyvsp[0].t_problem); (yyval.t_problem)->initial_state= (yyvsp[-1].t_effect_lists);}
-#line 4028 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4028 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 300:
-#line 1389 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1389 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_problem)=(yyvsp[0].t_problem); (yyval.t_problem)->the_goal= (yyvsp[-1].t_goal);}
-#line 4034 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4034 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 301:
-#line 1391 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1391 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_problem)=(yyvsp[0].t_problem); (yyval.t_problem)->constraints = (yyvsp[-1].t_con_goal);}
-#line 4040 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4040 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 302:
-#line 1392 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1392 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_problem)=(yyvsp[0].t_problem); (yyval.t_problem)->metric= (yyvsp[-1].t_metric);}
-#line 4046 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4046 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 303:
-#line 1393 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1393 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_problem)=(yyvsp[0].t_problem); (yyval.t_problem)->length= (yyvsp[-1].t_length_spec);}
-#line 4052 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4052 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 304:
-#line 1394 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1394 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_problem)=new problem;}
-#line 4058 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4058 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 305:
-#line 1397 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1397 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_const_symbol_list)=(yyvsp[-1].t_const_symbol_list);}
-#line 4064 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4064 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 306:
-#line 1400 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1400 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_effect_lists)=(yyvsp[-1].t_effect_lists);}
-#line 4070 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4070 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 307:
-#line 1403 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1403 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.vtab) = current_analysis->buildOpTab();}
-#line 4076 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4076 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 308:
-#line 1406 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1406 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_goal)=(yyvsp[-1].t_goal);delete (yyvsp[-2].vtab);}
-#line 4082 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4082 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 309:
-#line 1411 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1411 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_metric)= new metric_spec((yyvsp[-2].t_optimization),(yyvsp[-1].t_expression)); }
-#line 4088 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4088 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 310:
-#line 1413 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1413 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {yyerrok; 
         log_error(E_FATAL,"Syntax error in metric declaration.");
         (yyval.t_metric)= NULL; }
-#line 4096 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4096 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 311:
-#line 1420 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1420 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_length_spec)= new length_spec(E_BOTH,(yyvsp[-3].ival),(yyvsp[-1].ival));}
-#line 4102 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4102 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 312:
-#line 1423 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1423 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_length_spec) = new length_spec(E_SERIAL,(yyvsp[-1].ival));}
-#line 4108 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4108 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 313:
-#line 1427 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1427 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_length_spec) = new length_spec(E_PARALLEL,(yyvsp[-1].ival));}
-#line 4114 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4114 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 314:
-#line 1433 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1433 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_optimization)= E_MINIMIZE;}
-#line 4120 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4120 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 315:
-#line 1434 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1434 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_optimization)= E_MAXIMIZE;}
-#line 4126 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4126 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 316:
-#line 1439 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1439 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_expression)= (yyvsp[-1].t_expression);}
-#line 4132 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4132 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 317:
-#line 1440 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1440 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_expression)= (yyvsp[0].t_func_term);}
-#line 4138 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4138 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 318:
-#line 1441 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1441 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_expression)= (yyvsp[0].t_num_expression);}
-#line 4144 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4144 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 319:
-#line 1442 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1442 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= new special_val_expr(E_TOTAL_TIME); }
-#line 4150 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4150 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 320:
-#line 1444 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1444 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_expression) = new violation_term((yyvsp[-1].cp));}
-#line 4156 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4156 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 321:
-#line 1445 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1445 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= new special_val_expr(E_TOTAL_TIME); }
-#line 4162 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4162 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 322:
-#line 1449 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1449 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= new plus_expression((yyvsp[-1].t_expression),(yyvsp[0].t_expression)); }
-#line 4168 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4168 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 323:
-#line 1450 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1450 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= new minus_expression((yyvsp[-1].t_expression),(yyvsp[0].t_expression)); }
-#line 4174 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4174 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 324:
-#line 1451 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1451 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= new mul_expression((yyvsp[-1].t_expression),(yyvsp[0].t_expression)); }
-#line 4180 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4180 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 325:
-#line 1452 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1452 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     { (yyval.t_expression)= new div_expression((yyvsp[-1].t_expression),(yyvsp[0].t_expression)); }
-#line 4186 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4186 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 326:
-#line 1456 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1456 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_expression) = (yyvsp[0].t_expression);}
-#line 4192 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4192 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 327:
-#line 1458 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1458 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_expression) = new plus_expression((yyvsp[-1].t_expression),(yyvsp[0].t_expression));}
-#line 4198 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4198 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 328:
-#line 1462 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1462 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_expression) = (yyvsp[0].t_expression);}
-#line 4204 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4204 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 329:
-#line 1464 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1464 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_expression) = new mul_expression((yyvsp[-1].t_expression),(yyvsp[0].t_expression));}
-#line 4210 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4210 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 330:
-#line 1470 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1470 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_plan)= (yyvsp[0].t_plan); 
          (yyval.t_plan)->push_front((yyvsp[-1].t_step)); }
-#line 4217 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4217 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 331:
-#line 1473 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1473 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_plan) = (yyvsp[0].t_plan);(yyval.t_plan)->insertTime((yyvsp[-1].fval));}
-#line 4223 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4223 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 332:
-#line 1475 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1475 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_plan) = (yyvsp[0].t_plan);(yyval.t_plan)->insertTime((yyvsp[-1].ival));}
-#line 4229 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4229 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 333:
-#line 1477 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1477 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_plan)= new plan;}
-#line 4235 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4235 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 334:
-#line 1482 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1482 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_step)=(yyvsp[0].t_step); 
          (yyval.t_step)->start_time_given=1; 
          (yyval.t_step)->start_time=(yyvsp[-2].fval);}
-#line 4243 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4243 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 335:
-#line 1486 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1486 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_step)=(yyvsp[0].t_step);
 	 (yyval.t_step)->start_time_given=0;}
-#line 4250 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4250 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 336:
-#line 1492 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1492 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_step)= (yyvsp[-3].t_step); 
 	 (yyval.t_step)->duration_given=1;
          (yyval.t_step)->duration= (yyvsp[-1].fval);}
-#line 4258 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4258 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 337:
-#line 1496 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1496 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_step)= (yyvsp[0].t_step);
          (yyval.t_step)->duration_given=0;}
-#line 4265 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4265 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 338:
-#line 1502 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1502 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.t_step)= new plan_step( 
               current_analysis->op_tab.symbol_get((yyvsp[-2].cp)), 
 	      (yyvsp[-1].t_const_symbol_list)); delete [] (yyvsp[-2].cp);
       }
-#line 4274 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4274 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 339:
-#line 1509 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1509 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.fval)= (yyvsp[0].fval);}
-#line 4280 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4280 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
   case 340:
-#line 1510 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
+#line 1510 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1646  */
     {(yyval.fval)= (float) (yyvsp[0].ival);}
-#line 4286 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4286 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
     break;
 
 
-#line 4290 "/home/iannuz/popf-tif/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
+#line 4290 "/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/pddl+.cpp" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -4514,7 +4514,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 1513 "/home/iannuz/popf-tif/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1906  */
+#line 1513 "/home/iannuz/popf-tif-v2/planner/src/VALfiles/parsing/pddl+.yacc" /* yacc.c:1906  */
 
 
 #include <cstdio>

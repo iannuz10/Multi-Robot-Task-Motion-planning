@@ -1,4 +1,4 @@
-# Install script for directory: /home/iannuz/popf-tif/planner/src/popf
+# Install script for directory: /home/iannuz/popf-tif-v2/planner/src/popf
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/iannuz/popf-tif/planner/release/popf/testcases/cmake_install.cmake")
+  include("/home/iannuz/popf-tif-v2/planner/release/popf/testcases/cmake_install.cmake")
 
 endif()
 

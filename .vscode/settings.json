@@ -99,7 +99,10 @@
     "set": "cpp",
     "string": "cpp",
     "string_view": "cpp",
-    "shared_mutex": "cpp"
+    "shared_mutex": "cpp",
+    "*.ipp": "cpp",
+    "core": "cpp",
+    "*.txx": "cpp"
   },
   "C_Cpp.dimInactiveRegions": false
 }

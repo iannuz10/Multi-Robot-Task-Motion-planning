@@ -1,4 +1,4 @@
-# Install script for directory: /home/iannuz/popf-tif/planner/src/VALfiles
+# Install script for directory: /home/iannuz/popf-tif-v2/planner/src/VALfiles
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,8 +44,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/iannuz/popf-tif/planner/release/VALfiles/parsing/cmake_install.cmake")
-  include("/home/iannuz/popf-tif/planner/release/VALfiles/testing/cmake_install.cmake")
+  include("/home/iannuz/popf-tif-v2/planner/release/VALfiles/parsing/cmake_install.cmake")
+  include("/home/iannuz/popf-tif-v2/planner/release/VALfiles/testing/cmake_install.cmake")
 
 endif()
 

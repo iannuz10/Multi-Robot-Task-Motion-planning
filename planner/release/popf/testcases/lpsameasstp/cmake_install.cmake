@@ -1,4 +1,4 @@
-# Install script for directory: /home/iannuz/popf-tif/planner/src/popf/testcases/lpsameasstp
+# Install script for directory: /home/iannuz/popf-tif-v2/planner/src/popf/testcases/lpsameasstp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

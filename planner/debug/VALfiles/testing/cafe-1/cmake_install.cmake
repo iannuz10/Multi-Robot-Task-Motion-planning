@@ -1,4 +1,4 @@
-# Install script for directory: /home/iannuz/popf-tif/planner/src/VALfiles/testing/cafe-1
+# Install script for directory: /home/iannuz/popf-tif-v2/planner/src/VALfiles/testing/cafe-1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

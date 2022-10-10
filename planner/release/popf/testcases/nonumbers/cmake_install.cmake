@@ -1,4 +1,4 @@
-# Install script for directory: /home/iannuz/popf-tif/planner/src/popf/testcases/nonumbers
+# Install script for directory: /home/iannuz/popf-tif-v2/planner/src/popf/testcases/nonumbers
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
