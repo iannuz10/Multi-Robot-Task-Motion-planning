@@ -6078,6 +6078,18 @@ namespace Planner
                             }
                             cout << "Helpful actions: " << endl;
                             cout << endl;
+
+                            // TODO
+                            // Add robot info into a map (probably not necessary)
+                            // Creates a map for the path of all robots
+                            // Maps are attributes of the MinimalState class
+
+                            // In ExternalSolver::externalSolver->callExternalSolver(functionsInitialState,false) add pointers
+                            // to the two maps (paths and info) owned by theState, 
+                            // passed by RPGBuilder::RPGNumericEffect::callExternalSolver(MinimalState & theState)
+                            
+
+
                             //--------------------Modified Search--------------------
 
                             if (currSQI->state()->hasBeenDominated) {
