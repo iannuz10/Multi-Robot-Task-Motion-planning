@@ -4058,7 +4058,21 @@ namespace Planner
         void alsoCleanUp(SearchQueueItem * const s) {
             gc.push_back(s->releaseState());
         }
-        
+
+        //-----------------modified by Antonio Iannone-----------------
+
+        ExtendedMinimalState* getStateFromParentId(int id) {
+            list<ExtendedMinimalState*>::iterator cItr = gc.begin();
+            const list<ExtendedMinimalState*>::iterator cEnd = gc.end();
+            for (; cItr != cEnd; ++cItr) {
+                if ((*cItr)->id == id) {
+                    return *cItr;
+                }
+            }
+            return NULL;
+        }
+
+        //---------------------end of modification---------------------
         
     };
     
@@ -6049,7 +6063,8 @@ namespace Planner
                             currSQI->printPlan();
 
 
-                            //--------------------Modified Search--------------------
+                            //-----------------modified by Antonio Iannone-----------------
+
                             // Accessing robot action information from the state
                             list<ActionSegment >::iterator helpActItr;
                             list<ActionSegment >::iterator helpActEnd;
@@ -6069,15 +6084,30 @@ namespace Planner
                                     vector<VAL::const_symbol *>::const_iterator symsItr = env->begin();
                                     vector<VAL::const_symbol *>::const_iterator symsEnd = env->end();
                                     cout << "Helpful action: " << actionName << ": ";
+                                    int index = 0;
                                     for(; symsItr != symsEnd; ++symsItr) {
                                         string symbol = (*symsItr)->getName();
                                         cout << symbol << " ";
+                                        if(index == 0){
+                                            robotName = symbol;
+                                        }else if(index == 1){
+                                            fromRegion = symbol;
+                                        }else if(index == 2){
+                                            toRegion = symbol;
+                                        }
                                     }
                                     cout << endl;
                                 }
                             }
-                            cout << "Helpful actions: " << endl;
+                            // Add symbols to the infoMap of the state
+                            vector<string>* robotInfo;
+                            robotInfo->push_back(fromRegion);
+                            robotInfo->push_back(toRegion);
+                            currSQI->state()->decorated->addInfoToState(robotName, robotInfo);
                             cout << endl;
+
+                            currSQI->state()->decorated->linkMapToParent(statesKept->getStateFromParentId(currSQI->state()->idParent)->decorated->pathsMap);
+                            
 
                             // TODO
                             // Add robot info into a map (probably not necessary)
@@ -6089,8 +6119,7 @@ namespace Planner
                             // passed by RPGBuilder::RPGNumericEffect::callExternalSolver(MinimalState & theState)
                             
 
-
-                            //--------------------Modified Search--------------------
+                            //-----------------end of modification -----------------
 
                             if (currSQI->state()->hasBeenDominated) {
                                 continue;
