@@ -326,6 +326,19 @@ public:
     vector<double> secondMax;
     map<int, set<int> > startedActions;
 
+    //-----------------modified by Antonio Iannone-----------------
+    
+    map<string, vector<int>*>* pathsMap;
+    map<string, vector<string>*> infoMap;
+
+    map<string, vector<string>*> getParentStateInfoMap(int idParentState);
+
+    void addInfoToState(string key, vector<string>* values);
+
+    void linkMapToParent(map<string, vector<int>*>* parentMap);
+
+    //---------------------end of modification---------------------
+
     unsigned int planLength;
     unsigned int actionsExecuting;
     int nextTIL;
