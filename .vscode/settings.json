@@ -102,7 +102,8 @@
     "shared_mutex": "cpp",
     "*.ipp": "cpp",
     "core": "cpp",
-    "*.txx": "cpp"
+    "*.txx": "cpp",
+    "armadillo": "cpp"
   },
   "C_Cpp.dimInactiveRegions": false
 }
