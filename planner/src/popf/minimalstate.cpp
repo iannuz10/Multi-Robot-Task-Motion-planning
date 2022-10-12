@@ -336,4 +336,18 @@ ostream & operator <<(ostream & o, const StepAndBeforeOrAfter & s)
     return o;
 }
 
+//-----------------modified by Antonio Iannone-----------------
+
+void MinimalState::addInfoToState(string key, vector<string>* values){
+    this->infoMap.insert({key, values});
+}
+
+void MinimalState::linkMapToParent(map<string, vector<int>*>* parentMap){
+    this->pathsMap = parentMap;
+}
+
+//---------------------end of modification---------------------
+
 };
+
+
