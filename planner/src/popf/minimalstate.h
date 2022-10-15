@@ -328,14 +328,20 @@ public:
 
     //-----------------modified by Antonio Iannone-----------------
     
-    map<string, vector<int>*>* pathsMap;
+    map<string, vector<int>*> pathsMap;
     map<string, vector<string>*> infoMap;
 
     map<string, vector<string>*> getParentStateInfoMap(int idParentState);
 
     void addInfoToState(string key, vector<string>* values);
 
-    void linkMapToParent(map<string, vector<int>*>* parentMap);
+    map<string, vector<int>*> getPathsMap();
+
+    void linkMapToParent(map<string, vector<int>*> parentMap);
+
+    void printPathsMap();
+
+    void printInfoMap();
 
     //---------------------end of modification---------------------
 

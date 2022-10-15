@@ -339,11 +339,43 @@ ostream & operator <<(ostream & o, const StepAndBeforeOrAfter & s)
 //-----------------modified by Antonio Iannone-----------------
 
 void MinimalState::addInfoToState(string key, vector<string>* values){
-    this->infoMap.insert({key, values});
+    infoMap[key] = values;
 }
 
-void MinimalState::linkMapToParent(map<string, vector<int>*>* parentMap){
-    this->pathsMap = parentMap;
+void MinimalState::linkMapToParent(map<string, vector<int>*> parentMap){
+    pathsMap = parentMap;
+}
+
+map<string, vector<int>*> MinimalState::getPathsMap(){
+    return pathsMap;
+}
+
+void MinimalState::printInfoMap(){
+    map<string, vector<string>*>::iterator it;
+    if(infoMap.size() > 0){
+        cout << "InfoMap: " << endl;
+        for(it = infoMap.begin(); it != infoMap.end(); it++){
+            cout << it->first << ": ";
+            for(int i = 0; i < it->second->size(); i++){
+                cout << it->second->at(i) << " ";
+            }
+            cout << endl;
+        }
+    }
+}
+
+void MinimalState::printPathsMap(){
+    if(pathsMap.size() > 0){
+        cout << "PathsMap: " << endl;
+        map<string, vector<int>*>::iterator it;
+        for(it = pathsMap.begin(); it != pathsMap.end(); it++){
+            cout << it->first << ": ";
+            for(int i = 0; i < it->second->size(); i++){
+                cout << it->second->at(i) << " ";
+            }
+            cout << endl;
+        }
+    }
 }
 
 //---------------------end of modification---------------------

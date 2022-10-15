@@ -4061,13 +4061,10 @@ namespace Planner
 
         //-----------------modified by Antonio Iannone-----------------
 
-        ExtendedMinimalState* getStateFromParentId(int id) {
-            list<ExtendedMinimalState*>::iterator cItr = gc.begin();
-            const list<ExtendedMinimalState*>::iterator cEnd = gc.end();
-            for (; cItr != cEnd; ++cItr) {
-                if ((*cItr)->id == id) {
-                    return *cItr;
-                }
+        ExtendedMinimalState* getStateFromParentId(map<int, ExtendedMinimalState*> states, int parentId){
+            map<int, ExtendedMinimalState*>::iterator it = states.find(parentId);
+            if(it != states.end()){
+                return it->second;
             }
             return NULL;
         }
@@ -4155,7 +4152,6 @@ namespace Planner
             virtual double previousTimestamp() const {
                 return innerInsertion.first->second;
             }
-            
         };
         
         class FindIterator : public StateHash::FindIterator {
@@ -5909,8 +5905,10 @@ namespace Planner
                             if (ffDebug) {
                                 cout << "Initial state has " << initialState.getInnerState().first.size() << " propositional facts and " << tinitialFluents.size() << " non-static fluents\n";
                             }
-                            
                         }
+
+                        map<int, ExtendedMinimalState*> statesFound;
+                        statesFound[initialState.id] = &initialState;
                         
                         
                         {
@@ -6095,21 +6093,49 @@ namespace Planner
                                         }else if(index == 2){
                                             toRegion = symbol;
                                         }
+                                        index++;
                                     }
-                                    cout << endl;
-                                }
-                            }
-                            // Add symbols to the infoMap of the state
-                            vector<string>* robotInfo;
-                            robotInfo->push_back(fromRegion);
-                            robotInfo->push_back(toRegion);
-                            currSQI->state()->decorated->addInfoToState(robotName, robotInfo);
-                            cout << endl;
 
-                            currSQI->state()->decorated->linkMapToParent(statesKept->getStateFromParentId(currSQI->state()->idParent)->decorated->pathsMap);
+                                    // Add symbols to the infoMap of the state
+                                    vector<string>* robotInfo = new vector<string>;
+                                    robotInfo->push_back(fromRegion);
+                                    robotInfo->push_back(toRegion);
+
+                                    // Print name of the robot and the regions
+                                    cout << endl;
+                                    cout << "Robot: " << robotName << " From: " << robotInfo->at(0) << " To: " << robotInfo->at(1) << endl;
+
+                                    // Add the info to the state
+                                    currSQI->state()->decorated->addInfoToState(robotName, robotInfo);
+                                    cout << endl;
+
+                                    
+                                }
+
+                                statesFound[currSQI->state()->id] = currSQI->state()->clone();
+
+                                // Link the parent map to the current state
+                                map<string, vector<int>*> parentMap = statesKept->getStateFromParentId(statesFound,currSQI->state()->idParent)->decorated->getPathsMap();
+                                currSQI->state()->decorated->linkMapToParent(parentMap);
+
+                                // Print the infoMap of the state
+                                currSQI->state()->decorated->printInfoMap();
+
+                                cout << endl;
+
+                                
+                            }
+
+                            
+                            
                             
 
+
                             // TODO
+
+                            // Need to create the maps and the vectors with the new operator whenever it is needed
+                            // Right now this ^ is missing
+
                             // Add robot info into a map (probably not necessary)
                             // Creates a map for the path of all robots
                             // Maps are attributes of the MinimalState class
