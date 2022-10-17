@@ -6077,6 +6077,8 @@ namespace Planner
 
                             for(; helpActItr != helpActEnd; ++helpActItr) {
                                 actionName = helpActItr->first->forOp()->name->getName();
+
+                                // Working only on goto_actions
                                 if(actionName == "goto_region"){
                                     VAL::FastEnvironment *env = helpActItr->first->getEnv();
                                     vector<VAL::const_symbol *>::const_iterator symsItr = env->begin();
@@ -6120,9 +6122,8 @@ namespace Planner
                                     }
                                 }
 
-                                ExtendedMinimalState* parentState = new ExtendedMinimalState;
-
                                 // Search for the parent state of the current one in statesFound map
+                                ExtendedMinimalState* parentState = new ExtendedMinimalState;
                                 if(currSQI->state()->idParent != NULL){
                                     cout << "Parent state: " << currSQI->state()->idParent << endl;
                                     map<int, ExtendedMinimalState*>::iterator parentStateItr = statesFound.find(currSQI->state()->idParent);
@@ -6132,10 +6133,11 @@ namespace Planner
                                     }
                                 }
 
+                                // Call map linking functions
                                 currSQI->state()->decorated->linkInfoToParent(parentState->decorated->infoMap);
                                 currSQI->state()->decorated->linkMapToParent(parentState->decorated->getPathsMap());
 
-                                // Print the infoMap of the state
+                                // Print the infoMap of the state (just to check)
                                 currSQI->state()->decorated->printInfoMap();
 
                                 cout << endl;
