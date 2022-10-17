@@ -6108,15 +6108,32 @@ namespace Planner
                                     // Add the info to the state
                                     currSQI->state()->decorated->addInfoToState(robotName, robotInfo);
                                     cout << endl;
-
-                                    
                                 }
 
-                                statesFound[currSQI->state()->id] = currSQI->state()->clone();
+                                // Add current state to statesFound only if it is not already there
+                                if(currSQI->state()->idParent != NULL){
+                                    cout << "Current state: " << currSQI->state()->id << endl;
+                                    map<int, ExtendedMinimalState*>::iterator parentStateItr = statesFound.find(currSQI->state()->id);
+                                    if(parentStateItr == statesFound.end()){
+                                        cout << "Adding state to statesFound" << endl;
+                                        statesFound[currSQI->state()->id] = currSQI->state()->clone();
+                                    }
+                                }
 
-                                // Link the parent map to the current state
-                                map<string, vector<int>*> parentMap = statesKept->getStateFromParentId(statesFound,currSQI->state()->idParent)->decorated->getPathsMap();
-                                currSQI->state()->decorated->linkMapToParent(parentMap);
+                                ExtendedMinimalState* parentState = new ExtendedMinimalState;
+
+                                // Search for the parent state of the current one in statesFound map
+                                if(currSQI->state()->idParent != NULL){
+                                    cout << "Parent state: " << currSQI->state()->idParent << endl;
+                                    map<int, ExtendedMinimalState*>::iterator parentStateItr = statesFound.find(currSQI->state()->idParent);
+                                    if(parentStateItr != statesFound.end()){
+                                        cout << "Parent state found" << endl;
+                                        parentState = parentStateItr->second;
+                                    }
+                                }
+
+                                currSQI->state()->decorated->linkInfoToParent(parentState->decorated->infoMap);
+                                currSQI->state()->decorated->linkMapToParent(parentState->decorated->getPathsMap());
 
                                 // Print the infoMap of the state
                                 currSQI->state()->decorated->printInfoMap();

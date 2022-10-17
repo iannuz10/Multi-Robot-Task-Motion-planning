@@ -341,9 +341,16 @@ ostream & operator <<(ostream & o, const StepAndBeforeOrAfter & s)
 void MinimalState::addInfoToState(string key, vector<string>* values){
     infoMap[key] = values;
 }
+void MinimalState::addPathToState(string key, vector<int>* values){
+    pathsMap[key] = values;
+}
 
 void MinimalState::linkMapToParent(map<string, vector<int>*> parentMap){
     pathsMap = parentMap;
+}
+
+void MinimalState::linkInfoToParent(map<string, vector<string>*> parentMap){
+    infoMap = parentMap;
 }
 
 map<string, vector<int>*> MinimalState::getPathsMap(){

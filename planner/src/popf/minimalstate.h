@@ -335,9 +335,13 @@ public:
 
     void addInfoToState(string key, vector<string>* values);
 
+    void addPathToState(string key, vector<int>* values);
+
     map<string, vector<int>*> getPathsMap();
 
     void linkMapToParent(map<string, vector<int>*> parentMap);
+
+    void linkInfoToParent(map<string, vector<string>*> parentMap);
 
     void printPathsMap();
 
