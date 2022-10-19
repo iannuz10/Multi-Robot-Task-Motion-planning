@@ -40,7 +40,7 @@ public:
     VisitSolver();
     ~VisitSolver();
     virtual void loadSolver(string* parameters, int n);
-    virtual map<string,double> callExternalSolver(map<string,double> initialState, bool isHeuristic, map<string, vector<int>*> *paths);
+    virtual map<string,double> callExternalSolver(map<string,double> initialState, bool isHeuristic, map<string, vector<int>*>* paths);
     virtual  list<string> getParameters();
     virtual  list<string> getDependencies();
     map<string, vector<double>> waypoint;
@@ -74,7 +74,7 @@ private:
     string pathID; 
     bool pathCostComputed;
 
-    map<string, vector<int>*> pathss;
+    // map<string, vector<int>*> pathss;
     map<string, double> pathsCosts;
     
     int semaphoreCounter;

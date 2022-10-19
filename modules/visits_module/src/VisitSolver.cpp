@@ -358,7 +358,7 @@ double VisitSolver::calculateExtern(double external, double total_cost){
   // if(totalRobots > 1)
   //   cost = external/(totalRobots-1);//random1;
   // else
-  double outputCost = external;
+  double outputCost = pathsCosts[pathID];;
   return outputCost;
 }
 
