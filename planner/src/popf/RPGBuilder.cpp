@@ -4805,7 +4805,7 @@ double  RPGBuilder::RPGNumericEffect::callExternalSolver(MinimalState & theState
         string function = oParameter.str();
         functionsInitialState[function]=theState.secondMin[v];
     } 
-    ExternalSolver::newStatus = ExternalSolver::externalSolver->callExternalSolver(functionsInitialState,false,&theState.pathsMap); // Added pathsMap by Antonio Iannone
+    ExternalSolver::newStatus = ExternalSolver::externalSolver->callExternalSolver(functionsInitialState,false,theState.getPathsMap()); // Added pathsMap by Antonio Iannone
     ExternalSolver::count++;
 //    time (&end);
     times(&end);

@@ -353,8 +353,8 @@ void MinimalState::linkInfoToParent(map<string, vector<string>*> parentMap){
     infoMap = parentMap;
 }
 
-map<string, vector<int>*> MinimalState::getPathsMap(){
-    return pathsMap;
+map<string, vector<int>*>* MinimalState::getPathsMap(){
+    return &pathsMap;
 }
 
 void MinimalState::printInfoMap(){

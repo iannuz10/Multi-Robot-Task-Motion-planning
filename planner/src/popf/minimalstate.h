@@ -337,7 +337,7 @@ public:
 
     void addPathToState(string key, vector<int>* values);
 
-    map<string, vector<int>*> getPathsMap();
+    map<string, vector<int>*>* getPathsMap();
 
     void linkMapToParent(map<string, vector<int>*> parentMap);
 
