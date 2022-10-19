@@ -7,7 +7,7 @@ using namespace std;
 
 MyShortestPath::MyShortestPath(){}
 
-vector<int>* MyShortestPath::myShortestPath(map<string,vector<int>*> paths, double **graph, vector<int>* currentPath, int destination, int dim, string pathID){
+vector<int>* MyShortestPath::myShortestPath(map<string,vector<int>*>* paths, double **graph, vector<int>* currentPath, int destination, int dim, string pathID){
     vector<int>* dijkstraNodes = new vector<int>;
     if(ExternalSolver::verbose){
         cout << "[myShortestPath]: Calling dijkstra on path: " << pathID << endl;
@@ -168,14 +168,14 @@ vector<int>* MyShortestPath::dijkstraPath(double **graph, int target, int dest, 
     }
 
 // Checking for each previous planification if the current robots path collides
-int MyShortestPath::checkCollision(map<string,vector<int> *> paths, vector<int>* currentPath, string pathID){
+int MyShortestPath::checkCollision(map<string,vector<int> *>* paths, vector<int>* currentPath, string pathID){
     if(ExternalSolver::verbose) cout << "[checkCollision]: Checking..." << endl;
     vector<int>::iterator currPathIter, otherPathsNodeIter;
     map<string, vector<int>*>::iterator otherPathsIter;
     int currPathNodeIndex;
     for(currPathIter = currentPath->begin(); currPathIter != currentPath->end(); currPathIter++){
         currPathNodeIndex = currPathIter - currentPath->begin();
-        for(otherPathsIter = paths.begin(); otherPathsIter != paths.end(); otherPathsIter++){
+        for(otherPathsIter = paths->begin(); otherPathsIter != paths->end(); otherPathsIter++){
             cout << "Current robots step: " << pathID[0] << "; other robot step: " << otherPathsIter->first[0] << endl;
             if(pathID[0] == otherPathsIter->first[0] && currPathNodeIndex < otherPathsIter->second->size() && *currPathIter == otherPathsIter->second->at(currPathNodeIndex))
                 return currPathNodeIndex;

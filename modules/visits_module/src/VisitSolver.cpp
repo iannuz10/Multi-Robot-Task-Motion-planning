@@ -99,9 +99,8 @@ void VisitSolver::loadSolver(string *parameters, int n){
   // Setting context with initial info
   setContext(context);
 
-  pathCostComputed = false;
-  semaphoreCounter = -totalRobots;
-  step=0;
+  // pathCostComputed = false;
+  // semaphoreCounter = -totalRobots;
 
   // // Setting semaphore
   // sem.setCount(-(totalRobots));   // Makes sure that cost are sent to planner only after a definitive and consistent state
@@ -110,7 +109,7 @@ void VisitSolver::loadSolver(string *parameters, int n){
   //startEKF();
 }
 
-map<string,double> VisitSolver::callExternalSolver(map<string,double> initialState,bool isHeuristic){
+map<string,double> VisitSolver::callExternalSolver(map<string,double> initialState,bool isHeuristic, map<string, vector<int>*>* paths){
   map<string, double> toReturn;
   map<string, double>::iterator iSIt = initialState.begin();
   map<string, double>::iterator isEnd = initialState.end();
@@ -124,8 +123,8 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
     string function = iSIt->first;
     double value = iSIt->second;
     
-    function.erase(0,1);
-    function.erase(function.length()-1,function.length());
+    function.erase(0,1);                                    // remove the first character
+    function.erase(function.length()-1,function.length());  // remove the last character
     int n=function.find(" ");
     // if(ExternalSolver::verbose) cout << "Function found: " << function << endl;
 
@@ -138,9 +137,9 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
       curr=next+1;
       next=function.find(" ",curr);
 
-      string tmp = function.substr(n+1,next-n);
+      string tmp = function.substr(n+1,next-n); // get the second argument
       //cout << "Tmp is: " << tmp << endl;
-      string robot = function.substr(next+1,function.length()-1);
+      string robot = function.substr(next+1,function.length()-1); // get the third argument
       //cout << "Robot is: " << robot << endl;
       function.erase(n,function.length()-1);
       arg.erase(0,n+1);
@@ -167,11 +166,33 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
             cout << "From: " << from << endl;
             cout << "To: " << to << endl;
           }
+
+          // Iterate every pathID of the paths map
+          map<string, vector<int>*>::iterator it;
+          int step = 0;
+          if(paths->size() > 0){
+            for(it = paths->begin(); it != paths->end(); it++){
+              string ID = it->first;
+              if(ExternalSolver::verbose) cout << "ID: " << ID << endl;
+              // Erase from ID the step number
+              int pos = ID.find("-");
+              ID.erase(0,pos+1);
+              if(ExternalSolver::verbose){
+                cout << "Erased ID: " << ID << endl;
+                cout << "Robot: " << robot << endl;
+              }
+              // If ID is equal to robot, count++
+              if(ID == robot) step++;
+            }
+          } else {
+            if(ExternalSolver::verbose) cout << "No paths found" << endl;
+          }
+          
           pathID = to_string(step)+ "-" + robot;
           
           // Compute minimum path
-          auto it1 = paths.find(pathID);
-          if(it1 == paths.end()){
+          auto it1 = paths->find(pathID);
+          if(it1 == paths->end()){
             // tempCost = dijkstraShortestPath(wpAdjMatrix, stoi(from), stoi(to), pathID, false, -1, -1);
             MyShortestPath pathFinder;
 
@@ -200,11 +221,11 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
               cout << endl << "DijkstraShortestPath cost: " << tempCost << endl;
             }
 
-            auto it3 = paths.find(pathID);
-            if(it3 != paths.end()){
+            auto it3 = paths->find(pathID);
+            if(it3 != paths->end()){
               it3->second = path;
             } else {
-              paths.insert({pathID,path});
+              paths->insert({pathID,path});
             }
 
             auto it4 = pathsCosts.find(pathID);
@@ -223,40 +244,41 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
             //   }
             // }
 
-            int pathsFound = paths.size();
-            if(pathsFound == totalRobots) {
-              semaphoreCounter = 0;
-              step++;
-            }
+            // int pathsFound = paths->size();
+            // if(pathsFound == totalRobots) {
+            //   semaphoreCounter = 0;
+            //   step++;
+            // }
           }
           
           // Waiting for all pahs to be computed
-          if(ExternalSolver::verbose){
-            cout << "Semaphore counter is currently: " << semaphoreCounter << endl;
-            cout << "Cost has been calculated? " << pathCostComputed << endl;
-          }
-          if(semaphoreCounter == 0 && !pathCostComputed && totalRobots > 1){
-            cost = 0;
-            if(ExternalSolver::verbose) cout << "Summing path costs." << endl;
-            for(auto x : pathsCosts){
-              cost += x.second;
-              if(ExternalSolver::verbose) cout << x.second << " ";
-            }
-            if(ExternalSolver::verbose) cout << endl << "Final cost is: " << cost << endl;;
-            pathCostComputed = true;
-          }
+          // if(ExternalSolver::verbose){
+          //   cout << "Semaphore counter is currently: " << semaphoreCounter << endl;
+          //   cout << "Cost has been calculated? " << pathCostComputed << endl;
+          // }
+          // if(semaphoreCounter == 0 && !pathCostComputed && totalRobots > 1){
+          //   cost = 0;
+          //   if(ExternalSolver::verbose) cout << "Summing path costs." << endl;
+          //   for(auto x : pathsCosts){
+          //     cost += x.second;
+          //     if(ExternalSolver::verbose) cout << x.second << " ";
+          //   }
+          //   if(ExternalSolver::verbose) cout << endl << "Final cost is: " << cost << endl;;
+          //   pathCostComputed = true;
+          // }
           
-          if(totalRobots == 1){
-            if(ExternalSolver::verbose) cout << "Assigned cost to path" << endl;
-            cost = tempCost;
-          }
+          // if(totalRobots == 1){
+          //   if(ExternalSolver::verbose) cout << "Assigned cost to path" << endl;
+            cout << "\nCost is: " << pathsCosts[pathID] << endl;
+            cost = pathsCosts[pathID];
+          // }
 
           // Printing all paths
           if(ExternalSolver::verbose){
             cout << "Printing all paths" << endl;
             map<string, vector<int>*>::iterator it;
             std::vector<int>::iterator it2;
-            for(it = paths.begin(); it != paths.end(); it++){   
+            for(it = paths->begin(); it != paths->end(); it++){   
               cout << "Checking path: " << it->first << endl; 
               for(it2 = it->second->begin(); it2 != it->second->end(); it2++){
                 cout << *it2 << "\t";
@@ -292,11 +314,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
     cout << "(dummy) " << results << endl;
     //printAdjMatrix();
   }
-  if(totalRobots < 2){
-    toReturn["(dummy)"] = cost;
-  }else{
-    toReturn["(dummy)"] = results;
-  }
+  toReturn["(dummy)"] = results;
   return toReturn;
 }
 
@@ -336,12 +354,12 @@ void VisitSolver::parseParameters(string parameters){
 double VisitSolver::calculateExtern(double external, double total_cost){
 
   //float random1 = static_cast <float> (rand())/static_cast <float>(RAND_MAX);
-  double cost;
-  if(totalRobots > 1)
-    cost = external/(totalRobots-1);//random1;
-  else
-    cost = external;
-  return cost;
+  // double cost;
+  // if(totalRobots > 1)
+  //   cost = external/(totalRobots-1);//random1;
+  // else
+  double outputCost = external;
+  return outputCost;
 }
 
 void VisitSolver::initParser(Context* context, string fileName){

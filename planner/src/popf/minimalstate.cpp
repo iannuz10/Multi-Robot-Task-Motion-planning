@@ -372,17 +372,27 @@ void MinimalState::printInfoMap(){
 }
 
 void MinimalState::printPathsMap(){
-    if(pathsMap.size() > 0){
-        cout << "PathsMap: " << endl;
-        map<string, vector<int>*>::iterator it;
-        for(it = pathsMap.begin(); it != pathsMap.end(); it++){
-            cout << it->first << ": ";
-            for(int i = 0; i < it->second->size(); i++){
-                cout << it->second->at(i) << " ";
-            }
-            cout << endl;
-        }
+    cout << "Printing all paths" << endl;
+    map<string, vector<int>*>::iterator it;
+    std::vector<int>::iterator it2;
+    for(it = pathsMap.begin(); it != pathsMap.end(); it++){   
+        cout << "Checking path: " << it->first << endl; 
+        for(it2 = it->second->begin(); it2 != it->second->end(); it2++){
+            cout << *it2 << "\t";
+        } cout << endl;
     }
+
+    // if(pathsMap.size() > 0){
+    //     cout << "PathsMap: " << endl;
+    //     map<string, vector<int>*>::iterator it;
+    //     for(it = pathsMap.begin(); it != pathsMap.end(); it++){
+    //         cout << it->first << ": ";
+    //         for(int i = 0; i < it->second->size(); i++){
+    //             cout << it->second->at(i) << " ";
+    //         }
+    //         cout << endl;
+    //     }
+    // }
 }
 
 //---------------------end of modification---------------------

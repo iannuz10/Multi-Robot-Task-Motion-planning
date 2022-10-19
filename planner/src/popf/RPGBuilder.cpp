@@ -4804,8 +4804,8 @@ double  RPGBuilder::RPGNumericEffect::callExternalSolver(MinimalState & theState
         oParameter << *(RPGBuilder::getPNE(v));
         string function = oParameter.str();
         functionsInitialState[function]=theState.secondMin[v];
-    }
-    ExternalSolver::newStatus = ExternalSolver::externalSolver->callExternalSolver(functionsInitialState,false);
+    } 
+    ExternalSolver::newStatus = ExternalSolver::externalSolver->callExternalSolver(functionsInitialState,false,&theState.pathsMap); // Added pathsMap by Antonio Iannone
     ExternalSolver::count++;
 //    time (&end);
     times(&end);
@@ -4859,7 +4859,8 @@ void RPGBuilder::applyExSoInitialState(vector<double> & values){
         string function = oParameter.str();
         functionsInitialState[function]=values[v];
     }
-    ExternalSolver::newStatus = ExternalSolver::externalSolver->callExternalSolver(functionsInitialState,true);
+
+    ExternalSolver::newStatus = ExternalSolver::externalSolver->callExternalSolver(functionsInitialState,true,NULL);
     for (int v = 0; v<RPGBuilder::getPNECount() ; v++){
         ostringstream oParameter;
         oParameter << *(RPGBuilder::getPNE(v));

@@ -20,9 +20,9 @@ using namespace std;
 class MyShortestPath{
     public:
         MyShortestPath();
-        vector<int>* myShortestPath(map<string, vector<int>* > paths, double **graph, vector<int>* currentPath, int destination, int dim, string pathID);
+        vector<int>* myShortestPath(map<string, vector<int>* >* paths, double **graph, vector<int>* currentPath, int destination, int dim, string pathID);
         vector<int>* dijkstraPath(double **graph, int target, int dest, int dim);
-        int checkCollision(map<string, vector<int>* > paths, vector<int>* currentPath, string pathID);
+        int checkCollision(map<string, vector<int>* >* paths, vector<int>* currentPath, string pathID);
         double** updateGraphWithBusyNode(double **graph, vector<int>* pathTillCollision);
         double** iterationGraphInit(int dim, double **originalGraph);
         void lockCollidingNode(int dim, double **graph, int collidingNode);

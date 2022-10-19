@@ -6115,6 +6115,8 @@ namespace Planner
                                 // Add current state to statesFound only if it is not already there
                                 if(currSQI->state()->idParent != NULL){
                                     cout << "Current state: " << currSQI->state()->id << endl;
+                                    cout << "Current state's pathsMap: " << endl;
+                                    currSQI->state()->decorated->printPathsMap();
                                     map<int, ExtendedMinimalState*>::iterator parentStateItr = statesFound.find(currSQI->state()->id);
                                     if(parentStateItr == statesFound.end()){
                                         cout << "Adding state to statesFound" << endl;
@@ -6126,16 +6128,18 @@ namespace Planner
                                 ExtendedMinimalState* parentState = new ExtendedMinimalState;
                                 if(currSQI->state()->idParent != NULL){
                                     cout << "Parent state: " << currSQI->state()->idParent << endl;
+                                    cout << "Parent state's pathsMap: " << endl;
                                     map<int, ExtendedMinimalState*>::iterator parentStateItr = statesFound.find(currSQI->state()->idParent);
                                     if(parentStateItr != statesFound.end()){
                                         cout << "Parent state found" << endl;
                                         parentState = parentStateItr->second;
+                                        parentState->decorated->printPathsMap();
                                     }
                                 }
 
                                 // Call map linking functions
                                 currSQI->state()->decorated->linkInfoToParent(parentState->decorated->infoMap);
-                                currSQI->state()->decorated->linkMapToParent(parentState->decorated->getPathsMap());
+                                currSQI->state()->decorated->linkMapToParent(parentState->decorated->pathsMap);
 
                                 // Print the infoMap of the state (just to check)
                                 currSQI->state()->decorated->printInfoMap();
@@ -6491,7 +6495,7 @@ namespace Planner
                                     }
                                 }
                             }
-                            
+
                             FFonly_one_successor = false;
                             if(ModifiedSearch::isActive && searchQueue.empty()){
                                 if(ModifiedSearch::localDebug){
@@ -6614,7 +6618,6 @@ namespace Planner
                         } else {    
                             reachedGoal = true;
                         }
-                        
                         return workingBestSolution;
                         
                     };
