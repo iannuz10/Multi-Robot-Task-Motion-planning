@@ -21,6 +21,7 @@
 #include "ExternalSolver.h"
 #include <map>
 #include <string>
+#include <vector>
 #include "armadillo"
 
 using namespace std;
@@ -54,7 +55,7 @@ void HBWSolver::loadSolver(string* parameters, int n)
     dependencies = list<string>(y,y+1);
 }
 
-std::map< string, double > HBWSolver::callExternalSolver(std::map< string, double > initialState, bool isHeuristic)
+std::map< string, double > HBWSolver::callExternalSolver(std::map< string, double > initialState, bool isHeuristic,map<string, vector<int>*> *paths)
 {
     map<string,double> toReturn;
     map<string, double>::iterator iSIt = initialState.begin();

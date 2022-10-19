@@ -226,7 +226,7 @@ public:
     EasySolver();
     ~EasySolver();
     virtual void loadSolver(string* parameters, int n);
-    virtual map<string,double> callExternalSolver(map<string,double> initialState, bool isHeuristic);
+    virtual map<string,double> callExternalSolver(map<string,double> initialState, bool isHeuristic,map<string, vector<int>*> *paths);
     virtual  list<string> getParameters();
     virtual  list<string> getDependencies();
 private:

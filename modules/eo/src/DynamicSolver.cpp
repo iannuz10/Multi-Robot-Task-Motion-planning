@@ -35,6 +35,7 @@
 #include <assert.h>
 #include <limits>
 #include <regex>
+#include <vector>
 
 
 using namespace std;
@@ -365,7 +366,7 @@ void DynamicSolver::loadSolver(string *parameters, int n){
     dependencies = list<string>(y,y+3);
 }
 
-map<string,double> DynamicSolver::callExternalSolver(map<string,double> initialState,bool isHeuristic){
+map<string,double> DynamicSolver::callExternalSolver(map<string,double> initialState,bool isHeuristic, map<string, vector<int>*>* paths){
 
     map<string, double> toReturn;
     map<string, double>::iterator iSIt = initialState.begin();

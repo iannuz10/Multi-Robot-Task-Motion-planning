@@ -22,6 +22,8 @@
 
 #include "ExternalSolver.h"
 #include <string>
+#include <map>
+#include <vector>
 
 
 using namespace std;
@@ -40,7 +42,7 @@ public:
     HBWSolver();
     ~HBWSolver();
     virtual void loadSolver(string* parameters, int n);
-    virtual map<string,double> callExternalSolver(map<string,double> initialState, bool isHeuristic); 
+    virtual map<string,double> callExternalSolver(map<string,double> initialState, bool isHeuristic,map<string, vector<int>*> *paths); 
     virtual  list<string> getParameters();
     virtual  list<string> getDependencies();
 //private:

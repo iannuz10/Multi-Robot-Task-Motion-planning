@@ -23,6 +23,7 @@
 #include <iostream>
 #include <map>
 #include <list>
+#include <vector>
 
 using namespace std;
 
@@ -33,7 +34,7 @@ public:
     ExternalSolver();
     virtual ~ExternalSolver();
     virtual void loadSolver(string* parameters, int n)=0;
-    virtual map<string,double> callExternalSolver(map<string,double> initialState, bool isHeuristic)=0;
+    virtual map<string,double> callExternalSolver(map<string,double> initialState, bool isHeuristic,map<string, vector<int>*> *paths)=0;
     static bool isActive;
     static bool isActiveHeuristic;
     virtual list<string> getParameters()=0;

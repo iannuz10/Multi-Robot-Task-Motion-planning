@@ -55,7 +55,7 @@ void SaTSolver::loadSolver(string *parameters, int n){
     dependencies = list<string>(y,y+4);
 }
 
-map<string,double> SaTSolver::callExternalSolver(map<string,double> initialState,bool isHeuristic){
+map<string,double> SaTSolver::callExternalSolver(map<string,double> initialState,bool isHeuristic,map<string, vector<int>*> *paths){
     
     map<string, double> toReturn;
     map<string, double>::iterator iSIt = initialState.begin();
