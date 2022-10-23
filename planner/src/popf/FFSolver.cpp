@@ -6109,6 +6109,7 @@ namespace Planner
 
                                     // Add the info to the state
                                     currSQI->state()->decorated->addInfoToState(robotName, robotInfo);
+                                    currSQI->state()->decorated->printInfoMap();
                                     cout << endl;
                                 }
 
@@ -6132,7 +6133,7 @@ namespace Planner
                                     map<int, ExtendedMinimalState*>::iterator parentStateItr = statesFound.find(currSQI->state()->idParent);
                                     if(parentStateItr != statesFound.end()){
                                         cout << "Parent state found" << endl;
-                                        parentState = parentStateItr->second;
+                                        parentState = parentStateItr->second->clone();
                                         parentState->decorated->printPathsMap();
                                     }
                                 }

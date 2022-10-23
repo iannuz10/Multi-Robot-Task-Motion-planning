@@ -224,7 +224,7 @@ MinimalState::MinimalState(const MinimalState & other, const int extendBy)
         #else
         first(other.first), retired(other.retired),
         #endif
-        secondMin(other.secondMin), secondMax(other.secondMax), startedActions(other.startedActions),
+        secondMin(other.secondMin), secondMax(other.secondMax), startedActions(other.startedActions), pathsMap(other.pathsMap), // Added by Antonio Iannone
         planLength(other.planLength), actionsExecuting(other.actionsExecuting), nextTIL(other.nextTIL), temporalConstraints(globalTransformer->cloneTemporalConstraints(other.temporalConstraints, extendBy))
 {
     
@@ -262,6 +262,7 @@ MinimalState & MinimalState::operator =(const MinimalState & other)
     #endif
     secondMin = other.secondMin;
     secondMax = other.secondMax;
+    pathsMap = other.pathsMap; // Added by Antonio Iannone
     startedActions = other.startedActions;
     planLength = other.planLength;
     actionsExecuting = other.actionsExecuting;
@@ -375,24 +376,12 @@ void MinimalState::printPathsMap(){
     cout << "Printing all paths" << endl;
     map<string, vector<int>*>::iterator it;
     std::vector<int>::iterator it2;
-    for(it = pathsMap.begin(); it != pathsMap.end(); it++){   
+    for(it = this->pathsMap.begin(); it != this->pathsMap.end(); it++){   
         cout << "Checking path: " << it->first << endl; 
         for(it2 = it->second->begin(); it2 != it->second->end(); it2++){
             cout << *it2 << "\t";
         } cout << endl;
     }
-
-    // if(pathsMap.size() > 0){
-    //     cout << "PathsMap: " << endl;
-    //     map<string, vector<int>*>::iterator it;
-    //     for(it = pathsMap.begin(); it != pathsMap.end(); it++){
-    //         cout << it->first << ": ";
-    //         for(int i = 0; i < it->second->size(); i++){
-    //             cout << it->second->at(i) << " ";
-    //         }
-    //         cout << endl;
-    //     }
-    // }
 }
 
 //---------------------end of modification---------------------
