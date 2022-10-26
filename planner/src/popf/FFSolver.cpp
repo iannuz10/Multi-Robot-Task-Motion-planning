@@ -1659,6 +1659,28 @@ namespace Planner
     
     FF::HTrio FF::calculateHeuristicAndSchedule(ExtendedMinimalState & theState, ExtendedMinimalState * prevState, set<int> & goals, set<int> & goalFluents, ParentData * const incrementalData, list<ActionSegment> & helpfulActions, list<FFEvent> & header, list<FFEvent> & now, const int & stepID, bool considerCache, map<double, list<pair<int, int> > > * justApplied, double tilFrom)
     {
+        //-----------------modified by Antonio Iannone-----------------
+
+        // Add current state to statesFound only if it is not already there
+        if(theState.idParent != NULL){
+            cout << "Current state: " << theState.id << endl;
+            cout << "Current state's pathsMap: " << endl;
+            theState.decorated->printPathsMap();
+        }
+
+        // Search for the parent state of the current one in statesFound map
+        // ExtendedMinimalState* parentState = new ExtendedMinimalState;
+        if(theState.idParent != NULL && theState.idParent != -1){
+            cout << "Parent state: " << theState.idParent << endl;
+            cout << "Parent state's pathsMap: " << endl;
+            prevState->decorated->printPathsMap();
+            // Call map linking functions
+            theState.decorated->linkInfoToParent(prevState->decorated->infoMap);
+            theState.decorated->linkMapToParent(prevState->decorated->pathsMap);
+            // parentState = parentStateItr->second->clone();
+        }
+
+        //----------------------end of modification -------------------
         
         //     cout << "Evaluating a state reached by " << header.size() + now.size() << " snap actions\n";
         //     cout << "Has " << theState.startedActions.size() << " sorts of actions on the go\n";
@@ -6077,13 +6099,12 @@ namespace Planner
 
                             for(; helpActItr != helpActEnd; ++helpActItr) {
                                 actionName = helpActItr->first->forOp()->name->getName();
-
+                                cout << "Helpful action: " << actionName << ": ";
                                 // Working only on goto_actions
                                 if(actionName == "goto_region"){
                                     VAL::FastEnvironment *env = helpActItr->first->getEnv();
                                     vector<VAL::const_symbol *>::const_iterator symsItr = env->begin();
                                     vector<VAL::const_symbol *>::const_iterator symsEnd = env->end();
-                                    cout << "Helpful action: " << actionName << ": ";
                                     int index = 0;
                                     for(; symsItr != symsEnd; ++symsItr) {
                                         string symbol = (*symsItr)->getName();
@@ -6109,41 +6130,42 @@ namespace Planner
 
                                     // Add the info to the state
                                     currSQI->state()->decorated->addInfoToState(robotName, robotInfo);
-                                    currSQI->state()->decorated->printInfoMap();
                                     cout << endl;
                                 }
+                                // currSQI->state()->decorated->printInfoMap();
 
-                                // Add current state to statesFound only if it is not already there
-                                if(currSQI->state()->idParent != NULL){
-                                    cout << "Current state: " << currSQI->state()->id << endl;
-                                    cout << "Current state's pathsMap: " << endl;
-                                    currSQI->state()->decorated->printPathsMap();
-                                    map<int, ExtendedMinimalState*>::iterator parentStateItr = statesFound.find(currSQI->state()->id);
-                                    if(parentStateItr == statesFound.end()){
-                                        cout << "Adding state to statesFound" << endl;
-                                        statesFound[currSQI->state()->id] = currSQI->state()->clone();
-                                    }
-                                }
+                                // // Add current state to statesFound only if it is not already there
+                                // if(currSQI->state()->idParent != NULL){
+                                //     cout << "Current state: " << currSQI->state()->id << endl;
+                                //     cout << "Current state's pathsMap: " << endl;
+                                //     currSQI->state()->decorated->printPathsMap();
+                                //     map<int, ExtendedMinimalState*>::iterator parentStateItr = statesFound.find(currSQI->state()->id);
+                                //     if(parentStateItr == statesFound.end()){
+                                //         cout << "Adding state to statesFound" << endl;
+                                //         statesFound[currSQI->state()->id] = currSQI->state()->clone();
+                                //     }
+                                // }
 
-                                // Search for the parent state of the current one in statesFound map
-                                ExtendedMinimalState* parentState = new ExtendedMinimalState;
-                                if(currSQI->state()->idParent != NULL){
-                                    cout << "Parent state: " << currSQI->state()->idParent << endl;
-                                    cout << "Parent state's pathsMap: " << endl;
-                                    map<int, ExtendedMinimalState*>::iterator parentStateItr = statesFound.find(currSQI->state()->idParent);
-                                    if(parentStateItr != statesFound.end()){
-                                        cout << "Parent state found" << endl;
-                                        parentState = parentStateItr->second->clone();
-                                        parentState->decorated->printPathsMap();
-                                    }
-                                }
+                                // // Search for the parent state of the current one in statesFound map
+                                // // ExtendedMinimalState* parentState = new ExtendedMinimalState;
+                                // if(currSQI->state()->idParent != NULL){
+                                //     cout << "Parent state: " << currSQI->state()->idParent << endl;
+                                //     cout << "Parent state's pathsMap: " << endl;
+                                //     map<int, ExtendedMinimalState*>::iterator parentStateItr = statesFound.find(currSQI->state()->idParent);
+                                //     if(parentStateItr != statesFound.end()){
+                                //         cout << "Parent state found" << endl;
+                                //         // Call map linking functions
+                                //         currSQI->state()->decorated->linkInfoToParent(parentStateItr->second->decorated->infoMap);
+                                //         currSQI->state()->decorated->linkMapToParent(parentStateItr->second->decorated->pathsMap);
+                                //         // parentState = parentStateItr->second->clone();
+                                //         parentStateItr->second->decorated->printPathsMap();
+                                //     }
+                                // }
 
-                                // Call map linking functions
-                                currSQI->state()->decorated->linkInfoToParent(parentState->decorated->infoMap);
-                                currSQI->state()->decorated->linkMapToParent(parentState->decorated->pathsMap);
+                                
 
                                 // Print the infoMap of the state (just to check)
-                                currSQI->state()->decorated->printInfoMap();
+                                // currSQI->state()->decorated->printInfoMap();
 
                                 cout << endl;
 
