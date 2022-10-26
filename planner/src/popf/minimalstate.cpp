@@ -373,14 +373,14 @@ void MinimalState::printInfoMap(){
 }
 
 void MinimalState::printPathsMap(){
-    cout << "Printing all paths" << endl;
+    cout << "Printing all paths:" << endl;
     map<string, vector<int>*>::iterator it;
     std::vector<int>::iterator it2;
     for(it = this->pathsMap.begin(); it != this->pathsMap.end(); it++){   
         cout << "Checking path: " << it->first << endl; 
         for(it2 = it->second->begin(); it2 != it->second->end(); it2++){
             cout << *it2 << "\t";
-        } cout << endl;
+        } cout << endl << endl;
     }
 }
 

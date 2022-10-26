@@ -1663,6 +1663,7 @@ namespace Planner
 
         // Add current state to statesFound only if it is not already there
         if(theState.idParent != NULL){
+            cout << endl;
             cout << "Current state: " << theState.id << endl;
             cout << "Current state's pathsMap: " << endl;
             theState.decorated->printPathsMap();
@@ -1671,13 +1672,15 @@ namespace Planner
         // Search for the parent state of the current one in statesFound map
         // ExtendedMinimalState* parentState = new ExtendedMinimalState;
         if(theState.idParent != NULL && theState.idParent != -1){
+            cout << endl;
             cout << "Parent state: " << theState.idParent << endl;
             cout << "Parent state's pathsMap: " << endl;
             prevState->decorated->printPathsMap();
-            // Call map linking functions
-            theState.decorated->linkInfoToParent(prevState->decorated->infoMap);
+            // Call map linking function
             theState.decorated->linkMapToParent(prevState->decorated->pathsMap);
-            // parentState = parentStateItr->second->clone();
+            // Here there is a problem with the parent state inheritance
+            // Since decorated is a pointer to a MinimalState, it is not "copied"
+            // So future states that will inherit the same parent will end up with a different/changed pathMap
         }
 
         //----------------------end of modification -------------------
