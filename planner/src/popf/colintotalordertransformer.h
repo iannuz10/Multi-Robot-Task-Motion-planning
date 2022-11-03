@@ -77,7 +77,7 @@ public:
 
     virtual TemporalConstraints * cloneTemporalConstraints(const TemporalConstraints * const, const int extendBy = 0);
     virtual TemporalConstraints * emptyTemporalConstraints();
-    virtual MinimalState * applyAction(MinimalState & s, const vector<double> & minTimestamps, const ActionSegment & a, const bool & inPlace, const double & minDur, const double & maxDur);
+    virtual MinimalState * applyAction(map<string,vector<int>*> paths, MinimalState & s, const vector<double> & minTimestamps, const ActionSegment & a, const bool & inPlace, const double & minDur, const double & maxDur);
 
 };
 

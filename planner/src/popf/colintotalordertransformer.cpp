@@ -299,7 +299,7 @@ void TOTHelper_applyNumericEffects(MinimalState & theState, const list<int> & nu
 
 
 
-MinimalState * TotalOrderTransformer::applyAction(MinimalState & theStateHidden, const vector<double> & minTimestamps, const ActionSegment & a, const bool & inPlace,
+MinimalState * TotalOrderTransformer::applyAction(map<string,vector<int>*>* paths,MinimalState & theStateHidden, const vector<double> & minTimestamps, const ActionSegment & a, const bool & inPlace,
         const double & minDur, const double & maxDur)
 {
     const int previousMostRecent = theStateHidden.temporalConstraints->getMostRecentStep();

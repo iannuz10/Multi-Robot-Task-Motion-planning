@@ -393,9 +393,9 @@ public:
         pair<double, double> applyEffectMinMax(MinimalState theState, MinimalState &nextState);
         pair<double, double> applyEffectMinMaxWithExternalEvaluation(MinimalState theState, MinimalState &nextState);
         pair<double, double> applyEffectMinMax(const vector<double> & minFluents, const vector<double> & maxFluents, const double & minDur, const double & maxDur);
-        double callExternalSolver ( MinimalState & theState);
+        double callExternalSolver (map<string,vector<int>*>* paths, MinimalState & theState);
         pair<double, double>applyExSoEffect (MinimalState & theState, const int i, string fluentName);
-        pair<double, double> applyEffectMinMaxWithExternalEvaluation(const vector<double> & minFluents, const vector<double> & maxFluents, const double & minDur, const double & maxDur, MinimalState & theState, const int i);
+        pair<double, double> applyEffectMinMaxWithExternalEvaluation(map<string,vector<int>*>* paths, const vector<double> & minFluents, const vector<double> & maxFluents, const double & minDur, const double & maxDur, MinimalState & theState, const int i);
         
         bool operator <(const RPGNumericEffect & e) const;
 

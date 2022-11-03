@@ -59,12 +59,12 @@ double TotalOrderTransformer::latestTimePointOfActionsStartedHere(const int & i)
 }
 
 
-MinimalState * TotalOrderTransformer::applyAction(MinimalState & theStateHidden, const vector<double> & minTimestamps, const ActionSegment & a, const bool & inPlace,
+MinimalState * TotalOrderTransformer::applyAction(map<string,vector<int>*>* paths, MinimalState & theStateHidden, const vector<double> & minTimestamps, const ActionSegment & a, const bool & inPlace,
         const double & minDur, const double & maxDur)
 {
     const int previousMostRecent = theStateHidden.temporalConstraints->getMostRecentStep();
 
-    MinimalState * toReturn = t.applyAction(theStateHidden, minTimestamps, a, inPlace, minDur, maxDur);
+    MinimalState * toReturn = t.applyAction(paths,theStateHidden, minTimestamps, a, inPlace, minDur, maxDur);
 
     if (previousMostRecent != -1) { // if this isn't the first step in the plan
         const int newMostRecent = toReturn->temporalConstraints->getMostRecentStep();

@@ -954,7 +954,7 @@ namespace Planner
         return toReturn;
     }
     
-    void POTHelper_updateForOutputsFromInstantaneousNumericEffects(MinimalState & theState, const vector<double> & minTimestamps,
+    void POTHelper_updateForOutputsFromInstantaneousNumericEffects(map<string,vector<int>*>* paths, MinimalState & theState, const vector<double> & minTimestamps,
                                                                    const ActionSegment & act,
                                                                    const int & stepID, list<int> & reserve, const double & minDur, const double & maxDur)
     {
@@ -973,7 +973,7 @@ namespace Planner
                 continue;
             }
             if(ExternalSolver::isActive){
-                updated.push_back(pair<int, pair<double, double> >(currEff.fluentIndex, currEff.applyEffectMinMaxWithExternalEvaluation(theState.secondMin, theState.secondMax, minDur, maxDur, theState, currEff.fluentIndex )));
+                updated.push_back(pair<int, pair<double, double> >(currEff.fluentIndex, currEff.applyEffectMinMaxWithExternalEvaluation(paths, theState.secondMin, theState.secondMax, minDur, maxDur, theState, currEff.fluentIndex )));
             }else{
                 updated.push_back(pair<int, pair<double, double> >(currEff.fluentIndex, currEff.applyEffectMinMax(theState.secondMin, theState.secondMax, minDur, maxDur)));
             }
@@ -1610,7 +1610,7 @@ namespace Planner
     
     static unsigned int oldStepCount;
     
-    MinimalState * PartialOrderTransformer::applyAction(MinimalState & theStateHidden, const vector<double> & minTimestamps,
+    MinimalState * PartialOrderTransformer::applyAction(map<string,vector<int>*>* paths, MinimalState & theStateHidden, const vector<double> & minTimestamps,
                                                         const ActionSegment & a,
                                                         const bool & inPlace, const double & minDur, const double & maxDur)
     {
@@ -1685,13 +1685,13 @@ namespace Planner
                     }
                     POTHelper_updateForNumericVariables(*workOn, workOn->planLength, workOn->planLength, true, mentioned);
                     
-                    POTHelper_updateForOutputsFromInstantaneousNumericEffects(*workOn, minTimestamps, a, workOn->planLength, RPGBuilder::getTilNumerics()[workOn->nextTIL], minDur, maxDur);
+                    POTHelper_updateForOutputsFromInstantaneousNumericEffects(paths, *workOn, minTimestamps, a, workOn->planLength, RPGBuilder::getTilNumerics()[workOn->nextTIL], minDur, maxDur);
                     
                     POTHelper_updateForOutputsFromTILNumericEffects(*workOn, minTimestamps, a, workOn->planLength, numEffects);
                     
                     if(ExternalSolver::isActive && effectOnExternalSolver){
                         ExternalSolver::count = 0;
-                        POTHelper_updateForOutputsFromInstantaneousNumericEffects(*workOn, minTimestamps, a, workOn->planLength, RPGBuilder::getFakeExSoEffNumerics(), minDur, maxDur);
+                        POTHelper_updateForOutputsFromInstantaneousNumericEffects(paths, *workOn, minTimestamps, a, workOn->planLength, RPGBuilder::getFakeExSoEffNumerics(), minDur, maxDur);
                     }
                 }
                 
@@ -1732,11 +1732,11 @@ namespace Planner
                     POTHelper_updateForNumericVariables(*workOn, workOn->planLength, workOn->planLength, true, mentioned);
                 }
                 if(!ExternalSolver::isActive || !effectOnExternalSolver)
-                    POTHelper_updateForOutputsFromInstantaneousNumericEffects(*workOn, minTimestamps, a, workOn->planLength, RPGBuilder::getStartEffNumerics()[actID], minDur, maxDur);
+                    POTHelper_updateForOutputsFromInstantaneousNumericEffects(paths, *workOn, minTimestamps, a, workOn->planLength, RPGBuilder::getStartEffNumerics()[actID], minDur, maxDur);
                 else{
-                    POTHelper_updateForOutputsFromInstantaneousNumericEffects(*workOn, minTimestamps, a, workOn->planLength, RPGBuilder::getStartNonExSoEffNumerics()[actID], minDur, maxDur);
+                    POTHelper_updateForOutputsFromInstantaneousNumericEffects(paths, *workOn, minTimestamps, a, workOn->planLength, RPGBuilder::getStartNonExSoEffNumerics()[actID], minDur, maxDur);
                     ExternalSolver::count = 0;
-                    POTHelper_updateForOutputsFromInstantaneousNumericEffects(*workOn, minTimestamps, a, workOn->planLength, RPGBuilder::getFakeExSoEffNumerics(), minDur, maxDur);
+                    POTHelper_updateForOutputsFromInstantaneousNumericEffects(paths, *workOn, minTimestamps, a, workOn->planLength, RPGBuilder::getFakeExSoEffNumerics(), minDur, maxDur);
                 }
                 workOn->temporalConstraints->setMostRecentStep(workOn->planLength);
                 
@@ -1798,11 +1798,11 @@ namespace Planner
                 //mentioned.clear();
                 
                 if (!ExternalSolver::isActive || !effectOnExternalSolver){
-                    POTHelper_updateForOutputsFromInstantaneousNumericEffects(*workOn, minTimestamps, a, startStepID, RPGBuilder::getStartEffNumerics()[actID], minDur, maxDur);
+                    POTHelper_updateForOutputsFromInstantaneousNumericEffects(paths, *workOn, minTimestamps, a, startStepID, RPGBuilder::getStartEffNumerics()[actID], minDur, maxDur);
                 }else{
-                    POTHelper_updateForOutputsFromInstantaneousNumericEffects(*workOn, minTimestamps, a, startStepID, RPGBuilder::getStartNonExSoEffNumerics()[actID], minDur, maxDur);
+                    POTHelper_updateForOutputsFromInstantaneousNumericEffects(paths, *workOn, minTimestamps, a, startStepID, RPGBuilder::getStartNonExSoEffNumerics()[actID], minDur, maxDur);
                     ExternalSolver::count=0;
-                    POTHelper_updateForOutputsFromInstantaneousNumericEffects(*workOn, minTimestamps, a, startStepID, RPGBuilder::getFakeExSoEffNumerics(), minDur, maxDur);
+                    POTHelper_updateForOutputsFromInstantaneousNumericEffects(paths, *workOn, minTimestamps, a, startStepID, RPGBuilder::getFakeExSoEffNumerics(), minDur, maxDur);
                 }
                 POTHelper_registerContinuousNumericEffects(*workOn, startStepID, endStepID, RPGBuilder::getLinearDiscretisation()[actID], true);
                 
@@ -1943,11 +1943,11 @@ namespace Planner
             POTHelper_updateForNumericVariables(*workOn, startStepID, endStepID, false, mentioned);
             
             if(!ExternalSolver::isActive || !effectOnExternalSolver){
-                POTHelper_updateForOutputsFromInstantaneousNumericEffects(*workOn, minTimestamps, a, endStepID, RPGBuilder::getEndEffNumerics()[actID], minDur, maxDur);
+                POTHelper_updateForOutputsFromInstantaneousNumericEffects(paths, *workOn, minTimestamps, a, endStepID, RPGBuilder::getEndEffNumerics()[actID], minDur, maxDur);
             }else{
-                POTHelper_updateForOutputsFromInstantaneousNumericEffects(*workOn, minTimestamps, a, endStepID, RPGBuilder::getEndNonExSoEffNumerics()[actID], minDur, maxDur);
+                POTHelper_updateForOutputsFromInstantaneousNumericEffects(paths, *workOn, minTimestamps, a, endStepID, RPGBuilder::getEndNonExSoEffNumerics()[actID], minDur, maxDur);
                 ExternalSolver::count=0;
-                POTHelper_updateForOutputsFromInstantaneousNumericEffects(*workOn, minTimestamps, a, endStepID, RPGBuilder::getFakeExSoEffNumerics(), minDur, maxDur);
+                POTHelper_updateForOutputsFromInstantaneousNumericEffects(paths, *workOn, minTimestamps, a, endStepID, RPGBuilder::getFakeExSoEffNumerics(), minDur, maxDur);
             }
         }
         

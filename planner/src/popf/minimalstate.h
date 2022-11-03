@@ -268,7 +268,7 @@ public:
      *  @return           The state reached following the application of <code>a</code>.
      *                    If <code>inPlace=true</code>, this refers to the same state as <code>s</code>.
      */
-    virtual MinimalState * applyAction(MinimalState & s, const vector<double> & minTimestamps,
+    virtual MinimalState * applyAction(map<string,vector<int>*>* paths, MinimalState & s, const vector<double> & minTimestamps,
                                        const ActionSegment & a, const bool & inPlace,
                                        const double & minDur, const double & maxDur) = 0;
                                        
@@ -465,12 +465,12 @@ public:
         return globalTransformer;
     }
 
-    MinimalState * applyAction(const ActionSegment & a, const vector<double> & minTimestamps, double minDur = 0.0, double maxDur = 0.0) const {
-        return globalTransformer->applyAction(*const_cast<MinimalState*>(this), minTimestamps, a, false, minDur, maxDur);
+    MinimalState * applyAction(map<string,vector<int>*>* paths, const ActionSegment & a, const vector<double> & minTimestamps, double minDur = 0.0, double maxDur = 0.0) const {
+        return globalTransformer->applyAction(paths, *const_cast<MinimalState*>(this), minTimestamps, a, false, minDur, maxDur);
     }
 
-    void applyActionLocally(const ActionSegment & a, const vector<double> & minTimestamps, double minDur = 0.0, double maxDur = 0.0) {
-        globalTransformer->applyAction(*this, minTimestamps, a, true, minDur, maxDur);
+    void applyActionLocally(map<string,vector<int>*>* paths, const ActionSegment & a, const vector<double> & minTimestamps, double minDur = 0.0, double maxDur = 0.0) {
+        globalTransformer->applyAction(paths,*this, minTimestamps, a, true, minDur, maxDur);
     }
 
     #ifdef POPF3ANALYSIS

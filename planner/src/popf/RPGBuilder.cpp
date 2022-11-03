@@ -4793,7 +4793,7 @@ pair<double, double> RPGBuilder::RPGNumericEffect::applyEffectMinMax(MinimalStat
     return toReturn;
 };
 
-double  RPGBuilder::RPGNumericEffect::callExternalSolver(MinimalState & theState ){
+double  RPGBuilder::RPGNumericEffect::callExternalSolver(map<string,vector<int>*>* paths, MinimalState & theState ){
     tms begin, end;
     times(&begin);
 //    time_t begin, end;
@@ -4805,7 +4805,7 @@ double  RPGBuilder::RPGNumericEffect::callExternalSolver(MinimalState & theState
         string function = oParameter.str();
         functionsInitialState[function]=theState.secondMin[v];
     } 
-    ExternalSolver::newStatus = ExternalSolver::externalSolver->callExternalSolver(functionsInitialState,false,theState.getPathsMap()); // Added pathsMap by Antonio Iannone
+    ExternalSolver::newStatus = ExternalSolver::externalSolver->callExternalSolver(functionsInitialState,false,paths); // Added pathsMap by Antonio Iannone
     ExternalSolver::count++;
 //    time (&end);
     times(&end);
@@ -4829,9 +4829,8 @@ pair<double, double> RPGBuilder::RPGNumericEffect::applyEffectMinMaxWithExternal
         pair <double, double> standardEffect = applyEffectMinMax(theState,nextState);
         return standardEffect;
     } 
-    
     if(ExternalSolver::count==0){
-        callExternalSolver(theState);
+        callExternalSolver(NULL, theState);
     }
     double toReturn =  applyExSoEffect(theState, fluentIndex, fluentName).first;
     nextState.secondMin[fluentIndex]=toReturn;
@@ -4898,8 +4897,17 @@ pair<double, double> RPGBuilder::RPGNumericEffect::applyExSoEffect( MinimalState
     return make_pair(toReturn,toReturn);
 };
 
-pair<double, double> RPGBuilder::RPGNumericEffect::applyEffectMinMaxWithExternalEvaluation(const vector<double> & minFluents, const vector<double> & maxFluents, const double & minDur, const double & maxDur, MinimalState & theState, const int index)
+pair<double, double> RPGBuilder::RPGNumericEffect::applyEffectMinMaxWithExternalEvaluation(map<string,vector<int>*>* paths, const vector<double> & minFluents, const vector<double> & maxFluents, const double & minDur, const double & maxDur, MinimalState & theState, const int index)
 {
+    cout << "[RPGBuilder::RPGNumericEffect::applyEffectMinMaxWithExternalEvaluation]: receiving paths..." << endl;
+    // print all paths
+    for (map<string,vector<int>*>::iterator it = paths->begin(); it != paths->end(); it++){
+        cout << it->first << ": ";
+        for (vector<int>::iterator it2 = it->second->begin(); it2 != it->second->end(); it2++){
+            cout << *it2 << " ";
+        }
+        cout << endl;
+    }
 
     bool exSoDebug = true;
     string fluentName =  RPGBuilder::getPNE(fluentIndex)->getHead()->getName();
@@ -4909,7 +4917,7 @@ pair<double, double> RPGBuilder::RPGNumericEffect::applyEffectMinMaxWithExternal
         return standardEffect;
     }
     if(ExternalSolver::count==0){
-        callExternalSolver(theState);
+        callExternalSolver(paths, theState);
     } 
     pair<double, double> toReturn = applyExSoEffect(theState,index,fluentName);
     return toReturn;

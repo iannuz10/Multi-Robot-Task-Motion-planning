@@ -293,12 +293,14 @@ public:
         return *decorated;
     }
 
-    ExtendedMinimalState * applyAction(const ActionSegment & a, const vector<double> & minTimestamps, double minDur = 0.0, double maxDur = 0.0) const {
-        return new ExtendedMinimalState(*this, decorated->applyAction(a, minTimestamps, minDur, maxDur));
+    ExtendedMinimalState * applyAction(map<string,vector<int>*>* paths, const ActionSegment & a, const vector<double> & minTimestamps, double minDur = 0.0, double maxDur = 0.0) const {
+        cout << "I'm here\n"; // Added by Antonio Iannone
+        
+        return new ExtendedMinimalState(*this, decorated->applyAction(paths, a, minTimestamps, minDur, maxDur));
     }
 
-    void applyActionLocally(const ActionSegment & a, const vector<double> & minTimestamps, double minDur = 0.0, double maxDur = 0.0) {
-        decorated->applyActionLocally(a, minTimestamps, minDur, maxDur);
+    void applyActionLocally(map<string,vector<int>*>* paths, const ActionSegment & a, const vector<double> & minTimestamps, double minDur = 0.0, double maxDur = 0.0) {
+        decorated->applyActionLocally(paths,a, minTimestamps, minDur, maxDur);
     }
 
     ExtendedMinimalState * clone() const {
@@ -437,7 +439,7 @@ private:
     static HTrio calculateHeuristicAndCompressionSafeSchedule(ExtendedMinimalState & theState, ExtendedMinimalState * prevState, set<int> & goals, set<int> & goalFluents, list<ActionSegment> & helpfulActions, list<FFEvent> & header, list<FFEvent> & now, const int & stepID, map<double, list<pair<int, int> > > * justApplied = 0, double tilFrom = 0.001);
     static HTrio calculateHeuristicAndSchedule(ExtendedMinimalState & theState, ExtendedMinimalState * prevState, set<int> & goals, set<int> & goalFluents, ParentData * const p, list<ActionSegment> & helpfulActions, list<FFEvent> & header, list<FFEvent> & now, const int & stepID, bool considerCache = false, map<double, list<pair<int, int> > > * justApplied = 0, double tilFrom = 0.001);
 
-    static ExtendedMinimalState * applyActionToState(ActionSegment & theAction, const ExtendedMinimalState & parent, const list<FFEvent> & plan);
+    static ExtendedMinimalState * applyActionToState(ActionSegment & theAction, const ExtendedMinimalState & parent, const list<FFEvent> & plan, map<string,vector<int>*>* paths);
 
     /** @brief Check that a successor state has made meaningful progress
      *

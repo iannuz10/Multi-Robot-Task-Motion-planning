@@ -1677,7 +1677,7 @@ namespace Planner
             cout << "Parent state's pathsMap: " << endl;
             prevState->decorated->printPathsMap();
             // Call map linking function
-            theState.decorated->linkMapToParent(prevState->decorated->pathsMap);
+            // theState.decorated->linkMapToParent(prevState->decorated->pathsMap);
             // Here there is a problem with the parent state inheritance
             // Since decorated is a pointer to a MinimalState, it is not "copied"
             // So future states that will inherit the same parent will end up with a different/changed pathMap
@@ -1963,7 +1963,7 @@ namespace Planner
     }
     
     
-    ExtendedMinimalState * FF::applyActionToState(ActionSegment & actionToApply, const ExtendedMinimalState & parent, const list<FFEvent> & plan)
+    ExtendedMinimalState * FF::applyActionToState(ActionSegment & actionToApply, const ExtendedMinimalState & parent, const list<FFEvent> & plan, map<string,vector<int>*>* paths)
     {
         
         //  static const double EPSILON = 0.001;
@@ -2010,7 +2010,7 @@ namespace Planner
         
         if (actionToApply.second == VAL::E_AT) { // til actions
             assert(actionToApply.divisionID == parent.getInnerState().nextTIL);
-            toReturn = parent.applyAction(actionToApply, minTimestamps);
+            toReturn = parent.applyAction(paths, actionToApply, minTimestamps);
             
         } else {
             
@@ -2049,7 +2049,7 @@ namespace Planner
             }
             
             
-            toReturn = parent.applyAction(actionToApply, minTimestamps, minDur, maxDur);
+            toReturn = parent.applyAction(paths, actionToApply, minTimestamps, minDur, maxDur);
             
             if (actionToApply.second == VAL::E_AT_START) {
                 
@@ -4987,9 +4987,10 @@ namespace Planner
                                                     );
                             
                             const int oldTIL = currSQI->state()->getInnerState().nextTIL;
-                            
-                            SearchQueueItem * succ = new SearchQueueItem(applyActionToState(actID, *(currSQI->state()), currSQI->plan), true);
-                            
+                            map<string,vector<int>*>* tempPaths = new map<string,vector<int>*>();
+                            tempPaths = currSQI->state()->decorated->getPathsMap(); // Added by Antonio Iannone
+                            SearchQueueItem * succ = new SearchQueueItem(applyActionToState(actID, *(currSQI->state()), currSQI->plan, tempPaths), true);
+                            succ->state()->decorated->pathsMap = (*tempPaths);
                             succ->heuristicValue.makespan = currSQI->heuristicValue.makespan;
                             
                             if (!succ->state()) {
@@ -5616,10 +5617,12 @@ namespace Planner
                                 
                                 list<ActionSegment> nowList;
                                 
+                                map<string,vector<int>*>* tempPaths = new map<string,vector<int>*>();
+                                tempPaths = currSQI->state()->decorated->getPathsMap(); // Added by Antonio Iannone
                                 if (helpfulActsItr->second == VAL::E_AT) {
                                     ActionSegment tempSeg(0, VAL::E_AT, oldTIL, RPGHeuristic::emptyIntList);
-                                    succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(tempSeg, *(currSQI->state()), currSQI->plan), true));
-                                    
+                                    succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(tempSeg, *(currSQI->state()), currSQI->plan, tempPaths), true));
+                                    succ->state()->decorated->pathsMap = (*tempPaths);
                                     if (!succ->state()) {
                                         tsSound = false;
                                     } else {
@@ -5632,8 +5635,8 @@ namespace Planner
                                 } else {
                                     
                                     //registerFinished(*(succ->state), helpfulActsItr->needToFinish);
-                                    succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(*helpfulActsItr, *(currSQI->state()), currSQI->plan), true));
-                                    
+                                    succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(*helpfulActsItr, *(currSQI->state()), currSQI->plan, tempPaths), true));
+                                    succ->state()->decorated->pathsMap = (*tempPaths);
                                     if (!succ->state()) {
                                         tsSound = false;
                                     } else {
@@ -5723,8 +5726,8 @@ namespace Planner
                                                 TILparentAutoDelete = auto_ptr<SearchQueueItem>(TILparent);
                                                 
                                                 tempSeg = ActionSegment(0, VAL::E_AT, tn, RPGHeuristic::emptyIntList);
-                                                succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(tempSeg, *(TILparent->state()), TILparent->plan), true));
-                                                
+                                                succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(tempSeg, *(TILparent->state()), TILparent->plan, tempPaths), true));
+                                                succ->state()->decorated->pathsMap = (*tempPaths);
                                                 succ->heuristicValue.makespan = TILparent->heuristicValue.makespan;
                                                 
                                                 if (!succ->state() || !checkTemporalSoundness(*(succ->state()), tempSeg, tn - 1)) {
@@ -6257,6 +6260,26 @@ namespace Planner
                                 auto_ptr<SearchQueueItem> succ;
                                 bool tsSound = false;
                                 const int oldTIL = currSQI->state()->getInnerState().nextTIL;
+                                map<string,vector<int>*>* tempPaths = new map<string,vector<int>*>();
+                                // copy currSQI->state()->decorated->pathsMap content to tempPaths
+                                map<string,vector<int>*>::iterator pathsItr = currSQI->state()->decorated->pathsMap.begin();
+                                for(; pathsItr != currSQI->state()->decorated->pathsMap.end(); ++pathsItr){
+                                    vector<int>* tempVector = new vector<int>();
+                                    for(int i = 0; i < pathsItr->second->size(); ++i){
+                                        tempVector->push_back(pathsItr->second->at(i));
+                                    }
+                                    tempPaths->insert(pair<string,vector<int>*>(pathsItr->first,tempVector));
+                                }
+                                
+                                cout << "tempPaths test... " << endl;
+                                    //print all tempPaths
+                                    for (map<string,vector<int>*>::iterator it = tempPaths->begin(); it != tempPaths->end(); ++it){
+                                        cout << it->first << " => ";
+                                        for (int i = 0; i < it->second->size(); i++){
+                                            cout << it->second->at(i) << " ";
+                                        }
+                                        cout << endl;
+                                    }
                                 
                                 if (helpfulActsItr->second == VAL::E_AT) {
 
@@ -6265,8 +6288,17 @@ namespace Planner
                                     // TODO: Does this need revisiting?
                                     // registerFinished(toSolve->rpg, succ->state, needToFinish);
                                     ActionSegment tempSeg(0, VAL::E_AT, oldTIL, RPGHeuristic::emptyIntList);
-                                    succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(tempSeg, *(currSQI->state()), currSQI->plan), true));
-                                    
+                                    succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(tempSeg, *(currSQI->state()), currSQI->plan,tempPaths), true));
+                                    // copy tempPaths content to succ->state()->decorated->pathsMap
+                                    map<string,vector<int>*>::iterator pathsItr = tempPaths->begin();
+                                    for(; pathsItr != tempPaths->end(); ++pathsItr){
+                                        vector<int>* tempVector = new vector<int>();
+                                        for(int i = 0; i < pathsItr->second->size(); ++i){
+                                            tempVector->push_back(pathsItr->second->at(i));
+                                        }
+                                        succ->state()->decorated->pathsMap.insert(pair<string,vector<int>*>(pathsItr->first,tempVector));
+                                    }
+                                    delete tempPaths;
                                     if (succ->state()) {
                                         tsSound = checkTemporalSoundness(*(succ->state()), tempSeg, oldTIL);
                                     } else {
@@ -6280,7 +6312,11 @@ namespace Planner
                                 } else {
 
                                     //registerFinished(*(succ->state), helpfulActsItr->needToFinish);
-                                    succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(*helpfulActsItr, *(currSQI->state()), currSQI->plan), true));
+                                    cout << "Appling action..." << endl; // Added by Antonio Iannone
+                                    
+                                    
+                                    succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(*helpfulActsItr, *(currSQI->state()), currSQI->plan, tempPaths), true));
+                                    succ->state()->decorated->pathsMap = (*tempPaths);
                                     if (succ->state()) {
                                         tsSound =    stateHasProgressedBeyondItsParent(*helpfulActsItr, *(currSQI->state()), *(succ->state()))  // it had some beneficial effects
                                         && checkTemporalSoundness(*(succ->state()), *helpfulActsItr, oldTIL);                         // it didn't introduce a trivial cycle
@@ -6361,8 +6397,8 @@ namespace Planner
                                                 
                                                 tempSeg = ActionSegment(0, VAL::E_AT, tn, RPGHeuristic::emptyIntList);
                                                 
-                                                succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(tempSeg, *(TILparent->state()), TILparent->plan), true));
-                                                
+                                                succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(tempSeg, *(TILparent->state()), TILparent->plan, tempPaths), true));
+                                                succ->state()->decorated->pathsMap = (*tempPaths);
                                                 succ->heuristicValue.makespan = TILparent->heuristicValue.makespan;
                                                 
                                                 if (!succ->state() || !checkTemporalSoundness(*(succ->state()), tempSeg, tn - 1)) {
@@ -6882,6 +6918,9 @@ namespace Planner
                         list<FFEvent*>::const_iterator oldSolnItr = sortedSoln.begin();
                         
                         const int lastStep = sortedSoln.size() - 1;
+
+                        map<string,vector<int>*>* tempPaths = new map<string,vector<int>*>();
+                        tempPaths = currSQI->state()->decorated->getPathsMap(); // Added by Antonio Iannone
                         
                         for (int stepID = 0; oldSolnItr != oldSolnEnd; ++oldSolnItr, ++stepID) {
                             
@@ -6903,9 +6942,9 @@ namespace Planner
                             const auto_ptr<ParentData> incrementalData(FF::allowCompressionSafeScheduler ? 0 : LPScheduler::prime(currSQI->plan, currSQI->state()->getInnerState().temporalConstraints,
                                                                                                                                   currSQI->state()->startEventQueue));
                             
-                            auto_ptr<SearchQueueItem> succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(nextSeg, *(currSQI->state()), currSQI->plan), true));
+                            auto_ptr<SearchQueueItem> succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(nextSeg, *(currSQI->state()), currSQI->plan,tempPaths), true));
                             succ->heuristicValue.makespan = currSQI->heuristicValue.makespan;
-                            
+                            succ->state()->decorated->pathsMap = (*tempPaths);
                             evaluateStateAndUpdatePlan(succ,  *(succ->state()), currSQI->state(), goals, numericGoals, incrementalData.get(), succ->helpfulActions, nextSeg, currSQI->plan);
                             
                             delete currSQI;
