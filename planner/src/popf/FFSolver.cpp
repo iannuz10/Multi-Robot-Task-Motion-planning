@@ -4993,6 +4993,7 @@ namespace Planner
                             succ->state()->decorated->pathsMap = (*tempPaths);
                             succ->heuristicValue.makespan = currSQI->heuristicValue.makespan;
                             
+                            
                             if (!succ->state()) {
                                 cout << "Takes us to a null state: trying to start an action whose min duration exceeds its max\n";
                             }
@@ -6289,15 +6290,8 @@ namespace Planner
                                     // registerFinished(toSolve->rpg, succ->state, needToFinish);
                                     ActionSegment tempSeg(0, VAL::E_AT, oldTIL, RPGHeuristic::emptyIntList);
                                     succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(tempSeg, *(currSQI->state()), currSQI->plan,tempPaths), true));
-                                    // copy tempPaths content to succ->state()->decorated->pathsMap
-                                    map<string,vector<int>*>::iterator pathsItr = tempPaths->begin();
-                                    for(; pathsItr != tempPaths->end(); ++pathsItr){
-                                        vector<int>* tempVector = new vector<int>();
-                                        for(int i = 0; i < pathsItr->second->size(); ++i){
-                                            tempVector->push_back(pathsItr->second->at(i));
-                                        }
-                                        succ->state()->decorated->pathsMap.insert(pair<string,vector<int>*>(pathsItr->first,tempVector));
-                                    }
+                                    succ->state()->decorated->pathsMap = (*tempPaths);
+                                    // delete tempPaths
                                     delete tempPaths;
                                     if (succ->state()) {
                                         tsSound = checkTemporalSoundness(*(succ->state()), tempSeg, oldTIL);

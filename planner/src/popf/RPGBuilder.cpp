@@ -4899,15 +4899,6 @@ pair<double, double> RPGBuilder::RPGNumericEffect::applyExSoEffect( MinimalState
 
 pair<double, double> RPGBuilder::RPGNumericEffect::applyEffectMinMaxWithExternalEvaluation(map<string,vector<int>*>* paths, const vector<double> & minFluents, const vector<double> & maxFluents, const double & minDur, const double & maxDur, MinimalState & theState, const int index)
 {
-    cout << "[RPGBuilder::RPGNumericEffect::applyEffectMinMaxWithExternalEvaluation]: receiving paths..." << endl;
-    // print all paths
-    for (map<string,vector<int>*>::iterator it = paths->begin(); it != paths->end(); it++){
-        cout << it->first << ": ";
-        for (vector<int>::iterator it2 = it->second->begin(); it2 != it->second->end(); it2++){
-            cout << *it2 << " ";
-        }
-        cout << endl;
-    }
 
     bool exSoDebug = true;
     string fluentName =  RPGBuilder::getPNE(fluentIndex)->getHead()->getName();
