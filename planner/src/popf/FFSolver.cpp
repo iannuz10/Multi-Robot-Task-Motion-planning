@@ -1659,31 +1659,6 @@ namespace Planner
     
     FF::HTrio FF::calculateHeuristicAndSchedule(ExtendedMinimalState & theState, ExtendedMinimalState * prevState, set<int> & goals, set<int> & goalFluents, ParentData * const incrementalData, list<ActionSegment> & helpfulActions, list<FFEvent> & header, list<FFEvent> & now, const int & stepID, bool considerCache, map<double, list<pair<int, int> > > * justApplied, double tilFrom)
     {
-        //-----------------modified by Antonio Iannone-----------------
-
-        // Add current state to statesFound only if it is not already there
-        if(theState.idParent != NULL){
-            cout << endl;
-            cout << "Current state: " << theState.id << endl;
-            cout << "Current state's pathsMap: " << endl;
-            theState.decorated->printPathsMap();
-        }
-
-        // Search for the parent state of the current one in statesFound map
-        // ExtendedMinimalState* parentState = new ExtendedMinimalState;
-        if(theState.idParent != NULL && theState.idParent != -1){
-            cout << endl;
-            cout << "Parent state: " << theState.idParent << endl;
-            cout << "Parent state's pathsMap: " << endl;
-            prevState->decorated->printPathsMap();
-            // Call map linking function
-            theState.decorated->linkMapToParent(prevState->decorated->pathsMap);
-            // Here there is a problem with the parent state inheritance
-            // Since decorated is a pointer to a MinimalState, it is not "copied"
-            // So future states that will inherit the same parent will end up with a different/changed pathMap
-        }
-
-        //----------------------end of modification -------------------
         
         //     cout << "Evaluating a state reached by " << header.size() + now.size() << " snap actions\n";
         //     cout << "Has " << theState.startedActions.size() << " sorts of actions on the go\n";
@@ -5932,8 +5907,7 @@ namespace Planner
                             }
                         }
 
-                        map<int, ExtendedMinimalState*> statesFound;
-                        statesFound[initialState.id] = &initialState;
+                        initialState.decorated->pathsMap = new map<string, vector<int>*>(); // Added by Antonio Iannone
                         
                         
                         {
@@ -6088,6 +6062,19 @@ namespace Planner
 
                             //-----------------modified by Antonio Iannone-----------------
 
+                            
+                            // Save temp version of currSQI->state()->decorated->pathsMap
+                            // and restore it after the call to applyAction
+                            map<string, vector<int>*>* tempPathMap = new map<string, vector<int>*>();
+                            for(map<string, vector<int>*>::iterator it = currSQI->state()->decorated->pathsMap->begin(); it != currSQI->state()->decorated->pathsMap->end(); it++){
+                                vector<int>* temp = new vector<int>();
+                                for(vector<int>::iterator it2 = it->second->begin(); it2 != it->second->end(); it2++){
+                                    temp->push_back(*it2);
+                                }
+                                tempPathMap->insert(pair<string, vector<int>*>(it->first, temp));
+                            }
+                        
+
                             // Accessing robot action information from the state
                             list<ActionSegment >::iterator helpActItr;
                             list<ActionSegment >::iterator helpActEnd;
@@ -6104,37 +6091,37 @@ namespace Planner
                                 actionName = helpActItr->first->forOp()->name->getName();
                                 cout << "Helpful action: " << actionName << ": ";
                                 // Working only on goto_actions
-                                if(actionName == "goto_region"){
-                                    VAL::FastEnvironment *env = helpActItr->first->getEnv();
-                                    vector<VAL::const_symbol *>::const_iterator symsItr = env->begin();
-                                    vector<VAL::const_symbol *>::const_iterator symsEnd = env->end();
-                                    int index = 0;
-                                    for(; symsItr != symsEnd; ++symsItr) {
-                                        string symbol = (*symsItr)->getName();
-                                        cout << symbol << " ";
-                                        if(index == 0){
-                                            robotName = symbol;
-                                        }else if(index == 1){
-                                            fromRegion = symbol;
-                                        }else if(index == 2){
-                                            toRegion = symbol;
-                                        }
-                                        index++;
-                                    }
+                                // if(actionName == "goto_region"){
+                                //     VAL::FastEnvironment *env = helpActItr->first->getEnv();
+                                //     vector<VAL::const_symbol *>::const_iterator symsItr = env->begin();
+                                //     vector<VAL::const_symbol *>::const_iterator symsEnd = env->end();
+                                //     int index = 0;
+                                //     for(; symsItr != symsEnd; ++symsItr) {
+                                //         string symbol = (*symsItr)->getName();
+                                //         cout << symbol << " ";
+                                //         if(index == 0){
+                                //             robotName = symbol;
+                                //         }else if(index == 1){
+                                //             fromRegion = symbol;
+                                //         }else if(index == 2){
+                                //             toRegion = symbol;
+                                //         }
+                                //         index++;
+                                //     }
 
-                                    // Add symbols to the infoMap of the state
-                                    vector<string>* robotInfo = new vector<string>;
-                                    robotInfo->push_back(fromRegion);
-                                    robotInfo->push_back(toRegion);
+                                //     // Add symbols to the infoMap of the state
+                                //     vector<string>* robotInfo = new vector<string>;
+                                //     robotInfo->push_back(fromRegion);
+                                //     robotInfo->push_back(toRegion);
 
-                                    // Print name of the robot and the regions
-                                    cout << endl;
-                                    cout << "Robot: " << robotName << " From: " << robotInfo->at(0) << " To: " << robotInfo->at(1) << endl;
+                                //     // Print name of the robot and the regions
+                                //     cout << endl;
+                                //     cout << "Robot: " << robotName << " From: " << robotInfo->at(0) << " To: " << robotInfo->at(1) << endl;
 
-                                    // Add the info to the state
-                                    currSQI->state()->decorated->addInfoToState(robotName, robotInfo);
-                                    cout << endl;
-                                }
+                                //     // Add the info to the state
+                                //     currSQI->state()->decorated->addInfoToState(robotName, robotInfo);
+                                //     cout << endl;
+                                // }
                                 // currSQI->state()->decorated->printInfoMap();
 
                                 // // Add current state to statesFound only if it is not already there
@@ -6362,7 +6349,7 @@ namespace Planner
                                                 tempSeg = ActionSegment(0, VAL::E_AT, tn, RPGHeuristic::emptyIntList);
                                                 
                                                 succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(tempSeg, *(TILparent->state()), TILparent->plan), true));
-                                                
+         
                                                 succ->heuristicValue.makespan = TILparent->heuristicValue.makespan;
                                                 
                                                 if (!succ->state() || !checkTemporalSoundness(*(succ->state()), tempSeg, tn - 1)) {
@@ -6456,7 +6443,46 @@ namespace Planner
                                         if (helpfulActsItr->second == VAL::E_AT) {
                                             evaluateStateAndUpdatePlan(succ, *(succ->state()), TILparent->state(), goals, numericGoals, (incrementalIsDead ? (ParentData*) 0 : incrementalData.get()), succ->helpfulActions, *helpfulActsItr, TILparent->plan);
                                         } else {
-                                            evaluateStateAndUpdatePlan(succ,  *(succ->state()), currSQI->state(), goals, numericGoals, incrementalData.get(), succ->helpfulActions, *helpfulActsItr, currSQI->plan);
+                                            //-----------------modified by Antonio Iannone-----------------
+
+                                            succ->state()->decorated->pathsMap->clear();
+                                            // Copy content of currSQI->state()->decorated->pathsMap into succ->state()->decorated->pathsMap 
+                                            cout << "currSQI pathsMap size: " << currSQI->state()->decorated->pathsMap->size() << endl;
+                                            map<string, vector<int>*>::iterator pathMapItr = currSQI->state()->decorated->pathsMap->begin();
+                                            for (; pathMapItr != currSQI->state()->decorated->pathsMap->end(); ++pathMapItr) {
+                                                vector<int>* newPath = new vector<int>();
+                                                vector<int>* oldPath = pathMapItr->second;
+                                                for (int i = 0; i < oldPath->size(); ++i) {
+                                                    newPath->push_back(oldPath->at(i));
+                                                }
+                                                succ->state()->decorated->pathsMap->insert(pair<string, vector<int>*>(pathMapItr->first, newPath));
+                                            }
+
+                                            // Add current state to statesFound only if it is not already there
+                                            if(succ->state()->idParent != NULL){
+                                                cout << endl;
+                                                cout << "Current state: " << succ->state()->id << endl;
+                                                cout << "Current state's pathsMap: " << endl;
+                                                succ->state()->decorated->printPathsMap();
+                                            }
+
+                                            // Search for the parent state of the current one in statesFound map
+                                            // ExtendedMinimalState* parentState = new ExtendedMinimalState;
+                                            if(succ->state()->idParent != NULL && succ->state()->idParent != -1){
+                                                cout << endl;
+                                                cout << "Parent state: " << succ->state()->idParent << endl;
+                                                cout << "Parent state's pathsMap: " << endl;
+                                                currSQI->state()->decorated->printPathsMap();
+                                                // Call map linking function
+                                                // succ->state()->decorated->linkMapToParent(currSQI->state()->decorated->pathsMap);
+                                                // Here there is a problem with the parent state inheritance
+                                                // Since decorated is a pointer to a MinimalState, it is not "copied"
+                                                // So future states that will inherit the same parent will end up with a different/changed pathMap
+                                            }
+                                          
+                                            //----------------------end of modification -------------------
+
+                                            evaluateStateAndUpdatePlan(succ, *(succ->state()), currSQI->state(), goals, numericGoals, incrementalData.get(), succ->helpfulActions, *helpfulActsItr, currSQI->plan);
                                         }
                                         
                                         //succ->printPlan();
@@ -6547,6 +6573,17 @@ namespace Planner
                                         
                                     }
                                 }
+                            }
+                            // Added by Antonio Iannone
+                            currSQI->state()->decorated->pathsMap->clear();
+                            // Copy content of tempPathMap into currSQI->state()->decorated->pathsMap
+                            map<string, vector<int>*>::iterator tempMapItr = tempPathMap->begin();
+                            for(map<string, vector<int>*>::iterator it = tempPathMap->begin(); it != tempPathMap->end(); it++){
+                                vector<int>* temp = new vector<int>();
+                                for(vector<int>::iterator it2 = it->second->begin(); it2 != it->second->end(); it2++){
+                                    temp->push_back(*it2);
+                                }
+                                currSQI->state()->decorated->pathsMap->insert(pair<string, vector<int>*>(it->first, temp));
                             }
                         }
                         

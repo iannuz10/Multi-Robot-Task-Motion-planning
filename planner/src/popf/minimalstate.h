@@ -328,7 +328,7 @@ public:
 
     //-----------------modified by Antonio Iannone-----------------
     
-    map<string, vector<int>*> pathsMap;
+    map<string, vector<int>*>* pathsMap;
     map<string, vector<string>*> infoMap;
 
     map<string, vector<string>*> getParentStateInfoMap(int idParentState);
@@ -339,7 +339,7 @@ public:
 
     map<string, vector<int>*>* getPathsMap();
 
-    void linkMapToParent(map<string, vector<int>*> parentMap);
+    void linkMapToParent(map<string, vector<int>*>* parentMap);
 
     void linkInfoToParent(map<string, vector<string>*> parentMap);
 

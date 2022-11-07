@@ -343,10 +343,10 @@ void MinimalState::addInfoToState(string key, vector<string>* values){
     infoMap[key] = values;
 }
 void MinimalState::addPathToState(string key, vector<int>* values){
-    pathsMap[key] = values;
+    pathsMap->at(key) = values;
 }
 
-void MinimalState::linkMapToParent(map<string, vector<int>*> parentMap){
+void MinimalState::linkMapToParent(map<string, vector<int>*>* parentMap){
     pathsMap = parentMap;
 }
 
@@ -355,7 +355,7 @@ void MinimalState::linkInfoToParent(map<string, vector<string>*> parentMap){
 }
 
 map<string, vector<int>*>* MinimalState::getPathsMap(){
-    return &pathsMap;
+    return pathsMap;
 }
 
 void MinimalState::printInfoMap(){
@@ -376,7 +376,7 @@ void MinimalState::printPathsMap(){
     cout << "Printing all paths:" << endl;
     map<string, vector<int>*>::iterator it;
     std::vector<int>::iterator it2;
-    for(it = this->pathsMap.begin(); it != this->pathsMap.end(); it++){   
+    for(it = this->pathsMap->begin(); it != this->pathsMap->end(); it++){   
         cout << "Checking path: " << it->first << endl; 
         for(it2 = it->second->begin(); it2 != it->second->end(); it2++){
             cout << *it2 << "\t";
