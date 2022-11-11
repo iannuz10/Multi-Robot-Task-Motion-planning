@@ -235,37 +235,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
               pathsCosts.insert({pathID,tempCost});
             }
 
-            // int pathsFound = 0;
-
-            // map<string, vector<int>*>::iterator pathsIter;
-            // for(pathsIter = paths.begin(); pathsIter != paths.end(); pathsIter++){
-            //    if(pathsIter->first[0] == step) {
-            //     pathsFound++;
-            //   }
-            // }
-
-            // int pathsFound = paths->size();
-            // if(pathsFound == totalRobots) {
-            //   semaphoreCounter = 0;
-            //   step++;
-            // }
           }
-          
-          // Waiting for all pahs to be computed
-          // if(ExternalSolver::verbose){
-          //   cout << "Semaphore counter is currently: " << semaphoreCounter << endl;
-          //   cout << "Cost has been calculated? " << pathCostComputed << endl;
-          // }
-          // if(semaphoreCounter == 0 && !pathCostComputed && totalRobots > 1){
-          //   cost = 0;
-          //   if(ExternalSolver::verbose) cout << "Summing path costs." << endl;
-          //   for(auto x : pathsCosts){
-          //     cost += x.second;
-          //     if(ExternalSolver::verbose) cout << x.second << " ";
-          //   }
-          //   if(ExternalSolver::verbose) cout << endl << "Final cost is: " << cost << endl;;
-          //   pathCostComputed = true;
-          // }
           
           // if(totalRobots == 1){
           //   if(ExternalSolver::verbose) cout << "Assigned cost to path" << endl;
@@ -275,11 +245,11 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
 
           // Printing all paths
           if(ExternalSolver::verbose){
-            cout << "Printing all paths" << endl;
+            cout << "[VisitSolver]:Printing all paths" << endl;
             map<string, vector<int>*>::iterator it;
             std::vector<int>::iterator it2;
             for(it = paths->begin(); it != paths->end(); it++){   
-              cout << "Checking path: " << it->first << endl; 
+              cout << "[VisitSolver]:Checking path: " << it->first << endl; 
               for(it2 = it->second->begin(); it2 != it->second->end(); it2++){
                 cout << *it2 << "\t";
               } cout << endl;
