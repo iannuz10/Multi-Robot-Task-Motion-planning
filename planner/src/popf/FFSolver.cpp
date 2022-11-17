@@ -6445,7 +6445,7 @@ namespace Planner
                                                 cout << "Parent state's pathsMap: " << endl;
                                                 currSQI->state()->decorated->printPathsMap();
                                                 // Call map linking function
-                                                succ->state()->decorated->linkMapToParent(currSQI->state()->decorated->pathsMap);
+                                                // succ->state()->decorated->linkMapToParent(currSQI->state()->decorated->pathsMap);
                                                 // Here there is a problem with the parent state inheritance
                                                 // Since decorated is a pointer to a MinimalState, it is not "copied"
                                                 // So future states that will inherit the same parent will end up with a different/changed pathMap
