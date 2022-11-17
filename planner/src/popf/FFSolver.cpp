@@ -6237,15 +6237,26 @@ namespace Planner
                                 bool tsSound = false;
                                 const int oldTIL = currSQI->state()->getInnerState().nextTIL;
                                 map<string,vector<int>*>* tempPaths = new map<string,vector<int>*>();
-                                // copy currSQI->state()->decorated->pathsMap content to tempPaths
-                                map<string,vector<int>*>::iterator pathsItr = currSQI->state()->decorated->pathsMap.begin();
-                                for(; pathsItr != currSQI->state()->decorated->pathsMap.end(); ++pathsItr){
+
+                                map<string, vector<int>*>::iterator pathsItr = currSQI->state()->decorated->pathsMap.begin();
+                                for (; pathsItr != currSQI->state()->decorated->pathsMap.end(); ++pathsItr) {
                                     vector<int>* tempVector = new vector<int>();
-                                    for(int i = 0; i < pathsItr->second->size(); ++i){
-                                        tempVector->push_back(pathsItr->second->at(i));
+                                    vector<int>* oldPath = pathsItr->second;
+                                    for (int i = 0; i < oldPath->size(); ++i) {
+                                        tempVector->push_back(oldPath->at(i));
                                     }
-                                    tempPaths->insert(pair<string,vector<int>*>(pathsItr->first,tempVector));
+                                    tempPaths->insert(pair<string, vector<int>*>(pathsItr->first, tempVector));
                                 }
+
+                                // copy currSQI->state()->decorated->pathsMap content to tempPaths
+                                // map<string,vector<int>*>::iterator pathsItr = currSQI->state()->decorated->pathsMap.begin();
+                                // for(; pathsItr != currSQI->state()->decorated->pathsMap.end(); ++pathsItr){
+                                //     vector<int>* tempVector = new vector<int>();
+                                //     for(int i = 0; i < pathsItr->second->size(); ++i){
+                                //         tempVector->push_back(pathsItr->second->at(i));
+                                //     }
+                                //     tempPaths->insert(pair<string,vector<int>*>(pathsItr->first,tempVector));
+                                // }
                                 
                                 cout << "tempPaths test print... " << endl;
                                     //print all tempPaths
@@ -6265,7 +6276,17 @@ namespace Planner
                                     // registerFinished(toSolve->rpg, succ->state, needToFinish);
                                     ActionSegment tempSeg(0, VAL::E_AT, oldTIL, RPGHeuristic::emptyIntList);
                                     succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(tempSeg, *(currSQI->state()), currSQI->plan,tempPaths), true));
-                                    succ->state()->decorated->pathsMap = (*tempPaths);
+                                    map<string, vector<int>*>::iterator tempPathItr = tempPaths->begin();
+                                    for (; tempPathItr != tempPaths->end(); ++tempPathItr) {
+                                        vector<int>* newVector = new vector<int>();
+                                        vector<int>* oldPath = tempPathItr->second;
+                                        for (int i = 0; i < oldPath->size(); ++i) {
+                                            newVector->push_back(oldPath->at(i));
+                                        }
+                                        succ->state()->decorated->pathsMap.insert(pair<string, vector<int>*>(tempPathItr->first, newVector));
+                                    }
+                                    
+                                    // succ->state()->decorated->pathsMap = (*tempPaths);
                                     // delete tempPaths
                                     delete tempPaths;
                                     if (succ->state()) {
@@ -6285,7 +6306,16 @@ namespace Planner
                                     
                                     
                                     succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(*helpfulActsItr, *(currSQI->state()), currSQI->plan, tempPaths), true));
-                                    succ->state()->decorated->pathsMap = (*tempPaths);
+                                    map<string, vector<int>*>::iterator tempPathItr = tempPaths->begin();
+                                    for (; tempPathItr != tempPaths->end(); ++tempPathItr) {
+                                        vector<int>* newVector = new vector<int>();
+                                        vector<int>* oldPath = tempPathItr->second;
+                                        for (int i = 0; i < oldPath->size(); ++i) {
+                                            newVector->push_back(oldPath->at(i));
+                                        }
+                                        succ->state()->decorated->pathsMap.insert(pair<string, vector<int>*>(tempPathItr->first, newVector));
+                                    }
+                                    // succ->state()->decorated->pathsMap = (*tempPaths);
                                     if (succ->state()) {
                                         tsSound =    stateHasProgressedBeyondItsParent(*helpfulActsItr, *(currSQI->state()), *(succ->state()))  // it had some beneficial effects
                                         && checkTemporalSoundness(*(succ->state()), *helpfulActsItr, oldTIL);                         // it didn't introduce a trivial cycle
@@ -6367,7 +6397,16 @@ namespace Planner
                                                 tempSeg = ActionSegment(0, VAL::E_AT, tn, RPGHeuristic::emptyIntList);
                                                 
                                                 succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(tempSeg, *(TILparent->state()), TILparent->plan, tempPaths), true));
-                                                succ->state()->decorated->pathsMap = (*tempPaths);
+                                                map<string, vector<int>*>::iterator tempPathItr = tempPaths->begin();
+                                                for (; tempPathItr != tempPaths->end(); ++tempPathItr) {
+                                                    vector<int>* newVector = new vector<int>();
+                                                    vector<int>* oldPath = tempPathItr->second;
+                                                    for (int i = 0; i < oldPath->size(); ++i) {
+                                                        newVector->push_back(oldPath->at(i));
+                                                    }
+                                                    succ->state()->decorated->pathsMap.insert(pair<string, vector<int>*>(tempPathItr->first, newVector));
+                                                }
+                                                // succ->state()->decorated->pathsMap = (*tempPaths);
                                                 succ->heuristicValue.makespan = TILparent->heuristicValue.makespan;
                                                 
                                                 if (!succ->state() || !checkTemporalSoundness(*(succ->state()), tempSeg, tn - 1)) {
@@ -6939,7 +6978,16 @@ namespace Planner
                             
                             auto_ptr<SearchQueueItem> succ = auto_ptr<SearchQueueItem>(new SearchQueueItem(applyActionToState(nextSeg, *(currSQI->state()), currSQI->plan,tempPaths), true));
                             succ->heuristicValue.makespan = currSQI->heuristicValue.makespan;
-                            succ->state()->decorated->pathsMap = (*tempPaths);
+                            map<string, vector<int>*>::iterator tempPathItr = tempPaths->begin();
+                                for (; tempPathItr != tempPaths->end(); ++tempPathItr) {
+                                    vector<int>* newVector = new vector<int>();
+                                    vector<int>* oldPath = tempPathItr->second;
+                                    for (int i = 0; i < oldPath->size(); ++i) {
+                                        newVector->push_back(oldPath->at(i));
+                                    }
+                                    succ->state()->decorated->pathsMap.insert(pair<string, vector<int>*>(tempPathItr->first, newVector));
+                                }
+                            // succ->state()->decorated->pathsMap = (*tempPaths);
                             evaluateStateAndUpdatePlan(succ,  *(succ->state()), currSQI->state(), goals, numericGoals, incrementalData.get(), succ->helpfulActions, nextSeg, currSQI->plan);
                             
                             delete currSQI;
