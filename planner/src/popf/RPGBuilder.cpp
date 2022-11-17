@@ -4806,6 +4806,17 @@ double  RPGBuilder::RPGNumericEffect::callExternalSolver(map<string,vector<int>*
         functionsInitialState[function]=theState.secondMin[v];
     } 
     ExternalSolver::newStatus = ExternalSolver::externalSolver->callExternalSolver(functionsInitialState,false,paths); // Added pathsMap by Antonio Iannone
+    
+    // Print all content of theState.pathsMap
+    cout << "[callExternalSolver]: " << endl;
+    for (map<string, vector<int>* >::iterator it = theState.getPathsMap()->begin(); it != theState.getPathsMap()->end(); ++it){
+        cout << "State " << it->first << " has paths: ";
+        for (vector<int>::iterator it2 = it->second->begin(); it2 != it->second->end(); ++it2){
+            cout << *it2 << " ";
+        }
+        cout << endl;
+    }
+    
     ExternalSolver::count++;
 //    time (&end);
     times(&end);
