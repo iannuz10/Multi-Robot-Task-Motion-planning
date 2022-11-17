@@ -4809,7 +4809,7 @@ double  RPGBuilder::RPGNumericEffect::callExternalSolver(map<string,vector<int>*
     
     // Print all content of theState.pathsMap
     cout << "[callExternalSolver]: " << endl;
-    for (map<string, vector<int>* >::iterator it = theState.getPathsMap()->begin(); it != theState.getPathsMap()->end(); ++it){
+    for (map<string, vector<int>* >::iterator it = paths->begin(); it != paths->end(); ++it){
         cout << "State " << it->first << " has paths: ";
         for (vector<int>::iterator it2 = it->second->begin(); it2 != it->second->end(); ++it2){
             cout << *it2 << " ";

@@ -6247,7 +6247,7 @@ namespace Planner
                                     tempPaths->insert(pair<string,vector<int>*>(pathsItr->first,tempVector));
                                 }
                                 
-                                cout << "tempPaths test... " << endl;
+                                cout << "tempPaths test print... " << endl;
                                     //print all tempPaths
                                     for (map<string,vector<int>*>::iterator it = tempPaths->begin(); it != tempPaths->end(); ++it){
                                         cout << it->first << " => ";
@@ -6461,6 +6461,8 @@ namespace Planner
                                         if (helpfulActsItr->second == VAL::E_AT) {
                                             evaluateStateAndUpdatePlan(succ, *(succ->state()), TILparent->state(), goals, numericGoals, (incrementalIsDead ? (ParentData*) 0 : incrementalData.get()), succ->helpfulActions, *helpfulActsItr, TILparent->plan);
                                         } else {
+                                            evaluateStateAndUpdatePlan(succ,  *(succ->state()), currSQI->state(), goals, numericGoals, incrementalData.get(), succ->helpfulActions, *helpfulActsItr, currSQI->plan);
+
                                             //-----------------modified by Antonio Iannone-----------------
 
                                             // Add current state to statesFound only if it is not already there
@@ -6486,7 +6488,6 @@ namespace Planner
                                             }
 
                                             //----------------------end of modification -------------------
-                                            evaluateStateAndUpdatePlan(succ,  *(succ->state()), currSQI->state(), goals, numericGoals, incrementalData.get(), succ->helpfulActions, *helpfulActsItr, currSQI->plan);
                                         }
                                         
                                         //succ->printPlan();

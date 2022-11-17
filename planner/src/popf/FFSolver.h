@@ -294,8 +294,6 @@ public:
     }
 
     ExtendedMinimalState * applyAction(map<string,vector<int>*>* paths, const ActionSegment & a, const vector<double> & minTimestamps, double minDur = 0.0, double maxDur = 0.0) const {
-        cout << "I'm here\n"; // Added by Antonio Iannone
-        
         return new ExtendedMinimalState(*this, decorated->applyAction(paths, a, minTimestamps, minDur, maxDur));
     }
 
