@@ -8,7 +8,7 @@
 )
 (:init
      (robot_in C3PO r1)
-     (robot_in BB8 r19)
+     (robot_in BB8 r20)
      (= (act-cost) 0)
      (= (dummy) 0)
      (= (object_in o1 r12) 1)
