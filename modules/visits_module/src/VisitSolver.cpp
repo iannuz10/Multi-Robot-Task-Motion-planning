@@ -218,6 +218,7 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
               for(int i = 0; i < path->size()-1; i++){
                 tempCost += wpAdjMatrix[path->at(i)][path->at(i+1)];
               }
+              // tempCost = rand() % 10;
               cout << endl << "DijkstraShortestPath cost: " << tempCost << endl;
             }
 
@@ -533,6 +534,9 @@ void VisitSolver::weightAdjMatrix(){
         
         // Calculating distance between connected waypoints
         wpAdjMatrix[stoi(firstWp)][stoi(secondWp)] *= sqrt((pow((vec1[0]-vec2[0]),2))+(pow((vec1[1]-vec2[1]),2)));
+        // if(vec1[1] > 2  || vec2[1] > 2 ){
+        //   wpAdjMatrix[stoi(firstWp)][stoi(secondWp)] *= 10;
+        // }
         // wpAdjMatrix[stoi(secondWp)][stoi(firstWp)] *= sqrt((pow((vec1[0]-vec2[0]),2))+(pow((vec1[1]-vec2[1]),2)));
 
       }
