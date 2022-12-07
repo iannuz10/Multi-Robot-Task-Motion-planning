@@ -104,7 +104,7 @@ namespace Planner
     }
     
     
-    void Solution::update(const std::list< FFEvent >& newPlan, const Planner::TemporalConstraints*const newCons, const double& newMetric)
+    void Solution::update(const std::list< FFEvent >& newPlan, const Planner::TemporalConstraints*const newCons, const double& newMetric, map<string, vector<int>*> paths)
     {
         
         delete plan;
@@ -118,7 +118,19 @@ namespace Planner
             constraints = new TemporalConstraints();
         }
         quality = newMetric;
-        
+        pathSolution = paths;
+    }
+
+    void Solution::printPathSolution(){
+        // Print the path solution
+        map<string, vector<int>*>::iterator it;
+        for(it = pathSolution.begin(); it != pathSolution.end(); it++){
+            cout << "Path for " << it->first << ": ";
+            for(int i = 0; i < it->second->size(); i++){
+                cout << it->second->at(i) << " ";
+            }
+            cout << endl;
+        }
     }
     
     
@@ -284,10 +296,10 @@ namespace Planner
     }
     
     
-    bool FF::carryOnSearching(const MinimalState & theState,  const list<FFEvent> & plan, bool & improvedOnBest)
+    bool FF::carryOnSearching(const MinimalState & theState,  const list<FFEvent> & plan, bool & improvedOnBest, map<string, vector<int>*> paths)
     {
         if (!Globals::optimiseSolutionQuality) {
-            workingBestSolution.update(plan, theState.temporalConstraints, evaluateMetric(theState, plan, false));
+            workingBestSolution.update(plan, theState.temporalConstraints, evaluateMetric(theState, plan, false), paths);
             if (Globals::globalVerbosity & 1) {
                 cout << "g"; cout.flush();
             }
@@ -311,7 +323,7 @@ namespace Planner
             if (Globals::globalVerbosity & 1) {
                 cout << "g"; cout.flush();
             }
-            workingBestSolution.update(plan, theState.temporalConstraints, evaluateMetric(theState, plan, false));
+            workingBestSolution.update(plan, theState.temporalConstraints, evaluateMetric(theState, plan, false), paths);
             
             cout << endl << "; Plan found with metric " << realMetric << endl;
             cout << "; States evaluated so far: " << RPGHeuristic::statesEvaluated << endl;
@@ -343,12 +355,12 @@ namespace Planner
     
 #else
     
-    bool FF::carryOnSearching(const MinimalState & theState,  const list<FFEvent> & plan)
+    bool FF::carryOnSearching(const MinimalState & theState,  const list<FFEvent> & plan, map<string, vector<int>*> paths)
     {
         if (Globals::globalVerbosity & 1) {
             cout << "g"; cout.flush();
         }
-        workingBestSolution.update(plan, theState.temporalConstraints, evaluateMetric(theState, plan, false));
+        workingBestSolution.update(plan, theState.temporalConstraints, evaluateMetric(theState, plan, false), paths);
         
         return false;
     }
@@ -5801,7 +5813,7 @@ namespace Planner
                                             if (succ->heuristicValue.heuristicValue == 0.0) {
                                                 reachedGoal = true;                            
                                                 bool improvedOnBest = false;
-                                                if (!carryOnSearching(succ->state()->getInnerState(), succ->plan, improvedOnBest)) {
+                                                if (!carryOnSearching(succ->state()->getInnerState(), succ->plan, improvedOnBest, succ->state()->decorated->pathsMap)) {
                                                     return workingBestSolution;
                                                 }
                                                 if (improvedOnBest && FF::restartBFSAfterEachNewBestSolution) {
@@ -5910,9 +5922,6 @@ namespace Planner
                                 cout << "Initial state has " << initialState.getInnerState().first.size() << " propositional facts and " << tinitialFluents.size() << " non-static fluents\n";
                             }
                         }
-
-                        map<int, ExtendedMinimalState*> statesFound;
-                        statesFound[initialState.id] = &initialState;
                         
                         
                         {
@@ -6009,7 +6018,7 @@ namespace Planner
                         
                         if (bestHeuristic.heuristicValue == 0.0) {
                             reachedGoal = true;
-                            workingBestSolution.update(list<FFEvent>(), 0, evaluateMetric(initialState.getInnerState(), list<FFEvent>(), false));
+                            workingBestSolution.update(list<FFEvent>(), 0, evaluateMetric(initialState.getInnerState(), list<FFEvent>(), false), initialState.decorated->pathsMap);
                             return workingBestSolution;
                         }
                         
@@ -6537,7 +6546,7 @@ namespace Planner
                                                 reachedGoal = true;
                                                 bool improvedOnBest = false;
                                                 
-                                                if (!carryOnSearching(succ->state()->getInnerState(), succ->plan, improvedOnBest)) {
+                                                if (!carryOnSearching(succ->state()->getInnerState(), succ->plan, improvedOnBest,succ->state()->decorated->pathsMap)) {
                                                     return workingBestSolution;
                                                 }
                                                 searchQueue.clear();

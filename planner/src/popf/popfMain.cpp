@@ -677,6 +677,8 @@ int main(int argc, char * argv[])
 #endif
             } else {
                 cout << ";;;; Solution Found\n";
+                cout << "; Path solution: " << endl;
+                planAndConstraints.printPathSolution();
                 cout << "; States evaluated: " << RPGHeuristic::statesEvaluated << endl;
                 cout << "; Cost: " << planAndConstraints.quality << endl;
                 if(ExternalSolver::isActive){

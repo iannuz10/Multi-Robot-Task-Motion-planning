@@ -342,10 +342,12 @@ struct Solution {
     list<FFEvent> * plan;   
     TemporalConstraints * constraints;
     double quality;
+
+    map<string, vector<int>*> pathSolution;
     
     Solution();
-    void update(const list<FFEvent> & newPlan, const TemporalConstraints * const newCons, const double & newMetric);
-    
+    void update(const list<FFEvent> & newPlan, const TemporalConstraints * const newCons, const double & newMetric, map<string, vector<int>*> paths);
+    void printPathSolution();
 };
 
 class StateHash;
@@ -469,7 +471,7 @@ private:
 
     static double evaluateMetric(const MinimalState & theState, const list<FFEvent> & plan, const bool printMetric=true);
 
-    static bool carryOnSearching(const MinimalState & theState,  const list<FFEvent> & plan, bool & improvedOnBest);
+    static bool carryOnSearching(const MinimalState & theState,  const list<FFEvent> & plan, bool & improvedOnBest, map<string, vector<int>*> paths);
     
     static Solution workingBestSolution;
     
