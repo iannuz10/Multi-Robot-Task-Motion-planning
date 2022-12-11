@@ -230,7 +230,6 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
                 // confront current path with previous path    
                 if((path->at(0) != it3->second->at(0)) && (path->at(path->size()-1) != it3->second->at(it3->second->size()-1))){
                   paths->insert({pathID,path});
-                  break;
                 }
               
               } else {
