@@ -212,14 +212,14 @@ map<string,double> VisitSolver::callExternalSolver(map<string,double> initialSta
                 cout << path->at(i);
               } cout << endl;
               cout << "Insertion of new path succeded!" << endl;
-              
-              // Computing cost of the path
-              for(int i = 0; i < path->size()-1; i++){
-                tempCost += wpAdjMatrix[path->at(i)][path->at(i+1)];
-              }
-              // tempCost = rand() % 10;
-              cout << endl << "DijkstraShortestPath cost: " << tempCost << endl;
             }
+            // Computing cost of the path
+            for(int i = 0; i < path->size()-1; i++){
+              tempCost += wpAdjMatrix[path->at(i)][path->at(i+1)];
+            }
+            // tempCost = rand() % 10;
+            cout << endl << "DijkstraShortestPath cost: " << tempCost << endl;
+            
 
             // Inserting new path in the paths map
             string previousStepID;
